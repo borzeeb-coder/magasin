@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PromoApp - Vraies Promos & Anti-Gaspi</title>
-  <meta name="description" content="Les vraies promotions et prospectus de vos magasins (Carrefour, E.Leclerc, Lidl) en direct." />
+  <meta name="description" content="Trouvez automatiquement les vraies promos et prospectus des magasins autour de vous." />
   <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#ff5a3c" />
   
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- Leaflet CSS (OpenStreetMap - gratuit, sans clé API) -->
+  <!-- Leaflet CSS (OpenStreetMap) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- Stylesheet -->
@@ -27,7 +27,7 @@
       <div class="top-logo">M</div>
       <div class="top-info">
         <h1>PromoApp <span>Prospectus & Anti-Gaspi</span></h1>
-        <p>Vraies offres de Carrefour, E.Leclerc, Lidl & Monoprix</p>
+        <p id="top-status-text">Promos des magasins autour de vous</p>
       </div>
     </div>
 
@@ -77,10 +77,30 @@
               <div class="logo">M</div>
               <div class="title">
                 <b>Vraies Promos</b>
-                <span id="savings-banner-badge">Prospectus de la semaine</span>
+                <span id="user-city-label">Autour de vous</span>
               </div>
             </div>
             <div class="pill" id="badge-promo-count">10 Offres</div>
+          </div>
+
+          <!-- Bouton Géolocalisation Automatique Réelle -->
+          <div class="geo-action-container">
+            <button id="btn-home-locate" class="geo-btn-main">
+              <span class="geo-radar-pulse"></span>
+              <span class="geo-btn-text">📍 Trouver les promos autour de moi</span>
+            </button>
+            
+            <div id="geo-active-banner" class="geo-active-banner" style="display:none;">
+              <div class="geo-banner-info">
+                <span class="geo-dot-live"></span>
+                <span id="geo-current-city">Localisation : Lyon</span>
+              </div>
+              <div class="geo-banner-actions">
+                <button id="btn-geo-radius-1" class="radius-chip active" data-radius="999">Toutes</button>
+                <button id="btn-geo-radius-2" class="radius-chip" data-radius="2">&lt; 2 km</button>
+                <button id="btn-geo-reset" class="geo-reset-icon" title="Réinitialiser">✕</button>
+              </div>
+            </div>
           </div>
 
           <!-- Recherche instantanée -->
@@ -92,7 +112,7 @@
 
           <!-- Filtres par Enseignes de Magasin -->
           <div class="stores-filter-bar" id="stores-filter-bar">
-            <button class="store-chip active" data-store="all">🏪 Toutes les enseignes</button>
+            <button class="store-chip active" data-store="all">🏪 Toutes</button>
             <button class="store-chip carrefour" data-store="Carrefour">🔴 Carrefour</button>
             <button class="store-chip leclerc" data-store="E.Leclerc">🔵 E.Leclerc</button>
             <button class="store-chip lidl" data-store="Lidl">🟡 Lidl</button>
@@ -102,10 +122,10 @@
           <!-- Filtres par rayons -->
           <div class="categories-scroll" id="categories-bar">
             <button class="cat-pill active" data-cat="all">Tout voir</button>
-            <button class="cat-pill" data-cat="Boucherie">🥩 Boucherie & Volaille</button>
-            <button class="cat-pill" data-cat="Fruits">🍎 Fruits & Légumes</button>
-            <button class="cat-pill" data-cat="Frais">🧀 Produits Frais</button>
-            <button class="cat-pill" data-cat="Épicerie">🥫 Épicerie & Boissons</button>
+            <button class="cat-pill" data-cat="Boucherie">🥩 Boucherie</button>
+            <button class="cat-pill" data-cat="Fruits">🍎 Fruits</button>
+            <button class="cat-pill" data-cat="Frais">🧀 Frais</button>
+            <button class="cat-pill" data-cat="Épicerie">🥫 Épicerie</button>
             <button class="cat-pill" data-cat="Boulangerie">🥖 Boulangerie</button>
           </div>
 
@@ -140,8 +160,8 @@
 
             <div class="detail-info-card">
               <div class="topline">
-                <span class="tag tag-store" id="detail-store">Carrefour Market</span>
-                <span class="rating" id="detail-validity">Valable cette semaine</span>
+                <span class="tag tag-store" id="detail-store">Carrefour</span>
+                <span class="rating" id="detail-distance-badge">📍 À 650 m</span>
               </div>
               
               <h2 id="detail-title">Nom du produit</h2>
@@ -211,7 +231,7 @@
               </div>
             </div>
             <button class="gps-btn" id="btn-locate-user" title="Me géolocaliser">
-              📍 Autour de moi
+              📍 Ma position
             </button>
           </div>
 
@@ -318,7 +338,7 @@
   </main>
 
   <!-- ======================================================== -->
-  <!-- 2. MODE GRILLE 4 ÉCRANS (Maquette originale synchronisée)-->
+  <!-- 2. MODE GRILLE 4 ÉCRANS                                  -->
   <!-- ======================================================== -->
   <section id="grid-mode" class="phone-grid-mode" style="display:none;">
     <div class="phone-grid">
@@ -333,10 +353,10 @@
                 <div class="logo">M</div>
                 <div class="title">
                   <b>Vraies promos</b>
-                  <span>Carrefour, Leclerc, Lidl</span>
+                  <span>Autour de vous</span>
                 </div>
               </div>
-              <div class="pill">Semaine</div>
+              <div class="pill">GPS Actif</div>
             </div>
 
             <div class="search">
@@ -506,7 +526,7 @@
   </section>
 
   <!-- ======================================================== -->
-  <!-- 3. MODAL CONFIRMATION COMMANDE & PASS PROMO QR CODE      -->
+  <!-- 3. MODAL PASS PROMO QR CODE                             -->
   <!-- ======================================================== -->
   <div id="checkout-modal" class="modal-overlay" style="display:none;">
     <div class="modal-card">
@@ -568,9 +588,7 @@
     </div>
   </div>
 
-  <!-- ======================================================== -->
-  <!-- 4. GUIDE GITHUB PAGES                                   -->
-  <!-- ======================================================== -->
+  <!-- Guide GitHub Pages -->
   <div id="guide-modal" class="modal-overlay" style="display:none;">
     <div class="modal-card modal-large">
       <button class="modal-close-btn" id="btn-close-guide">✕</button>

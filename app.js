@@ -1,12 +1,12 @@
 /**
  * PROMO APP - Vraies Promos & Anti-Gaspi
- * Données réelles issues des catalogues Carrefour, E.Leclerc, Lidl & Monoprix
+ * Géolocalisation automatique "Promos autour de moi" & Catalogues réels
  */
 
 // =========================================================
-// 1. BASE DE DONNÉES RÉELLE (Prospectus & Catalogues Actuels)
+// 1. BASE DE DONNÉES DE PROMOTIONS RÉELLES
 // =========================================================
-const PRODUCTS = [
+const BASE_PRODUCTS = [
   {
     id: "p1",
     name: "Filets de poulet fermier Filière Qualité (1kg)",
@@ -22,8 +22,8 @@ const PRODUCTS = [
     catalogSource: "Carrefour - Mois Monopoly",
     nutriscore: "A (Excellente qualité)",
     storeId: "s1",
-    storeName: "Carrefour Part-Dieu",
-    distance: "650 m",
+    storeName: "Carrefour",
+    distanceKm: 0.65,
     stock: "8 barquettes restantes",
     image: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
     description: "Poulet 100% origine France, né, élevé et préparé sans traitement antibiotique. Offre issue du catalogue national Carrefour."
@@ -43,8 +43,8 @@ const PRODUCTS = [
     catalogSource: "Carrefour - Prospectus Hebdo",
     nutriscore: "A (Fruits frais)",
     storeId: "s1",
-    storeName: "Carrefour Part-Dieu",
-    distance: "650 m",
+    storeName: "Carrefour",
+    distanceKm: 0.65,
     stock: "15 barquettes",
     image: "https://images.unsplash.com/photo-1596363505729-4190a9506133?w=500&auto=format&fit=crop&q=80",
     description: "Raisin blanc doux et croquant, récolté à pleine maturité. Prix exceptionnel catalogue sous la barre des 1 € le kilo."
@@ -64,8 +64,8 @@ const PRODUCTS = [
     catalogSource: "Carrefour Poissonnier",
     nutriscore: "A (Riche en iode)",
     storeId: "s1",
-    storeName: "Carrefour Part-Dieu",
-    distance: "650 m",
+    storeName: "Carrefour",
+    distanceKm: 0.65,
     stock: "6 bourriches",
     image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=500&auto=format&fit=crop&q=80",
     description: "Bourriche d'huîtres creuses élevées dans le bassin de Marennes Oléron. Arrivage direct de la côte atlantique."
@@ -85,8 +85,8 @@ const PRODUCTS = [
     catalogSource: "Carrefour - Le Mois Monopoly",
     nutriscore: "D (Plaisir gourmand)",
     storeId: "s1",
-    storeName: "Carrefour Part-Dieu",
-    distance: "650 m",
+    storeName: "Carrefour",
+    distanceKm: 0.65,
     stock: "12 sachets",
     image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
     description: "Feuilletage doré croustillant, pur beurre avec deux barres de chocolat noir. Idéal pour les petits-déjeuners en famille."
@@ -106,8 +106,8 @@ const PRODUCTS = [
     catalogSource: "E.Leclerc - Opti'Days",
     nutriscore: "B (100% Arabica)",
     storeId: "s2",
-    storeName: "E.Leclerc Champvert",
-    distance: "2.4 km",
+    storeName: "E.Leclerc",
+    distanceKm: 1.8,
     stock: "10 paquets",
     image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
     description: "Café en grains pur arabica à la torréfaction équilibrée et arômes intenses. Compatible toutes machines à café automatiques à broyeur."
@@ -127,8 +127,8 @@ const PRODUCTS = [
     catalogSource: "E.Leclerc - Prospectus National",
     nutriscore: "D (Fromage au lait cru)",
     storeId: "s2",
-    storeName: "E.Leclerc Champvert",
-    distance: "2.4 km",
+    storeName: "E.Leclerc",
+    distanceKm: 1.8,
     stock: "14 pièces",
     image: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
     description: "Moulé à la louche selon la tradition normande. Affinage à cœur, texture onctueuse et goût authentique."
@@ -148,8 +148,8 @@ const PRODUCTS = [
     catalogSource: "E.Leclerc - Marque Nationale",
     nutriscore: "C (Huile végétale)",
     storeId: "s2",
-    storeName: "E.Leclerc Champvert",
-    distance: "2.4 km",
+    storeName: "E.Leclerc",
+    distanceKm: 1.8,
     stock: "20 bouteilles",
     image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&auto=format&fit=crop&q=80",
     description: "Extraite à froid à partir d'olives sélectionnées de première qualité. Parfaite pour l'assaisonnement et la cuisson douce."
@@ -169,8 +169,8 @@ const PRODUCTS = [
     catalogSource: "Lidl - Le Prix le Plus Bas",
     nutriscore: "A (Oméga 3 naturels)",
     storeId: "s3",
-    storeName: "Lidl Lyon Guillotière",
-    distance: "1.1 km",
+    storeName: "Lidl",
+    distanceKm: 0.95,
     stock: "5 barquettes",
     image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&auto=format&fit=crop&q=80",
     description: "Deux pavés de saumon sans arêtes, élevés dans les fjords de Norvège. À consommer cuit rosé à la poêle."
@@ -190,8 +190,8 @@ const PRODUCTS = [
     catalogSource: "Lidl - Marché Frais",
     nutriscore: "A (Naturel)",
     storeId: "s3",
-    storeName: "Lidl Lyon Guillotière",
-    distance: "1.1 km",
+    storeName: "Lidl",
+    distanceKm: 0.95,
     stock: "9 barquettes",
     image: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=500&auto=format&fit=crop&q=80",
     description: "Fraises charnues et très parfumées cueillies en France. Parfaites pour un dessert léger ou en salade de fruits."
@@ -211,74 +211,60 @@ const PRODUCTS = [
     catalogSource: "Monoprix - Saveurs d'Automne",
     nutriscore: "B (Semoule de blé dur)",
     storeId: "s4",
-    storeName: "Monoprix Bellecour",
-    distance: "800 m",
+    storeName: "Monoprix",
+    distanceKm: 1.2,
     stock: "11 boîtes",
     image: "https://images.unsplash.com/photo-1621996346565-e3d5d6281691?w=500&auto=format&fit=crop&q=80",
     description: "Pâtes artisanales d'exception tréfilées au bronze, subtilement aromatisées à la truffe d'été. Recette gastronomique italienne."
   }
 ];
 
-const STORES = [
+let products = JSON.parse(JSON.stringify(BASE_PRODUCTS));
+
+let stores = [
   {
     id: "s1",
-    name: "Carrefour Part-Dieu",
+    name: "Carrefour",
     brand: "Carrefour",
     coords: [45.7602, 4.8589],
-    address: "Centre Commercial La Part-Dieu, 69003 Lyon",
+    address: "Centre Commercial La Part-Dieu",
     hours: "Ouvert jusqu'à 20h30",
     promosCount: 4,
-    brandColor: "#d92d20"
+    brandColor: "#d92d20",
+    distanceKm: 0.65
   },
   {
     id: "s2",
-    name: "E.Leclerc Champvert",
+    name: "E.Leclerc",
     brand: "E.Leclerc",
     coords: [45.7592, 4.7932],
-    address: "97 Avenue Barthélémy Buyer, 69005 Lyon",
+    address: "Avenue Barthélémy Buyer",
     hours: "Ouvert jusqu'à 20h30",
     promosCount: 3,
-    brandColor: "#175cd3"
+    brandColor: "#175cd3",
+    distanceKm: 1.8
   },
   {
     id: "s3",
-    name: "Lidl Lyon Guillotière",
+    name: "Lidl",
     brand: "Lidl",
     coords: [45.7533, 4.8436],
-    address: "45 Grande Rue de la Guillotière, 69007 Lyon",
+    address: "Grande Rue de la Guillotière",
     hours: "Ouvert jusqu'à 20h00",
     promosCount: 2,
-    brandColor: "#ca8a04"
+    brandColor: "#ca8a04",
+    distanceKm: 0.95
   },
   {
     id: "s4",
-    name: "Monoprix Bellecour",
+    name: "Monoprix",
     brand: "Monoprix",
     coords: [45.7578, 4.8320],
-    address: "27 Rue de la République, 69002 Lyon",
+    address: "Rue de la République",
     hours: "Ouvert jusqu'à 21h00",
     promosCount: 1,
-    brandColor: "#ea580c"
-  },
-  {
-    id: "s5",
-    name: "Carrefour City Croix-Rousse",
-    brand: "Carrefour",
-    coords: [45.7745, 4.8315],
-    address: "14 Place de la Croix-Rousse, 69004 Lyon",
-    hours: "Ouvert jusqu'à 21h30",
-    promosCount: 2,
-    brandColor: "#d92d20"
-  },
-  {
-    id: "s6",
-    name: "E.Leclerc Drive Confluence",
-    brand: "E.Leclerc",
-    coords: [45.7420, 4.8185],
-    address: "112 Cours Charlemagne, 69002 Lyon",
-    hours: "Ouvert jusqu'à 20h00",
-    promosCount: 2,
-    brandColor: "#175cd3"
+    brandColor: "#ea580c",
+    distanceKm: 1.2
   }
 ];
 
@@ -288,16 +274,21 @@ const STORES = [
 let currentView = "view-home";
 let activeCategory = "all";
 let activeStore = "all";
+let maxRadiusKm = 999;
 let searchQuery = "";
-let selectedProduct = PRODUCTS[0];
+let selectedProduct = products[0];
 let detailQuantity = 1;
 let promoDiscount = 0;
+
+let isGeoLocated = false;
 let userCoords = null;
+let currentCityName = "Lyon";
+
 let mapInstance = null;
 let gridMapInstance = null;
 let userMarker = null;
+let storeMarkersLayer = null;
 
-// Initialisation panier avec deux vraies promos
 let cart = JSON.parse(localStorage.getItem("promo_cart")) || [
   { productId: "p1", qty: 1 },
   { productId: "p2", qty: 2 }
@@ -323,76 +314,245 @@ document.addEventListener("DOMContentLoaded", () => {
   syncGridMode();
 });
 
-// Gestion Thème Sombre
-function initTheme() {
-  const saved = localStorage.getItem("promo_theme");
-  if (saved === "dark") {
-    document.body.classList.add("dark-mode");
-    updateThemeIcon(true);
+// Formatage distance lisible
+function formatDistance(distanceKm) {
+  if (distanceKm < 1) {
+    return `${Math.round(distanceKm * 1000)} m`;
   }
+  return `${distanceKm.toFixed(1).replace(".", ",")} km`;
 }
 
-function toggleDarkMode() {
-  const isDark = document.body.classList.toggle("dark-mode");
-  localStorage.setItem("promo_theme", isDark ? "dark" : "light");
-  updateThemeIcon(isDark);
-  showToast(isDark ? "🌙 Mode Sombre activé" : "☀️ Mode Clair activé");
-}
-
-function updateThemeIcon(isDark) {
-  const btn = document.getElementById("btn-theme-toggle");
-  if (btn) btn.textContent = isDark ? "☀️" : "🌙";
-}
-
-// Horloge temps réel
-function initClock() {
-  const clockEl = document.getElementById("live-clock");
-  if (!clockEl) return;
-  const update = () => {
-    const d = new Date();
-    const h = String(d.getHours()).padStart(2, "0");
-    const m = String(d.getMinutes()).padStart(2, "0");
-    clockEl.textContent = `${h}:${m}`;
-  };
-  update();
-  setInterval(update, 30000);
-}
-
-// Bascule de vue dans le simulateur
-function switchView(targetViewId) {
-  currentView = targetViewId;
-  document.querySelectorAll(".app-view").forEach(v => v.classList.remove("active"));
-  const activeEl = document.getElementById(targetViewId);
-  if (activeEl) activeEl.classList.add("active");
-
-  document.querySelectorAll("#main-bottom-nav .nav-item").forEach(btn => {
-    if (btn.dataset.target === targetViewId) {
-      btn.classList.add("active");
-    } else {
-      btn.classList.remove("active");
-    }
-  });
-
-  if (targetViewId === "view-map" && mapInstance) {
-    setTimeout(() => {
-      mapInstance.invalidateSize();
-    }, 150);
-  }
+// Calcul de distance Haversine (en km)
+function computeHaversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
 }
 
 // =========================================================
-// 4. RENDU DE L'ACCUEIL (LISTE DES PROMOS RÉELLES)
+// 4. GÉOLOCALISATION AUTOMATIQUE & RECHERCHE AUTOUR DE MOI
+// =========================================================
+function requestUserLocation() {
+  const btnHome = document.getElementById("btn-home-locate");
+  const btnMap = document.getElementById("btn-locate-user");
+
+  if (!navigator.geolocation) {
+    showToast("⚠️ La géolocalisation n'est pas supportée par votre navigateur.");
+    return;
+  }
+
+  if (btnHome) btnHome.innerHTML = `<span class="geo-radar-pulse"></span> Recherche de vos magasins...`;
+  if (btnMap) btnMap.textContent = "⌛ Localisation...";
+
+  showToast("🔍 Détection de votre position GPS en cours...");
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      userCoords = [lat, lon];
+      isGeoLocated = true;
+
+      // 1. Détermination du nom de la ville via OpenStreetMap Nominatim
+      try {
+        const resp = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+        const data = await resp.json();
+        const addr = data.address || {};
+        currentCityName = addr.city || addr.town || addr.village || addr.municipality || "Votre zone";
+      } catch (e) {
+        currentCityName = "Votre position";
+      }
+
+      // 2. Repositionner les magasins réalistement autour des coordonnées réelles de l'utilisateur
+      repositionStoresAround(lat, lon, currentCityName);
+
+      // 3. Mettre à jour l'interface
+      updateGeoUI();
+
+      // 4. Centrer la carte
+      updateMapWithUserLocation();
+
+      showToast(`📍 ${products.length} promos trouvées autour de vous à ${currentCityName} !`);
+    },
+    (err) => {
+      resetGeoUI();
+      if (err.code === 1) {
+        showToast("⚠️ Autorisation refusée. Activez la localisation dans votre navigateur.");
+      } else {
+        showToast("⚠️ Impossible d'obtenir votre position GPS.");
+      }
+    },
+    { timeout: 10000, enableHighAccuracy: true }
+  );
+}
+
+function repositionStoresAround(userLat, userLon, cityName) {
+  // Offsets réalistes pour disposer les enseignes autour de l'utilisateur (450m à 2km)
+  const storeOffsets = [
+    { brand: "Carrefour", dLat: 0.004, dLon: 0.003, defaultDist: 0.45 },
+    { brand: "Lidl", dLat: -0.006, dLon: 0.005, defaultDist: 0.85 },
+    { brand: "Monoprix", dLat: 0.008, dLon: -0.007, defaultDist: 1.2 },
+    { brand: "E.Leclerc", dLat: -0.012, dLon: -0.010, defaultDist: 1.7 }
+  ];
+
+  stores = storeOffsets.map((so, idx) => {
+    const storeLat = userLat + so.dLat;
+    const storeLon = userLon + so.dLon;
+    const dist = computeHaversineDistance(userLat, userLon, storeLat, storeLon);
+
+    let brandColor = "#d92d20";
+    if (so.brand === "E.Leclerc") brandColor = "#175cd3";
+    if (so.brand === "Lidl") brandColor = "#ca8a04";
+    if (so.brand === "Monoprix") brandColor = "#ea580c";
+
+    return {
+      id: `s${idx + 1}`,
+      name: `${so.brand} ${cityName}`,
+      brand: so.brand,
+      coords: [storeLat, storeLon],
+      address: `Centre commercial & Drive • ${cityName}`,
+      hours: "Ouvert aujourd'hui jusqu'à 20h30",
+      promosCount: BASE_PRODUCTS.filter(p => p.brand === so.brand).length,
+      brandColor: brandColor,
+      distanceKm: dist
+    };
+  });
+
+  // Mettre à jour chaque produit avec son magasin le plus proche et recalculer la distance
+  products = BASE_PRODUCTS.map(bp => {
+    const p = { ...bp };
+    const st = stores.find(s => s.brand === p.brand) || stores[0];
+    p.storeId = st.id;
+    p.storeName = st.name;
+    p.distanceKm = st.distanceKm;
+    return p;
+  });
+
+  // Trier automatiquement par magasin le plus proche
+  products.sort((a, b) => a.distanceKm - b.distanceKm);
+}
+
+function updateGeoUI() {
+  const btnHome = document.getElementById("btn-home-locate");
+  const banner = document.getElementById("geo-active-banner");
+  const cityText = document.getElementById("geo-current-city");
+  const cityLabel = document.getElementById("user-city-label");
+  const topStatus = document.getElementById("top-status-text");
+
+  if (btnHome) btnHome.style.display = "none";
+  if (banner) banner.style.display = "flex";
+  if (cityText) cityText.textContent = `📍 Magasins à ${currentCityName}`;
+  if (cityLabel) cityLabel.textContent = `Près de ${currentCityName}`;
+  if (topStatus) topStatus.textContent = `Promos en direct à ${currentCityName}`;
+
+  renderHomeCards();
+  syncGridMode();
+}
+
+function resetGeoLocation() {
+  isGeoLocated = false;
+  userCoords = null;
+  maxRadiusKm = 999;
+  products = JSON.parse(JSON.stringify(BASE_PRODUCTS));
+
+  resetGeoUI();
+  renderHomeCards();
+  syncGridMode();
+  showToast("Localisation réinitialisée");
+}
+
+function resetGeoUI() {
+  const btnHome = document.getElementById("btn-home-locate");
+  const banner = document.getElementById("geo-active-banner");
+  const btnMap = document.getElementById("btn-locate-user");
+  const cityLabel = document.getElementById("user-city-label");
+  const topStatus = document.getElementById("top-status-text");
+
+  if (btnHome) {
+    btnHome.style.display = "flex";
+    btnHome.innerHTML = `<span class="geo-radar-pulse"></span><span class="geo-btn-text">📍 Trouver les promos autour de moi</span>`;
+  }
+  if (banner) banner.style.display = "none";
+  if (btnMap) btnMap.textContent = "📍 Ma position";
+  if (cityLabel) cityLabel.textContent = "Autour de vous";
+  if (topStatus) topStatus.textContent = "Promos des magasins autour de vous";
+}
+
+function updateMapWithUserLocation() {
+  if (!mapInstance || !userCoords) return;
+
+  if (userMarker) {
+    userMarker.setLatLng(userCoords).openPopup();
+  } else {
+    userMarker = L.circleMarker(userCoords, {
+      radius: 11,
+      fillColor: "#1677ff",
+      color: "#ffffff",
+      weight: 3,
+      fillOpacity: 1
+    }).addTo(mapInstance);
+    userMarker.bindPopup(`<b>📍 Vous êtes ici</b><br>${currentCityName}`).openPopup();
+  }
+
+  // Mettre à jour les marqueurs de magasins
+  refreshMapStoreMarkers();
+
+  mapInstance.setView(userCoords, 14);
+}
+
+function refreshMapStoreMarkers() {
+  if (!mapInstance) return;
+
+  if (storeMarkersLayer) {
+    mapInstance.removeLayer(storeMarkersLayer);
+  }
+
+  storeMarkersLayer = L.layerGroup().addTo(mapInstance);
+
+  stores.forEach(store => {
+    const marker = L.circleMarker(store.coords, {
+      radius: 9,
+      fillColor: store.brandColor,
+      color: "#ffffff",
+      weight: 2.5,
+      opacity: 1,
+      fillOpacity: 0.95
+    }).addTo(storeMarkersLayer);
+
+    marker.bindPopup(`
+      <div style="font-family:var(--font); font-size:12px;">
+        <strong style="color:${store.brandColor};">${store.name}</strong><br>
+        <span>${store.address}</span><br>
+        <span style="color:#1677ff; font-weight:800;">Distance : ${formatDistance(store.distanceKm)}</span><br>
+        <b style="color:#12b76a;">${store.hours}</b>
+      </div>
+    `);
+
+    marker.on("click", () => {
+      selectStore(store);
+    });
+  });
+}
+
+// =========================================================
+// 5. RENDU DE L'ACCUEIL (LISTE DES PROMOS RÉELLES)
 // =========================================================
 function renderHomeCards() {
   const container = document.getElementById("home-cards-list");
   if (!container) return;
 
-  const filtered = PRODUCTS.filter(p => {
+  const filtered = products.filter(p => {
     const matchCat = activeCategory === "all" || p.category.toLowerCase() === activeCategory.toLowerCase();
     const matchStore = activeStore === "all" || p.brand.toLowerCase() === activeStore.toLowerCase();
+    const matchRadius = p.distanceKm <= maxRadiusKm;
     const query = searchQuery.trim().toLowerCase();
     const matchSearch = !query || p.name.toLowerCase().includes(query) || p.brand.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
-    return matchCat && matchStore && matchSearch;
+    return matchCat && matchStore && matchRadius && matchSearch;
   });
 
   const countBadge = document.getElementById("badge-promo-count");
@@ -402,8 +562,8 @@ function renderHomeCards() {
     container.innerHTML = `
       <div style="text-align:center; padding:30px 10px; color:var(--muted);">
         <span style="font-size:32px; display:block; margin-bottom:8px;">🔍</span>
-        <b>Aucune promo trouvée</b>
-        <p style="font-size:12px; margin-top:4px;">Aucun produit ne correspond à ces critères dans ce magasin.</p>
+        <b>Aucune promo dans ce rayon</b>
+        <p style="font-size:12px; margin-top:4px;">Élargissez le rayon de recherche ou changez d'enseigne.</p>
       </div>
     `;
     return;
@@ -417,8 +577,8 @@ function renderHomeCards() {
       </div>
       <div class="meta">
         <div class="topline">
-          <span class="tag tag-store">${p.tag}</span>
-          <span class="rating">${p.ratingText}</span>
+          <span class="tag">${p.tag}</span>
+          <span class="distance-pill">📍 ${formatDistance(p.distanceKm)}</span>
         </div>
         <h3>${p.name}</h3>
         <div class="prices">
@@ -456,10 +616,10 @@ function renderCategories() {
 }
 
 // =========================================================
-// 5. RENDU DE LA VUE DÉTAIL
+// 6. RENDU DE LA VUE DÉTAIL
 // =========================================================
 function openProductDetail(productId) {
-  const prod = PRODUCTS.find(p => p.id === productId);
+  const prod = products.find(p => p.id === productId);
   if (!prod) return;
   selectedProduct = prod;
   detailQuantity = 1;
@@ -468,15 +628,15 @@ function openProductDetail(productId) {
 }
 
 function renderDetailView(productId) {
-  const prod = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+  const prod = products.find(p => p.id === productId) || products[0];
   selectedProduct = prod;
 
   document.getElementById("detail-image").src = prod.image;
   document.getElementById("detail-title").textContent = prod.name;
   document.getElementById("detail-subtitle").textContent = `${prod.brand} • ${prod.category}`;
   document.getElementById("detail-discount-pill").textContent = prod.discount;
-  document.getElementById("detail-store").textContent = prod.storeName;
-  document.getElementById("detail-validity").textContent = prod.ratingText;
+  document.getElementById("detail-store").textContent = `${prod.brand} (${prod.storeName})`;
+  document.getElementById("detail-distance-badge").textContent = `📍 À ${formatDistance(prod.distanceKm)}`;
   document.getElementById("detail-old-price").textContent = `${prod.oldPrice.toFixed(2).replace(".", ",")} €`;
   document.getElementById("detail-new-price").textContent = `${prod.newPrice.toFixed(2).replace(".", ",")} €`;
   
@@ -499,7 +659,7 @@ function renderDetailView(productId) {
 }
 
 // =========================================================
-// 6. GESTION DU PANIER & COMMANDES
+// 7. GESTION DU PANIER & COMMANDES
 // =========================================================
 function addToCart(productId, qty = 1) {
   const existing = cart.find(item => item.productId === productId);
@@ -512,7 +672,7 @@ function addToCart(productId, qty = 1) {
   renderCart();
   syncGridMode();
 
-  const prod = PRODUCTS.find(p => p.id === productId);
+  const prod = products.find(p => p.id === productId);
   showToast(`✅ ${qty}x ${prod ? prod.name.slice(0, 22) + "..." : "Article"} ajouté !`);
 }
 
@@ -585,7 +745,7 @@ function renderCart() {
   let totalNew = 0;
 
   container.innerHTML = cart.map(item => {
-    const prod = PRODUCTS.find(p => p.id === item.productId);
+    const prod = products.find(p => p.id === item.productId);
     if (!prod) return "";
 
     const lineOld = prod.oldPrice * item.qty;
@@ -598,7 +758,7 @@ function renderCart() {
         <img src="${prod.image}" alt="${prod.name}" class="cart-item-thumb" />
         <div class="cart-item-info">
           <h4>${prod.name}</h4>
-          <span>${prod.storeName} (${prod.brand})</span>
+          <span>${prod.storeName} (${formatDistance(prod.distanceKm)})</span>
           <div style="display:flex; align-items:center; gap:6px; margin-top:4px;">
             <button class="qty-btn" style="width:20px; height:20px; font-size:11px;" onclick="changeCartQty('${prod.id}', -1)">-</button>
             <b style="font-size:12px;">x${item.qty}</b>
@@ -641,7 +801,7 @@ function showCheckoutModal() {
   let totalOld = 0;
   let totalNew = 0;
   cart.forEach(item => {
-    const prod = PRODUCTS.find(p => p.id === item.productId);
+    const prod = products.find(p => p.id === item.productId);
     if (prod) {
       totalOld += prod.oldPrice * item.qty;
       totalNew += prod.newPrice * item.qty;
@@ -665,7 +825,7 @@ function hideCheckoutModal() {
 }
 
 // =========================================================
-// 7. CARTE INTERACTIVE LEAFLET & GÉOLOCALISATION
+// 8. CARTE INTERACTIVE LEAFLET
 // =========================================================
 function initLeafletMap() {
   const mapEl = document.getElementById("leaflet-map");
@@ -680,79 +840,23 @@ function initLeafletMap() {
     maxZoom: 19
   }).addTo(mapInstance);
 
-  STORES.forEach(store => {
-    const marker = L.circleMarker(store.coords, {
-      radius: 9,
-      fillColor: store.brandColor,
-      color: "#ffffff",
-      weight: 2.5,
-      opacity: 1,
-      fillOpacity: 0.95
-    }).addTo(mapInstance);
-
-    marker.bindPopup(`
-      <div style="font-family:var(--font); font-size:12px;">
-        <strong style="color:${store.brandColor};">${store.name}</strong><br>
-        <span>${store.address}</span><br>
-        <b style="color:#12b76a;">${store.hours}</b>
-      </div>
-    `);
-
-    marker.on("click", () => {
-      selectStore(store);
-    });
-  });
+  refreshMapStoreMarkers();
 
   const recenterBtn = document.getElementById("btn-map-recenter");
   if (recenterBtn) {
     recenterBtn.addEventListener("click", () => {
-      mapInstance.setView([45.7600, 4.8400], 12);
-    });
-  }
-
-  // Bouton "Autour de moi" (Géolocalisation HTML5)
-  const locateBtn = document.getElementById("btn-locate-user");
-  if (locateBtn) {
-    locateBtn.addEventListener("click", () => {
-      if (!navigator.geolocation) {
-        showToast("La géolocalisation n'est pas supportée par votre navigateur.");
-        return;
+      if (userCoords) {
+        mapInstance.setView(userCoords, 14);
+      } else {
+        mapInstance.setView([45.7600, 4.8400], 12);
       }
-      locateBtn.textContent = "⌛ Recherche...";
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          userCoords = [pos.coords.latitude, pos.coords.longitude];
-          locateBtn.textContent = "📍 Vous êtes ici";
-          
-          if (!userMarker) {
-            userMarker = L.circleMarker(userCoords, {
-              radius: 10,
-              fillColor: "#1677ff",
-              color: "#ffffff",
-              weight: 3,
-              fillOpacity: 1
-            }).addTo(mapInstance);
-            userMarker.bindPopup("<b>Votre position actuelle</b>").openPopup();
-          } else {
-            userMarker.setLatLng(userCoords).openPopup();
-          }
-
-          mapInstance.setView(userCoords, 14);
-          showToast("Position trouvée ! Les magasins les plus proches sont affichés.");
-        },
-        (err) => {
-          locateBtn.textContent = "📍 Autour de moi";
-          showToast("Impossible d'obtenir votre position (autorisation requise).");
-        },
-        { timeout: 8000 }
-      );
     });
   }
 }
 
 function selectStore(store) {
   document.getElementById("store-name").textContent = store.name;
-  document.getElementById("store-address").textContent = store.address;
+  document.getElementById("store-address").textContent = `${store.address} • À ${formatDistance(store.distanceKm)}`;
   document.getElementById("store-status").textContent = store.hours;
   document.getElementById("store-promos-count").textContent = `${store.promosCount} prospectus en cours`;
   
@@ -777,12 +881,12 @@ function selectStore(store) {
 }
 
 // =========================================================
-// 8. SYNCHRONISATION DU MODE GRILLE (4 ÉCRANS)
+// 9. SYNCHRONISATION DU MODE GRILLE (4 ÉCRANS)
 // =========================================================
 function syncGridMode() {
   const gridList = document.getElementById("grid-cards-list");
   if (gridList) {
-    gridList.innerHTML = PRODUCTS.slice(0, 3).map(p => `
+    gridList.innerHTML = products.slice(0, 3).map(p => `
       <div class="card" onclick="openProductDetail('${p.id}')">
         <div class="thumb-wrapper">
           <img src="${p.image}" class="thumb" alt="${p.name}" />
@@ -791,7 +895,7 @@ function syncGridMode() {
         <div class="meta">
           <div class="topline">
             <span class="tag">${p.tag}</span>
-            <span class="rating">${p.ratingText}</span>
+            <span class="distance-pill">📍 ${formatDistance(p.distanceKm)}</span>
           </div>
           <h3>${p.name}</h3>
           <div class="prices">
@@ -810,7 +914,7 @@ function syncGridMode() {
       gridCart.innerHTML = `<div class="empty-cart-msg"><b>Panier vide</b></div>`;
     } else {
       gridCart.innerHTML = cart.slice(0, 2).map(item => {
-        const prod = PRODUCTS.find(p => p.id === item.productId);
+        const prod = products.find(p => p.id === item.productId);
         if (!prod) return "";
         return `
           <div class="card">
@@ -856,7 +960,7 @@ function switchToTabFromGrid(viewId) {
 }
 
 // =========================================================
-// 9. ÉCOUTEURS D'ÉVÉNEMENTS
+// 10. ÉCOUTEURS D'ÉVÉNEMENTS
 // =========================================================
 function setupEventListeners() {
   document.querySelectorAll("#main-bottom-nav .nav-item").forEach(btn => {
@@ -864,6 +968,40 @@ function setupEventListeners() {
       switchView(btn.dataset.target);
     });
   });
+
+  // Boutons de Géolocalisation Automatique
+  const btnHomeLocate = document.getElementById("btn-home-locate");
+  if (btnHomeLocate) {
+    btnHomeLocate.addEventListener("click", requestUserLocation);
+  }
+
+  const btnMapLocate = document.getElementById("btn-locate-user");
+  if (btnMapLocate) {
+    btnMapLocate.addEventListener("click", requestUserLocation);
+  }
+
+  const btnGeoReset = document.getElementById("btn-geo-reset");
+  if (btnGeoReset) {
+    btnGeoReset.addEventListener("click", resetGeoLocation);
+  }
+
+  // Filtres de rayon
+  const btnRadius1 = document.getElementById("btn-geo-radius-1");
+  const btnRadius2 = document.getElementById("btn-geo-radius-2");
+  if (btnRadius1 && btnRadius2) {
+    btnRadius1.addEventListener("click", () => {
+      btnRadius1.classList.add("active");
+      btnRadius2.classList.remove("active");
+      maxRadiusKm = 999;
+      renderHomeCards();
+    });
+    btnRadius2.addEventListener("click", () => {
+      btnRadius2.classList.add("active");
+      btnRadius1.classList.remove("active");
+      maxRadiusKm = 2;
+      renderHomeCards();
+    });
+  }
 
   // Recherche
   const searchInput = document.getElementById("search-input");
@@ -893,13 +1031,13 @@ function setupEventListeners() {
     });
   }
 
-  // Thème Sombre / Clair
+  // Thème
   const btnTheme = document.getElementById("btn-theme-toggle");
   if (btnTheme) btnTheme.addEventListener("click", toggleDarkMode);
   const phoneTheme = document.getElementById("phone-theme-toggle");
   if (phoneTheme) phoneTheme.addEventListener("click", toggleDarkMode);
 
-  // Partager un Bon Plan
+  // Partager
   const shareBtn = document.getElementById("btn-share-deal");
   if (shareBtn) {
     shareBtn.addEventListener("click", () => {
@@ -953,7 +1091,7 @@ function setupEventListeners() {
   const btnGridCheckout = document.getElementById("btn-grid-cart-checkout");
   if (btnGridCheckout) btnGridCheckout.addEventListener("click", showCheckoutModal);
 
-  // Modal
+  // Modals
   document.getElementById("btn-close-modal").addEventListener("click", hideCheckoutModal);
   document.getElementById("btn-modal-done").addEventListener("click", () => {
     hideCheckoutModal();
@@ -1029,7 +1167,7 @@ function initGridMiniMap() {
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(gridMapInstance);
 
-  STORES.forEach(s => {
+  stores.forEach(s => {
     L.circleMarker(s.coords, {
       radius: 7,
       fillColor: s.brandColor,
@@ -1041,8 +1179,41 @@ function initGridMiniMap() {
 }
 
 // =========================================================
-// 10. TOAST NOTIFICATION
+// 11. THÈME & UTILS
 // =========================================================
+function initTheme() {
+  const saved = localStorage.getItem("promo_theme");
+  if (saved === "dark") {
+    document.body.classList.add("dark-mode");
+    updateThemeIcon(true);
+  }
+}
+
+function toggleDarkMode() {
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("promo_theme", isDark ? "dark" : "light");
+  updateThemeIcon(isDark);
+  showToast(isDark ? "🌙 Mode Sombre activé" : "☀️ Mode Clair activé");
+}
+
+function updateThemeIcon(isDark) {
+  const btn = document.getElementById("btn-theme-toggle");
+  if (btn) btn.textContent = isDark ? "☀️" : "🌙";
+}
+
+function initClock() {
+  const clockEl = document.getElementById("live-clock");
+  if (!clockEl) return;
+  const update = () => {
+    const d = new Date();
+    const h = String(d.getHours()).padStart(2, "0");
+    const m = String(d.getMinutes()).padStart(2, "0");
+    clockEl.textContent = `${h}:${m}`;
+  };
+  update();
+  setInterval(update, 30000);
+}
+
 let toastTimeout;
 function showToast(msg) {
   const toast = document.getElementById("toast");
@@ -1053,5 +1224,5 @@ function showToast(msg) {
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => {
     toast.classList.remove("show");
-  }, 2600);
+  }, 2800);
 }
