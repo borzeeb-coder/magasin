@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PromoApp - Bons Plans & Anti-Gaspi</title>
+  <meta name="description" content="Application mobile de promos locales et anti-gaspillage alimentaire. Prête pour GitHub Pages." />
+  
+  <!-- Polices Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS (OpenStreetMap - gratuit, sans clé API) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <!-- Barre supérieure de contrôle -->
+  <header class="top-bar">
+    <div class="top-bar-brand">
+      <div class="top-logo">M</div>
+      <div class="top-info">
+        <h1>PromoApp <span>Anti-Gaspi</span></h1>
+        <p>Application Web prête pour GitHub Pages</p>
+      </div>
+    </div>
+
+    <div class="view-switcher">
+      <button id="btn-mode-simulator" class="switch-btn active" title="Naviguer comme sur un vrai smartphone">
+        📱 Simulateur Interactif
+      </button>
+      <button id="btn-mode-grid" class="switch-btn" title="Voir les 4 écrans en parallèle">
+        📑 Vue 4 Écrans (Maquette)
+      </button>
+    </div>
+
+    <div class="top-actions">
+      <button id="btn-show-guide" class="guide-btn">
+        🚀 Guide GitHub Pages
+      </button>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- 1. MODE SIMULATEUR INTERACTIF                            -->
+  <!-- ======================================================== -->
+  <main id="simulator-mode" class="simulator-container">
+    <div class="phone phone-interactive">
+      <div class="phone-speaker"></div>
+      <div class="phone-camera"></div>
+      
+      <div class="screen">
+        <!-- Barre d'état smartphone -->
+        <div class="statusbar">
+          <span id="live-clock">09:44</span>
+          <div class="status-icons">
+            <span>5G</span>
+            <span>📶</span>
+            <span>100% 🔋</span>
+          </div>
+        </div>
+
+        <!-- VUE 1 : ACCUEIL / LISTE PROMOS -->
+        <section id="view-home" class="app-view active">
+          <div class="app-header">
+            <div class="brand">
+              <div class="logo">M</div>
+              <div class="title">
+                <b>Ma liste</b>
+                <span>Promos près de vous</span>
+              </div>
+            </div>
+            <div class="pill" id="badge-promo-count">6 Nouveaux</div>
+          </div>
+
+          <!-- Recherche instantanée -->
+          <div class="search">
+            <span class="search-icon">🔎</span>
+            <input type="text" id="search-input" placeholder="Rechercher un produit, rayon..." autocomplete="off" />
+            <button id="search-clear" class="search-clear" style="display:none;">✕</button>
+          </div>
+
+          <!-- Filtres par catégories -->
+          <div class="categories-scroll" id="categories-bar">
+            <button class="cat-pill active" data-cat="all">Tout voir</button>
+            <button class="cat-pill" data-cat="Boucherie">🥩 Boucherie</button>
+            <button class="cat-pill" data-cat="Fruits">🍎 Fruits & Légumes</button>
+            <button class="cat-pill" data-cat="Boulangerie">🥖 Boulangerie</button>
+            <button class="cat-pill" data-cat="Épicerie">🥫 Épicerie</button>
+            <button class="cat-pill" data-cat="Frais">🧀 Produits Frais</button>
+          </div>
+
+          <!-- Liste des cartes promos -->
+          <div class="cards-scroll" id="home-cards-list">
+            <!-- Injecté par app.js -->
+          </div>
+        </section>
+
+        <!-- VUE 2 : DÉTAIL D'UNE PROMO -->
+        <section id="view-detail" class="app-view">
+          <div class="app-header">
+            <div class="brand">
+              <button class="back-btn" id="btn-detail-back">← Retour</button>
+              <div class="title">
+                <b>Fiche promo</b>
+                <span id="detail-subtitle">Réf. produit</span>
+              </div>
+            </div>
+            <div class="pill" id="detail-discount-pill">-37%</div>
+          </div>
+
+          <div class="detail-content">
+            <div class="detail-banner">
+              <img id="detail-image" src="" alt="Produit promo" class="detail-img" />
+              <div class="detail-badge-float" id="detail-badge-type">Offre magasin</div>
+            </div>
+
+            <div class="detail-info-card">
+              <div class="topline">
+                <span class="tag" id="detail-store">Lyon Part-Dieu</span>
+                <span class="rating" id="detail-validity">Valable aujourd’hui</span>
+              </div>
+              
+              <h2 id="detail-title">Nom du produit</h2>
+
+              <div class="prices prices-large">
+                <span class="old" id="detail-old-price">11,00 €</span>
+                <span class="new" id="detail-new-price">6,95 €</span>
+                <span class="save-chip" id="detail-savings">Économie: 4,05 €</span>
+              </div>
+
+              <div class="detail-meta-box">
+                <div class="meta-item">
+                  <span class="meta-label">Stock restant</span>
+                  <strong id="detail-stock">4 en rayon</strong>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Distance</span>
+                  <strong id="detail-distance">600 m</strong>
+                </div>
+              </div>
+
+              <p class="detail-desc" id="detail-description">
+                Offre anti-gaspillage de qualité supérieure. Consommez malin et faites des économies directes sur votre panier du quotidien.
+              </p>
+
+              <!-- Quantité -->
+              <div class="quantity-row">
+                <span>Quantité à réserver :</span>
+                <div class="qty-control">
+                  <button id="btn-qty-minus" class="qty-btn">-</button>
+                  <span id="detail-qty-val" class="qty-val">1</span>
+                  <button id="btn-qty-plus" class="qty-btn">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-actions">
+              <button class="btn-secondary" id="btn-detail-skip">
+                Passer mon tour
+              </button>
+              <button class="btn-primary" id="btn-detail-add">
+                Ajouter au panier
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- VUE 3 : CARTE INTERACTIVE DES MAGASINS -->
+        <section id="view-map" class="app-view">
+          <div class="app-header">
+            <div class="brand">
+              <div class="logo">M</div>
+              <div class="title">
+                <b>Carte interactive</b>
+                <span>Magasins autour</span>
+              </div>
+            </div>
+            <div class="pill" id="map-pill-city">Lyon</div>
+          </div>
+
+          <!-- Carte Leaflet -->
+          <div class="map-wrapper">
+            <div id="leaflet-map"></div>
+            <button class="map-recenter-btn" id="btn-map-recenter" title="Recentrer la carte">🎯</button>
+          </div>
+
+          <!-- Fiche Magasin sélectionné -->
+          <div class="selected-store-card" id="store-info-panel">
+            <div class="topline">
+              <span class="tag" style="background:var(--pill); color:var(--accent);">Partenaire actif</span>
+              <span class="rating" id="store-status">Ouvert aujourd'hui</span>
+            </div>
+            <h3 id="store-name">Sélectionnez un magasin</h3>
+            <p id="store-address" style="margin:4px 0 10px 0; color:var(--muted); font-size:12px;">
+              Cliquez sur un marqueur de la carte pour afficher ses offres.
+            </p>
+            <div class="store-footer">
+              <span class="badge-accent" id="store-promos-count">5 promos actives</span>
+              <button class="btn-tiny" id="btn-filter-store-promos">Voir ses promos</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- VUE 4 : MON PANIER -->
+        <section id="view-cart" class="app-view">
+          <div class="app-header">
+            <div class="brand">
+              <div class="logo">M</div>
+              <div class="title">
+                <b>Mon panier</b>
+                <span>Validation anti-gaspi</span>
+              </div>
+            </div>
+            <div class="pill" id="cart-item-count-pill">0 article</div>
+          </div>
+
+          <div class="cart-content-wrapper">
+            <!-- Liste des articles panier -->
+            <div class="cart-items-list" id="cart-items-container">
+              <!-- Rempli par JavaScript -->
+            </div>
+
+            <!-- Code Promo -->
+            <div class="promo-code-box">
+              <input type="text" id="promo-code-input" placeholder="Code promo (ex: ANTIGASPI)" />
+              <button id="btn-apply-promo" class="btn-tiny">Appliquer</button>
+            </div>
+            <div id="promo-feedback" class="promo-feedback"></div>
+
+            <!-- Résumé Financier -->
+            <div class="cart-summary">
+              <div class="summary-line">
+                <span>Prix normal cumulé</span>
+                <span id="cart-subtotal" class="strikethrough">0,00 €</span>
+              </div>
+              <div class="summary-line savings">
+                <span>Vos économies réalisées</span>
+                <span id="cart-savings">- 0,00 €</span>
+              </div>
+              <div class="summary-line total">
+                <span>Total à régler en magasin</span>
+                <strong id="cart-total">0,00 €</strong>
+              </div>
+            </div>
+
+            <div class="cart-actions-row">
+              <button class="btn-secondary" id="btn-cart-clear">
+                Vider
+              </button>
+              <button class="btn-primary" id="btn-cart-checkout">
+                Commander / Réserver
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Navigation inférieure fluide -->
+        <nav class="bottom-nav" id="main-bottom-nav">
+          <button class="nav-item active" data-target="view-home">
+            <div class="dot-icon">🏠</div>
+            <span>Accueil</span>
+          </button>
+          <button class="nav-item" data-target="view-detail">
+            <div class="dot-icon">🏷️</div>
+            <span>Détail</span>
+          </button>
+          <button class="nav-item" data-target="view-map">
+            <div class="dot-icon">📍</div>
+            <span>Carte</span>
+          </button>
+          <button class="nav-item" data-target="view-cart">
+            <div class="dot-icon has-badge">
+              🛒
+              <span class="cart-badge" id="nav-cart-badge" style="display:none;">0</span>
+            </div>
+            <span>Panier</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- 2. MODE GRILLE 4 ÉCRANS (Maquette originale synchronisée)-->
+  <!-- ======================================================== -->
+  <section id="grid-mode" class="phone-grid-mode" style="display:none;">
+    <div class="phone-grid">
+      
+      <!-- Phone 1 : Accueil -->
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
+          <div class="app">
+            <div class="header">
+              <div class="brand">
+                <div class="logo">M</div>
+                <div class="title">
+                  <b>Ma liste</b>
+                  <span>Promos près de vous</span>
+                </div>
+              </div>
+              <div class="pill">Nouveaux</div>
+            </div>
+
+            <div class="search">
+              <span style="opacity:.6">🔎</span>
+              <input placeholder="Rechercher un produit" id="grid-search-input" />
+            </div>
+
+            <div class="cards" id="grid-cards-list">
+              <!-- Cartes générées dynamiquement -->
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-item active"><div class="dot"></div>Accueil</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-detail')"><div class="dot"></div>Promos</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-map')"><div class="dot"></div>Carte</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-cart')"><div class="dot"></div>Panier</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone 2 : Détail -->
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
+          <div class="app">
+            <div class="header">
+              <div class="brand">
+                <div class="logo">M</div>
+                <div class="title">
+                  <b>Détail promo</b>
+                  <span>Réf. produit</span>
+                </div>
+              </div>
+              <div class="pill" id="grid-detail-pill">-37%</div>
+            </div>
+
+            <div class="search">
+              <span style="opacity:.6">🏷️</span>
+              <div style="font-weight:900; font-size:13px;" id="grid-detail-title-preview">Poulet fermier entier</div>
+            </div>
+
+            <div class="cards" style="gap:10px;">
+              <div class="card" style="align-items:flex-start;">
+                <img id="grid-detail-img" src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=300&auto=format&fit=crop&q=80" alt="Poulet" class="thumb" style="object-fit:cover;" />
+                <div class="meta">
+                  <div class="topline">
+                    <span class="tag">Offre magasin</span>
+                    <span class="rating">Lyon Part-Dieu</span>
+                  </div>
+                  <h3>Quantité limitée</h3>
+                  <div class="prices">
+                    <span class="old" id="grid-detail-old">11,00 €</span>
+                    <span class="new" id="grid-detail-new">6,95 €</span>
+                  </div>
+                  <p style="margin:10px 0 0 0; color:var(--muted); font-size:12px;">
+                    Valable selon stock en magasin. Offre anti-gaspillage certifiée.
+                  </p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:10px;">
+                <button class="btn-secondary" style="flex:1;" onclick="switchToTabFromGrid('view-home')">
+                  Refuser
+                </button>
+                <button class="btn-primary" style="flex:1;" id="btn-grid-add-detail">
+                  Utiliser
+                </button>
+              </div>
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-item" onclick="switchToTabFromGrid('view-home')"><div class="dot"></div>Accueil</div>
+              <div class="nav-item active"><div class="dot"></div>Promos</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-map')"><div class="dot"></div>Carte</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-cart')"><div class="dot"></div>Panier</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone 3 : Carte -->
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
+          <div class="app">
+            <div class="header">
+              <div class="brand">
+                <div class="logo">M</div>
+                <div class="title">
+                  <b>Carte</b>
+                  <span>Magasins autour</span>
+                </div>
+              </div>
+              <div class="pill">2 km</div>
+            </div>
+
+            <div class="card" style="height:380px; align-items:flex-start; flex-direction:column; padding:0; overflow:hidden;">
+              <div id="grid-leaflet-map" style="width:100%; height:240px; background:#e8edf5;"></div>
+              <div class="meta" style="padding:12px; width:100%; box-sizing:border-box;">
+                <div class="topline">
+                  <span class="tag">Zone Lyon</span>
+                  <span class="rating">5 Magasins</span>
+                </div>
+                <h3>Points de vente partenaires</h3>
+                <p style="margin:8px 0 0 0; color:var(--muted); font-size:12px;">
+                  Part-Dieu, Bellecour, Croix-Rousse, Guillotière, Confluence.
+                </p>
+                <div style="margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;">
+                  <span class="tag" style="background:var(--pill); color:var(--accent);">Partenaires Vérifiés</span>
+                  <span class="tag">Ouvert</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-item" onclick="switchToTabFromGrid('view-home')"><div class="dot"></div>Accueil</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-detail')"><div class="dot"></div>Promos</div>
+              <div class="nav-item active"><div class="dot"></div>Carte</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-cart')"><div class="dot"></div>Panier</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone 4 : Panier -->
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
+          <div class="app">
+            <div class="header">
+              <div class="brand">
+                <div class="logo">M</div>
+                <div class="title">
+                  <b>Mon panier</b>
+                  <span>Validation</span>
+                </div>
+              </div>
+              <div class="pill" id="grid-cart-pill">Total</div>
+            </div>
+
+            <div class="cards" id="grid-cart-items-list">
+              <!-- Cartes panier synchronisées -->
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:auto;">
+              <button class="btn-secondary" style="flex:1;" id="btn-grid-cart-clear">
+                Vider
+              </button>
+              <button class="btn-primary" style="flex:1;" id="btn-grid-cart-checkout">
+                Commander
+              </button>
+            </div>
+
+            <div class="bottom-nav">
+              <div class="nav-item" onclick="switchToTabFromGrid('view-home')"><div class="dot"></div>Accueil</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-detail')"><div class="dot"></div>Promos</div>
+              <div class="nav-item" onclick="switchToTabFromGrid('view-map')"><div class="dot"></div>Carte</div>
+              <div class="nav-item active"><div class="dot"></div>Panier</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 3. MODAL CONFIRMATION COMMANDE & QR CODE                -->
+  <!-- ======================================================== -->
+  <div id="checkout-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="btn-close-modal">✕</button>
+      <div class="modal-icon-success">🎉</div>
+      <h3>Réservation confirmée !</h3>
+      <p class="modal-sub">Vos articles anti-gaspi ont été réservés avec succès.</p>
+
+      <div class="qr-code-box">
+        <svg viewBox="0 0 160 160" width="130" height="130" class="qr-svg">
+          <rect width="160" height="160" fill="#ffffff" rx="10"/>
+          <!-- Repères coins -->
+          <rect x="15" y="15" width="40" height="40" fill="#101828" rx="6"/>
+          <rect x="23" y="23" width="24" height="24" fill="#ffffff" rx="3"/>
+          <rect x="29" y="29" width="12" height="12" fill="#ff5a3c" rx="2"/>
+
+          <rect x="105" y="15" width="40" height="40" fill="#101828" rx="6"/>
+          <rect x="113" y="23" width="24" height="24" fill="#ffffff" rx="3"/>
+          <rect x="119" y="29" width="12" height="12" fill="#ff5a3c" rx="2"/>
+
+          <rect x="15" y="105" width="40" height="40" fill="#101828" rx="6"/>
+          <rect x="23" y="113" width="24" height="24" fill="#ffffff" rx="3"/>
+          <rect x="29" y="119" width="12" height="12" fill="#ff5a3c" rx="2"/>
+
+          <!-- Motifs -->
+          <rect x="65" y="20" width="10" height="10" fill="#101828"/>
+          <rect x="80" y="35" width="15" height="10" fill="#101828"/>
+          <rect x="65" y="55" width="10" height="15" fill="#101828"/>
+          <rect x="25" y="70" width="15" height="10" fill="#ff5a3c"/>
+          <rect x="50" y="75" width="20" height="10" fill="#101828"/>
+          <rect x="80" y="70" width="10" height="20" fill="#101828"/>
+          <rect x="100" y="75" width="25" height="10" fill="#101828"/>
+          <rect x="135" y="70" width="10" height="15" fill="#101828"/>
+          <rect x="65" y="105" width="15" height="10" fill="#101828"/>
+          <rect x="90" y="115" width="20" height="10" fill="#ff5a3c"/>
+          <rect x="120" y="105" width="15" height="15" fill="#101828"/>
+          <rect x="70" y="130" width="25" height="10" fill="#101828"/>
+          <rect x="110" y="135" width="20" height="10" fill="#101828"/>
+        </svg>
+        <span class="qr-id" id="modal-order-id">PASS #AG-84920</span>
+      </div>
+
+      <div class="modal-summary-box">
+        <div class="summary-line">
+          <span>Total à payer sur place :</span>
+          <strong id="modal-total-price">6,95 €</strong>
+        </div>
+        <div class="summary-line" style="color:var(--green);">
+          <span>Économies réalisées :</span>
+          <strong id="modal-savings-price">4,05 €</strong>
+        </div>
+      </div>
+
+      <p class="pickup-hint">
+        Présentez ce QR Code directement en caisse du magasin avant 19h30 pour retirer vos articles réservés.
+      </p>
+
+      <button class="btn-primary" id="btn-modal-done" style="width:100%;">
+        Terminer & Retourner à l'accueil
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 4. GUIDE DE DÉPLOIEMENT GITHUB PAGES                    -->
+  <!-- ======================================================== -->
+  <div id="guide-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-card modal-large">
+      <button class="modal-close-btn" id="btn-close-guide">✕</button>
+      <h2>🚀 Déployer sur votre site GitHub Pages</h2>
+      <p class="modal-sub">Mettez cette application en ligne gratuitement en quelques commandes simples.</p>
+
+      <div class="guide-steps">
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Créer un nouveau dépôt sur GitHub</h4>
+            <p>Rendez-vous sur <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a> et choisissez un nom (ex: <code>promo-app</code> ou <code>mon-site</code>). Gardez-le en <b>Public</b>.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Pousser les fichiers avec Git</h4>
+            <p>Ouvrez PowerShell dans le dossier du projet et exécutez :</p>
+            <pre><code>git init
+git add .
+git commit -m "Initial commit - PromoApp"
+git branch -M main
+git remote add origin https://github.com/VOTRE_COMPTE/VOTRE_DEPOT.git
+git push -u origin main</code></pre>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Activer GitHub Pages</h4>
+            <p>Dans votre dépôt sur github.com :</p>
+            <ol>
+              <li>Allez dans l'onglet <b>Settings</b>.</li>
+              <li>Dans le menu gauche, cliquez sur <b>Pages</b>.</li>
+              <li>Sous <i>Build and deployment &gt; Source</i>, sélectionnez <b>Deploy from a branch</b>.</li>
+              <li>Sélectionnez la branche <b>main</b> et le dossier <b>/ (root)</b>, puis cliquez sur <b>Save</b>.</li>
+            </ol>
+            <div class="guide-alert">
+              🎉 Votre application sera accessible sous 1 minute à l'URL :<br>
+              <code>https://VOTRE_COMPTE.github.io/VOTRE_DEPOT/</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="btn-guide-ok" style="margin-top:16px; width:100%;">
+        Compris, fermer le guide
+      </button>
+    </div>
+  </div>
+
+  <!-- Conteneur Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="./app.js"></script>
+</body>
+</html>
