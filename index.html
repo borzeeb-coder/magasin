@@ -2,11 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PromoApp - Vraies Promos & Anti-Gaspi</title>
-  <meta name="description" content="Trouvez automatiquement les vraies promos et prospectus des magasins autour de vous." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>PromoApp - Promos & Prospectus Marche-en-Famenne</title>
+  <meta name="description" content="Les vraies promotions des magasins de Marche-en-Famenne : Colruyt, Delhaize, Carrefour, Lidl, Aldi." />
   <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#ff5a3c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   
   <!-- Polices Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,619 +18,319 @@
   <!-- Leaflet CSS (OpenStreetMap) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-  <!-- Stylesheet -->
+  <!-- Stylesheet épurée et moderne -->
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
 
-  <!-- Barre supérieure de contrôle -->
-  <header class="top-bar">
-    <div class="top-bar-brand">
-      <div class="top-logo">M</div>
-      <div class="top-info">
-        <h1>PromoApp <span>Prospectus & Anti-Gaspi</span></h1>
-        <p id="top-status-text">Promos des magasins autour de vous</p>
+  <!-- Conteneur Principal de l'Application (Clean Mobile-First) -->
+  <div class="app-shell">
+    
+    <!-- EN-TÊTE PRINCIPAL : Ville & Recherche -->
+    <header class="main-header">
+      <div class="header-top-row">
+        <!-- Sélecteur de Localisation -->
+        <button id="btn-location-picker" class="location-badge" title="Changer de ville ou activer le GPS">
+          <span class="loc-pin">📍</span>
+          <div class="loc-details">
+            <span class="loc-sub">Magasins autour de :</span>
+            <b id="active-city-display">Marche-en-Famenne (6900)</b>
+          </div>
+          <span class="loc-arrow">▾</span>
+        </button>
+
+        <!-- Actions rapides -->
+        <div class="header-actions">
+          <button id="btn-quick-gps" class="icon-circle-btn" title="Activer ma position GPS réelle">
+            <span class="gps-dot"></span>
+            🎯
+          </button>
+          <button id="btn-theme-toggle" class="icon-circle-btn" title="Mode Sombre / Clair">
+            🌙
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="view-switcher">
-      <button id="btn-mode-simulator" class="switch-btn active" title="Naviguer comme sur un smartphone">
-        📱 Simulateur
-      </button>
-      <button id="btn-mode-grid" class="switch-btn" title="Voir les 4 écrans en parallèle">
-        📑 Vue 4 Écrans
-      </button>
-    </div>
+      <!-- Barre de recherche aérée -->
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Rechercher un produit, une marque (Saumon, Café, Poulet...)" autocomplete="off" />
+        <button id="search-clear" class="search-clear" style="display:none;">✕</button>
+      </div>
 
-    <div class="top-actions">
-      <button id="btn-theme-toggle" class="theme-toggle-btn" title="Basculer Mode Sombre / Clair">
-        🌙
-      </button>
-      <button id="btn-show-guide" class="guide-btn">
-        🚀 Guide GitHub Pages
-      </button>
-    </div>
-  </header>
+      <!-- Filtres par Enseignes (Colruyt, Delhaize, Carrefour, Lidl, Aldi) -->
+      <div class="store-pills-bar" id="store-pills-bar">
+        <button class="store-pill active" data-store="all">Tous les magasins</button>
+        <button class="store-pill pill-colruyt" data-store="Colruyt">🔴 Colruyt</button>
+        <button class="store-pill pill-delhaize" data-store="Delhaize">🦁 Delhaize</button>
+        <button class="store-pill pill-carrefour" data-store="Carrefour">🔵 Carrefour</button>
+        <button class="store-pill pill-lidl" data-store="Lidl">🟡 Lidl</button>
+        <button class="store-pill pill-aldi" data-store="Aldi">🔷 Aldi</button>
+      </div>
 
-  <!-- ======================================================== -->
-  <!-- 1. MODE SIMULATEUR INTERACTIF                            -->
-  <!-- ======================================================== -->
-  <main id="simulator-mode" class="simulator-container">
-    <div class="phone phone-interactive">
-      <div class="phone-speaker"></div>
-      <div class="phone-camera"></div>
+      <!-- Filtres par Rayons -->
+      <div class="category-chips-bar" id="category-chips-bar">
+        <button class="cat-chip active" data-cat="all">Tout</button>
+        <button class="cat-chip" data-cat="Boucherie">🥩 Boucherie</button>
+        <button class="cat-chip" data-cat="Poissonnerie">🐟 Poissonnerie</button>
+        <button class="cat-chip" data-cat="Fruits">🍎 Fruits & Légumes</button>
+        <button class="cat-chip" data-cat="Frais">🧀 Produits Frais</button>
+        <button class="cat-chip" data-cat="Épicerie">🥫 Épicerie & Boissons</button>
+      </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL DE L'APPLICATION -->
+    <main class="main-content">
       
-      <div class="screen">
-        <!-- Barre d'état smartphone -->
-        <div class="statusbar">
-          <span id="live-clock">09:44</span>
-          <div class="status-icons">
-            <button id="phone-theme-toggle" class="phone-icon-btn" title="Thème sombre/clair">🌓</button>
-            <span>5G</span>
-            <span>📶</span>
-            <span>100% 🔋</span>
+      <!-- ======================================================== -->
+      <!-- ONGLET 1 : CATALOGUE DES PROMOS                          -->
+      <!-- ======================================================== -->
+      <section id="tab-promos" class="tab-view active">
+        <div class="section-title-row">
+          <div>
+            <h2 id="promos-heading">Promotions en cours</h2>
+            <p class="section-subtitle" id="promos-count-label">12 offres trouvées à Marche-en-Famenne</p>
+          </div>
+          <div class="sort-selector">
+            <select id="sort-select" class="clean-select">
+              <option value="proximity">📍 Par proximité</option>
+              <option value="discount">🔥 Meilleure remise</option>
+              <option value="price-asc">💶 Prix croissant</option>
+            </select>
           </div>
         </div>
 
-        <!-- VUE 1 : ACCUEIL / LISTE PROMOS -->
-        <section id="view-home" class="app-view active">
-          <div class="app-header">
-            <div class="brand">
-              <div class="logo">M</div>
-              <div class="title">
-                <b>Vraies Promos</b>
-                <span id="user-city-label">Autour de vous</span>
-              </div>
+        <!-- Grille des Cartes Promos (Spacieuse et claire) -->
+        <div class="promos-grid" id="promos-grid-container">
+          <!-- Injecté par app.js -->
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- ONGLET 2 : MAGASINS & CARTE INTERACTIVE                  -->
+      <!-- ======================================================== -->
+      <section id="tab-stores" class="tab-view">
+        <div class="section-title-row">
+          <div>
+            <h2>Magasins aux alentours</h2>
+            <p class="section-subtitle" id="stores-count-label">Supermarchés de Marche-en-Famenne</p>
+          </div>
+          <button id="btn-recenter-map" class="btn-sm">Recentrer 🎯</button>
+        </div>
+
+        <!-- Carte Leaflet grande et dégagée -->
+        <div class="map-card-container">
+          <div id="leaflet-map" class="clean-leaflet-map"></div>
+        </div>
+
+        <!-- Liste des magasins physiques avec adresses et horaires -->
+        <div class="stores-list-container" id="stores-list-container">
+          <!-- Injecté par app.js -->
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- ONGLET 3 : MON PANIER & ÉCONOMIES                       -->
+      <!-- ======================================================== -->
+      <section id="tab-cart" class="tab-view">
+        <div class="section-title-row">
+          <div>
+            <h2>Mon Panier Promo</h2>
+            <p class="section-subtitle" id="cart-items-count-text">Articles réservés</p>
+          </div>
+          <button id="btn-cart-clear-all" class="btn-text-danger">Vider</button>
+        </div>
+
+        <!-- Liste des articles ajoutés -->
+        <div class="cart-items-wrapper" id="cart-items-list">
+          <!-- Injecté par app.js -->
+        </div>
+
+        <!-- Carte Récapitulative des Économies -->
+        <div class="cart-total-card">
+          <div class="promo-input-row">
+            <input type="text" id="cart-promo-input" placeholder="Code promo (ex: ANTIGASPI)" />
+            <button id="btn-apply-promo-code" class="btn-sm">Appliquer</button>
+          </div>
+          <div id="promo-code-message" class="promo-msg"></div>
+
+          <div class="total-breakdown">
+            <div class="breakdown-line">
+              <span>Prix normal estimé</span>
+              <span id="cart-total-normal" class="strikethrough">0,00 €</span>
             </div>
-            <div class="pill" id="badge-promo-count">10 Offres</div>
-          </div>
-
-          <!-- Bouton Géolocalisation Automatique Réelle -->
-          <div class="geo-action-container">
-            <button id="btn-home-locate" class="geo-btn-main">
-              <span class="geo-radar-pulse"></span>
-              <span class="geo-btn-text">📍 Trouver les promos autour de moi</span>
-            </button>
-            
-            <div id="geo-active-banner" class="geo-active-banner" style="display:none;">
-              <div class="geo-banner-info">
-                <span class="geo-dot-live"></span>
-                <span id="geo-current-city">Localisation : Lyon</span>
-              </div>
-              <div class="geo-banner-actions">
-                <button id="btn-geo-radius-1" class="radius-chip active" data-radius="999">Toutes</button>
-                <button id="btn-geo-radius-2" class="radius-chip" data-radius="2">&lt; 2 km</button>
-                <button id="btn-geo-reset" class="geo-reset-icon" title="Réinitialiser">✕</button>
-              </div>
+            <div class="breakdown-line green-savings">
+              <span>Vos économies de prospectus</span>
+              <strong id="cart-total-savings">- 0,00 €</strong>
             </div>
-          </div>
-
-          <!-- Recherche instantanée -->
-          <div class="search">
-            <span class="search-icon">🔎</span>
-            <input type="text" id="search-input" placeholder="Produit, marque (Poulet, Café, Saumon...)" autocomplete="off" />
-            <button id="search-clear" class="search-clear" style="display:none;">✕</button>
-          </div>
-
-          <!-- Filtres par Enseignes de Magasin -->
-          <div class="stores-filter-bar" id="stores-filter-bar">
-            <button class="store-chip active" data-store="all">🏪 Toutes</button>
-            <button class="store-chip carrefour" data-store="Carrefour">🔴 Carrefour</button>
-            <button class="store-chip leclerc" data-store="E.Leclerc">🔵 E.Leclerc</button>
-            <button class="store-chip lidl" data-store="Lidl">🟡 Lidl</button>
-            <button class="store-chip monoprix" data-store="Monoprix">🟠 Monoprix</button>
-          </div>
-
-          <!-- Filtres par rayons -->
-          <div class="categories-scroll" id="categories-bar">
-            <button class="cat-pill active" data-cat="all">Tout voir</button>
-            <button class="cat-pill" data-cat="Boucherie">🥩 Boucherie</button>
-            <button class="cat-pill" data-cat="Fruits">🍎 Fruits</button>
-            <button class="cat-pill" data-cat="Frais">🧀 Frais</button>
-            <button class="cat-pill" data-cat="Épicerie">🥫 Épicerie</button>
-            <button class="cat-pill" data-cat="Boulangerie">🥖 Boulangerie</button>
-          </div>
-
-          <!-- Liste des cartes promos -->
-          <div class="cards-scroll" id="home-cards-list">
-            <!-- Injecté par app.js -->
-          </div>
-        </section>
-
-        <!-- VUE 2 : DÉTAIL D'UNE PROMO -->
-        <section id="view-detail" class="app-view">
-          <div class="app-header">
-            <div class="brand">
-              <button class="back-btn" id="btn-detail-back">← Retour</button>
-              <div class="title">
-                <b>Fiche promo réelle</b>
-                <span id="detail-subtitle">Réf. catalogue</span>
-              </div>
-            </div>
-            <div class="header-right-btns">
-              <button class="share-icon-btn" id="btn-share-deal" title="Partager ce bon plan">📤</button>
-              <div class="pill" id="detail-discount-pill">-37%</div>
+            <div class="breakdown-line grand-total">
+              <span>Total en magasin</span>
+              <b id="cart-grand-total">0,00 €</b>
             </div>
           </div>
 
-          <div class="detail-content">
-            <div class="detail-banner">
-              <img id="detail-image" src="" alt="Produit promo" class="detail-img" />
-              <div class="detail-badge-float" id="detail-badge-type">Prospectus officiel</div>
-              <div class="detail-badge-store" id="detail-badge-store">Carrefour</div>
-            </div>
-
-            <div class="detail-info-card">
-              <div class="topline">
-                <span class="tag tag-store" id="detail-store">Carrefour</span>
-                <span class="rating" id="detail-distance-badge">📍 À 650 m</span>
-              </div>
-              
-              <h2 id="detail-title">Nom du produit</h2>
-
-              <div class="prices prices-large">
-                <span class="old" id="detail-old-price">11,00 €</span>
-                <span class="new" id="detail-new-price">6,95 €</span>
-                <span class="save-chip" id="detail-savings">Économie: 4,05 €</span>
-              </div>
-
-              <div class="detail-meta-box">
-                <div class="meta-item">
-                  <span class="meta-label">Type d'offre</span>
-                  <strong id="detail-deal-type">Remise immédiate</strong>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-label">Prospectus source</span>
-                  <strong id="detail-source-catalog">Le Mois Monopoly</strong>
-                </div>
-              </div>
-
-              <div class="detail-meta-box" style="margin-top:0;">
-                <div class="meta-item">
-                  <span class="meta-label">Stock estimé</span>
-                  <strong id="detail-stock">En rayon</strong>
-                </div>
-                <div class="meta-item">
-                  <span class="meta-label">Nutri-Score</span>
-                  <strong id="detail-nutriscore">A (Équilibré)</strong>
-                </div>
-              </div>
-
-              <p class="detail-desc" id="detail-description">
-                Description de l'offre issue du catalogue officiel.
-              </p>
-
-              <!-- Quantité -->
-              <div class="quantity-row">
-                <span>Quantité à réserver :</span>
-                <div class="qty-control">
-                  <button id="btn-qty-minus" class="qty-btn">-</button>
-                  <span id="detail-qty-val" class="qty-val">1</span>
-                  <button id="btn-qty-plus" class="qty-btn">+</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="detail-actions">
-              <button class="btn-secondary" id="btn-detail-skip">
-                Passer mon tour
-              </button>
-              <button class="btn-primary" id="btn-detail-add">
-                Ajouter au panier
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- VUE 3 : CARTE INTERACTIVE DES MAGASINS -->
-        <section id="view-map" class="app-view">
-          <div class="app-header">
-            <div class="brand">
-              <div class="logo">M</div>
-              <div class="title">
-                <b>Carte des magasins</b>
-                <span>Autour de vous</span>
-              </div>
-            </div>
-            <button class="gps-btn" id="btn-locate-user" title="Me géolocaliser">
-              📍 Ma position
-            </button>
-          </div>
-
-          <!-- Carte Leaflet -->
-          <div class="map-wrapper">
-            <div id="leaflet-map"></div>
-            <button class="map-recenter-btn" id="btn-map-recenter" title="Recentrer sur tous les magasins">🎯</button>
-          </div>
-
-          <!-- Fiche Magasin sélectionné -->
-          <div class="selected-store-card" id="store-info-panel">
-            <div class="topline">
-              <span class="tag" id="store-brand-tag">Magasin Partenaire</span>
-              <span class="rating" id="store-status">Ouvert</span>
-            </div>
-            <h3 id="store-name">Sélectionnez un magasin sur la carte</h3>
-            <p id="store-address" style="margin:4px 0 8px 0; color:var(--muted); font-size:12px;">
-              Cliquez sur un marqueur pour voir son catalogue de promos en direct.
-            </p>
-            <div class="store-footer">
-              <span class="badge-accent" id="store-promos-count">Consulter les promos</span>
-              <button class="btn-tiny" id="btn-filter-store-promos">Filtrer ses promos</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- VUE 4 : MON PANIER -->
-        <section id="view-cart" class="app-view">
-          <div class="app-header">
-            <div class="brand">
-              <div class="logo">M</div>
-              <div class="title">
-                <b>Mon panier</b>
-                <span>Économies cumulées</span>
-              </div>
-            </div>
-            <div class="pill" id="cart-item-count-pill">0 article</div>
-          </div>
-
-          <div class="cart-content-wrapper">
-            <!-- Liste des articles panier -->
-            <div class="cart-items-list" id="cart-items-container">
-              <!-- Rempli par JavaScript -->
-            </div>
-
-            <!-- Code Promo -->
-            <div class="promo-code-box">
-              <input type="text" id="promo-code-input" placeholder="Code promo (ex: ANTIGASPI ou VIP20)" />
-              <button id="btn-apply-promo" class="btn-tiny">Appliquer</button>
-            </div>
-            <div id="promo-feedback" class="promo-feedback"></div>
-
-            <!-- Résumé Financier -->
-            <div class="cart-summary">
-              <div class="summary-line">
-                <span>Prix normal sans promo</span>
-                <span id="cart-subtotal" class="strikethrough">0,00 €</span>
-              </div>
-              <div class="summary-line savings">
-                <span>Vos économies de prospectus</span>
-                <span id="cart-savings">- 0,00 €</span>
-              </div>
-              <div class="summary-line total">
-                <span>Total à régler en caisse</span>
-                <strong id="cart-total">0,00 €</strong>
-              </div>
-            </div>
-
-            <div class="cart-actions-row">
-              <button class="btn-secondary" id="btn-cart-clear">
-                Vider
-              </button>
-              <button class="btn-primary" id="btn-cart-checkout">
-                Générer mon Pass Promo
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- Navigation inférieure -->
-        <nav class="bottom-nav" id="main-bottom-nav">
-          <button class="nav-item active" data-target="view-home">
-            <div class="dot-icon">🏠</div>
-            <span>Accueil</span>
+          <button id="btn-checkout-pass" class="btn-checkout-main">
+            🎟️ Obtenir mon Pass Réduction QR Code
           </button>
-          <button class="nav-item" data-target="view-detail">
-            <div class="dot-icon">🏷️</div>
-            <span>Détail</span>
-          </button>
-          <button class="nav-item" data-target="view-map">
-            <div class="dot-icon">📍</div>
-            <span>Carte</span>
-          </button>
-          <button class="nav-item" data-target="view-cart">
-            <div class="dot-icon has-badge">
-              🛒
-              <span class="cart-badge" id="nav-cart-badge" style="display:none;">0</span>
-            </div>
-            <span>Panier</span>
-          </button>
-        </nav>
-      </div>
-    </div>
-  </main>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ======================================================== -->
+    <!-- BANDEAU DE NAVIGATION INFÉRIEUR FIXE (100% GARANTI)     -->
+    <!-- ======================================================== -->
+    <nav class="bottom-tab-bar" id="main-bottom-bar">
+      <button class="tab-btn active" data-tab="tab-promos">
+        <span class="tab-icon">🏷️</span>
+        <span class="tab-label">Promos</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-stores">
+        <span class="tab-icon">🗺️</span>
+        <span class="tab-label">Magasins</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-cart">
+        <span class="tab-icon has-badge">
+          🛒
+          <span class="cart-bubble" id="cart-badge-count" style="display:none;">0</span>
+        </span>
+        <span class="tab-label">Mon Panier</span>
+      </button>
+    </nav>
+
+  </div>
 
   <!-- ======================================================== -->
-  <!-- 2. MODE GRILLE 4 ÉCRANS                                  -->
+  <!-- MODAL 1 : FICHE DÉTAIL DU PRODUIT (DRAWER MODERNE)       -->
   <!-- ======================================================== -->
-  <section id="grid-mode" class="phone-grid-mode" style="display:none;">
-    <div class="phone-grid">
+  <div id="modal-product-detail" class="modal-backdrop" style="display:none;">
+    <div class="drawer-sheet">
+      <button class="drawer-close" id="btn-close-product-modal">✕</button>
       
-      <!-- Phone 1 : Accueil -->
-      <div class="phone">
-        <div class="screen">
-          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
-          <div class="app">
-            <div class="header">
-              <div class="brand">
-                <div class="logo">M</div>
-                <div class="title">
-                  <b>Vraies promos</b>
-                  <span>Autour de vous</span>
-                </div>
-              </div>
-              <div class="pill">GPS Actif</div>
-            </div>
-
-            <div class="search">
-              <span style="opacity:.6">🔎</span>
-              <input placeholder="Rechercher un produit..." id="grid-search-input" />
-            </div>
-
-            <div class="cards" id="grid-cards-list">
-              <!-- Cartes générées dynamiquement -->
-            </div>
-
-            <div class="bottom-nav">
-              <div class="nav-item active"><div class="dot"></div>Accueil</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-detail')"><div class="dot"></div>Promos</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-map')"><div class="dot"></div>Carte</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-cart')"><div class="dot"></div>Panier</div>
-            </div>
-          </div>
-        </div>
+      <div class="drawer-hero-img-wrap">
+        <img id="modal-p-img" src="" alt="Produit" class="drawer-hero-img" />
+        <span class="drawer-badge-discount" id="modal-p-discount">-35%</span>
+        <span class="drawer-badge-brand" id="modal-p-brand">Colruyt</span>
       </div>
 
-      <!-- Phone 2 : Détail -->
-      <div class="phone">
-        <div class="screen">
-          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
-          <div class="app">
-            <div class="header">
-              <div class="brand">
-                <div class="logo">M</div>
-                <div class="title">
-                  <b>Détail promo réelle</b>
-                  <span>Prospectus</span>
-                </div>
-              </div>
-              <div class="pill" id="grid-detail-pill">-33%</div>
-            </div>
+      <div class="drawer-body">
+        <div class="drawer-top-info">
+          <span class="tag-clean" id="modal-p-store">Chaussée de Liège, Marche</span>
+          <span class="distance-chip" id="modal-p-distance">📍 450 m</span>
+        </div>
 
-            <div class="search">
-              <span style="opacity:.6">🏷️</span>
-              <div style="font-weight:900; font-size:13px;" id="grid-detail-title-preview">Filets de poulet fermier</div>
-            </div>
+        <h3 id="modal-p-title" class="drawer-title">Nom du produit</h3>
 
-            <div class="cards" style="gap:10px;">
-              <div class="card" style="align-items:flex-start;">
-                <img id="grid-detail-img" src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=300&auto=format&fit=crop&q=80" alt="Produit" class="thumb" style="object-fit:cover;" />
-                <div class="meta">
-                  <div class="topline">
-                    <span class="tag" id="grid-detail-store-tag">Carrefour</span>
-                    <span class="rating">Offre en cours</span>
-                  </div>
-                  <h3>Quantité limitée en magasin</h3>
-                  <div class="prices">
-                    <span class="old" id="grid-detail-old">14,90 €</span>
-                    <span class="new" id="grid-detail-new">9,95 €</span>
-                  </div>
-                  <p style="margin:8px 0 0 0; color:var(--muted); font-size:12px;">
-                    Valable selon stock en rayon. Offre catalogue officielle.
-                  </p>
-                </div>
-              </div>
+        <div class="drawer-pricing-box">
+          <div class="prices-group">
+            <span class="price-old" id="modal-p-old-price">12,50 €</span>
+            <span class="price-new" id="modal-p-new-price">7,99 €</span>
+          </div>
+          <span class="save-tag-green" id="modal-p-savings">Économie : 4,51 €</span>
+        </div>
 
-              <div style="display:flex; gap:10px;">
-                <button class="btn-secondary" style="flex:1;" onclick="switchToTabFromGrid('view-home')">
-                  Refuser
-                </button>
-                <button class="btn-primary" style="flex:1;" id="btn-grid-add-detail">
-                  Utiliser
-                </button>
-              </div>
-            </div>
-
-            <div class="bottom-nav">
-              <div class="nav-item" onclick="switchToTabFromGrid('view-home')"><div class="dot"></div>Accueil</div>
-              <div class="nav-item active"><div class="dot"></div>Promos</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-map')"><div class="dot"></div>Carte</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-cart')"><div class="dot"></div>Panier</div>
-            </div>
+        <div class="specs-grid">
+          <div class="spec-cell">
+            <span class="spec-lbl">Offre Prospectus</span>
+            <b id="modal-p-deal-type">Remise Xtra</b>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">Validité</span>
+            <b id="modal-p-validity">Valable cette semaine</b>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">Disponibilité</span>
+            <b id="modal-p-stock">En rayon à Marche</b>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-lbl">Nutri-Score</span>
+            <b id="modal-p-nutri">A (Excellente qualité)</b>
           </div>
         </div>
-      </div>
 
-      <!-- Phone 3 : Carte -->
-      <div class="phone">
-        <div class="screen">
-          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
-          <div class="app">
-            <div class="header">
-              <div class="brand">
-                <div class="logo">M</div>
-                <div class="title">
-                  <b>Carte</b>
-                  <span>Hypermarchés & Super</span>
-                </div>
-              </div>
-              <div class="pill">Grand Lyon</div>
-            </div>
+        <p class="drawer-desc" id="modal-p-desc">
+          Description complète de l'offre issue du catalogue officiel.
+        </p>
 
-            <div class="card" style="height:380px; align-items:flex-start; flex-direction:column; padding:0; overflow:hidden;">
-              <div id="grid-leaflet-map" style="width:100%; height:240px; background:#e8edf5;"></div>
-              <div class="meta" style="padding:12px; width:100%; box-sizing:border-box;">
-                <div class="topline">
-                  <span class="tag">6 Enseignes</span>
-                  <span class="rating">Ouvert</span>
-                </div>
-                <h3>Carrefour, Leclerc, Lidl</h3>
-                <p style="margin:6px 0 0 0; color:var(--muted); font-size:12px;">
-                  Cliquez sur un magasin pour afficher ses prospectus.
-                </p>
-                <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-                  <span class="tag" style="background:#fee4e2; color:#d92d20;">Carrefour</span>
-                  <span class="tag" style="background:#d1e9ff; color:#175cd3;">E.Leclerc</span>
-                  <span class="tag" style="background:#fef08a; color:#854d0e;">Lidl</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="bottom-nav">
-              <div class="nav-item" onclick="switchToTabFromGrid('view-home')"><div class="dot"></div>Accueil</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-detail')"><div class="dot"></div>Promos</div>
-              <div class="nav-item active"><div class="dot"></div>Carte</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-cart')"><div class="dot"></div>Panier</div>
-            </div>
+        <!-- Sélecteur de quantité et bouton d'ajout -->
+        <div class="drawer-action-row">
+          <div class="qty-selector">
+            <button id="btn-p-qty-minus" class="qty-circle-btn">-</button>
+            <span id="modal-p-qty-display" class="qty-num">1</span>
+            <button id="btn-p-qty-plus" class="qty-circle-btn">+</button>
           </div>
+          <button id="btn-modal-add-cart" class="btn-add-main">
+            Ajouter au panier
+          </button>
         </div>
       </div>
-
-      <!-- Phone 4 : Panier -->
-      <div class="phone">
-        <div class="screen">
-          <div class="statusbar"><span>09:44</span><span>• • •</span></div>
-          <div class="app">
-            <div class="header">
-              <div class="brand">
-                <div class="logo">M</div>
-                <div class="title">
-                  <b>Mon panier</b>
-                  <span>Économies</span>
-                </div>
-              </div>
-              <div class="pill" id="grid-cart-pill">Total</div>
-            </div>
-
-            <div class="cards" id="grid-cart-items-list">
-              <!-- Cartes panier synchronisées -->
-            </div>
-
-            <div style="display:flex; gap:10px; margin-top:auto;">
-              <button class="btn-secondary" style="flex:1;" id="btn-grid-cart-clear">
-                Vider
-              </button>
-              <button class="btn-primary" style="flex:1;" id="btn-grid-cart-checkout">
-                Pass Promo
-              </button>
-            </div>
-
-            <div class="bottom-nav">
-              <div class="nav-item" onclick="switchToTabFromGrid('view-home')"><div class="dot"></div>Accueil</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-detail')"><div class="dot"></div>Promos</div>
-              <div class="nav-item" onclick="switchToTabFromGrid('view-map')"><div class="dot"></div>Carte</div>
-              <div class="nav-item active"><div class="dot"></div>Panier</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </section>
+  </div>
 
   <!-- ======================================================== -->
-  <!-- 3. MODAL PASS PROMO QR CODE                             -->
+  <!-- MODAL 2 : SÉLECTEUR DE VILLE RAPIDE                      -->
   <!-- ======================================================== -->
-  <div id="checkout-modal" class="modal-overlay" style="display:none;">
-    <div class="modal-card">
-      <button class="modal-close-btn" id="btn-close-modal">✕</button>
-      <div class="modal-icon-success">🎉</div>
-      <h3>Pass Promo Généré !</h3>
-      <p class="modal-sub">Vos réductions ont été réservées pour votre passage en caisse.</p>
+  <div id="modal-location" class="modal-backdrop" style="display:none;">
+    <div class="clean-dialog">
+      <button class="dialog-close" id="btn-close-loc-modal">✕</button>
+      <h3>📍 Choisir votre ville</h3>
+      <p class="dialog-sub">Les promotions des supermarchés s'adapteront automatiquement.</p>
 
-      <div class="qr-code-box">
-        <svg viewBox="0 0 160 160" width="130" height="130" class="qr-svg">
-          <rect width="160" height="160" fill="#ffffff" rx="10"/>
-          <rect x="15" y="15" width="40" height="40" fill="#101828" rx="6"/>
-          <rect x="23" y="23" width="24" height="24" fill="#ffffff" rx="3"/>
-          <rect x="29" y="29" width="12" height="12" fill="#ff5a3c" rx="2"/>
+      <button id="btn-detect-gps-now" class="btn-gps-direct">
+        🎯 Me géolocaliser automatiquement (GPS)
+      </button>
 
-          <rect x="105" y="15" width="40" height="40" fill="#101828" rx="6"/>
-          <rect x="113" y="23" width="24" height="24" fill="#ffffff" rx="3"/>
-          <rect x="119" y="29" width="12" height="12" fill="#ff5a3c" rx="2"/>
+      <div class="quick-cities-list">
+        <button class="city-opt active" data-city="Marche-en-Famenne" data-cp="6900">
+          <b>Marche-en-Famenne</b> <span>(Province de Luxembourg - 6900)</span>
+        </button>
+        <button class="city-opt" data-city="Rochefort" data-cp="5580">
+          <b>Rochefort</b> <span>(5580)</span>
+        </button>
+        <button class="city-opt" data-city="Ciney" data-cp="5590">
+          <b>Ciney</b> <span>(5590)</span>
+        </button>
+        <button class="city-opt" data-city="Namur" data-cp="5000">
+          <b>Namur</b> <span>(5000)</span>
+        </button>
+        <button class="city-opt" data-city="Liège" data-cp="4000">
+          <b>Liège</b> <span>(4000)</span>
+        </button>
+        <button class="city-opt" data-city="Bruxelles" data-cp="1000">
+          <b>Bruxelles</b> <span>(1000)</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
-          <rect x="15" y="105" width="40" height="40" fill="#101828" rx="6"/>
-          <rect x="23" y="113" width="24" height="24" fill="#ffffff" rx="3"/>
-          <rect x="29" y="119" width="12" height="12" fill="#ff5a3c" rx="2"/>
+  <!-- ======================================================== -->
+  <!-- MODAL 3 : PASS PROMO QR CODE EN CAISSE                   -->
+  <!-- ======================================================== -->
+  <div id="modal-qr-pass" class="modal-backdrop" style="display:none;">
+    <div class="clean-dialog text-center">
+      <button class="dialog-close" id="btn-close-qr-modal">✕</button>
+      <div class="success-icon-bounce">🎟️</div>
+      <h3>Pass Promo Réservé !</h3>
+      <p class="dialog-sub">Présentez ce QR Code en caisse pour faire valoir vos réductions.</p>
 
-          <rect x="65" y="20" width="10" height="10" fill="#101828"/>
-          <rect x="80" y="35" width="15" height="10" fill="#101828"/>
-          <rect x="65" y="55" width="10" height="15" fill="#101828"/>
-          <rect x="25" y="70" width="15" height="10" fill="#ff5a3c"/>
-          <rect x="50" y="75" width="20" height="10" fill="#101828"/>
-          <rect x="80" y="70" width="10" height="20" fill="#101828"/>
-          <rect x="100" y="75" width="25" height="10" fill="#101828"/>
-          <rect x="135" y="70" width="10" height="15" fill="#101828"/>
-          <rect x="65" y="105" width="15" height="10" fill="#101828"/>
-          <rect x="90" y="115" width="20" height="10" fill="#ff5a3c"/>
-          <rect x="120" y="105" width="15" height="15" fill="#101828"/>
-          <rect x="70" y="130" width="25" height="10" fill="#101828"/>
-          <rect x="110" y="135" width="20" height="10" fill="#101828"/>
-        </svg>
-        <span class="qr-id" id="modal-order-id">PASS #PROMO-84920</span>
+      <div class="qr-display-box">
+        <img id="qr-image-tag" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=PASS-MARCHE-6900" alt="QR Code" width="160" height="160" />
+        <span class="qr-code-txt" id="qr-pass-number">PASS #MF-6900-281</span>
       </div>
 
-      <div class="modal-summary-box">
-        <div class="summary-line">
-          <span>Total en caisse :</span>
-          <strong id="modal-total-price">14,94 €</strong>
-        </div>
-        <div class="summary-line" style="color:var(--green);">
-          <span>Économies prospectus :</span>
-          <strong id="modal-savings-price">8,10 €</strong>
-        </div>
+      <div class="qr-summary-box">
+        <div>Total en caisse : <b id="qr-total-pay">0,00 €</b></div>
+        <div style="color:var(--green);">Économies : <b id="qr-total-saved">0,00 €</b></div>
       </div>
 
-      <p class="pickup-hint">
-        Présentez ce QR Code en caisse pour appliquer vos remises de prospectus.
-      </p>
-
-      <button class="btn-primary" id="btn-modal-done" style="width:100%;">
-        Terminer & Retourner aux promos
+      <button id="btn-qr-done" class="btn-checkout-main" style="margin-top:12px; width:100%;">
+        Compris, retourner aux promos
       </button>
     </div>
   </div>
 
-  <!-- Guide GitHub Pages -->
-  <div id="guide-modal" class="modal-overlay" style="display:none;">
-    <div class="modal-card modal-large">
-      <button class="modal-close-btn" id="btn-close-guide">✕</button>
-      <h2>🚀 PromoApp - En ligne sur GitHub Pages</h2>
-      <p class="modal-sub">Votre application est déjà déployée et accessible mondialement.</p>
-
-      <div class="guide-steps">
-        <div class="guide-step">
-          <div class="step-num">✓</div>
-          <div class="step-content">
-            <h4>Dépôt GitHub public</h4>
-            <p>Code source disponible sur <a href="https://github.com/borzeeb-coder/magasin" target="_blank">github.com/borzeeb-coder/magasin</a>.</p>
-          </div>
-        </div>
-
-        <div class="guide-step">
-          <div class="step-num">✓</div>
-          <div class="step-content">
-            <h4>Hébergement GitHub Pages</h4>
-            <p>Accessible à l'adresse officielle : <a href="https://borzeeb-coder.github.io/magasin/" target="_blank">borzeeb-coder.github.io/magasin/</a></p>
-          </div>
-        </div>
-
-        <div class="guide-step">
-          <div class="step-num">📲</div>
-          <div class="step-content">
-            <h4>Installer sur votre smartphone</h4>
-            <p>Ouvrez le lien sur Safari (iOS) ou Chrome (Android) et cliquez sur <b>"Partager" &gt; "Sur l'écran d'accueil"</b> pour installer PromoApp comme une vraie application !</p>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-primary" id="btn-guide-ok" style="margin-top:16px; width:100%;">
-        Fermer
-      </button>
-    </div>
-  </div>
-
-  <!-- Conteneur Toast -->
-  <div id="toast" class="toast"></div>
+  <!-- Toast Notification Flottant -->
+  <div id="toast" class="toast-floating"></div>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
