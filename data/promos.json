@@ -1333,7 +1333,30 @@
         "new_price": 3.05,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-068.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 104.2,
+          "fat_100g": 1.8,
+          "saturated_fat_100g": 6,
+          "carbs_100g": 1,
+          "sugars_100g": 1,
+          "fiber_100g": 0,
+          "proteins_100g": 21,
+          "salt_100g": 2.1
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:nutriscore",
+          "en:nutriscore-grade-d",
+          "fr:triman"
+        ],
+        "brands": "HERTA",
+        "categories": "nl:Bereidingen/Charcuterie/Vis/Veggie, nl:Charcuterie",
+        "ean": "3154230816386"
       },
       {
         "store": "intermarche",
@@ -1545,7 +1568,26 @@
         "new_price": 1.19,
         "discount_pct": null,
         "image_url": "data/images/intermarche-090.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "C",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 283.4,
+          "fat_100g": 1.2,
+          "saturated_fat_100g": 0.2,
+          "carbs_100g": 58,
+          "sugars_100g": 2.3,
+          "fiber_100g": 2.7,
+          "proteins_100g": 8.8,
+          "salt_100g": 1.4
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Sans marque",
+        "categories": "Pains précuits",
+        "ean": "3250390882763"
       },
       {
         "store": "intermarche",
@@ -1739,7 +1781,30 @@
         "new_price": 5.98,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-113.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:no-preservatives",
+          "en:nutriscore",
+          "en:nutriscore-grade-b"
+        ],
+        "brands": "Panier de Yoplait",
+        "categories": "",
+        "ean": "3329770086265"
       },
       {
         "store": "intermarche",
@@ -1847,7 +1912,30 @@
         "new_price": 3.39,
         "discount_pct": null,
         "image_url": "data/images/intermarche-127.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 439,
+          "fat_100g": 14,
+          "saturated_fat_100g": 6.4,
+          "carbs_100g": 74,
+          "sugars_100g": 66,
+          "fiber_100g": null,
+          "proteins_100g": 3.2,
+          "salt_100g": 0.64
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:soybeans"
+        ],
+        "additives": [],
+        "labels": [],
+        "brands": "Mars",
+        "categories": "",
+        "ean": "5000159561464"
       },
       {
         "store": "intermarche",
@@ -1930,7 +2018,46 @@
         "new_price": 3.49,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-135.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 439,
+          "fat_100g": 14,
+          "saturated_fat_100g": 3.6,
+          "carbs_100g": 66,
+          "sugars_100g": 27,
+          "fiber_100g": 6.8,
+          "proteins_100g": 7.9,
+          "salt_100g": 0.62
+        },
+        "ingredients": "Céréales 56,8 % (céréales complètes 39,8 % (farine complète de BLÉ 20,1 %, flocons d'AVOINE 8,8 %, farine complète d'ORGE 6,4 %, farine complète de SEIGLE 3,5 %, farine complète d'épeautre 1 %), farine de BLÉ 17 %), sucre, pépites de chocolat 12% (sucre, pâte de cacao, graisses végétales (palme, karité en proportions variables), dextrose, beurre de cacao, émulsifiant (lécithines de SOJA)), huile de colza, cacao maigre en poudre 3 %, amidon de BLÉ, poudres à lever (carbonates d'ammonium, diphosphates, carbonates de sodium), minéraux (carbonate de calcium, carbonate de magnésium, fer élémentaire), émulsifiants (lécithines de SOJA, E492, E472e), sel, arôme, LAIT écrémé en poudre.",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i",
+          "en:e450",
+          "en:e472e",
+          "en:e492",
+          "en:e500",
+          "en:e503"
+        ],
+        "labels": [
+          "en:vegetarian",
+          "en:distributor-labels",
+          "en:no-preservatives",
+          "en:charte-lu-harmony",
+          "en:no-colorings",
+          "en:no-dyes-or-preservatives",
+          "fr:triman"
+        ],
+        "brands": "LU",
+        "categories": "Biscuits au chocolat, Biscuit sec pour petit déjeuner, Biscuit aux céréales pour petit déjeuner enrichis en vitamines et minéraux",
+        "ean": "7622210713780"
       },
       {
         "store": "intermarche",
@@ -2047,7 +2174,34 @@
         "new_price": 2.6,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-151.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "A",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 73,
+          "fat_100g": 3.5,
+          "saturated_fat_100g": 0.4,
+          "carbs_100g": 9.3,
+          "sugars_100g": 6,
+          "fiber_100g": null,
+          "proteins_100g": 1.1,
+          "salt_100g": 0.91
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [
+          "en:e14xx"
+        ],
+        "labels": [
+          "en:no-gluten",
+          "en:no-preservatives",
+          "en:fsc",
+          "en:fsc-mix",
+          "en:no-flavors"
+        ],
+        "brands": "Heinz",
+        "categories": "Tomato frito sauzen, en:tom",
+        "ean": "8410066139231"
       },
       {
         "store": "intermarche",
@@ -2305,7 +2459,26 @@
         "new_price": 0.99,
         "discount_pct": null,
         "image_url": "data/images/intermarche-182.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 448,
+          "fat_100g": 15,
+          "saturated_fat_100g": 4.4,
+          "carbs_100g": 63,
+          "sugars_100g": 3.2,
+          "fiber_100g": null,
+          "proteins_100g": 13,
+          "salt_100g": 1.6
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Panealba",
+        "categories": "Cereali e patate",
+        "ean": "8002333007406"
       },
       {
         "store": "intermarche",
@@ -2502,7 +2675,26 @@
         "new_price": 8.99,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-208.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "NOT-APPLICABLE",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Corona",
+        "categories": "Bieren",
+        "ean": "5410228309451"
       },
       {
         "store": "intermarche",
@@ -2646,7 +2838,35 @@
         "new_price": 2.69,
         "discount_pct": 20,
         "image_url": "data/images/intermarche-224.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "NOT-APPLICABLE",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "Eau, Vodka 12.4% (Distillat de céréales, Eau), Sucre, Jus de prunelle à partir de concentré, Acidifiant: Acide citrique (E330), Sirop de glucose, Dioxyde de carbone, Correcteur d'acidité: Citrate de sodium (E331), Arômes, Dextrose, Taurine 0.4%, Conservateurs: Sorbate de potassium (E202), Benzoate de sodium (E211), Caféine, Colorants: Caramel ordinaire (E150a), Amarante (E123), Bleu brillant (E133)",
+        "allergens": [],
+        "additives": [
+          "en:e123",
+          "en:e133",
+          "en:e150a",
+          "en:e202",
+          "en:e211",
+          "en:e290",
+          "en:e330",
+          "en:e331"
+        ],
+        "labels": [],
+        "brands": "Eristoff",
+        "categories": "Vodkas",
+        "ean": "5010677801836"
       },
       {
         "store": "intermarche",
