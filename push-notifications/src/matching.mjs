@@ -25,22 +25,18 @@ export function effectiveDiscount(offer) {
   return 0;
 }
 
-/* Retrouve l'offre correspondant au favori dans toutes les enseignes.
+/* Retrouve l'offre correspondant au favori dans promos.json (tableau plat).
  * Retourne la meilleure correspondance {offer, store, discount} ou null. */
-export function bestOfferFor(favName, offersByStore) {
+export function bestOfferFor(favName, offers) {
   const want = normalize(favName);
   if (!want) return null;
   let best = null;
-  for (const [store, offers] of Object.entries(offersByStore || {})) {
-    for (const offer of offers || []) {
-      const got = normalize(offer.name);
-      if (!got) continue;
-      if (got === want) {
-        const discount = effectiveDiscount(offer);
-        if (!best || discount > best.discount) {
-          best = { store, offer, discount };
-        }
-      }
+  for (const offer of offers || []) {
+    const got = normalize(offer.name);
+    if (!got || got !== want) continue;
+    const discount = effectiveDiscount(offer);
+    if (!best || discount > best.discount) {
+      best = { store: offer.store || '', offer, discount };
     }
   }
   return best;

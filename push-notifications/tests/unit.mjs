@@ -19,10 +19,10 @@ t(effectiveDiscount({ old_price: 10, new_price: 7 }) === 30, 'déduit des prix (
 t(effectiveDiscount({ old_price: 0, new_price: 7 }) === 0, 'pas de remise');
 
 console.log('bestOfferFor');
-const offers = {
-  delhaize: [{ name: 'Coca-Cola', new_price: 2.5, old_price: 3.2 }],
-  carrefour: [{ name: 'Coca cola', new_price: 2.2, old_price: 2.75, discount_pct: 20 }],
-};
+const offers = [
+  { name: 'Coca-Cola', store: 'delhaize', new_price: 2.5, old_price: 3.2 },
+  { name: 'Coca cola', store: 'carrefour', new_price: 2.2, old_price: 2.75, discount_pct: 20 },
+];
 let hit = bestOfferFor('Coca-Cola', offers);
 t(hit !== null && hit.discount === 22 && hit.store === 'delhaize', 'meilleure remise retenue (22% delhaize > 20% carrefour)');
 t(hit.offer.new_price === 2.5, 'prix de la bonne offre');
