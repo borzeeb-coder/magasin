@@ -69,7 +69,25 @@
         "new_price": null,
         "discount_pct": null,
         "image_url": "data/images/colruyt-1.webp",
-        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": ""
       },
       {
         "store": "colruyt",
@@ -105,7 +123,41 @@
         "new_price": null,
         "discount_pct": null,
         "image_url": "data/images/colruyt-5.webp",
-        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres",
+        "nutriscore": "D",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 65,
+          "fat_100g": 0.7,
+          "saturated_fat_100g": 0.3,
+          "carbs_100g": 0,
+          "sugars_100g": 0,
+          "fiber_100g": 0,
+          "proteins_100g": 13,
+          "salt_100g": 3.1
+        },
+        "ingredients": "Crevette, sel, correcteurs d'acidité : acide acétique - acide lactique - acide citrique, colorants : B-apocaroténal-8 et rouge de betterave, antioxydant : disulfite de sodium.",
+        "allergens": [
+          "en:crustaceans",
+          "en:sulphur-dioxide-and-sulphites"
+        ],
+        "additives": [
+          "en:e223",
+          "en:e260",
+          "en:e270",
+          "en:e330"
+        ],
+        "labels": [
+          "en:sustainable",
+          "en:sustainable-fishery",
+          "en:green-dot",
+          "en:nutriscore",
+          "en:nutriscore-grade-c",
+          "en:sustainable-seafood-msc",
+          "fr:triman"
+        ],
+        "brands": "Carrefour",
+        "categories": "Gambas"
       },
       {
         "store": "colruyt",
@@ -114,7 +166,29 @@
         "new_price": null,
         "discount_pct": null,
         "image_url": "data/images/colruyt-6.webp",
-        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres",
+        "nutriscore": "A",
+        "nova_group": 1,
+        "nutrition": {
+          "energy_kcal_100g": 31,
+          "fat_100g": 0.5,
+          "saturated_fat_100g": 0.1,
+          "carbs_100g": 5.1,
+          "sugars_100g": 4.8,
+          "fiber_100g": 1.6,
+          "proteins_100g": 0.9,
+          "salt_100g": 0
+        },
+        "ingredients": "Poivrons verts* 30 % mini., poivrons rouges* 30 % mini., poivrons jaunes* 30 % mini.\n\n*Ingrédients issus de l'agriculture biologique.",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:organic",
+          "en:eu-organic",
+          "fr:ab-agriculture-biologique"
+        ],
+        "brands": "Bio Village, Marque Repère",
+        "categories": "Poivrons surgelés"
       }
     ],
     "delhaize": [
@@ -134,7 +208,53 @@
         "new_price": 2.7,
         "discount_pct": 20,
         "image_url": "data/images/delhaize-1.webp",
-        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 569,
+          "fat_100g": 37.2,
+          "saturated_fat_100g": 21.4,
+          "carbs_100g": 49.7,
+          "sugars_100g": 47.1,
+          "fiber_100g": null,
+          "proteins_100g": 7.3,
+          "salt_100g": 0.29
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:nuts",
+          "en:orange",
+          "en:soybeans",
+          "nl:Buttermilchpulver",
+          "nl:Butterreinfett",
+          "nl:Gerstenmalzextrakt",
+          "nl:Haselnüsse",
+          "nl:Magermilchpulver",
+          "nl:Mandeln",
+          "nl:Milchzucker",
+          "nl:Sahnepulver",
+          "nl:Vollmilchpulver",
+          "nl:Weizenstärke",
+          "nl:Weizenvollkornmehl"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e330",
+          "en:e440",
+          "en:e500",
+          "en:e500ii",
+          "en:e503",
+          "en:e503ii"
+        ],
+        "labels": [
+          "en:green-dot",
+          "en:limited-edition"
+        ],
+        "brands": "Storck, merci",
+        "categories": "Chocolade"
       },
       {
         "store": "delhaize",
@@ -143,7 +263,25 @@
         "new_price": 5.19,
         "discount_pct": 50,
         "image_url": "data/images/delhaize-2.webp",
-        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres",
+        "nutriscore": "A",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 404.444444444444,
+          "fat_100g": 16,
+          "saturated_fat_100g": 1.7,
+          "carbs_100g": 34,
+          "sugars_100g": 5.3,
+          "fiber_100g": 22,
+          "proteins_100g": 22,
+          "salt_100g": 0.21
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Quaker",
+        "categories": "Mueslis"
       },
       {
         "store": "delhaize",
@@ -161,7 +299,37 @@
         "new_price": 3.89,
         "discount_pct": null,
         "image_url": "data/images/delhaize-4.webp",
-        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 190,
+          "fat_100g": 9.4,
+          "saturated_fat_100g": 2,
+          "carbs_100g": 8.6,
+          "sugars_100g": 0.5,
+          "fiber_100g": null,
+          "proteins_100g": 17,
+          "salt_100g": 1.75
+        },
+        "ingredients": "80% poulet mariné (88% poulet, eau, sel, stabilisants E451, E500, carraghénanes; dextrose, antioxygène : E301), chapelure (flacons de maïs, eau, farine (_blé_, mais), huile de tournesol, amidon modifié de _blé_, sel, extrait de malt (_blé_), stabilisant guar; plantes aromatiques, épices) PEUT CONTENIR DES TRACES DE CEUF, CELERI, LAIT, MOUTARDE et SOJA",
+        "allergens": [
+          "en:celery",
+          "en:gluten",
+          "en:milk",
+          "en:mustard"
+        ],
+        "additives": [
+          "en:e14xx",
+          "en:e301",
+          "en:e407",
+          "en:e412",
+          "en:e451",
+          "en:e500"
+        ],
+        "labels": [],
+        "brands": "Delhaize",
+        "categories": "Poulets panés"
       },
       {
         "store": "delhaize",
@@ -188,7 +356,42 @@
         "new_price": 2.19,
         "discount_pct": null,
         "image_url": "data/images/delhaize-7.webp",
-        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres",
+        "nutriscore": "C",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 211,
+          "fat_100g": 12,
+          "saturated_fat_100g": 4.5,
+          "carbs_100g": 14,
+          "sugars_100g": 4.3,
+          "fiber_100g": 4.6,
+          "proteins_100g": 11,
+          "salt_100g": 1.13
+        },
+        "ingredients": "Potiron butternut* 36%, carotte*, emmental* 12% (lait pasteurisé* sel, ferments, présure microbienne, amidon de pomme de terre*), farine de riz*, farce au persil* [cottage cheese* (fromage maigre* crème* ferments, présure microbienne), persil* 0,7%, sel de mer], noix de cajou*, oeuf, farine de soja*, épices* (moutarde). *Agriculture biologique.",
+        "allergens": [
+          "en:eggs",
+          "en:milk",
+          "en:mustard",
+          "en:nuts",
+          "en:soybeans"
+        ],
+        "additives": [],
+        "labels": [
+          "en:organic",
+          "en:eu-agriculture",
+          "en:eu-organic",
+          "en:non-eu-agriculture",
+          "en:nutriscore",
+          "en:be-bio-01",
+          "en:be-bio-02",
+          "en:eu-non-eu-agriculture",
+          "en:nutriscore-grade-a",
+          "fr:ab-agriculture-biologique"
+        ],
+        "brands": "Delhaize, Delhaize Bio, Delhaize Veggie",
+        "categories": "Aliments d'origine végétale, Hamburgers, Galettes végétariennes"
       }
     ],
     "carrefour": [
@@ -226,7 +429,25 @@
         "new_price": 3.5,
         "discount_pct": 22,
         "image_url": "data/images/carrefour-3.webp",
-        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres",
+        "nutriscore": "E",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 644,
+          "fat_100g": 56.9,
+          "saturated_fat_100g": 6.8,
+          "carbs_100g": 20,
+          "sugars_100g": 11.1,
+          "fiber_100g": null,
+          "proteins_100g": 13.5,
+          "salt_100g": 1.4
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": "Fruits à coques décortiqués"
       },
       {
         "store": "carrefour",
@@ -235,7 +456,31 @@
         "new_price": 12.0,
         "discount_pct": 33,
         "image_url": "data/images/carrefour-4.webp",
-        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres",
+        "nutriscore": "B",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 76.6,
+          "fat_100g": 1.8,
+          "saturated_fat_100g": 1.3,
+          "carbs_100g": 12.2,
+          "sugars_100g": 7,
+          "fiber_100g": 0,
+          "proteins_100g": 3,
+          "salt_100g": 0
+        },
+        "ingredients": "Lait frais partiellement écrémé, sucre, arôme, ferments lactiques.",
+        "allergens": [
+          "en:milk"
+        ],
+        "additives": [],
+        "labels": [
+          "en:no-preservatives",
+          "en:source-of-proteins",
+          "en:high-proteins"
+        ],
+        "brands": "jaouda",
+        "categories": "Lait caillé saveur banane"
       },
       {
         "store": "carrefour",
@@ -291,7 +536,43 @@
         "new_price": 0.99,
         "discount_pct": 50,
         "image_url": "data/images/lidl-2.webp",
-        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 158.571428571429,
+          "fat_100g": 5.7,
+          "saturated_fat_100g": 3.1,
+          "carbs_100g": 19,
+          "sugars_100g": 2,
+          "fiber_100g": 2.5,
+          "proteins_100g": 6.3,
+          "salt_100g": 0.6
+        },
+        "ingredients": "Pâtes fraîches cuites 45% (semoule de BLE dur 22%, eau, ŒUF, sel), CREME légère 12%, LAIT écrémé, RICOTTA, épinards, eau, oignons, PARMESAN, EMMENTAL, MOZZARELLA, protéines de LAIT, poudre d'épinard 0,3%, huile d'olive vierge, huile de colza, vinaigre d'alcool, farines de BLE, de fèves et d'ORGE malté, gluten de BLE, son de BLE, fibre de BLE, levure boulangère, amidon et/ou fécule, sucre, LACTOSE, correcteur d'acidité : acide citrique, conservateurs : sorbate de potassium, acétate de sodium, sel, poivre, ail. Ce produit peut contenir des fruits à coque et d'autres céréales contenant du gluten.",
+        "allergens": [
+          "en:eggs",
+          "en:gluten",
+          "en:milk"
+        ],
+        "additives": [
+          "en:e202",
+          "en:e262",
+          "en:e262i",
+          "en:e330"
+        ],
+        "labels": [
+          "en:2016-nutrition-labelling-experiment",
+          "en:fsc",
+          "en:fsc-mix",
+          "en:green-dot",
+          "en:nutriscore",
+          "en:nutriscore-experiment",
+          "en:nutriscore-experiment-grade-b",
+          "en:nutriscore-grade-b"
+        ],
+        "brands": "Sodebo",
+        "categories": "Plats préparés frais, Tortellini, Box"
       },
       {
         "store": "lidl",
@@ -300,7 +581,30 @@
         "new_price": 0.99,
         "discount_pct": 50,
         "image_url": "data/images/lidl-3.webp",
-        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 247,
+          "fat_100g": 1.8,
+          "saturated_fat_100g": 0.2,
+          "carbs_100g": 48,
+          "sugars_100g": 2.9,
+          "fiber_100g": 3,
+          "proteins_100g": 8.3,
+          "salt_100g": 1.4
+        },
+        "ingredients": "60% farine de blé, eau, levure, sel, levure chimique (farine de féveroles, farine de blé, protéines de blé, dextrose), graines de sésame, cumin noir, huile de colza. Peut contenir des traces de soja, de lait et d'œuf.",
+        "allergens": [
+          "en:gluten",
+          "en:sesame-seeds"
+        ],
+        "additives": [],
+        "labels": [
+          "en:made-in-germany"
+        ],
+        "brands": "Lidl Grafschafter",
+        "categories": "Pains plats"
       },
       {
         "store": "lidl",
@@ -374,7 +678,39 @@
         "new_price": 5.99,
         "discount_pct": null,
         "image_url": "data/images/aldi-3.webp",
-        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 536,
+          "fat_100g": 29,
+          "saturated_fat_100g": 4.4,
+          "carbs_100g": 56,
+          "sugars_100g": 5.5,
+          "fiber_100g": 2.7,
+          "proteins_100g": 12,
+          "salt_100g": 1.5
+        },
+        "ingredients": "Farine de BLE (France) 65%, huiles végétales (colza et tournesol), EMMENTAL râpé 17%, sucre, sirop de sucre inverti, poudres à lever : phosphates de calcium - carbonates de sodium - carbonates d'ammonium, farine d'ORGE MALTÉE, sel 0,9%. Traces éventuelles de graines de sésame.",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:sesame-seeds"
+        ],
+        "additives": [
+          "en:e341",
+          "en:e500",
+          "en:e503"
+        ],
+        "labels": [
+          "en:green-dot",
+          "en:nutriscore",
+          "en:nutriscore-grade-d",
+          "en:transformed-in-france",
+          "fr:ble-francais"
+        ],
+        "brands": "U",
+        "categories": "Biscuits apéritifs"
       },
       {
         "store": "aldi",
@@ -430,7 +766,25 @@
         "new_price": null,
         "discount_pct": 33,
         "image_url": "data/images/spar-2.webp",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres",
+        "nutriscore": "D",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 362,
+          "fat_100g": 13,
+          "saturated_fat_100g": 4,
+          "carbs_100g": 51,
+          "sugars_100g": 16,
+          "fiber_100g": 3.2,
+          "proteins_100g": 8.6,
+          "salt_100g": 1.1
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "MClassic",
+        "categories": "Pains au chocolat, Pains au lait au chocolat"
       },
       {
         "store": "spar",
@@ -439,7 +793,27 @@
         "new_price": null,
         "discount_pct": null,
         "image_url": "data/images/spar-3.webp",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres",
+        "nutriscore": "NOT-APPLICABLE",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 38,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 2.4,
+          "sugars_100g": 0,
+          "fiber_100g": null,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:gluten"
+        ],
+        "additives": [],
+        "labels": [],
+        "brands": "Krombacher",
+        "categories": "Biere"
       },
       {
         "store": "spar",
