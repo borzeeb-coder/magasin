@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T08:17:24Z",
+  "generated_at": "2026-09-18T08:44:47Z",
   "stores_meta": {
     "colruyt": {
       "name": "Colruyt",
@@ -59,7 +59,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/colruyt-0.webp",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       },
       {
@@ -68,7 +68,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/colruyt-1.webp",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       },
       {
@@ -77,7 +77,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/colruyt-2.webp",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       },
       {
@@ -86,7 +86,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/colruyt-3.webp",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       },
       {
@@ -95,7 +95,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/colruyt-4.webp",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       },
       {
@@ -104,7 +104,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/colruyt-5.webp",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       },
       {
@@ -113,7 +113,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/colruyt-6.webp",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       }
     ],
@@ -124,7 +124,7 @@
         "old_price": 6.1,
         "new_price": 4.58,
         "discount_pct": 25,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-0.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
@@ -133,7 +133,7 @@
         "old_price": 3.38,
         "new_price": 2.7,
         "discount_pct": 20,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-1.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
@@ -142,7 +142,7 @@
         "old_price": 10.38,
         "new_price": 5.19,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-2.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
@@ -151,7 +151,7 @@
         "old_price": 3.99,
         "new_price": 2.79,
         "discount_pct": 30,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-3.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
@@ -160,7 +160,7 @@
         "old_price": null,
         "new_price": 3.89,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-4.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
@@ -169,7 +169,7 @@
         "old_price": 12.9,
         "new_price": 6.45,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-5.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
@@ -178,7 +178,7 @@
         "old_price": null,
         "new_price": 1.45,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-6.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
@@ -187,7 +187,7 @@
         "old_price": null,
         "new_price": 2.19,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/delhaize-7.webp",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       }
     ],
@@ -198,7 +198,7 @@
         "old_price": null,
         "new_price": 9.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-0.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -207,7 +207,7 @@
         "old_price": null,
         "new_price": 12.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-1.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -216,7 +216,7 @@
         "old_price": null,
         "new_price": 29.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-2.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -225,7 +225,7 @@
         "old_price": 4.5,
         "new_price": 3.5,
         "discount_pct": 22,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-3.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -234,7 +234,7 @@
         "old_price": 18.0,
         "new_price": 12.0,
         "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-4.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -243,7 +243,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-5.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -252,7 +252,7 @@
         "old_price": 7.98,
         "new_price": 3.99,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-6.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -261,7 +261,7 @@
         "old_price": null,
         "new_price": 5.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/carrefour-7.webp",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       }
     ],
@@ -272,7 +272,7 @@
         "old_price": null,
         "new_price": 4.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-0.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
@@ -281,7 +281,7 @@
         "old_price": 9.9,
         "new_price": 4.95,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-1.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
@@ -290,7 +290,7 @@
         "old_price": 1.99,
         "new_price": 0.99,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-2.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
@@ -299,7 +299,7 @@
         "old_price": 1.98,
         "new_price": 0.99,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-3.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
@@ -308,7 +308,7 @@
         "old_price": 3.16,
         "new_price": 2.37,
         "discount_pct": 25,
-        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-4.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
@@ -317,7 +317,7 @@
         "old_price": 14.37,
         "new_price": 9.58,
         "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-5.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
@@ -326,7 +326,7 @@
         "old_price": 9.1,
         "new_price": 4.55,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-6.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
@@ -335,7 +335,7 @@
         "old_price": 8.99,
         "new_price": 5.99,
         "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/lidl-7.webp",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       }
     ],
@@ -346,7 +346,7 @@
         "old_price": null,
         "new_price": 2.49,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/aldi-0.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
       },
       {
@@ -355,7 +355,7 @@
         "old_price": null,
         "new_price": 1.79,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/aldi-1.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
       },
       {
@@ -364,7 +364,7 @@
         "old_price": null,
         "new_price": 24.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/aldi-2.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
       },
       {
@@ -373,7 +373,7 @@
         "old_price": null,
         "new_price": 5.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/aldi-3.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
       },
       {
@@ -382,7 +382,7 @@
         "old_price": null,
         "new_price": 8.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/aldi-4.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
       },
       {
@@ -391,7 +391,7 @@
         "old_price": null,
         "new_price": 1.49,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/aldi-5.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
       },
       {
@@ -400,7 +400,7 @@
         "old_price": 9.58,
         "new_price": 7.18,
         "discount_pct": 25,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/aldi-6.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
       }
     ],
@@ -411,7 +411,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-0.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       },
       {
@@ -420,7 +420,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-1.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       },
       {
@@ -429,7 +429,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-2.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       },
       {
@@ -438,7 +438,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-3.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       },
       {
@@ -447,7 +447,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-4.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       },
       {
@@ -456,7 +456,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-5.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       },
       {
@@ -465,7 +465,7 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-6.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       },
       {
@@ -474,81 +474,81 @@
         "old_price": null,
         "new_price": null,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/spar-7.webp",
         "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       }
     ],
     "intermarche": [
       {
         "store": "intermarche",
-        "name": "Escal",
+        "name": "PartyBox Encore 2 Essential",
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/intermarche-0.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Tripel Karmeliet",
-        "old_price": null,
-        "new_price": null,
-        "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "name": "Produits d'entretien",
+        "old_price": 2.79,
+        "new_price": 1.86,
+        "discount_pct": 33,
+        "image_url": "data/images/intermarche-1.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Capri Sun",
+        "name": "Roborock Aspirateur robot Q5 Pro+",
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/intermarche-2.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Crazy Tiger Boisson énergisante",
-        "old_price": null,
-        "new_price": null,
-        "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80",
+        "name": "Lessive Gamme + Liquide, En pods ou Big one En pods",
+        "old_price": 16.99,
+        "new_price": 8.5,
+        "discount_pct": 50,
+        "image_url": "data/images/intermarche-3.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Powerade",
-        "old_price": null,
-        "new_price": null,
-        "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "name": "Adoucissant Fresh Control ou Aromatherapy",
+        "old_price": 6.79,
+        "new_price": 3.4,
+        "discount_pct": 50,
+        "image_url": "data/images/intermarche-4.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Mars, Snickers, Twix, Balisto, Bounty ou Milk",
+        "name": "Canaillou Pochons pour chat Émincés en gelée mix",
         "old_price": null,
-        "new_price": null,
+        "new_price": 13.99,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "image_url": "data/images/intermarche-5.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Lindt Tablettes de chocolat ou Lindor chocola",
-        "old_price": null,
-        "new_price": null,
-        "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
+        "name": "Snacks pour chien et chat",
+        "old_price": 3.98,
+        "new_price": 1.99,
+        "discount_pct": 50,
+        "image_url": "data/images/intermarche-6.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Sodebo Pasta Box, Cremio Box ou Xtrem Box",
-        "old_price": null,
-        "new_price": null,
-        "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "name": "Pochons ou soupes pour chat",
+        "old_price": 3.89,
+        "new_price": 2.92,
+        "discount_pct": 25,
+        "image_url": "data/images/intermarche-7.webp",
         "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       }
     ]

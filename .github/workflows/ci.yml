@@ -1,0 +1,36 @@
+name: CI — Validation des données et de l'app
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Valider promos.json
+        run: python tests/validate_promos.py
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    needs: validate-data
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer Node + Playwright
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm init -y && npm install playwright
+      - name: Installer Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Lancer le smoke test
+        run: node tests/smoke.js

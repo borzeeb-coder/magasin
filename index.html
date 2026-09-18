@@ -11,6 +11,16 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="PromoApp">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PromoApp">
+<meta property="og:title" content="PromoApp — Promos & Prospectus">
+<meta property="og:description" content="Les vraies promotions des magasins de Marche-en-Famenne et des alentours, mises à jour chaque nuit automatiquement.">
+<meta property="og:image" content="https://borzeeb-coder.github.io/magasin/icons/icon-512.png">
+<meta property="og:locale" content="fr_BE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PromoApp — Promos & Prospectus">
+<meta name="twitter:description" content="Les vraies promotions des supermarchés de Marche-en-Famenne, mises à jour chaque nuit.">
+<meta name="twitter:image" content="https://borzeeb-coder.github.io/magasin/icons/icon-512.png">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/png" href="./icons/icon-192.png">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
@@ -187,6 +197,30 @@
   .empty{text-align:center; padding:50px 20px; color:var(--ink-soft);}
   .empty .e-icon{font-size:38px; display:block; margin-bottom:10px;}
 
+  /* ---------- Skeleton (chargement) ---------- */
+  .sk-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .sk-img{height:92px; background:var(--paper-2);}
+  .sk-line{height:11px; border-radius:6px; margin:9px 10px 0; background:var(--paper-2);}
+  .sk-line.w60{width:60%;} .sk-line.w40{width:40%;} .sk-line.w90{width:90%; margin-bottom:12px;}
+  .shimmer{position:relative; overflow:hidden;}
+  .shimmer::after{
+    content:''; position:absolute; inset:0; transform:translateX(-100%);
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    animation:shimmer 1.3s infinite;
+  }
+  @keyframes shimmer{100%{transform:translateX(100%);}}
+
+  /* ---------- Pull-to-refresh ---------- */
+  #pullHint{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    height:0; overflow:hidden; font-size:12.5px; font-weight:700;
+    color:var(--ink-soft); transition:height .15s;
+  }
+  #pullHint .spin{width:14px; height:14px; border:2px solid var(--ink-soft); border-top-color:transparent; border-radius:50%;}
+  #pullHint.pulling .spin{animation:spin .7s linear infinite;}
+  #pullHint.active{height:44px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
   /* ---------- Stores view ---------- */
   .store-row{
     display:flex; gap:12px; align-items:center; background:var(--card);
@@ -263,6 +297,40 @@
   .fav-alert.reached{
     margin-left:auto; font-size:11px; font-weight:800; color:var(--green);
     background:var(--green)18; border:1px solid var(--green); padding:3px 8px; border-radius:999px;
+  }
+
+  /* ---------- Comparateur / cart par magasin / prix ---------- */
+  .pd-compare{
+    width:100%; margin:0 0 14px; border:1px solid var(--green); color:var(--green);
+    background:var(--green)0E; border-radius:12px; padding:12px 0;
+    font-size:14px; font-weight:800; cursor:pointer;
+  }
+  .pd-trend{
+    font-size:12.5px; font-weight:700; margin:2px 0 12px; padding:8px 11px;
+    border-radius:10px; border:1px solid var(--line); background:var(--card);
+  }
+  .pd-trend.down{color:var(--green); border-color:var(--green);}
+  .pd-trend.up{color:var(--red); border-color:var(--red);}
+  .cmp-row{display:flex; gap:11px; align-items:center; padding:11px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
+  .cmp-row:last-child{border-bottom:none;}
+  .cmp-logo{width:34px; height:34px; border-radius:9px; background:#fff; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden;}
+  .cmp-logo img{height:18px; width:auto; object-fit:contain;}
+  .cmp-info{flex:1; min-width:0;}
+  .cmp-info .cn{font-size:13.5px; font-weight:700;}
+  .cmp-info .cs{font-size:11.5px; color:var(--ink-soft);}
+  .cmp-price{font-family:'Archivo Black',sans-serif; font-size:15px; color:var(--red); flex-shrink:0;}
+  .cmp-price.best{color:var(--green);}
+  .cmp-best-tag{font-size:10px; font-weight:800; color:var(--green); text-transform:uppercase; letter-spacing:.03em;}
+  .cart-store-head{
+    display:flex; align-items:center; gap:8px; margin:16px 0 2px; padding-bottom:6px;
+    border-bottom:1px solid var(--line); font-size:13px; font-weight:800;
+  }
+  .cart-store-head img{height:15px; width:auto; object-fit:contain;}
+  .cart-store-head .sub{margin-left:auto; font-weight:700; color:var(--ink-soft); font-size:11.5px;}
+  .store-prospectus{
+    display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:800;
+    color:var(--green); text-decoration:none; border:1px solid var(--green); border-radius:999px;
+    padding:4px 9px; flex-shrink:0;
   }
   .pd-name{font-size:20px; font-weight:800; margin:0 0 4px;}
   .pd-dist{font-size:12.5px; color:var(--ink-soft); margin-bottom:12px;}
@@ -366,6 +434,7 @@
     </div>
     <div class="sort-row" id="sortChips"></div>
     <div class="sort-row" id="discChips" style="margin:0 0 16px;"></div>
+    <div id="pullHint"><span class="spin"></span><span id="pullHintText">Tirez pour actualiser</span></div>
     <div class="grid" id="productGrid"></div>
   </section>
 
@@ -404,6 +473,7 @@
     <div id="cartList"></div>
     <div class="totals" id="cartTotals"></div>
     <button class="primary-btn" id="passBtn" style="margin-top:16px;">🎟️ Obtenir mon Pass Réduction QR Code</button>
+    <button class="secondary-btn" id="whatsBtn">📤 Envoyer ma liste de courses sur WhatsApp</button>
   </section>
 </main>
 
@@ -454,6 +524,17 @@
       <div class="totals" style="width:100%;" id="passTotals"></div>
     </div>
     <button class="secondary-btn" data-close>Compris, retourner aux promos</button>
+  </div>
+</div>
+
+<!-- Comparateur sheet -->
+<div class="sheet" id="compareSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" data-close>✕</button>
+  <div class="sheet-inner">
+    <h3 style="margin:6px 0 2px;">💰 Comparateur</h3>
+    <p style="font-size:13px; color:var(--ink-soft); margin:0 0 12px;">Où acheter « <span id="cmpName"></span> » au meilleur prix</p>
+    <div id="cmpList"></div>
   </div>
 </div>
 
@@ -590,6 +671,7 @@ async function loadPromoData(){
         if(!prevNames.has(p.name)) state.newIds.add(p.id);
       });
       try{ localStorage.setItem('pa_known_names', JSON.stringify(curNames)); }catch(e){}
+      recordPriceHistory(list);
     }
   }catch(e){
     console.warn('Chargement de data/promos.json impossible, utilisation des données de secours.', e);
@@ -807,11 +889,17 @@ function renderStores(){
         <div class="saddr">${s.addr}</div>
         <div class="scount">${count} promo${count>1?'s':''} en cours</div>
       </div>
-      <div class="store-km">${s.dist} km</div>`;
+      <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end; flex-shrink:0;">
+        <div class="store-km">${s.dist} km</div>
+        <a class="store-prospectus" href="https://www.promopromo.be/fr/${s.id}/folder-offres" target="_blank" rel="noopener">📖 Prospectus</a>
+      </div>`;
     row.addEventListener('click', ()=>{
       state.activeStores = new Set([s.id]);
       renderStoreChips();
       switchView('promos');
+    });
+    row.querySelector('.store-prospectus').addEventListener('click', (e)=>{
+      e.stopPropagation();
     });
     el.appendChild(row);
   });
@@ -849,38 +937,59 @@ function cartTotals(){
 }
 function renderCart(){
   const el = document.getElementById('cartList');
-  const entries = Object.entries(state.cart);
-  document.getElementById('cartSub').textContent = `${cartCount()} article${cartCount()>1?'s':''} réservé${cartCount()>1?'s':''}`;
+  const entries = Object.entries(state.cart).map(([id,qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    return p ? {p, qty} : null;
+  }).filter(Boolean);
+  const n = entries.length;
+  document.getElementById('cartSub').textContent = `${n} article${n>1?'s':''} réservé${n>1?'s':''}`;
   if(!entries.length){
     el.innerHTML = `<div class="empty"><span class="e-icon">🛒</span>Votre panier est vide.<br>Ajoutez des promos pour les réserver.</div>`;
     document.getElementById('cartTotals').innerHTML='';
     document.getElementById('passBtn').disabled = true;
     document.getElementById('passBtn').style.opacity=.4;
+    document.getElementById('whatsBtn').disabled = true;
+    document.getElementById('whatsBtn').style.opacity=.4;
     return;
   }
   document.getElementById('passBtn').disabled = false;
   document.getElementById('passBtn').style.opacity=1;
+  document.getElementById('whatsBtn').disabled = false;
+  document.getElementById('whatsBtn').style.opacity=1;
   el.innerHTML = '';
-  entries.forEach(([id,qty])=>{
-    const p = PRODUCTS.find(x=>x.id==id);
-    if(!p) return;
-    const st = storeOf(p.store);
-    const line = document.createElement('div');
-    line.className = 'cart-line';
-    line.innerHTML = `
-      <div class="cart-line-img">${p.emoji}</div>
-      <div class="cart-line-info">
-        <div class="n">${p.name}</div>
-        <div class="p"><img src="logos/${st.id}.logo.svg" alt="" style="height:13px;width:auto;vertical-align:-2px;margin-right:3px;" onerror="this.remove()">${st.name} · ${priceOf(p) ? priceOf(p).toFixed(2)+' € / pièce' : 'Prix en magasin'}</div>
-      </div>
-      <div class="cart-line-qty">
-        <button data-act="dec">−</button>
-        <span>${qty}</span>
-        <button data-act="inc">+</button>
-      </div>`;
-    line.querySelector('[data-act="dec"]').onclick = ()=>{ addToCart(p.id,-1); renderCart(); };
-    line.querySelector('[data-act="inc"]').onclick = ()=>{ addToCart(p.id,1); renderCart(); };
-    el.appendChild(line);
+
+  // Regroupement par magasin pour optimiser la tournée
+  const groups = new Map();
+  entries.forEach(e=>{
+    if(!groups.has(e.p.store)) groups.set(e.p.store, []);
+    groups.get(e.p.store).push(e);
+  });
+
+  groups.forEach((group, storeId)=>{
+    const st = storeOf(storeId);
+    const sub = group.reduce((s,e)=> s + (priceOf(e.p)||0)*e.qty, 0);
+    const head = document.createElement('div');
+    head.className = 'cart-store-head';
+    head.innerHTML = `<img src="logos/${st.id}.logo.svg" alt="${st.name}" onerror="this.remove()"> ${st.name}<span class="sub">${group.reduce((s,e)=>s+e.qty,0)} art. · ${sub>0 ? sub.toFixed(2)+' €' : 'Prix en magasin'}</span>`;
+    el.appendChild(head);
+    group.forEach(({p, qty})=>{
+      const line = document.createElement('div');
+      line.className = 'cart-line';
+      line.innerHTML = `
+        <div class="cart-line-img"><img src="${p.image || ''}" alt="" style="width:100%;height:100%;object-fit:contain;border-radius:10px;padding:2px;" onerror="this.remove()">${p.image ? '' : p.emoji}</div>
+        <div class="cart-line-info">
+          <div class="n">${p.name}</div>
+          <div class="p">${priceOf(p) ? priceOf(p).toFixed(2)+' € / pièce' : 'Prix en magasin'}</div>
+        </div>
+        <div class="cart-line-qty">
+          <button data-act="dec">−</button>
+          <span>${qty}</span>
+          <button data-act="inc">+</button>
+        </div>`;
+      line.querySelector('[data-act="dec"]').onclick = ()=>{ addToCart(p.id,-1); renderCart(); };
+      line.querySelector('[data-act="inc"]').onclick = ()=>{ addToCart(p.id,1); renderCart(); };
+      el.appendChild(line);
+    });
   });
   const t = cartTotals();
   document.getElementById('cartTotals').innerHTML = `
@@ -888,6 +997,24 @@ function renderCart(){
     <div class="trow save"><span>Vos économies de prospectus</span><span>− ${t.save.toFixed(2)} €</span></div>
     <div class="trow final"><span>Total en magasin</span><span>${t.promo.toFixed(2)} €</span></div>`;
 }
+
+/* Envoie la liste de courses (groupée par magasin) sur WhatsApp */
+function whatsAppList(){
+  const lines = [];
+  const groups = new Map();
+  Object.entries(state.cart).forEach(([id,qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    if(p){ if(!groups.has(p.store)) groups.set(p.store, []); groups.get(p.store).push({p,qty}); }
+  });
+  groups.forEach((group, storeId)=>{
+    const st = storeOf(storeId);
+    lines.push(`🛒 ${st.name.toUpperCase()}`);
+    group.forEach(({p,qty})=> lines.push(`  ${p.name} x${qty}${priceOf(p)?' — '+priceOf(p).toFixed(2)+' €':''}`));
+  });
+  lines.push('', 'De PromoApp 🔥');
+  window.open(`https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+}
+document.getElementById('whatsBtn').addEventListener('click', whatsAppList);
 document.getElementById('clearCartBtn').addEventListener('click', ()=>{
   if(!Object.keys(state.cart).length) return;
   state.cart = {};
@@ -917,6 +1044,8 @@ function openProduct(id){
       <span class="pd-fav ${isFav?'on':''}" id="pdFavBtn">${isFav?'♥ Favori':'♡ Favori'}</span>
       <span class="pd-share" id="pdShareBtn">📤 Partager</span>
     </div>
+    ${(()=>{ const tr = priceTrend(p); if(tr && tr.dir!=='flat') return tr.dir==='down' ? `<div class="pd-trend down">📉 Prix en baisse : −${Math.abs(tr.delta).toFixed(2)} € depuis le ${tr.when}</div>` : `<div class="pd-trend up">📈 Prix en hausse de ${tr.delta.toFixed(2)} €</div>`; return ''; })()}
+    <button class="pd-compare" id="pdCompareBtn">💰 Comparer chez les autres magasins</button>
     <div class="pd-store"><img src="logos/${st.id}.logo.svg" alt="" style="height:18px;width:auto;vertical-align:-4px;margin-right:6px;" onerror="this.remove()"> ${st.name} · ${st.addr} · 📍 ${st.dist*1000|0} m</div>
     <h2 class="pd-name">${p.name}</h2>
     <div class="pd-price-row">
@@ -943,6 +1072,7 @@ function openProduct(id){
   `;
   document.getElementById('pdFavBtn').addEventListener('click', ()=>{ toggleFav(p.id); openProduct(p.id); });
   document.getElementById('pdShareBtn').addEventListener('click', ()=>shareProduct(p));
+  document.getElementById('pdCompareBtn').addEventListener('click', ()=>openComparator(p.id));
   let localQty = qty;
   const qtyEl = document.getElementById('pdQty');
   if(qtyEl){
@@ -1193,8 +1323,132 @@ function showToast(msg, dur){
 }
 
 /* ---------------------------------------------------------
+   SKELETON + PULL-TO-REFRESH
+-------------------------------------------------------- */
+function showSkeleton(){
+  const grid = document.getElementById('productGrid');
+  if(!grid) return;
+  grid.style.display='grid';
+  let html = '';
+  for(let i=0;i<6;i++){
+    html += `<div class="sk-card shimmer"><div class="sk-img"></div><div class="sk-line w90"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div>`;
+  }
+  grid.innerHTML = html;
+}
+(function initPullToRefresh(){
+  let startY = 0, pulling = false;
+  const hint = document.getElementById('pullHint');
+  const text = document.getElementById('pullHintText');
+  document.addEventListener('touchstart', e=>{
+    if(window.scrollY <= 0){ startY = e.touches[0].clientY; pulling = true; }
+  }, {passive:true});
+  document.addEventListener('touchmove', e=>{
+    if(!pulling || window.scrollY > 0) return;
+    const dy = e.touches[0].clientY - startY;
+    if(dy > 8 && hint){
+      hint.classList.add('active');
+      hint.classList.toggle('pulling', dy > 80);
+      text.textContent = dy > 80 ? 'Relâchez pour actualiser' : 'Tirez pour actualiser';
+    }
+  }, {passive:true});
+  document.addEventListener('touchend', async ()=>{
+    if(!hint || !hint.classList.contains('active')) { pulling = false; return; }
+    const wasPulling = hint.classList.contains('pulling');
+    pulling = false;
+    hint.classList.remove('active','pulling');
+    if(wasPulling){
+      showSkeleton();
+      await loadPromoData();
+      rerenderAll();
+      showToast('Promos actualisées ✓');
+    }
+  });
+})();
+
+/* ---------------------------------------------------------
+   COMPARATEUR : où acheter au meilleur prix
+-------------------------------------------------------- */
+function normKey(name){
+  return String(name||'')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\b\d+[.,]?\d*\s*(kg|g|l|cl|ml|dl|pack|paquet|x)\b/g,' ')
+    .replace(/[^a-z0-9 ]+/g,' ')
+    .replace(/\b(le|la|les|de|des|du|au|aux|et|a|avec|sans|bio|pack|doré)\b/g,' ')
+    .replace(/\s+/g,' ').trim();
+}
+function similarProducts(p){
+  const tokens = normKey(p.name).split(' ').filter(t=>t.length>=3);
+  if(!tokens.length) return [];
+  const cand = PRODUCTS.filter(q=>q.id!==p.id && tokens.every(t=>normKey(q.name).includes(t)));
+  if(cand.length < 2){
+    PRODUCTS.filter(q=>q.id!==p.id && q.cat===p.cat && !cand.includes(q))
+      .forEach(q=>cand.push(q));
+  }
+  return cand.slice(0,6);
+}
+function openComparator(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById('cmpName').textContent = p.name;
+  const list = document.getElementById('cmpList');
+  const rows = similarProducts(p).map(q=>({p:q}));
+  rows.unshift({p});
+  rows.sort((a,b)=> (priceOf(a.p)!=null ? priceOf(a.p) : 1e9) - (priceOf(b.p)!=null ? priceOf(b.p) : 1e9));
+  list.innerHTML = '';
+  const best = rows.find(r=>priceOf(r.p)!=null);
+  rows.forEach((r)=>{
+    const st = storeOf(r.p.store);
+    const isBest = best && r.p.id===best.p.id;
+    const row = document.createElement('div');
+    row.className = 'cmp-row';
+    row.innerHTML = `
+      <div class="cmp-logo"><img src="logos/${st.id}.logo.svg" alt="${st.name}" onerror="this.remove()"></div>
+      <div class="cmp-info">
+        <div class="cn">${r.p.name}</div>
+        <div class="cs">${st.name}${isBest ? ' · <span class="cmp-best-tag">🏆 le moins cher</span>' : ''}</div>
+      </div>
+      <div class="cmp-price ${isBest?'best':''}">${priceOf(r.p)!=null ? priceOf(r.p).toFixed(2)+' €' : '—'}</div>`;
+    row.addEventListener('click', ()=>{ closeSheet('compareSheet'); openProduct(r.p.id); });
+    list.appendChild(row);
+  });
+  openSheet('compareSheet');
+}
+
+/* ---------------------------------------------------------
+   HISTORIQUE DE PRIX (prix constaté à chaque visite)
+-------------------------------------------------------- */
+function recordPriceHistory(list){
+  const hist = safeParse('pa_price_hist') || {};
+  const now = Date.now();
+  list.forEach(p=>{
+    const np = priceOf(p);
+    if(np == null) return;
+    const prev = hist[p.id];
+    if(!prev){
+      hist[p.id] = {price: np, at: now};
+    } else if(prev.price !== np){
+      hist[p.id] = {prevPrice: prev.price, prevAt: prev.at, price: np, at: now};
+    }
+  });
+  const ids = new Set(list.map(x=>String(x.id)));
+  Object.keys(hist).forEach(k=>{ if(!ids.has(k)) delete hist[k]; });
+  save('pa_price_hist', hist);
+}
+function priceTrend(p){
+  const hist = safeParse('pa_price_hist') || {};
+  const h = hist[p.id];
+  const np = priceOf(p);
+  if(!h || h.prevPrice == null || np == null) return null;
+  const delta = np - h.prevPrice;
+  const dir = delta < -0.001 ? 'down' : (delta > 0.001 ? 'up' : 'flat');
+  const when = new Date(h.prevAt).toLocaleDateString('fr-BE', {day:'numeric', month:'short'});
+  return {dir, delta, when};
+}
+
+/* ---------------------------------------------------------
    INIT
---------------------------------------------------------- */
+-------------------------------------------------------- */
 function rerenderAll(){
   renderStoreChips();
   renderCatChips();
@@ -1217,6 +1471,7 @@ function renderFreshnessNote(){
 async function init(){
   document.getElementById('cityLabel').textContent = state.city.name;
   document.getElementById('cityCP').textContent = `${state.city.cp} · ${state.city.region}`;
+  showSkeleton();
   await loadPromoData();
   rerenderAll();
   updateCartBadge();

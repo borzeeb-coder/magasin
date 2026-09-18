@@ -25,10 +25,13 @@ fichier robots.txt et les CGU de promopromo.be avant un usage intensif ou
 commercial.
 """
 
+from __future__ import annotations
+
 import json
 import re
 import sys
 import time
+import traceback
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
@@ -84,6 +87,33 @@ def food_image_for(name: str) -> str:
         if regex.search(n):
             return url
     return DEFAULT_FOOD_IMAGE
+
+
+def extract_cover_url(link) -> str | None:
+    """Récupère la vraie photo du produit depuis la carte d'offre promopromo.be."""
+    cover = link.select_one("img.offer-item-cover")
+    if cover:
+        return cover.get("src") or cover.get("data-src") or None
+    return None
+
+
+def download_image(url: str, dest: Path, referer: str) -> bool:
+    """Télécharge une image localement ; renvoie True en cas de succès."""
+    try:
+        resp = requests.get(url, headers={**HEADERS, "Referer": referer}, timeout=25)
+        resp.raise_for_status()
+        dest.write_bytes(resp.content)
+        return True
+    except Exception:
+        return False
+
+
+def ext_for(content_type: str) -> str:
+    mime = (content_type or "").split(";")[0].strip().lower()
+    return {
+        "image/webp": ".webp", "image/png": ".png", "image/jpeg": ".jpg",
+        "image/jpg": ".jpg", "image/gif": ".gif", "image/avif": ".avif",
+    }.get(mime, ".jpg")
 
 
 @dataclass
@@ -161,6 +191,7 @@ def scrape_store(slug: str) -> list[Offer]:
     offers: list[Offer] = []
     seen_names: set[str] = set()
 
+    # Chaque offre est un lien dont l'URL contient "?offer=" sur promopromo.be
     for link in soup.select('a[href*="?offer="]'):
         text = " ".join(link.stripped_strings)
         if not text:
@@ -174,6 +205,7 @@ def scrape_store(slug: str) -> list[Offer]:
         seen_names.add(name)
 
         old_price, new_price, discount_pct = infer_prices(text)
+        cover = extract_cover_url(link) or food_image_for(name)
 
         offers.append(Offer(
             store=slug,
@@ -181,15 +213,66 @@ def scrape_store(slug: str) -> list[Offer]:
             old_price=old_price,
             new_price=new_price,
             discount_pct=discount_pct,
-            image_url=food_image_for(name),
+            image_url=cover,
             source_url=url,
         ))
 
     return offers
 
 
-def main():
-    all_offers: dict[str, list[dict]] = {}
+def materialize_images(all_offers: dict, errors: list[str]) -> None:
+    """Télécharge toutes les images (vraies photos de promopromo.be ou
+    fallback Unsplash) dans data/images/ et remplace image_url par un chemin
+    local, pour que le site soit auto-suffisant et fonctionne hors-ligne."""
+    img_dir = Path(__file__).resolve().parent / "data" / "images"
+    img_dir.mkdir(parents=True, exist_ok=True)
+
+    # Nettoyage : on retire les images locales qui ne correspondent plus à une offre.
+    local_images = set()
+
+    for slug, offers in all_offers.items():
+        for idx, off in enumerate(offers):
+            url = off.get("image_url")
+            if not url or not url.startswith("http"):
+                continue
+            filename = f"{slug}-{idx}"
+            try:
+                resp = requests.get(url, headers={**HEADERS, "Referer": BASE_URL.format(slug=slug)}, timeout=25)
+                resp.raise_for_status()
+                ext = ext_for(resp.headers.get("Content-Type", ""))
+                dest = img_dir / f"{filename}{ext}"
+                dest.write_bytes(resp.content)
+                off["image_url"] = f"data/images/{filename}{ext}"
+                local_images.add(dest)
+            except Exception:
+                errors.append(f"{slug}: image introuvable pour « {off.get('name', '')} » (URL distant conservé)")
+            time.sleep(0.1)  # courtoisie envers le CDN
+
+    # On supprime les images locales qui ne sont plus référencées.
+    for old in img_dir.iterdir():
+        if old.is_file() and old not in local_images:
+            try:
+                old.unlink()
+            except OSError:
+                pass
+
+
+def write_output(all_offers: dict, errors: list[str]) -> None:
+    materialize_images(all_offers, errors)
+    output = {
+        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "stores_meta": STORES,
+        "offers": all_offers,
+        "errors": errors,
+    }
+    out_path = Path(__file__).resolve().parent / "data" / "promos.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"✓ écrit {out_path} ({sum(len(v) for v in all_offers.values())} offres au total)", file=sys.stderr)
+
+
+def main() -> int:
+    all_offers: dict = {}
     errors: list[str] = []
 
     for slug in STORES:
@@ -198,24 +281,34 @@ def main():
             offers = scrape_store(slug)
             all_offers[slug] = [asdict(o) for o in offers]
             print(f"  {len(offers)} offres trouvées", file=sys.stderr)
-        except Exception as exc:
+        except Exception as exc:  # on veut continuer les autres enseignes même si une échoue
             print(f"  ⚠ échec pour {slug} : {exc}", file=sys.stderr)
+            traceback.print_exc(file=sys.stderr)
             errors.append(f"{slug}: {exc}")
             all_offers[slug] = []
-        time.sleep(2)
+        time.sleep(2)  # on reste courtois avec le serveur
 
-    output = {
-        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "stores_meta": STORES,
-        "offers": all_offers,
-        "errors": errors,
-    }
+    # On écrit toujours un fichier, même s'il est vide, pour que le commit
+    # nocturne ne casse jamais complètement le site.
+    write_output(all_offers, errors)
 
-    out_path = Path(__file__).parent / "data" / "promos.json"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"✓ écrit {out_path} ({sum(len(v) for v in all_offers.values())} offres au total)", file=sys.stderr)
+    # Le job ne doit jamais faire échouer le workflow : une nuit sans offre
+    # récupérée doit juste laisser les anciennes données en place (ou un
+    # fichier avec des erreurs listées), pas empêcher le commit suivant.
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        sys.exit(main())
+    except Exception:
+        # Filet de sécurité ultime : on ne veut jamais un crash silencieux
+        # sans fichier écrit. On log l'erreur complète et on écrit un JSON
+        # minimal pour que l'app garde au moins ses données de secours.
+        print("✗ Erreur inattendue dans le scraper :", file=sys.stderr)
+        traceback.print_exc(file=sys.stderr)
+        try:
+            write_output({}, ["erreur fatale du scraper — voir les logs GitHub Actions"])
+        except Exception:
+            pass
+        sys.exit(0)

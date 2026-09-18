@@ -1,11 +1,12 @@
 /* PromoApp - Service Worker : mise en cache des fichiers pour usage hors-ligne */
-const VERSION = 'promoapp-v1';
+const VERSION = 'promoapp-v2';
 const CORE_ASSETS = [
   './index.html',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
+  './data/promos.json',
   './logos/colruyt.logo.svg',
   './logos/delhaize.logo.svg',
   './logos/carrefour.logo.svg',
@@ -17,7 +18,21 @@ const CORE_ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(VERSION).then((cache) => cache.addAll(CORE_ASSETS))
+    caches.open(VERSION).then(async (cache) => {
+      await cache.addAll(CORE_ASSETS);
+      // On précache aussi les images locales référencées par les promos
+      // pour un fonctionnement 100% hors-ligne dès la première installation.
+      try {
+        const data = await (await fetch('./data/promos.json')).json();
+        const images = [];
+        Object.values(data.offers || {}).forEach((list) => {
+          (list || []).forEach((o) => {
+            if (o.image_url && o.image_url.startsWith('data/images/')) images.push('./' + o.image_url);
+          });
+        });
+        await cache.addAll(images);
+      } catch (e) { /* les images seront mises en cache à la volée sinon */ }
+    })
   );
   self.skipWaiting();
 });
