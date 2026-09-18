@@ -46,6 +46,36 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+self.addEventListener('push', (event) => {
+  let data = {};
+  try { data = event.data ? event.data.json() : {}; } catch (e) {}
+  const title = data.title || 'PromoApp — Promo en cours';
+  const options = {
+    body: data.body || '',
+    icon: './icons/icon-192.png',
+    badge: './icons/icon-192.png',
+    data: { url: data.url || './index.html' },
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const url = new URL(event.notification.data?.url || './index.html', self.location.origin).href;
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      if (list.length) {
+        const target = list[0];
+        if ('navigate' in target) {
+          return target.navigate(url).catch(() => target.focus());
+        }
+        return target.focus();
+      }
+      return clients.openWindow(url);
+    })
+  );
+});
+
 /* Stratégie réseau d'abord, cache en secours (hors-ligne) */
 self.addEventListener('fetch', (event) => {
   const req = event.request;

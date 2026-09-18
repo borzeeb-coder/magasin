@@ -1,0 +1,48 @@
+name: Déployer le Worker de notifications push
+
+# Déclenchement manuel depuis GitHub (Actions → "Déployer le Worker..." → Run workflow).
+# Nécessite, réglés une fois dans Settings → Secrets and variables → Actions:
+#   Secrets :
+#     CLOUDFLARE_API_TOKEN        (token "Edit Cloudflare Workers" de votre compte)
+#     CLOUDFLARE_ACCOUNT_ID       (votre compte Cloudflare, visible au tableau de bord)
+#     VAPID_PRIVATE_KEY           (contenu de push-notifications/.vapid-private.key)
+#   Variables :
+#     WORKER_URL                  (ex : https://push-promoapp.votre-account.workers.dev)
+#
+# Avant le 1er déploiement : créez la namespace KV et collez son id dans
+# push-notifications/wrangler.toml via  `npx wrangler kv namespace create PUSH_KV`.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: push-notifications
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer Node + dépendances
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: push-notifications/package-lock.json
+      - run: npm ci
+
+      - name: Tests unitaires (correspondance favori <-> offre)
+        run: npm test
+
+      - name: Clé privée VAPID
+        run: echo "${{ secrets.VAPID_PRIVATE_KEY }}" | npx wrangler secret put VAPID_PRIVATE_KEY
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Déployer le Worker
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

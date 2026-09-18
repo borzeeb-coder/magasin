@@ -29,6 +29,16 @@ jobs:
       - name: Valider le schéma de promos.json
         run: python tests/validate_promos.py
 
+      # Notifications push : demande au worker de comparer les favoris au
+      # nouveau promos.json et d'envoyer une alerte quand un seuil est atteint.
+      # Ne fait rien si la Variable GitHub WORKER_URL n'est pas renseignée.
+      - name: Notifications de favoris (seuils de remise)
+        if: ${{ vars.WORKER_URL != '' }}
+        run: |
+          curl -sS -X POST "${{ vars.WORKER_URL }}/check" \
+            -H "Content-Type: application/json" \
+            --data-binary @data/promos.json || echo "⚠ worker indisponible, les push seront envoyés à la prochaine execution"
+
       - name: Commiter data/ si modifié
         run: |
           git config user.name "promo-bot"
