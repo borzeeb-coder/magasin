@@ -571,6 +571,12 @@ function formatDist(km) {
   return `${km.toFixed(1).replace(".", ",")} km`;
 }
 
+// Chemin du logo réel de l'enseigne (fichiers dans /logos/)
+function storeLogoFile(brand) {
+  const clean = brand.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return `logos/${clean}.logo.svg`;
+}
+
 function calculateAllDistances(refLat, refLon) {
   STORES_DATA.forEach(store => {
     store.distanceKm = computeHaversine(refLat, refLon, store.coords[0], store.coords[1]);
@@ -666,7 +672,7 @@ function renderPromos() {
       <article class="promo-card" onclick="openProductModal('${p.id}')">
         <div class="card-img-wrap">
           <img src="${p.image}" alt="${p.name}" class="card-img" loading="lazy" />
-          <span class="store-chip-tag ${p.brandClass}">${p.brand}</span>
+          <span class="store-chip-tag"><img src="${storeLogoFile(p.brand)}" alt="">${p.brand}</span>
         </div>
 
         <div class="card-info">
@@ -705,9 +711,7 @@ function renderStoresList() {
 
   container.innerHTML = STORES_DATA.map(s => `
     <div class="store-detail-card">
-      <div class="store-icon-box" style="background:${s.brandColor};">
-        ${s.leafletIconEmoji}
-      </div>
+      <div class="store-icon-box"><img src="${storeLogoFile(s.brand)}" alt="${s.brand}" onerror="this.parentElement.textContent='${s.leafletIconEmoji}';"></div>
       <div class="store-main-meta">
         <h4>${s.name}</h4>
         <p>${s.address} • <b style="color:var(--blue);">À ${formatDist(s.distanceKm)}</b></p>
