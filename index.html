@@ -1,339 +1,968 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <title>PromoApp - Promos & Prospectus Marche-en-Famenne</title>
-  <meta name="description" content="Les vraies promotions des magasins de Marche-en-Famenne : Colruyt, Delhaize, Carrefour, Lidl, Aldi." />
-  <link rel="manifest" href="./manifest.json" />
-  <meta name="theme-color" content="#ff5a3c" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  
-  <!-- Polices Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Leaflet CSS (OpenStreetMap) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>PromoApp — Promos & Prospectus</title>
+<meta name="description" content="Les vraies promotions des magasins de Marche-en-Famenne : Colruyt, Delhaize, Carrefour, Lidl, Aldi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --paper:#FBF6EA;
+    --paper-2:#F3ECDA;
+    --ink:#221F16;
+    --ink-soft:#5B5644;
+    --red:#DE3B24;
+    --green:#2E6B4E;
+    --yellow:#F4B400;
+    --line:#DED2AE;
+    --card:#FFFDF6;
+    --shadow: 0 1px 0 rgba(34,31,22,.06);
+    --radius: 14px;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#171510;
+      --paper-2:#1E1B14;
+      --ink:#F3EEDD;
+      --ink-soft:#B9B296;
+      --card:#211E16;
+      --line:#3A3526;
+      --red:#FF6347;
+      --green:#4C9974;
+      --yellow:#F4B400;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#171510;
+    --paper-2:#1E1B14;
+    --ink:#F3EEDD;
+    --ink-soft:#B9B296;
+    --card:#211E16;
+    --line:#3A3526;
+    --red:#FF6347;
+    --green:#4C9974;
+    --yellow:#F4B400;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:calc(72px + var(--safe-bottom));
+    min-height:100vh;
+  }
+  .display{font-family:'Archivo Black',system-ui,sans-serif;}
+  a{color:inherit;}
+  button{font-family:inherit;}
 
-  <!-- Stylesheet épurée et moderne -->
-  <link rel="stylesheet" href="./styles.css" />
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:30;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:14px 16px 12px;
+  }
+  .loc-row{display:flex; align-items:center; gap:10px;}
+  .loc-btn{
+    display:flex; align-items:center; gap:8px;
+    background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:8px 14px; font-size:14px; font-weight:600; color:var(--ink);
+    cursor:pointer; flex:1; min-width:0; text-align:left;
+  }
+  .loc-btn .city{color:var(--ink); }
+  .loc-btn small{display:block; font-weight:500; color:var(--ink-soft); font-size:11px;}
+  .icon-btn{
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid var(--line); background:var(--card);
+    display:flex; align-items:center; justify-content:center;
+    font-size:17px; cursor:pointer; flex-shrink:0;
+  }
+  .search-row{margin-top:10px; display:flex; align-items:center; gap:8px;
+    background:var(--card); border:1px solid var(--line); border-radius:12px; padding:9px 12px;}
+  .search-row input{
+    border:none; outline:none; background:transparent; color:var(--ink);
+    font-size:15px; flex:1; min-width:0; font-family:inherit;
+  }
+  .search-row input::placeholder{color:var(--ink-soft);}
+  .search-clear{cursor:pointer; color:var(--ink-soft); font-size:15px; display:none;}
+
+  .chip-row{display:flex; gap:8px; overflow-x:auto; margin-top:12px; padding-bottom:2px; scrollbar-width:none;}
+  .chip-row::-webkit-scrollbar{display:none;}
+  .chip{
+    flex-shrink:0; border:1px solid var(--line); background:var(--card);
+    border-radius:999px; padding:7px 13px; font-size:13.5px; font-weight:600;
+    display:flex; align-items:center; gap:6px; cursor:pointer; white-space:nowrap;
+    color:var(--ink-soft); transition:.15s;
+  }
+  .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .chip.store-active-colruyt{background:#DE3B24; border-color:#DE3B24; color:#fff;}
+  .chip.store-active-delhaize{background:#C8102E; border-color:#C8102E; color:#fff;}
+  .chip.store-active-carrefour{background:#0057B8; border-color:#0057B8; color:#fff;}
+  .chip.store-active-lidl{background:#F4B400; border-color:#F4B400; color:#221F16;}
+  .chip.store-active-aldi{background:#1B6FB5; border-color:#1B6FB5; color:#fff;}
+
+  /* ---------- Sections ---------- */
+  main{padding:18px 16px 8px;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px;}
+  .section-title{font-size:19px; font-weight:800; margin:0;}
+  .section-sub{font-size:13px; color:var(--ink-soft); margin:2px 0 0;}
+
+  .sort-row{display:flex; gap:8px; margin:10px 0 16px; overflow-x:auto; scrollbar-width:none;}
+  .sort-row::-webkit-scrollbar{display:none;}
+  .sort-chip{flex-shrink:0; border:1px solid var(--line); background:var(--card); border-radius:999px; padding:7px 12px; font-size:13px; font-weight:600; color:var(--ink-soft); cursor:pointer;}
+  .sort-chip.active{background:var(--green); border-color:var(--green); color:#fff;}
+
+  /* ---------- Product grid ---------- */
+  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+  .pcard{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; cursor:pointer; box-shadow:var(--shadow); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .pcard-img{
+    height:92px; display:flex; align-items:center; justify-content:center;
+    font-size:40px; background:var(--paper-2); position:relative; overflow:hidden;
+  }
+  .pcard-img img{width:100%; height:100%; object-fit:contain; padding:8px;}
+  .pcard-emoji-fallback{display:flex; align-items:center; justify-content:center; width:100%; height:100%;}
+  .badge-discount{
+    position:absolute; top:8px; left:8px; background:var(--red); color:#fff;
+    font-family:'Archivo Black',sans-serif; font-size:13px; padding:4px 8px;
+    border-radius:8px; transform:rotate(-3deg);
+  }
+  .badge-store{position:absolute; top:8px; right:8px; font-size:10.5px; font-weight:700;
+    background:var(--card); border:1px solid var(--line); padding:2px 7px; border-radius:999px;}
+  .pcard-body{padding:9px 10px 11px; display:flex; flex-direction:column; gap:4px; flex:1;}
+  .pcard-name{font-size:13.5px; font-weight:700; line-height:1.25;}
+  .pcard-dist{font-size:11px; color:var(--ink-soft);}
+  .pcard-price{display:flex; align-items:baseline; gap:6px; margin-top:auto;}
+  .old-price{font-size:12px; color:var(--ink-soft); text-decoration:line-through;}
+  .new-price{font-family:'Archivo Black',sans-serif; font-size:16px; color:var(--red);}
+  .pcard-add{
+    margin-top:6px; border:none; background:var(--ink); color:var(--paper);
+    border-radius:8px; padding:7px 0; font-size:12.5px; font-weight:700; cursor:pointer;
+  }
+  .pcard-add.in-cart{background:var(--green); color:#fff;}
+  .empty{text-align:center; padding:50px 20px; color:var(--ink-soft);}
+  .empty .e-icon{font-size:38px; display:block; margin-bottom:10px;}
+
+  /* ---------- Stores view ---------- */
+  .store-row{
+    display:flex; gap:12px; align-items:center; background:var(--card);
+    border:1px solid var(--line); border-radius:var(--radius); padding:12px; margin-bottom:10px;
+  }
+  .store-dot{width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; color:#fff;}
+  .store-info{flex:1; min-width:0;}
+  .store-info .sname{font-weight:800; font-size:14.5px;}
+  .store-info .saddr{font-size:12px; color:var(--ink-soft); margin-top:1px;}
+  .store-info .scount{font-size:12px; color:var(--green); font-weight:700; margin-top:3px;}
+  .store-km{font-size:12.5px; font-weight:700; color:var(--ink-soft); text-align:right; flex-shrink:0;}
+
+  /* ---------- Bottom nav ---------- */
+  .navbar{
+    position:fixed; bottom:0; left:0; right:0; z-index:40;
+    background:var(--card); border-top:1px solid var(--line);
+    display:flex; padding-bottom:var(--safe-bottom);
+  }
+  .navbtn{
+    flex:1; border:none; background:transparent; padding:10px 0 8px;
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    font-size:11px; font-weight:700; color:var(--ink-soft); cursor:pointer; position:relative;
+  }
+  .navbtn .ni{font-size:19px;}
+  .navbtn.active{color:var(--ink);}
+  .cart-count{
+    position:absolute; top:2px; right:calc(50% - 24px); background:var(--red); color:#fff;
+    font-size:10px; font-weight:800; min-width:16px; height:16px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center; padding:0 3px;
+  }
+
+  /* ---------- Sheets / Modals ---------- */
+  .overlay{position:fixed; inset:0; background:rgba(20,18,12,.5); z-index:50; opacity:0; pointer-events:none; transition:.2s;}
+  .overlay.show{opacity:1; pointer-events:auto;}
+  .sheet{
+    position:fixed; left:0; right:0; bottom:0; z-index:51; background:var(--paper);
+    border-radius:20px 20px 0 0; max-height:88vh; overflow-y:auto;
+    transform:translateY(100%); transition:.25s cubic-bezier(.25,.8,.3,1);
+    padding-bottom:calc(20px + var(--safe-bottom));
+  }
+  .sheet.show{transform:translateY(0);}
+  .sheet-handle{width:38px; height:4px; background:var(--line); border-radius:2px; margin:10px auto 4px;}
+  .sheet-close{position:absolute; top:14px; right:14px; width:32px; height:32px; border-radius:50%; background:var(--paper-2); border:none; font-size:16px; cursor:pointer; color:var(--ink);}
+  .sheet-inner{padding:8px 20px 20px;}
+
+  .pd-img{height:150px; border-radius:14px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; font-size:64px; margin:10px 0 14px;}
+  .pd-store{font-size:12.5px; font-weight:700; color:var(--ink-soft); margin-bottom:4px;}
+  .pd-name{font-size:20px; font-weight:800; margin:0 0 4px;}
+  .pd-dist{font-size:12.5px; color:var(--ink-soft); margin-bottom:12px;}
+  .pd-price-row{display:flex; align-items:baseline; gap:10px; margin-bottom:4px;}
+  .pd-old{font-size:16px; color:var(--ink-soft); text-decoration:line-through;}
+  .pd-new{font-family:'Archivo Black',sans-serif; font-size:28px; color:var(--red);}
+  .pd-save{font-size:13px; color:var(--green); font-weight:700; margin-bottom:16px;}
+  .pd-meta{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;}
+  .pd-meta-item{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:9px 11px;}
+  .pd-meta-item .k{font-size:10.5px; color:var(--ink-soft); font-weight:700; text-transform:uppercase; letter-spacing:.03em;}
+  .pd-meta-item .v{font-size:13px; font-weight:700; margin-top:2px;}
+  .pd-desc{font-size:13.5px; color:var(--ink-soft); line-height:1.5; margin-bottom:18px;}
+  .qty-row{display:flex; align-items:center; gap:14px; margin-bottom:14px;}
+  .qty-btn{width:38px; height:38px; border-radius:10px; border:1px solid var(--line); background:var(--card); font-size:18px; font-weight:700; cursor:pointer; color:var(--ink);}
+  .qty-val{font-size:18px; font-weight:800; min-width:24px; text-align:center;}
+  .primary-btn{
+    width:100%; border:none; background:var(--ink); color:var(--paper); border-radius:12px;
+    padding:14px 0; font-size:15px; font-weight:800; cursor:pointer;
+  }
+  .primary-btn:disabled{opacity:.4; cursor:default;}
+  .secondary-btn{
+    width:100%; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:12px;
+    padding:12px 0; font-size:14px; font-weight:700; cursor:pointer; margin-top:8px;
+  }
+
+  /* City sheet */
+  .city-item{display:flex; align-items:center; justify-content:space-between; padding:13px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
+  .city-item:last-child{border-bottom:none;}
+  .city-item .cn{font-weight:700; font-size:14.5px;}
+  .city-item .cp{font-size:12px; color:var(--ink-soft);}
+  .geo-btn{display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin:6px 0 14px; cursor:pointer; width:100%; font-weight:700; font-size:14px; color:var(--green);}
+
+  /* Cart sheet */
+  .cart-line{display:flex; gap:10px; align-items:center; padding:11px 0; border-bottom:1px solid var(--line);}
+  .cart-line-img{width:44px; height:44px; border-radius:10px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;}
+  .cart-line-info{flex:1; min-width:0;}
+  .cart-line-info .n{font-size:13.5px; font-weight:700;}
+  .cart-line-info .p{font-size:12px; color:var(--ink-soft);}
+  .cart-line-qty{display:flex; align-items:center; gap:8px;}
+  .cart-line-qty button{width:26px; height:26px; border-radius:7px; border:1px solid var(--line); background:var(--card); cursor:pointer; font-weight:700;}
+  .totals{margin-top:14px; border-top:1px dashed var(--line); padding-top:12px;}
+  .trow{display:flex; justify-content:space-between; font-size:13.5px; padding:4px 0; color:var(--ink-soft);}
+  .trow.save{color:var(--green); font-weight:700;}
+  .trow.final{font-size:17px; font-weight:800; color:var(--ink); padding-top:8px; border-top:1px solid var(--line); margin-top:6px;}
+
+  .qr-wrap{display:flex; flex-direction:column; align-items:center; padding:10px 0 4px;}
+  #qrcode{padding:14px; background:#fff; border-radius:14px; margin:10px 0;}
+  .pass-id{font-family:'Archivo Black',sans-serif; font-size:14px; letter-spacing:.04em;}
+
+  .toast{
+    position:fixed; bottom:calc(84px + var(--safe-bottom)); left:50%; transform:translateX(-50%) translateY(10px);
+    background:var(--ink); color:var(--paper); padding:10px 18px; border-radius:999px; font-size:13.5px; font-weight:700;
+    z-index:60; opacity:0; pointer-events:none; transition:.2s;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  .view{display:none;}
+  .view.active{display:block;}
+
+  @media (min-width:640px){
+    .grid{grid-template-columns:repeat(3,1fr);}
+    main{max-width:640px; margin:0 auto;}
+    .topbar > *{max-width:640px; margin-left:auto; margin-right:auto;}
+    .sheet{max-width:480px; left:50%; transform:translate(-50%,100%); border-radius:20px;}
+    .sheet.show{transform:translate(-50%,0);}
+    .overlay{}
+  }
+</style>
 </head>
 <body>
 
-  <!-- Conteneur Principal de l'Application (Clean Mobile-First) -->
-  <div class="app-shell">
-    
-    <!-- EN-TÊTE PRINCIPAL : Ville & Recherche -->
-    <header class="main-header">
-      <div class="header-top-row">
-        <!-- Sélecteur de Localisation -->
-        <button id="btn-location-picker" class="location-badge" title="Changer de ville ou activer le GPS">
-          <span class="loc-pin">📍</span>
-          <div class="loc-details">
-            <span class="loc-sub">Magasins autour de :</span>
-            <b id="active-city-display">Marche-en-Famenne (6900)</b>
-          </div>
-          <span class="loc-arrow">▾</span>
-        </button>
-
-        <!-- Actions rapides -->
-        <div class="header-actions">
-          <button id="btn-quick-gps" class="icon-circle-btn" title="Activer ma position GPS réelle">
-            <span class="gps-dot"></span>
-            🎯
-          </button>
-          <button id="btn-theme-toggle" class="icon-circle-btn" title="Mode Sombre / Clair">
-            🌙
-          </button>
-        </div>
-      </div>
-
-      <!-- Barre de recherche aérée -->
-      <div class="search-bar">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="search-input" placeholder="Rechercher un produit, une marque (Saumon, Café, Poulet...)" autocomplete="off" />
-        <button id="search-clear" class="search-clear" style="display:none;">✕</button>
-      </div>
-
-      <!-- Filtres par Enseignes (Colruyt, Delhaize, Carrefour, Lidl, Aldi) -->
-      <div class="store-pills-bar" id="store-pills-bar">
-        <button class="store-pill active" data-store="all">Tous les magasins</button>
-        <button class="store-pill pill-colruyt" data-store="Colruyt">🔴 Colruyt</button>
-        <button class="store-pill pill-delhaize" data-store="Delhaize">🦁 Delhaize</button>
-        <button class="store-pill pill-carrefour" data-store="Carrefour">🔵 Carrefour</button>
-        <button class="store-pill pill-lidl" data-store="Lidl">🟡 Lidl</button>
-        <button class="store-pill pill-aldi" data-store="Aldi">🔷 Aldi</button>
-      </div>
-
-      <!-- Filtres par Rayons -->
-      <div class="category-chips-bar" id="category-chips-bar">
-        <button class="cat-chip active" data-cat="all">Tout</button>
-        <button class="cat-chip" data-cat="Boucherie">🥩 Boucherie</button>
-        <button class="cat-chip" data-cat="Poissonnerie">🐟 Poissonnerie</button>
-        <button class="cat-chip" data-cat="Fruits">🍎 Fruits & Légumes</button>
-        <button class="cat-chip" data-cat="Frais">🧀 Produits Frais</button>
-        <button class="cat-chip" data-cat="Épicerie">🥫 Épicerie & Boissons</button>
-      </div>
-    </header>
-
-    <!-- CONTENU PRINCIPAL DE L'APPLICATION -->
-    <main class="main-content">
-      
-      <!-- ======================================================== -->
-      <!-- ONGLET 1 : CATALOGUE DES PROMOS                          -->
-      <!-- ======================================================== -->
-      <section id="tab-promos" class="tab-view active">
-        <div class="section-title-row">
-          <div>
-            <h2 id="promos-heading">Promotions en cours</h2>
-            <p class="section-subtitle" id="promos-count-label">12 offres trouvées à Marche-en-Famenne</p>
-          </div>
-          <div class="sort-selector">
-            <select id="sort-select" class="clean-select">
-              <option value="proximity">📍 Par proximité</option>
-              <option value="discount">🔥 Meilleure remise</option>
-              <option value="price-asc">💶 Prix croissant</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Grille des Cartes Promos (Spacieuse et claire) -->
-        <div class="promos-grid" id="promos-grid-container">
-          <!-- Injecté par app.js -->
-        </div>
-      </section>
-
-      <!-- ======================================================== -->
-      <!-- ONGLET 2 : MAGASINS & CARTE INTERACTIVE                  -->
-      <!-- ======================================================== -->
-      <section id="tab-stores" class="tab-view">
-        <div class="section-title-row">
-          <div>
-            <h2>Magasins aux alentours</h2>
-            <p class="section-subtitle" id="stores-count-label">Supermarchés de Marche-en-Famenne</p>
-          </div>
-          <button id="btn-recenter-map" class="btn-sm">Recentrer 🎯</button>
-        </div>
-
-        <!-- Carte Leaflet grande et dégagée -->
-        <div class="map-card-container">
-          <div id="leaflet-map" class="clean-leaflet-map"></div>
-        </div>
-
-        <!-- Liste des magasins physiques avec adresses et horaires -->
-        <div class="stores-list-container" id="stores-list-container">
-          <!-- Injecté par app.js -->
-        </div>
-      </section>
-
-      <!-- ======================================================== -->
-      <!-- ONGLET 3 : MON PANIER & ÉCONOMIES                       -->
-      <!-- ======================================================== -->
-      <section id="tab-cart" class="tab-view">
-        <div class="section-title-row">
-          <div>
-            <h2>Mon Panier Promo</h2>
-            <p class="section-subtitle" id="cart-items-count-text">Articles réservés</p>
-          </div>
-          <button id="btn-cart-clear-all" class="btn-text-danger">Vider</button>
-        </div>
-
-        <!-- Liste des articles ajoutés -->
-        <div class="cart-items-wrapper" id="cart-items-list">
-          <!-- Injecté par app.js -->
-        </div>
-
-        <!-- Carte Récapitulative des Économies -->
-        <div class="cart-total-card">
-          <div class="promo-input-row">
-            <input type="text" id="cart-promo-input" placeholder="Code promo (ex: ANTIGASPI)" />
-            <button id="btn-apply-promo-code" class="btn-sm">Appliquer</button>
-          </div>
-          <div id="promo-code-message" class="promo-msg"></div>
-
-          <div class="total-breakdown">
-            <div class="breakdown-line">
-              <span>Prix normal estimé</span>
-              <span id="cart-total-normal" class="strikethrough">0,00 €</span>
-            </div>
-            <div class="breakdown-line green-savings">
-              <span>Vos économies de prospectus</span>
-              <strong id="cart-total-savings">- 0,00 €</strong>
-            </div>
-            <div class="breakdown-line grand-total">
-              <span>Total en magasin</span>
-              <b id="cart-grand-total">0,00 €</b>
-            </div>
-          </div>
-
-          <button id="btn-checkout-pass" class="btn-checkout-main">
-            🎟️ Obtenir mon Pass Réduction QR Code
-          </button>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- ======================================================== -->
-    <!-- BANDEAU DE NAVIGATION INFÉRIEUR FIXE (100% GARANTI)     -->
-    <!-- ======================================================== -->
-    <nav class="bottom-tab-bar" id="main-bottom-bar">
-      <button class="tab-btn active" data-tab="tab-promos">
-        <span class="tab-icon">🏷️</span>
-        <span class="tab-label">Promos</span>
-      </button>
-      <button class="tab-btn" data-tab="tab-stores">
-        <span class="tab-icon">🗺️</span>
-        <span class="tab-label">Magasins</span>
-      </button>
-      <button class="tab-btn" data-tab="tab-cart">
-        <span class="tab-icon has-badge">
-          🛒
-          <span class="cart-bubble" id="cart-badge-count" style="display:none;">0</span>
-        </span>
-        <span class="tab-label">Mon Panier</span>
-      </button>
-    </nav>
-
+<div class="topbar">
+  <div class="loc-row">
+    <button class="loc-btn" id="cityBtn">
+      📍 <span><span class="city" id="cityLabel">Marche-en-Famenne</span><small id="cityCP">6900 · Province de Luxembourg</small></span>
+    </button>
+    <button class="icon-btn" id="themeBtn" title="Mode sombre">🌙</button>
   </div>
+  <div class="search-row">
+    🔍 <input id="searchInput" placeholder="Chercher un produit…">
+    <span class="search-clear" id="searchClear">✕</span>
+  </div>
+  <div class="chip-row" id="storeChips"></div>
+  <div class="chip-row" id="catChips" style="margin-top:8px;"></div>
+</div>
 
-  <!-- ======================================================== -->
-  <!-- MODAL 1 : FICHE DÉTAIL DU PRODUIT (DRAWER MODERNE)       -->
-  <!-- ======================================================== -->
-  <div id="modal-product-detail" class="modal-backdrop" style="display:none;">
-    <div class="drawer-sheet">
-      <button class="drawer-close" id="btn-close-product-modal">✕</button>
-      
-      <div class="drawer-hero-img-wrap">
-        <img id="modal-p-img" src="" alt="Produit" class="drawer-hero-img" />
-        <span class="drawer-badge-discount" id="modal-p-discount">-35%</span>
-        <span class="drawer-badge-brand" id="modal-p-brand">Colruyt</span>
-      </div>
-
-      <div class="drawer-body">
-        <div class="drawer-top-info">
-          <span class="tag-clean" id="modal-p-store">Chaussée de Liège, Marche</span>
-          <span class="distance-chip" id="modal-p-distance">📍 450 m</span>
-        </div>
-
-        <h3 id="modal-p-title" class="drawer-title">Nom du produit</h3>
-
-        <div class="drawer-pricing-box">
-          <div class="prices-group">
-            <span class="price-old" id="modal-p-old-price">12,50 €</span>
-            <span class="price-new" id="modal-p-new-price">7,99 €</span>
-          </div>
-          <span class="save-tag-green" id="modal-p-savings">Économie : 4,51 €</span>
-        </div>
-
-        <div class="specs-grid">
-          <div class="spec-cell">
-            <span class="spec-lbl">Offre Prospectus</span>
-            <b id="modal-p-deal-type">Remise Xtra</b>
-          </div>
-          <div class="spec-cell">
-            <span class="spec-lbl">Validité</span>
-            <b id="modal-p-validity">Valable cette semaine</b>
-          </div>
-          <div class="spec-cell">
-            <span class="spec-lbl">Disponibilité</span>
-            <b id="modal-p-stock">En rayon à Marche</b>
-          </div>
-          <div class="spec-cell">
-            <span class="spec-lbl">Nutri-Score</span>
-            <b id="modal-p-nutri">A (Excellente qualité)</b>
-          </div>
-        </div>
-
-        <p class="drawer-desc" id="modal-p-desc">
-          Description complète de l'offre issue du catalogue officiel.
-        </p>
-
-        <!-- Sélecteur de quantité et bouton d'ajout -->
-        <div class="drawer-action-row">
-          <div class="qty-selector">
-            <button id="btn-p-qty-minus" class="qty-circle-btn">-</button>
-            <span id="modal-p-qty-display" class="qty-num">1</span>
-            <button id="btn-p-qty-plus" class="qty-circle-btn">+</button>
-          </div>
-          <button id="btn-modal-add-cart" class="btn-add-main">
-            Ajouter au panier
-          </button>
-        </div>
+<main>
+  <!-- PROMOS VIEW -->
+  <section class="view active" id="view-promos">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Promotions en cours</h2>
+        <p class="section-sub" id="resultCount">— offres trouvées</p>
+        <p class="section-sub" id="freshnessNote" style="margin-top:2px;"></p>
       </div>
     </div>
-  </div>
+    <div class="sort-row" id="sortChips"></div>
+    <div class="grid" id="productGrid"></div>
+  </section>
 
-  <!-- ======================================================== -->
-  <!-- MODAL 2 : SÉLECTEUR DE VILLE RAPIDE                      -->
-  <!-- ======================================================== -->
-  <div id="modal-location" class="modal-backdrop" style="display:none;">
-    <div class="clean-dialog">
-      <button class="dialog-close" id="btn-close-loc-modal">✕</button>
-      <h3>📍 Choisir votre ville</h3>
-      <p class="dialog-sub">Les promotions des supermarchés s'adapteront automatiquement.</p>
-
-      <button id="btn-detect-gps-now" class="btn-gps-direct">
-        🎯 Me géolocaliser automatiquement (GPS)
-      </button>
-
-      <div class="quick-cities-list">
-        <button class="city-opt active" data-city="Marche-en-Famenne" data-cp="6900">
-          <b>Marche-en-Famenne</b> <span>(Province de Luxembourg - 6900)</span>
-        </button>
-        <button class="city-opt" data-city="Rochefort" data-cp="5580">
-          <b>Rochefort</b> <span>(5580)</span>
-        </button>
-        <button class="city-opt" data-city="Ciney" data-cp="5590">
-          <b>Ciney</b> <span>(5590)</span>
-        </button>
-        <button class="city-opt" data-city="Namur" data-cp="5000">
-          <b>Namur</b> <span>(5000)</span>
-        </button>
-        <button class="city-opt" data-city="Liège" data-cp="4000">
-          <b>Liège</b> <span>(4000)</span>
-        </button>
-        <button class="city-opt" data-city="Bruxelles" data-cp="1000">
-          <b>Bruxelles</b> <span>(1000)</span>
-        </button>
+  <!-- STORES VIEW -->
+  <section class="view" id="view-stores">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Magasins aux alentours</h2>
+        <p class="section-sub">Supermarchés près de <span id="storesCityLabel">Marche-en-Famenne</span></p>
       </div>
+      <button class="icon-btn" id="recenterBtn" title="Recentrer">🎯</button>
     </div>
-  </div>
+    <div id="storeList"></div>
+  </section>
 
-  <!-- ======================================================== -->
-  <!-- MODAL 3 : PASS PROMO QR CODE EN CAISSE                   -->
-  <!-- ======================================================== -->
-  <div id="modal-qr-pass" class="modal-backdrop" style="display:none;">
-    <div class="clean-dialog text-center">
-      <button class="dialog-close" id="btn-close-qr-modal">✕</button>
-      <div class="success-icon-bounce">🎟️</div>
-      <h3>Pass Promo Réservé !</h3>
-      <p class="dialog-sub">Présentez ce QR Code en caisse pour faire valoir vos réductions.</p>
-
-      <div class="qr-display-box">
-        <img id="qr-image-tag" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=PASS-MARCHE-6900" alt="QR Code" width="160" height="160" />
-        <span class="qr-code-txt" id="qr-pass-number">PASS #MF-6900-281</span>
+  <!-- CART VIEW -->
+  <section class="view" id="view-cart">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Mon Panier Promo</h2>
+        <p class="section-sub" id="cartSub">Articles réservés</p>
       </div>
-
-      <div class="qr-summary-box">
-        <div>Total en caisse : <b id="qr-total-pay">0,00 €</b></div>
-        <div style="color:var(--green);">Économies : <b id="qr-total-saved">0,00 €</b></div>
-      </div>
-
-      <button id="btn-qr-done" class="btn-checkout-main" style="margin-top:12px; width:100%;">
-        Compris, retourner aux promos
-      </button>
+      <button class="icon-btn" id="clearCartBtn" title="Vider">🗑️</button>
     </div>
+    <div id="cartList"></div>
+    <div class="totals" id="cartTotals"></div>
+    <button class="primary-btn" id="passBtn" style="margin-top:16px;">🎟️ Obtenir mon Pass Réduction QR Code</button>
+  </section>
+</main>
+
+<div class="navbar">
+  <button class="navbtn active" data-view="promos"><span class="ni">🏷️</span>Promos</button>
+  <button class="navbtn" data-view="stores"><span class="ni">🗺️</span>Magasins</button>
+  <button class="navbtn" data-view="cart" style="position:relative;"><span class="ni">🛒</span><span id="cartLabel">Panier</span>
+    <span class="cart-count" id="cartCount" style="display:none;">0</span>
+  </button>
+</div>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Product detail sheet -->
+<div class="sheet" id="productSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" data-close>✕</button>
+  <div class="sheet-inner" id="productSheetBody"></div>
+</div>
+
+<!-- City sheet -->
+<div class="sheet" id="citySheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" data-close>✕</button>
+  <div class="sheet-inner">
+    <h3 style="margin:6px 0 4px;">📍 Choisir votre ville</h3>
+    <p style="font-size:13px; color:var(--ink-soft); margin:0 0 14px;">Les promotions des supermarchés s'adapteront automatiquement.</p>
+    <button class="geo-btn" id="geoBtn">🎯 Me géolocaliser automatiquement (GPS)</button>
+    <div id="cityListEl"></div>
   </div>
+</div>
 
-  <!-- Toast Notification Flottant -->
-  <div id="toast" class="toast-floating"></div>
+<!-- Pass sheet -->
+<div class="sheet" id="passSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" data-close>✕</button>
+  <div class="sheet-inner">
+    <div class="qr-wrap">
+      <div style="font-size:34px;">🎟️</div>
+      <h3 style="margin:6px 0 2px;">Pass Promo Réservé !</h3>
+      <p style="font-size:13px; color:var(--ink-soft); text-align:center; margin:0 0 6px;">Présentez ce QR Code en caisse pour faire valoir vos réductions.</p>
+      <div id="qrcode"></div>
+      <div class="pass-id" id="passId">PASS #MF-6900-000</div>
+      <div class="totals" style="width:100%;" id="passTotals"></div>
+    </div>
+    <button class="secondary-btn" data-close>Compris, retourner aux promos</button>
+  </div>
+</div>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="./app.js"></script>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------------------------------------------------
+   DATA
+--------------------------------------------------------- */
+const STORES = [
+  {id:'colruyt',  name:'Colruyt',   emoji:'🔴', color:'#DE3B24', addr:'Chaussée de Liège, Marche', dist:0.45},
+  {id:'delhaize', name:'Delhaize',  emoji:'🦁', color:'#C8102E', addr:'Rue du Luxembourg, Marche', dist:0.9},
+  {id:'carrefour',name:'Carrefour', emoji:'🔵', color:'#0057B8', addr:'Rue des Tanneurs, Marche',   dist:1.3},
+  {id:'lidl',     name:'Lidl',      emoji:'🟡', color:'#F4B400', addr:'Route de Bastogne, Marche',  dist:1.7},
+  {id:'aldi',     name:'Aldi',      emoji:'🔷', color:'#1B6FB5', addr:'Chaussée de l\'Ourthe, Marche', dist:2.1},
+];
+
+const CATS = [
+  {id:'all',      name:'Tout',                emoji:''},
+  {id:'boucherie',name:'Boucherie',            emoji:'🥩'},
+  {id:'poisson',  name:'Poissonnerie',         emoji:'🐟'},
+  {id:'fruits',   name:'Fruits & Légumes',     emoji:'🍎'},
+  {id:'frais',    name:'Produits Frais',       emoji:'🧀'},
+  {id:'epicerie', name:'Épicerie & Boissons',  emoji:'🥫'},
+];
+
+const CITIES = [
+  {name:'Marche-en-Famenne', cp:'6900', region:'Province de Luxembourg'},
+  {name:'Rochefort', cp:'5580', region:'Province de Namur'},
+  {name:'Ciney', cp:'5590', region:'Province de Namur'},
+  {name:'Namur', cp:'5000', region:'Province de Namur'},
+  {name:'Liège', cp:'4000', region:'Province de Liège'},
+  {name:'Bruxelles', cp:'1000', region:'Région de Bruxelles-Capitale'},
+];
+
+// Données de secours, utilisées uniquement si data/promos.json est introuvable
+// (par ex. avant le premier passage du robot nocturne, ou en ouverture locale du fichier).
+const FALLBACK_PRODUCTS = [
+  {id:1, name:'Entrecôte de bœuf Label Rouge', cat:'boucherie', store:'colruyt', emoji:'🥩', old:14.99, new:9.99, offer:'Remise Xtra', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'A', desc:"Entrecôte tendre et persillée, origine Belgique, Label Rouge. Idéale à la poêle ou au grill."},
+  {id:2, name:'Saumon fumé d\'Écosse 200g', cat:'poisson', store:'delhaize', emoji:'🐟', old:6.49, new:4.49, offer:'Carte Delhaize', valid:'Jusqu\'à dimanche', avail:'En rayon à Marche', nutri:'B', desc:"Saumon fumé traditionnellement, tranché fin. Parfait pour l'apéritif ou en entrée."},
+  {id:3, name:'Fraises de Belgique 500g', cat:'fruits', store:'carrefour', emoji:'🍓', old:4.29, new:2.99, offer:'Promo Carrefour', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'A', desc:"Fraises fraîches cueillies en Belgique, sucrées et juteuses."},
+  {id:4, name:'Mozzarella di Bufala 125g', cat:'frais', store:'lidl', emoji:'🧀', old:2.49, new:1.79, offer:'Offre Prospectus', valid:'Valable jusqu\'à samedi', avail:'En rayon à Marche', nutri:'C', desc:"Véritable mozzarella au lait de bufflonne, importée d'Italie."},
+  {id:5, name:'Café en grains Bio 1kg', cat:'epicerie', store:'aldi', emoji:'☕', old:12.99, new:8.99, offer:'Semaine Bio', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'—', desc:"Café en grains issu de l'agriculture biologique, torréfaction artisanale."},
+  {id:6, name:'Poulet fermier entier', cat:'boucherie', store:'delhaize', emoji:'🍗', old:8.99, new:6.49, offer:'Carte Delhaize', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'A', desc:"Poulet fermier élevé en plein air, origine Belgique."},
+  {id:7, name:'Crevettes grises de la mer du Nord 250g', cat:'poisson', store:'colruyt', emoji:'🦐', old:9.99, new:6.99, offer:'Remise Xtra', valid:'Jusqu\'à jeudi', avail:'En rayon à Marche', nutri:'A', desc:"Crevettes grises fraîchement décortiquées, pêchées en mer du Nord."},
+  {id:8, name:'Avocats Hass x4', cat:'fruits', store:'lidl', emoji:'🥑', old:3.49, new:2.29, offer:'Offre Prospectus', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'A', desc:"Avocats mûrs à point, prêts à consommer."},
+  {id:9, name:'Yaourts grecs x8', cat:'frais', store:'carrefour', emoji:'🥣', old:3.99, new:2.99, offer:'Promo Carrefour', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'B', desc:"Yaourts crémeux façon grecque, riches en protéines."},
+  {id:10, name:'Vin rouge Côtes du Rhône 75cl', cat:'epicerie', store:'aldi', emoji:'🍷', old:7.99, new:5.49, offer:'Semaine Vin', valid:'Valable jusqu\'à dimanche', avail:'En rayon à Marche', nutri:'—', desc:"Vin rouge fruité et rond, AOC Côtes du Rhône."},
+  {id:11, name:'Côtelettes d\'agneau 500g', cat:'boucherie', store:'carrefour', emoji:'🍖', old:11.49, new:7.99, offer:'Promo Carrefour', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'B', desc:"Côtelettes d'agneau tendres, à griller ou poêler."},
+  {id:12, name:'Filets de cabillaud MSC 400g', cat:'poisson', store:'lidl', emoji:'🐠', old:6.99, new:4.99, offer:'Offre Prospectus', valid:'Valable jusqu\'à samedi', avail:'En rayon à Marche', nutri:'A', desc:"Filets de cabillaud durable, certifié MSC, sans arêtes."},
+  {id:13, name:'Tomates cerises Belgique 500g', cat:'fruits', store:'colruyt', emoji:'🍅', old:2.79, new:1.89, offer:'Remise Xtra', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'A', desc:"Tomates cerises sucrées, cultivées en Belgique."},
+  {id:14, name:'Brie de Meaux AOP 250g', cat:'frais', store:'delhaize', emoji:'🧈', old:5.99, new:4.29, offer:'Carte Delhaize', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'D', desc:"Brie de Meaux affiné, AOP, onctueux et crémeux."},
+  {id:15, name:'Pâtes artisanales italiennes 500g x2', cat:'epicerie', store:'aldi', emoji:'🍝', old:3.98, new:2.49, offer:'Semaine Italienne', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'A', desc:"Pâtes artisanales séchées lentement, à la semoule de blé dur."},
+  {id:16, name:'Chips artisanales 150g', cat:'epicerie', store:'colruyt', emoji:'🥔', old:2.29, new:1.49, offer:'Remise Xtra', valid:'Valable cette semaine', avail:'En rayon à Marche', nutri:'D', desc:"Chips croustillantes cuites dans l'huile de tournesol."},
+];
+
+// PRODUCTS est rempli au démarrage par loadPromoData() : soit avec les vraies
+// promos du jour (data/promos.json, régénéré chaque nuit), soit avec FALLBACK_PRODUCTS.
+let PRODUCTS = FALLBACK_PRODUCTS;
+let dataSource = 'fallback';   // 'live' | 'fallback'
+let dataGeneratedAt = null;
+
+const CATEGORY_KEYWORDS = {
+  boucherie: ['bœuf','boeuf','poulet','porc','agneau','viande','saucisse','jambon','entrecôte','côtelette','steak','cailles','lapin'],
+  poisson:   ['saumon','poisson','crevette','cabillaud','thon','truite','moule','crustacé'],
+  fruits:    ['fraise','pomme','banane','avocat','tomate','fruit','légume','salade','carotte','brocoli','poire','raisin'],
+  frais:     ['fromage','yaourt','mozzarella','brie','lait','crème','beurre','œuf','oeuf'],
+  epicerie:  [], // catégorie par défaut
+};
+function categorize(name){
+  const n = (name||'').toLowerCase();
+  for(const [cat, words] of Object.entries(CATEGORY_KEYWORDS)){
+    if(words.some(w=>n.includes(w))) return cat;
+  }
+  return 'epicerie';
+}
+
+async function loadPromoData(){
+  try{
+    const res = await fetch('./data/promos.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('promos.json introuvable (HTTP '+res.status+')');
+    const json = await res.json();
+    const offers = json.offers || {};
+    let id = 1;
+    const list = [];
+    Object.entries(offers).forEach(([slug, items])=>{
+      const meta = (json.stores_meta && json.stores_meta[slug]) || STORES.find(s=>s.id===slug);
+      if(!meta) return;
+      items.forEach(o=>{
+        if(!o.new_price) return; // pas de prix exploitable
+        const oldP = o.old_price && o.old_price > o.new_price ? o.old_price : o.new_price;
+        list.push({
+          id: id++,
+          name: o.name,
+          cat: categorize(o.name),
+          store: slug,
+          emoji: '🏷️',
+          image: o.image_url || null,
+          old: oldP,
+          new: o.new_price,
+          offer: (o.discount_pct ? `-${o.discount_pct}% chez ${meta.name}` : `Promo ${meta.name}`),
+          valid: 'Voir conditions sur le prospectus',
+          avail: `En rayon à ${state.city ? state.city.name : 'Marche-en-Famenne'}`,
+          nutri: '—',
+          desc: `Offre relevée sur le prospectus ${meta.name}, via promopromo.be. ${o.source_url ? '' : ''}`.trim(),
+          source_url: o.source_url || null,
+        });
+      });
+    });
+    if(list.length){
+      PRODUCTS = list;
+      dataSource = 'live';
+      dataGeneratedAt = json.generated_at || null;
+    }
+  }catch(e){
+    console.warn('Chargement de data/promos.json impossible, utilisation des données de secours.', e);
+    PRODUCTS = FALLBACK_PRODUCTS;
+    dataSource = 'fallback';
+  }
+}
+
+/* ---------------------------------------------------------
+   STATE
+--------------------------------------------------------- */
+const state = {
+  city: safeParse('pa_city') || CITIES[0],
+  theme: localStorage.getItem('pa_theme') || null,
+  activeStores: new Set(),
+  activeCat: 'all',
+  search: '',
+  sort: 'proximity',
+  cart: safeParse('pa_cart') || {}, // {productId: qty}
+  currentView: 'promos',
+  openProduct: null,
+};
+
+function safeParse(key){
+  try{
+    const v = localStorage.getItem(key);
+    return v ? JSON.parse(v) : null;
+  }catch(e){ return null; }
+}
+function save(key,val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){}
+}
+
+function discountPct(p){ return Math.round((1 - p.new/p.old)*100); }
+function storeOf(id){ return STORES.find(s=>s.id===id); }
+
+/* ---------------------------------------------------------
+   THEME
+--------------------------------------------------------- */
+function applyTheme(){
+  if(state.theme === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  else if(state.theme === 'light'){ document.documentElement.setAttribute('data-theme','light'); }
+  else { document.documentElement.removeAttribute('data-theme'); }
+}
+applyTheme();
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    || (!document.documentElement.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  state.theme = isDark ? 'light' : 'dark';
+  localStorage.setItem('pa_theme', state.theme);
+  applyTheme();
+});
+
+/* ---------------------------------------------------------
+   RENDER: chips
+--------------------------------------------------------- */
+function renderStoreChips(){
+  const el = document.getElementById('storeChips');
+  el.innerHTML = '';
+  const allChip = document.createElement('div');
+  allChip.className = 'chip' + (state.activeStores.size===0 ? ' active' : '');
+  allChip.textContent = 'Tous les magasins';
+  allChip.onclick = ()=>{ state.activeStores.clear(); rerenderAll(); };
+  el.appendChild(allChip);
+  STORES.forEach(s=>{
+    const c = document.createElement('div');
+    const on = state.activeStores.has(s.id);
+    c.className = 'chip' + (on ? ` store-active-${s.id}` : '');
+    c.textContent = `${s.emoji} ${s.name}`;
+    c.onclick = ()=>{
+      if(on) state.activeStores.delete(s.id); else state.activeStores.add(s.id);
+      rerenderAll();
+    };
+    el.appendChild(c);
+  });
+}
+
+function renderCatChips(){
+  const el = document.getElementById('catChips');
+  el.innerHTML = '';
+  CATS.forEach(c=>{
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (state.activeCat===c.id ? ' active' : '');
+    chip.textContent = c.emoji ? `${c.emoji} ${c.name}` : c.name;
+    chip.onclick = ()=>{ state.activeCat = c.id; rerenderAll(); };
+    el.appendChild(chip);
+  });
+}
+
+const SORTS = [
+  {id:'proximity', label:'📍 Par proximité'},
+  {id:'discount',  label:'🔥 Meilleure remise'},
+  {id:'price',     label:'💶 Prix croissant'},
+];
+function renderSortChips(){
+  const el = document.getElementById('sortChips');
+  el.innerHTML = '';
+  SORTS.forEach(s=>{
+    const c = document.createElement('div');
+    c.className = 'sort-chip' + (state.sort===s.id ? ' active' : '');
+    c.textContent = s.label;
+    c.onclick = ()=>{ state.sort = s.id; renderProducts(); };
+    el.appendChild(c);
+  });
+}
+
+/* ---------------------------------------------------------
+   FILTER + SORT + RENDER PRODUCTS
+--------------------------------------------------------- */
+function getFilteredProducts(){
+  let list = PRODUCTS.filter(p=>{
+    if(state.activeStores.size && !state.activeStores.has(p.store)) return false;
+    if(state.activeCat!=='all' && p.cat!==state.activeCat) return false;
+    if(state.search && !p.name.toLowerCase().includes(state.search.toLowerCase())) return false;
+    return true;
+  });
+  if(state.sort==='proximity') list.sort((a,b)=> storeOf(a.store).dist - storeOf(b.store).dist);
+  else if(state.sort==='discount') list.sort((a,b)=> discountPct(b) - discountPct(a));
+  else if(state.sort==='price') list.sort((a,b)=> a.new - b.new);
+  return list;
+}
+
+function renderProducts(){
+  renderSortChips();
+  const list = getFilteredProducts();
+  document.getElementById('resultCount').textContent = `${list.length} offre${list.length>1?'s':''} trouvée${list.length>1?'s':''} à ${state.city.name}`;
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  if(!list.length){
+    grid.style.display='block';
+    grid.innerHTML = `<div class="empty"><span class="e-icon">🔍</span>Aucune promo ne correspond à votre recherche.<br>Essayez d'autres filtres.</div>`;
+    return;
+  }
+  grid.style.display='grid';
+  list.forEach(p=>{
+    const st = storeOf(p.store);
+    const inCart = !!state.cart[p.id];
+    const card = document.createElement('div');
+    card.className = 'pcard';
+    card.innerHTML = `
+      <div class="pcard-img" style="background:${st.color}22;">
+        ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
+        <span class="pcard-emoji-fallback" style="${p.image ? 'display:none;' : ''}">${p.emoji}</span>
+        <span class="badge-discount">-${discountPct(p)}%</span>
+        <span class="badge-store">${st.emoji} ${st.name}</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">${p.name}</div>
+        <div class="pcard-dist">📍 ${st.addr} · ${st.dist} km</div>
+        <div class="pcard-price">
+          <span class="old-price">${p.old.toFixed(2)} €</span>
+          <span class="new-price">${p.new.toFixed(2)} €</span>
+        </div>
+        <button class="pcard-add ${inCart?'in-cart':''}" data-id="${p.id}">${inCart ? `✓ Dans le panier (${state.cart[p.id]})` : '+ Ajouter'}</button>
+      </div>`;
+    card.querySelector('.pcard-img').addEventListener('click', ()=>openProduct(p.id));
+    card.querySelector('.pcard-name').addEventListener('click', ()=>openProduct(p.id));
+    card.querySelector('.pcard-add').addEventListener('click', (e)=>{
+      e.stopPropagation();
+      addToCart(p.id, 1);
+      renderProducts();
+    });
+    grid.appendChild(card);
+  });
+}
+
+/* ---------------------------------------------------------
+   STORES VIEW
+--------------------------------------------------------- */
+function renderStores(){
+  document.getElementById('storesCityLabel').textContent = state.city.name;
+  const el = document.getElementById('storeList');
+  el.innerHTML = '';
+  STORES.forEach(s=>{
+    const count = PRODUCTS.filter(p=>p.store===s.id).length;
+    const row = document.createElement('div');
+    row.className = 'store-row';
+    row.innerHTML = `
+      <div class="store-dot" style="background:${s.color};">${s.emoji}</div>
+      <div class="store-info">
+        <div class="sname">${s.name}</div>
+        <div class="saddr">${s.addr}</div>
+        <div class="scount">${count} promo${count>1?'s':''} en cours</div>
+      </div>
+      <div class="store-km">${s.dist} km</div>`;
+    row.addEventListener('click', ()=>{
+      state.activeStores = new Set([s.id]);
+      renderStoreChips();
+      switchView('promos');
+    });
+    el.appendChild(row);
+  });
+}
+document.getElementById('recenterBtn').addEventListener('click', ()=>{
+  showToast('Position recentrée sur ' + state.city.name);
+});
+
+/* ---------------------------------------------------------
+   CART
+--------------------------------------------------------- */
+function addToCart(id, delta){
+  const qty = (state.cart[id]||0) + delta;
+  if(qty<=0) delete state.cart[id];
+  else state.cart[id] = qty;
+  save('pa_cart', state.cart);
+  updateCartBadge();
+}
+function cartCount(){ return Object.values(state.cart).reduce((a,b)=>a+b,0); }
+function updateCartBadge(){
+  const n = cartCount();
+  const badge = document.getElementById('cartCount');
+  badge.style.display = n>0 ? 'flex' : 'none';
+  badge.textContent = n;
+}
+function cartTotals(){
+  let normal=0, promo=0;
+  Object.entries(state.cart).forEach(([id,qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    if(!p) return;
+    normal += p.old*qty;
+    promo += p.new*qty;
+  });
+  return {normal, promo, save: normal-promo};
+}
+function renderCart(){
+  const el = document.getElementById('cartList');
+  const entries = Object.entries(state.cart);
+  document.getElementById('cartSub').textContent = `${cartCount()} article${cartCount()>1?'s':''} réservé${cartCount()>1?'s':''}`;
+  if(!entries.length){
+    el.innerHTML = `<div class="empty"><span class="e-icon">🛒</span>Votre panier est vide.<br>Ajoutez des promos pour les réserver.</div>`;
+    document.getElementById('cartTotals').innerHTML='';
+    document.getElementById('passBtn').disabled = true;
+    document.getElementById('passBtn').style.opacity=.4;
+    return;
+  }
+  document.getElementById('passBtn').disabled = false;
+  document.getElementById('passBtn').style.opacity=1;
+  el.innerHTML = '';
+  entries.forEach(([id,qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    if(!p) return;
+    const st = storeOf(p.store);
+    const line = document.createElement('div');
+    line.className = 'cart-line';
+    line.innerHTML = `
+      <div class="cart-line-img">${p.emoji}</div>
+      <div class="cart-line-info">
+        <div class="n">${p.name}</div>
+        <div class="p">${st.name} · ${p.new.toFixed(2)} € / pièce</div>
+      </div>
+      <div class="cart-line-qty">
+        <button data-act="dec">−</button>
+        <span>${qty}</span>
+        <button data-act="inc">+</button>
+      </div>`;
+    line.querySelector('[data-act="dec"]').onclick = ()=>{ addToCart(p.id,-1); renderCart(); };
+    line.querySelector('[data-act="inc"]').onclick = ()=>{ addToCart(p.id,1); renderCart(); };
+    el.appendChild(line);
+  });
+  const t = cartTotals();
+  document.getElementById('cartTotals').innerHTML = `
+    <div class="trow"><span>Prix normal estimé</span><span>${t.normal.toFixed(2)} €</span></div>
+    <div class="trow save"><span>Vos économies de prospectus</span><span>− ${t.save.toFixed(2)} €</span></div>
+    <div class="trow final"><span>Total en magasin</span><span>${t.promo.toFixed(2)} €</span></div>`;
+}
+document.getElementById('clearCartBtn').addEventListener('click', ()=>{
+  if(!Object.keys(state.cart).length) return;
+  state.cart = {};
+  save('pa_cart', state.cart);
+  updateCartBadge();
+  renderCart();
+  showToast('Panier vidé');
+});
+
+/* ---------------------------------------------------------
+   PRODUCT SHEET
+--------------------------------------------------------- */
+function openProduct(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  const st = storeOf(p.store);
+  state.openProduct = id;
+  const qty = state.cart[id]||0;
+  document.getElementById('productSheetBody').innerHTML = `
+    <div class="pd-img" style="background:${st.color}22;">
+      ${p.image ? `<img src="${p.image}" alt="${p.name}" style="max-width:100%; max-height:100%; object-fit:contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
+      <span style="${p.image ? 'display:none;' : ''}">${p.emoji}</span>
+    </div>
+    <div class="pd-store">${st.emoji} ${st.name} · ${st.addr} · 📍 ${st.dist*1000|0} m</div>
+    <h2 class="pd-name">${p.name}</h2>
+    <div class="pd-price-row">
+      <span class="pd-old">${p.old.toFixed(2)} €</span>
+      <span class="pd-new">${p.new.toFixed(2)} €</span>
+    </div>
+    <div class="pd-save">Économie : ${(p.old-p.new).toFixed(2)} €</div>
+    <div class="pd-meta">
+      <div class="pd-meta-item"><div class="k">Offre</div><div class="v">${p.offer}</div></div>
+      <div class="pd-meta-item"><div class="k">Validité</div><div class="v">${p.valid}</div></div>
+      <div class="pd-meta-item"><div class="k">Disponibilité</div><div class="v">${p.avail}</div></div>
+      <div class="pd-meta-item"><div class="k">Nutri-Score</div><div class="v">${p.nutri}</div></div>
+    </div>
+    <p class="pd-desc">${p.desc}${p.source_url ? ` <a href="${p.source_url}" target="_blank" rel="noopener" style="color:var(--green); font-weight:700;">Voir le prospectus ↗</a>` : ''}</p>
+    <div class="qty-row">
+      <button class="qty-btn" id="pdDec">−</button>
+      <span class="qty-val" id="pdQty">${qty}</span>
+      <button class="qty-btn" id="pdInc">+</button>
+    </div>
+    <button class="primary-btn" id="pdAdd">Ajouter au panier</button>
+  `;
+  let localQty = qty;
+  const qtyEl = document.getElementById('pdQty');
+  document.getElementById('pdDec').onclick = ()=>{ if(localQty>0){localQty--; qtyEl.textContent=localQty;} };
+  document.getElementById('pdInc').onclick = ()=>{ localQty++; qtyEl.textContent=localQty; };
+  document.getElementById('pdAdd').onclick = ()=>{
+    const diff = localQty - qty;
+    if(diff!==0) addToCart(id, diff);
+    renderProducts();
+    showToast(localQty>0 ? 'Ajouté au panier ✓' : 'Retiré du panier');
+    closeSheet('productSheet');
+  };
+  openSheet('productSheet');
+}
+
+/* ---------------------------------------------------------
+   CITY SHEET
+--------------------------------------------------------- */
+function renderCityList(){
+  const el = document.getElementById('cityListEl');
+  el.innerHTML = '';
+  CITIES.forEach(c=>{
+    const row = document.createElement('div');
+    row.className = 'city-item';
+    row.innerHTML = `<span class="cn">${c.name}</span><span class="cp">${c.region} - ${c.cp}</span>`;
+    row.onclick = ()=>{
+      state.city = c;
+      save('pa_city', c);
+      document.getElementById('cityLabel').textContent = c.name;
+      document.getElementById('cityCP').textContent = `${c.cp} · ${c.region}`;
+      renderProducts();
+      renderStores();
+      closeSheet('citySheet');
+      showToast(`Ville changée : ${c.name}`);
+    };
+    el.appendChild(row);
+  });
+}
+document.getElementById('cityBtn').addEventListener('click', ()=>{ renderCityList(); openSheet('citySheet'); });
+document.getElementById('geoBtn').addEventListener('click', ()=>{
+  if(!navigator.geolocation){ showToast('Géolocalisation indisponible'); return; }
+  const btn = document.getElementById('geoBtn');
+  btn.textContent = '📡 Localisation en cours…';
+  navigator.geolocation.getCurrentPosition(
+    ()=>{
+      btn.textContent = '🎯 Me géolocaliser automatiquement (GPS)';
+      showToast('Position détectée : ' + state.city.name);
+      closeSheet('citySheet');
+    },
+    ()=>{
+      btn.textContent = '🎯 Me géolocaliser automatiquement (GPS)';
+      showToast("Position non autorisée par le navigateur");
+    },
+    {timeout:6000}
+  );
+});
+
+/* ---------------------------------------------------------
+   PASS / QR
+--------------------------------------------------------- */
+document.getElementById('passBtn').addEventListener('click', ()=>{
+  if(!cartCount()) return;
+  const t = cartTotals();
+  const passId = `MF-${state.city.cp}-${Math.floor(Math.random()*900+100)}`;
+  document.getElementById('passId').textContent = `PASS #${passId}`;
+  document.getElementById('passTotals').innerHTML = `
+    <div class="trow final"><span>Total en caisse</span><span>${t.promo.toFixed(2)} €</span></div>
+    <div class="trow save"><span>Économies</span><span>− ${t.save.toFixed(2)} €</span></div>`;
+  const qrHolder = document.getElementById('qrcode');
+  qrHolder.innerHTML = '';
+  try{
+    new QRCode(qrHolder, {
+      text: `PASS-${passId}|TOTAL:${t.promo.toFixed(2)}EUR|SAVE:${t.save.toFixed(2)}EUR`,
+      width:170, height:170,
+      colorDark:'#221F16', colorLight:'#ffffff'
+    });
+  }catch(e){ qrHolder.textContent = 'QR indisponible'; }
+  openSheet('passSheet');
+});
+
+/* ---------------------------------------------------------
+   NAV / VIEWS
+--------------------------------------------------------- */
+function switchView(name){
+  state.currentView = name;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+  window.scrollTo({top:0, behavior:'instant'});
+  if(name==='stores') renderStores();
+  if(name==='cart') renderCart();
+}
+document.querySelectorAll('.navbtn').forEach(b=>{
+  b.addEventListener('click', ()=>switchView(b.dataset.view));
+});
+
+/* ---------------------------------------------------------
+   SHEETS
+--------------------------------------------------------- */
+function openSheet(id){
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById(id).classList.add('show');
+}
+function closeSheet(id){
+  document.getElementById(id).classList.remove('show');
+  const anyOpen = document.querySelectorAll('.sheet.show').length;
+  if(!anyOpen) document.getElementById('overlay').classList.remove('show');
+}
+document.querySelectorAll('[data-close]').forEach(b=>{
+  b.addEventListener('click', (e)=>{
+    const sheet = e.target.closest('.sheet');
+    closeSheet(sheet.id);
+  });
+});
+document.getElementById('overlay').addEventListener('click', ()=>{
+  document.querySelectorAll('.sheet.show').forEach(s=>closeSheet(s.id));
+});
+
+/* ---------------------------------------------------------
+   SEARCH
+--------------------------------------------------------- */
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', ()=>{
+  state.search = searchInput.value;
+  document.getElementById('searchClear').style.display = state.search ? 'block':'none';
+  renderProducts();
+});
+document.getElementById('searchClear').addEventListener('click', ()=>{
+  searchInput.value=''; state.search=''; document.getElementById('searchClear').style.display='none';
+  renderProducts();
+});
+
+/* ---------------------------------------------------------
+   TOAST
+--------------------------------------------------------- */
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 1800);
+}
+
+/* ---------------------------------------------------------
+   INIT
+--------------------------------------------------------- */
+function rerenderAll(){
+  renderStoreChips();
+  renderCatChips();
+  renderProducts();
+  renderFreshnessNote();
+}
+function renderFreshnessNote(){
+  const el = document.getElementById('freshnessNote');
+  if(!el) return;
+  if(dataSource === 'live' && dataGeneratedAt){
+    const d = new Date(dataGeneratedAt);
+    const label = isNaN(d) ? dataGeneratedAt : d.toLocaleString('fr-BE', {dateStyle:'short', timeStyle:'short'});
+    el.textContent = `✓ Promos mises à jour automatiquement le ${label}`;
+  } else {
+    el.textContent = "⚠ Données d'exemple — data/promos.json pas encore généré par le robot nocturne";
+  }
+}
+
+async function init(){
+  document.getElementById('cityLabel').textContent = state.city.name;
+  document.getElementById('cityCP').textContent = `${state.city.cp} · ${state.city.region}`;
+  await loadPromoData();
+  rerenderAll();
+  updateCartBadge();
+}
+init();
+</script>
 </body>
 </html>
