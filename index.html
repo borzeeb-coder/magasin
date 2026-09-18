@@ -569,7 +569,7 @@ function renderStoreChips(){
     const c = document.createElement('div');
     const on = state.activeStores.has(s.id);
     c.className = 'chip' + (on ? ` store-active-${s.id}` : '');
-    c.innerHTML = `<img src="logos/${s.id}.logo.svg" alt="" loading="lazy" onerror="this.remove()"> ${s.name}`;
+    c.innerHTML = `<img src="logos/${s.id}.logo.svg" alt="${s.name}" title="${s.name}" loading="lazy" onerror="this.remove()">`;
     c.onclick = ()=>{
       if(on) state.activeStores.delete(s.id); else state.activeStores.add(s.id);
       rerenderAll();
