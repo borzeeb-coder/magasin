@@ -35,6 +35,20 @@
       "color": "#1B6FB5",
       "addr": "Chaussée de l'Ourthe, Marche",
       "dist": 2.1
+    },
+    "spar": {
+      "name": "Spar",
+      "emoji": "🟢",
+      "color": "#00843D",
+      "addr": "Rue de Bastogne 19, Marche",
+      "dist": 1.1
+    },
+    "intermarche": {
+      "name": "Intermarché",
+      "emoji": "🟠",
+      "color": "#E8590C",
+      "addr": "Route de Libramont 35, Marche",
+      "dist": 1.5
     }
   },
   "offers": {
@@ -406,6 +420,154 @@
         "discount_pct": 25,
         "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      }
+    ],
+    "spar": [
+      {
+        "store": "spar",
+        "name": "Filet de poulet fermier",
+        "old_price": 8.99,
+        "new_price": 5.99,
+        "discount_pct": 33,
+        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      },
+      {
+        "store": "spar",
+        "name": "Beurre doux Ardenne 250g",
+        "old_price": 2.89,
+        "new_price": 1.99,
+        "discount_pct": 31,
+        "image_url": "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      },
+      {
+        "store": "spar",
+        "name": "Yaourts nature x8",
+        "old_price": 3.49,
+        "new_price": 2.29,
+        "discount_pct": 34,
+        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      },
+      {
+        "store": "spar",
+        "name": "Pain au chocolat pur beurre x4",
+        "old_price": 3.20,
+        "new_price": 1.99,
+        "discount_pct": 38,
+        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      },
+      {
+        "store": "spar",
+        "name": "Jus d'orange pressé 1L",
+        "old_price": 3.19,
+        "new_price": 1.89,
+        "discount_pct": 41,
+        "image_url": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      },
+      {
+        "store": "spar",
+        "name": "Tomates grappe Belgique 1kg",
+        "old_price": 2.99,
+        "new_price": 1.79,
+        "discount_pct": 40,
+        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      },
+      {
+        "store": "spar",
+        "name": "Fromage de chèvre frais 150g",
+        "old_price": 2.49,
+        "new_price": 1.59,
+        "discount_pct": 36,
+        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      },
+      {
+        "store": "spar",
+        "name": "Café moulu Torréfaction 250g",
+        "old_price": 4.59,
+        "new_price": 2.99,
+        "discount_pct": 35,
+        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+      }
+    ],
+    "intermarche": [
+      {
+        "store": "intermarche",
+        "name": "Entrecôte de bœuf Label Rouge",
+        "old_price": 16.99,
+        "new_price": 11.99,
+        "discount_pct": 29,
+        "image_url": "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+      },
+      {
+        "store": "intermarche",
+        "name": "Saumon entier d'Écosse",
+        "old_price": 14.99,
+        "new_price": 9.99,
+        "discount_pct": 33,
+        "image_url": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+      },
+      {
+        "store": "intermarche",
+        "name": "Fraises de Belgique 500g",
+        "old_price": 4.49,
+        "new_price": 2.99,
+        "discount_pct": 33,
+        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+      },
+      {
+        "store": "intermarche",
+        "name": "Poulet fermier entier jaune",
+        "old_price": 9.99,
+        "new_price": 6.99,
+        "discount_pct": 30,
+        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+      },
+      {
+        "store": "intermarche",
+        "name": "Fromage Gouda jeune 400g",
+        "old_price": 5.29,
+        "new_price": 3.49,
+        "discount_pct": 34,
+        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+      },
+      {
+        "store": "intermarche",
+        "name": "Croissants pur beurre x4",
+        "old_price": 3.99,
+        "new_price": 2.49,
+        "discount_pct": 38,
+        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+      },
+      {
+        "store": "intermarche",
+        "name": "Chocolat noir 72% tablette",
+        "old_price": 3.49,
+        "new_price": 2.19,
+        "discount_pct": 37,
+        "image_url": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+      },
+      {
+        "store": "intermarche",
+        "name": "Lait demi-écrémé 1L",
+        "old_price": 1.49,
+        "new_price": 0.99,
+        "discount_pct": 34,
+        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
       }
     ]
   },

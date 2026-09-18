@@ -46,12 +46,44 @@ STORES = {
     "carrefour": {"name": "Carrefour", "emoji": "🔵", "color": "#0057B8", "addr": "Rue des Tanneurs, Marche",       "dist": 1.3},
     "lidl":      {"name": "Lidl",      "emoji": "🟡", "color": "#F4B400", "addr": "Route de Bastogne, Marche",      "dist": 1.7},
     "aldi":      {"name": "Aldi",      "emoji": "🔷", "color": "#1B6FB5", "addr": "Chaussée de l'Ourthe, Marche",   "dist": 2.1},
+    "spar":      {"name": "Spar",      "emoji": "🟢", "color": "#00843D", "addr": "Rue de Bastogne, Marche",        "dist": 1.1},
+    "intermarche":{"name": "Intermarché","emoji": "🟠", "color": "#E8590C", "addr": "Route de Libramont, Marche",  "dist": 1.5},
 }
 
 BASE_URL = "https://www.promopromo.be/fr/{slug}/folder-offres"
 
 PRICE_RE = re.compile(r"€\s*([\d.,]+)")
 DISCOUNT_RE = re.compile(r"(\d+)\s*%")
+
+# Images "aliments" (logo produit) attribuées selon le nom du produit,
+# à la place des logos génériques d'enseigne récupérés par le scraping.
+FOOD_IMAGES = [
+    (re.compile(r"poulet|volaille|entrecôte|côtelette|côte|cote|steak|bœuf|boeuf|viande|saucisse|jambon|agneau|cailles|lapin|veau|hachis|merguez|escalope|lard|boucher|porc"),  # noqa: E501
+     "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80"),
+    (re.compile(r"saumon|poisson|crevette|cabillaud|thon|truite|moule|crustacé|fruits de mer|surimi|bar|sole|dorade"),  # noqa: E501
+     "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&auto=format&fit=crop&q=80"),
+    (re.compile(r"fraise|pomme|banane|avocat|tomate|poire|raisin|cerise|abricot|pêche|peche|melon|pastèque|ananas|mangue|kiwi|orange|clémentine|mandarine|pamplemousse|chicon|endive|carotte|brocoli|courgette|poivron|salade|laitue|épinard|champignon|butternut|fruits|légume|legume|petits pois|épinards"),  # noqa: E501
+     "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80"),
+    (re.compile(r"fromage|yaourt|mozzarella|brie|camembert|emmental|comté|roquefort|chèvre|chevre|bûche|buche|gouda|edam|parmesan|ricotta|mascarpone|crème|creme|lait battu|dessert|beurre|lait|œuf|oeuf|raclette|milk"),  # noqa: E501
+     "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80"),
+    (re.compile(r"pain|croissant|brioche|baguette|viennoiserie|chocolat pur|boulangerie|biscotte|pain turc"),  # noqa: E501
+     "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80"),
+    (re.compile(r"café|cafe|thé|the|chocolat|cacao|pâtes|pates|riz|farine|sucre|huile|vinaigre|confiture|conserves|sauce|moutarde|mayonnaise|pesto|soupe|bouillon|épices|céréales|cereales|granola|muesli|cruesli|chips|biscuit|cookie|cake|bonbon"),  # noqa: E501
+     "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80"),
+    (re.compile(r"jus|nectar|boisson|soda|eau|bière|biere|vin|champagne|cidre|limonade|ice tea|sirop"),  # noqa: E501
+     "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80"),
+]
+
+DEFAULT_FOOD_IMAGE = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80"
+
+
+def food_image_for(name: str) -> str:
+    """Choisit une image alimentaire pertinente selon le nom du produit."""
+    n = name.lower()
+    for regex, url in FOOD_IMAGES:
+        if regex.search(n):
+            return url
+    return DEFAULT_FOOD_IMAGE
 
 
 @dataclass
@@ -112,7 +144,7 @@ def scrape_store(slug: str) -> list[Offer]:
             old_price=old_price,
             new_price=new_price,
             discount_pct=discount_pct,
-            image_url=image_url,
+            image_url=food_image_for(name),
             source_url=url,
         ))
 

@@ -30,6 +30,10 @@
   --lidl-soft: #fefce8;
   --aldi: #0284c7;
   --aldi-soft: #f0f9ff;
+  --spar: #00843D;
+  --spar-soft: #f0fdf4;
+  --intermarche: #E8590C;
+  --intermarche-soft: #fff7ed;
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.06);
@@ -295,6 +299,18 @@ html, body {
   color: #fff;
 }
 
+.store-pill.pill-spar.active {
+  background: var(--spar);
+  border-color: var(--spar);
+  color: #fff;
+}
+
+.store-pill.pill-intermarche.active {
+  background: var(--intermarche);
+  border-color: var(--intermarche);
+  color: #fff;
+}
+
 /* Puces Rayons */
 .category-chips-bar {
   display: flex;
@@ -447,6 +463,8 @@ html, body {
 .tag-carrefour { background: var(--carrefour); }
 .tag-lidl { background: var(--lidl); }
 .tag-aldi { background: var(--aldi); }
+.tag-spar { background: #00843D; }
+.tag-intermarche { background: #E8590C; }
 
 .card-info {
   flex: 1;
