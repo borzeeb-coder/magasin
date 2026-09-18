@@ -1,0 +1,91 @@
+name: Auto-Update Promos
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Tous les jours à 6h00 UTC
+  workflow_dispatch:      # Déclenchement manuel
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update-promos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 lxml
+
+      - name: Run promo updater
+        id: updater
+        run: |
+          python scripts/update_promos.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet data/promos.json data/images/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Aucun changement détecté"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changements détectés"
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add data/promos.json data/images/ data/ean_mapping.json
+          git commit -m "chore: auto-update promos $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
+
+      - name: Trigger GitHub Pages deployment
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'main',
+              environment: 'github-pages',
+              auto_merge: false,
+              required_contexts: []
+            })
+
+      - name: Summary
+        run: |
+          echo "## Mise à jour automatique des promos" >> $GITHUB_STEP_SUMMARY
+          echo "- Date: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "- Changements: ${{ steps.changes.outputs.changed }}" >> $GITHUB_STEP_SUMMARY
+          if [ -f data/promos.json ]; then
+            python -c "
+import json
+with open('data/promos.json') as f:
+    d = json.load(f)
+total = sum(len(v) for v in d['offers'].values())
+with_nutri = sum(1 for v in d['offers'].values() for o in v if o.get('nutriscore'))
+print(f'- Total offres: {total}')
+print(f'- Avec Nutri-Score: {with_nutri} ({with_nutri/total*100:.1f}%)')
+" >> $GITHUB_STEP_SUMMARY
+          fi
