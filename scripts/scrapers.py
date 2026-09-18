@@ -282,21 +282,49 @@ def _fetch_carrefour_product(url: str) -> Optional[Dict]:
         
         # Get Product JSON-LD
         scripts = soup.find_all('script', type='application/ld+json')
+        product_ld = None
         for s in scripts:
             if s.string:
                 try:
                     ld = json.loads(s.string)
                     if ld.get('@type') == 'Product':
-                        return _parse_carrefour_product(ld, url)
+                        product_ld = ld
+                        break
                 except:
                     pass
+        
+        if not product_ld:
+            return None
+        
+        # Extract image from HTML (not in JSON-LD)
+        img_url = ''
+        # Try img[itemprop="image"] first (Carrefour uses this)
+        img_tag = soup.select_one('img[itemprop="image"]')
+        if img_tag and img_tag.get('src'):
+            img_url = img_tag['src']
+        elif img_tag and img_tag.get('data-src'):
+            img_url = img_tag['data-src']
+        else:
+            # Try meta og:image
+            og_img = soup.find('meta', property='og:image')
+            if og_img and og_img.get('content'):
+                img_url = og_img['content']
+            else:
+                # Try first product image
+                img_tag = soup.select_one('.product-image img, .product-gallery img, [data-testid="product-image"] img, .product-main-image img')
+                if img_tag and img_tag.get('src'):
+                    img_url = img_tag['src']
+                elif img_tag and img_tag.get('data-src'):
+                    img_url = img_tag['data-src']
+        
+        return _parse_carrefour_product(product_ld, url, img_url)
     except Exception as e:
         print(f"Error fetching Carrefour product {url}: {e}")
     
     return None
 
 
-def _parse_carrefour_product(ld: Dict, url: str) -> Optional[Dict]:
+def _parse_carrefour_product(ld: Dict, url: str, img_url: str = '') -> Optional[Dict]:
     """Parse Product JSON-LD into offer format"""
     try:
         name = ld.get('name', '').strip()
@@ -317,14 +345,6 @@ def _parse_carrefour_product(ld: Dict, url: str) -> Optional[Dict]:
         # Discount
         discount_pct = None
         # Could calculate if we have both prices
-        
-        # Image
-        img_url = ''
-        img = ld.get('image')
-        if isinstance(img, list):
-            img_url = img[0] if img else ''
-        elif isinstance(img, str):
-            img_url = img
         
         # SKU/EAN
         sku = ld.get('sku', '') or ld.get('mpn', '')
