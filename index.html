@@ -311,6 +311,10 @@
   }
   .pd-trend.down{color:var(--green); border-color:var(--green);}
   .pd-trend.up{color:var(--red); border-color:var(--red);}
+  .pcard-spark{display:flex; align-items:center; gap:5px; font-size:10px; color:var(--ink-soft); margin:3px 0 7px;}
+  .spark{vertical-align:middle; flex-shrink:0;}
+  .spark-dir{font-size:11px; line-height:1;}
+  .pd-spark{margin:8px 0 0; font-size:11px;}
   .cmp-row{display:flex; gap:11px; align-items:center; padding:11px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
   .cmp-row:last-child{border-bottom:none;}
   .cmp-logo{width:34px; height:34px; border-radius:9px; background:#fff; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden;}
@@ -855,6 +859,7 @@ function renderProducts(){
           ${np ? `<span class="new-price">${np.toFixed(2)} €</span>` : `<span class="new-price no-price">Prix en magasin</span>`}
           ${discountPct(p)>0 && p.old != null && p.new != null ? `<span class="old-price">${p.old.toFixed(2)} €</span>` : ''}
         </div>
+        ${np ? `<div class="pcard-spark">${sparkline(p)}</div>` : ''}
         ${np ? `<button class="pcard-add ${inCart?'in-cart':''}" data-id="${p.id}">${inCart ? `✓ Dans le panier (${state.cart[p.id]})` : '+ Ajouter'}</button>` : `<div class="pcard-ghost">Sur le prospectus ${st.name}</div>`}
       </div>`;
     card.querySelector('.pcard-img').addEventListener('click', ()=>openProduct(p.id));
@@ -1048,6 +1053,7 @@ function openProduct(id){
       <span class="pd-share" id="pdShareBtn">📤 Partager</span>
     </div>
     ${(()=>{ const tr = priceTrend(p); if(tr && tr.dir!=='flat') return tr.dir==='down' ? `<div class="pd-trend down">📉 Prix en baisse : −${Math.abs(tr.delta).toFixed(2)} € depuis le ${tr.when}</div>` : `<div class="pd-trend up">📈 Prix en hausse de ${tr.delta.toFixed(2)} €</div>`; return ''; })()}
+    ${np ? `<div class="pcard-spark pd-spark">Historique : ${sparkline(p, 110, 28)}</div>` : ''}
     <button class="pd-compare" id="pdCompareBtn">💰 Comparer chez les autres magasins</button>
     <div class="pd-store"><img src="logos/${st.id}.logo.svg" alt="" style="height:18px;width:auto;vertical-align:-4px;margin-right:6px;" onerror="this.remove()"> ${st.name} · ${st.addr} · 📍 ${st.dist*1000|0} m</div>
     <h2 class="pd-name">${p.name}</h2>
@@ -1578,16 +1584,25 @@ function openComparator(id){
    HISTORIQUE DE PRIX (prix constaté à chaque visite)
 -------------------------------------------------------- */
 function recordPriceHistory(list){
-  const hist = safeParse('pa_price_hist') || {};
+  let hist = safeParse('pa_price_hist') || {};
   const now = Date.now();
+  const MAX = 30;
   list.forEach(p=>{
     const np = priceOf(p);
     if(np == null) return;
-    const prev = hist[p.id];
-    if(!prev){
-      hist[p.id] = {price: np, at: now};
-    } else if(prev.price !== np){
-      hist[p.id] = {prevPrice: prev.price, prevAt: prev.at, price: np, at: now};
+    const rec = hist[p.id];
+    // Migration : ancien format {price, at, prevPrice, prevAt} -> {series:[...]}
+    let series = Array.isArray(rec && rec.series) ? rec.series : [];
+    if(!series.length && rec && rec.price != null){
+      series = [];
+      if(rec.prevPrice != null && rec.prevAt != null) series.push({price: rec.prevPrice, at: rec.prevAt});
+      series.push({price: rec.price, at: rec.at});
+    }
+    const last = series[series.length-1];
+    if(!last || last.price !== np){
+      series.push({price: np, at: now});
+      if(series.length > MAX) series = series.slice(-MAX);
+      hist[p.id] = {series};
     }
   });
   const ids = new Set(list.map(x=>String(x.id)));
@@ -1596,13 +1611,29 @@ function recordPriceHistory(list){
 }
 function priceTrend(p){
   const hist = safeParse('pa_price_hist') || {};
-  const h = hist[p.id];
+  const rec = hist[p.id];
   const np = priceOf(p);
-  if(!h || h.prevPrice == null || np == null) return null;
-  const delta = np - h.prevPrice;
+  if(!rec || !Array.isArray(rec.series) || rec.series.length < 2 || np == null) return null;
+  const prev = rec.series[rec.series.length-2];
+  const delta = np - prev.price;
   const dir = delta < -0.001 ? 'down' : (delta > 0.001 ? 'up' : 'flat');
-  const when = new Date(h.prevAt).toLocaleDateString('fr-BE', {day:'numeric', month:'short'});
+  const when = new Date(prev.at).toLocaleDateString('fr-BE', {day:'numeric', month:'short'});
   return {dir, delta, when};
+}
+/* Mini-courbe (SVG) de l'historique de prix du produit. */
+function sparkline(p, w=64, h=22){
+  const hist = safeParse('pa_price_hist') || {};
+  const rec = hist[p.id];
+  if(!rec || !Array.isArray(rec.series) || rec.series.length < 2) return '';
+  const vals = rec.series.map(s=>s.price);
+  const min = Math.min(...vals), max = Math.max(...vals);
+  const span = (max - min) || 1;
+  const step = w/(vals.length-1);
+  const pts = vals.map((v,i)=>`${(i*step).toFixed(1)},${(h-3-((v-min)/span)*(h-6)).toFixed(1)}`).join(' ');
+  const a = vals[vals.length-2], b = vals[vals.length-1];
+  const color = b < a ? 'var(--green)' : (b > a ? 'var(--red)' : 'var(--ink-soft)');
+  const dir = b < a ? '↘' : (b > a ? '↗' : '→');
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline fill="none" stroke="${color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points="${pts}"/></svg><span class="spark-dir" style="color:${color}">${dir}</span>`;
 }
 
 /* ---------------------------------------------------------
