@@ -1164,22 +1164,32 @@ document.getElementById('passBtn').addEventListener('click', ()=>{
    FAVORIS + PARTAGE
 -------------------------------------------------------- */
 function saveFavs(){ save('pa_favs', state.favs); }
+/* Seuil d'alerte automatique selon le prix du produit :
+   < 2 € → −10%, 2–5 € → −20%, sinon (ou prix non affiché) → −30%.
+   Toujours ajustable ensuite via les pastilles de la vue Favoris. */
+function smartThreshold(p){
+  const price = Number(p && p.new_price) > 0 ? Number(p.new_price)
+             : (Number(p && p.old_price) > 0 ? Number(p.old_price) : 0);
+  if(price > 0 && price < 2) return 10;
+  if(price > 0 && price < 5) return 20;
+  return 30;
+}
 function toggleFav(id){
   const i = state.favs.indexOf(id);
+  const p = PRODUCTS.find(x=>x.id===id);
   if(i>=0){
     state.favs.splice(i,1);
     delete state.favThresh[id];
     save('pa_fav_thresh', state.favThresh);
   } else {
     state.favs.push(id);
-    if(!(id in state.favThresh)) state.favThresh[id] = 20; // seuil par défaut
+    if(!(id in state.favThresh)) state.favThresh[id] = smartThreshold(p);
     save('pa_fav_thresh', state.favThresh);
   }
   saveFavs();
   updateFavBadge();
   renderProducts();
   if(state.currentView==='favs') renderFavs();
-  const p = PRODUCTS.find(x=>x.id===id);
   showToast(i>=0 ? 'Retiré des favoris' : '♥ Ajouté aux favoris');
   syncPushFavs();
 }
@@ -1423,6 +1433,28 @@ async function unsubscribePush(){
   }catch(err){ /* silencieux */ }
 }
 
+/* Alerte automatique : au premier geste dans l'app (et une seule fois),
+   on demande la permission puis on s'abonne — plus besoin du bouton 🔔.
+   Le navigateur affichera sa boîte de permission (imposée par le système,
+   il vaut toujours un simple tappet « Autoriser »). */
+function setupAutoPushPrompt(){
+  if(!pushSupported()) return;
+  if(localStorage.getItem('pa_push_asked') === '1') return;
+  const onGesture = () => handleAutoPush();
+  ['pointerdown','touchstart'].forEach(t=>document.addEventListener(t, onGesture, { passive:true, once:false }));
+}
+async function handleAutoPush(){
+  if(!pushSupported()) return;
+  if(localStorage.getItem('pa_push_asked') === '1') return;
+  localStorage.setItem('pa_push_asked', '1'); // ne redemande jamais à l'insu de l'utilisateur
+  try{
+    const sub = await getSubscription();
+    if(sub){ updatePushUI(); return; }
+  }catch(e){}
+  if(Notification.permission === 'denied'){ updatePushUI(); return; }
+  await subscribePush();
+}
+
 /* ---------------------------------------------------------
    SEARCH
 --------------------------------------------------------- */
@@ -1607,6 +1639,7 @@ async function init(){
   const pb = document.getElementById('pushBtn');
   if(pb) pb.addEventListener('click', subscribePush);
   updatePushUI();
+  setupAutoPushPrompt();
   if(navigator.onLine === false){
     const b = document.getElementById('offlineBanner');
     if(b) b.style.display = 'block';
