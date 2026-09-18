@@ -24,12 +24,6 @@ import { bestOfferFor } from './matching.mjs';
 const APP_URL = 'https://borzeeb-coder.github.io/magasin/';
 const REFRESH_MIN = 24 * 60; // en minutes : on ne renvoie pas pour un même favori avant ce délai
 
-setVapidDetails(
-  typeof PUSH_SUBJECT === 'string' ? PUSH_SUBJECT : 'mailto:promoapp@example.com',
-  VAPID_PUBLIC_KEY,
-  VAPID_PRIVATE_KEY,
-);
-
 function json(body, status = 200, extra = {}) {
   return new Response(JSON.stringify(body), {
     status,
@@ -64,6 +58,13 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const method = request.method;
+
+    // En module Workers, les bindings n'existent que via `env` (pas en globals).
+    setVapidDetails(
+      env.PUSH_SUBJECT || 'mailto:promoapp@example.com',
+      env.VAPID_PUBLIC_KEY,
+      env.VAPID_PRIVATE_KEY,
+    );
 
     try {
       if (method === 'POST' && url.pathname === '/subscribe') {
