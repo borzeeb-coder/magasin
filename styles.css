@@ -432,7 +432,7 @@ html, body {
 .store-chip-tag {
   position: absolute;
   top: 6px;
-  left: 6px;
+  right: 6px;
   font-size: 9px;
   font-weight: 900;
   padding: 2px 6px;
