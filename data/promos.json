@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T09:34:48Z",
+  "generated_at": "2026-09-18T12:00:00Z",
   "stores_meta": {
     "colruyt": {
       "name": "Colruyt",
@@ -504,16 +504,42 @@
         "new_price": 3.75,
         "discount_pct": null,
         "image_url": "data/images/intermarche-002.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Pâturages",
-        "old_price": null,
-        "new_price": 3.65,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-003.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 2,
+        "nutrition": {
+          "energy_kcal_100g": 745,
+          "fat_100g": 82,
+          "saturated_fat_100g": 58,
+          "carbs_100g": 1.2,
+          "sugars_100g": 0.6,
+          "fiber_100g": 0,
+          "proteins_100g": 0.7,
+          "salt_100g": 0.02
+        },
+        "ingredients": "Crème* pasteurisée issue de l'agriculture biologique (Origine : France), ferments lactiques*. *dont lait",
+        "allergens": [
+          "en:milk"
+        ],
+        "additives": [],
+        "labels": [
+          "en:organic",
+          "en:distributor-labels",
+          "en:eu-agriculture",
+          "en:eu-organic",
+          "en:nutriscore",
+          "en:fr-bio-01",
+          "en:french-agriculture",
+          "en:green-dot",
+          "en:nutriscore-grade-e",
+          "fr:ab-agriculture-biologique",
+          "fr:selection-intermarche",
+          "fr:Crème française",
+          "fr:Eco-Emballages",
+          "fr:Ecolopass\n\n\n"
+        ],
+        "brands": "Intermarché, Pâturages",
+        "categories": "Frais, Beurres moulés, Beurres de crème douce, Autres produits"
       },
       {
         "store": "intermarche",
@@ -531,16 +557,31 @@
         "new_price": 3.15,
         "discount_pct": null,
         "image_url": "data/images/intermarche-005.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Parmareggio",
-        "old_price": null,
-        "new_price": 9.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-006.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 402,
+          "fat_100g": 30,
+          "saturated_fat_100g": 20,
+          "carbs_100g": 0,
+          "sugars_100g": 0,
+          "fiber_100g": 0,
+          "proteins_100g": 32,
+          "salt_100g": 1.6
+        },
+        "ingredients": "lait, sel, présure",
+        "allergens": [
+          "en:milk"
+        ],
+        "additives": [],
+        "labels": [
+          "en:no-gluten",
+          "en:green-dot",
+          "en:pdo"
+        ],
+        "brands": "OLUF LORENTZEN AS",
+        "categories": "Fresh foods, Cow cheeses, Hard cheeses, Grated cheese, Parmigiano-Reggiano"
       },
       {
         "store": "intermarche",
@@ -567,70 +608,33 @@
         "new_price": 2.39,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-009.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Danette",
-        "old_price": null,
-        "new_price": 2.79,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-010.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Danette",
-        "old_price": null,
-        "new_price": 3.59,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-011.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Danette",
-        "old_price": null,
-        "new_price": 2.05,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-012.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Danette",
-        "old_price": null,
-        "new_price": 2.75,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-013.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Danette",
-        "old_price": null,
-        "new_price": 3.35,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-014.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Danette",
-        "old_price": null,
-        "new_price": 3.19,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-015.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Danette",
-        "old_price": null,
-        "new_price": 3.49,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-016.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 107,
+          "fat_100g": 3,
+          "saturated_fat_100g": 2.1,
+          "carbs_100g": 17.1,
+          "sugars_100g": 14.5,
+          "fiber_100g": null,
+          "proteins_100g": 3,
+          "salt_100g": 14
+        },
+        "ingredients": "_Lait_ entier et _lait_ écrémé concentré ou en poudre (86,4 %), sucre, épaississants (E1442, E407), perméat de petit _lait_ (lactosérum) en poudre, amidon, arôme (_lait_), colorant (E160a).",
+        "allergens": [
+          "en:milk"
+        ],
+        "additives": [
+          "en:e1442",
+          "en:e160a",
+          "en:e407"
+        ],
+        "labels": [
+          "en:green-dot"
+        ],
+        "brands": "DANETTE",
+        "categories": "Milchprodukte, nl:Desserten en deeg/pannenkoeken"
       },
       {
         "store": "intermarche",
@@ -639,34 +643,25 @@
         "new_price": 2.19,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-017.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Panzani",
-        "old_price": null,
-        "new_price": 1.35,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-018.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Panzani",
-        "old_price": null,
-        "new_price": 2.25,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-019.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Panzani",
-        "old_price": null,
-        "new_price": 2.49,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-020.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "A",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 361,
+          "fat_100g": 2,
+          "saturated_fat_100g": 0.3,
+          "carbs_100g": 72,
+          "sugars_100g": 3,
+          "fiber_100g": 3,
+          "proteins_100g": 11,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Panzani",
+        "categories": "Pâtes sèches"
       },
       {
         "store": "intermarche",
@@ -675,34 +670,25 @@
         "new_price": 4.09,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-021.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Miracoli",
-        "old_price": null,
-        "new_price": 4.19,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-022.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Miracoli",
-        "old_price": null,
-        "new_price": 2.95,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-023.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Miracoli",
-        "old_price": null,
-        "new_price": 4.19,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-024.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "miracoli",
+        "categories": "Pastasauzen"
       },
       {
         "store": "intermarche",
@@ -711,16 +697,31 @@
         "new_price": 13.98,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-025.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Escal",
-        "old_price": null,
-        "new_price": 13.98,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-026.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "A",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 82,
+          "fat_100g": 0.69999998807907,
+          "saturated_fat_100g": 0.20000000298023,
+          "carbs_100g": 0,
+          "sugars_100g": 0,
+          "fiber_100g": null,
+          "proteins_100g": 19,
+          "salt_100g": 0.33000001311302
+        },
+        "ingredients": "Queues de crevettes (crustacé), sel, antioxydant : disulfite e sodium.",
+        "allergens": [
+          "en:crustaceans"
+        ],
+        "additives": [],
+        "labels": [
+          "en:no-preservatives",
+          "en:responsible-aquaculture",
+          "en:responsible-aquaculture-asc"
+        ],
+        "brands": "Escal",
+        "categories": "Queues de crevettes"
       },
       {
         "store": "intermarche",
@@ -729,24 +730,6 @@
         "new_price": 7.99,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-027.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Soupline",
-        "old_price": null,
-        "new_price": 7.99,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-028.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Soupline",
-        "old_price": null,
-        "new_price": 7.99,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-029.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -769,129 +752,43 @@
       },
       {
         "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 2.49,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-032.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 2.49,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-033.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 2.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-034.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 2.79,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-035.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 5.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-036.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 5.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-037.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 2.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-038.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 2.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-039.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Saint Eloi",
-        "old_price": null,
-        "new_price": 2.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-040.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Florette",
         "old_price": null,
         "new_price": 2.99,
         "discount_pct": null,
         "image_url": "data/images/intermarche-041.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Florette",
-        "old_price": null,
-        "new_price": 6.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-042.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Florette",
-        "old_price": null,
-        "new_price": 1.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-043.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Florette",
-        "old_price": null,
-        "new_price": 1.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-044.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Florette",
-        "old_price": null,
-        "new_price": 3.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-045.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "A",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 59,
+          "fat_100g": 4.2,
+          "saturated_fat_100g": 0.4,
+          "carbs_100g": 3.6,
+          "sugars_100g": 2.3,
+          "fiber_100g": 1.6,
+          "proteins_100g": 0.9,
+          "salt_100g": 0.26
+        },
+        "ingredients": "Légumes 84,2% (tomates, radis, carotte , chou-fleur), Sauce aux herbes aromatiques 15,8% (Eau, huile de colza, vinaigre d'alcool, amidon modifié, jaune d'œuf, plantes aromatiques 2,4% (basilic, cerfeuil, estragon), sucre, sel, jus de citron concentré, échalote déshydratée, épaississant : gomme xanthane, arôme naturel de moutarde, épice).\nTraces éventuelles de céleri.",
+        "allergens": [
+          "en:eggs",
+          "en:milk",
+          "en:mustard"
+        ],
+        "additives": [
+          "en:e14xx",
+          "en:e415"
+        ],
+        "labels": [
+          "en:no-preservatives",
+          "en:green-dot",
+          "en:nutriscore",
+          "en:nutriscore-grade-a",
+          "fr:triman"
+        ],
+        "brands": "Florette",
+        "categories": "Légumes et dérivés, Assortiments de snacks, Salades de légumes"
       },
       {
         "store": "intermarche",
@@ -1003,24 +900,6 @@
       },
       {
         "store": "intermarche",
-        "name": "Abats de poulet",
-        "old_price": null,
-        "new_price": 4.25,
-        "discount_pct": -25,
-        "image_url": "data/images/intermarche-058.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Abats de poulet",
-        "old_price": null,
-        "new_price": 4.25,
-        "discount_pct": -25,
-        "image_url": "data/images/intermarche-059.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Saucisses de poulet",
         "old_price": null,
         "new_price": 8.79,
@@ -1057,29 +936,11 @@
       },
       {
         "store": "intermarche",
-        "name": "Maison Briau",
-        "old_price": null,
-        "new_price": 8.79,
-        "discount_pct": -20,
-        "image_url": "data/images/intermarche-064.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Appetit",
         "old_price": null,
         "new_price": 4.16,
         "discount_pct": -15,
         "image_url": "data/images/intermarche-065.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Appetit",
-        "old_price": null,
-        "new_price": 22.86,
-        "discount_pct": -15,
-        "image_url": "data/images/intermarche-066.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -1098,15 +959,6 @@
         "new_price": 3.05,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-068.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Herta",
-        "old_price": null,
-        "new_price": 5.39,
-        "discount_pct": 25,
-        "image_url": "data/images/intermarche-069.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -1197,16 +1049,42 @@
         "new_price": 5.29,
         "discount_pct": null,
         "image_url": "data/images/intermarche-079.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Sodebo",
-        "old_price": null,
-        "new_price": 5.89,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-080.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 172.142857142857,
+          "fat_100g": 6.78571428571429,
+          "saturated_fat_100g": 4.28571428571429,
+          "carbs_100g": 17.8571428571429,
+          "sugars_100g": 1.39285714285714,
+          "fiber_100g": 2,
+          "proteins_100g": 8.92857142857143,
+          "salt_100g": 0.678571428571429
+        },
+        "ingredients": "Pipe rigate cuite 52% (semoule de blé dur, eau, œuf, sel), crème fraîche légère 13%, jambon cuit standard 9% (jambon de porc, eau, sel, sirop de glucose, dextrose, stabilisant : E451, gélifiant : E407, lactose, arôme naturel, bouillon de porc, antioxydant : E316, conservateurs : E250, ferments), emmental 7%, lait écrémé, mozzarella 3%, eau, fécule de manioc, sel, ail, amidon de maïs, poivre, conservateurs : E202, E262i.  Porc : Origine UE",
+        "allergens": [
+          "en:eggs",
+          "en:gluten",
+          "en:milk"
+        ],
+        "additives": [
+          "en:e202",
+          "en:e250",
+          "en:e262",
+          "en:e262i",
+          "en:e316",
+          "en:e407",
+          "en:e451"
+        ],
+        "labels": [
+          "en:green-dot",
+          "en:nutriscore",
+          "fr:Aux pâtes fraîches",
+          "fr:Eco-Emballages"
+        ],
+        "brands": "Sodebo",
+        "categories": "Viandes et dérivés, Plats préparés frais, Plats au porc, Pâtes instantanées, Box"
       },
       {
         "store": "intermarche",
@@ -1228,15 +1106,6 @@
       },
       {
         "store": "intermarche",
-        "name": "St Môret",
-        "old_price": null,
-        "new_price": 4.25,
-        "discount_pct": 25,
-        "image_url": "data/images/intermarche-083.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Boursin",
         "old_price": null,
         "new_price": 1.89,
@@ -1251,16 +1120,31 @@
         "new_price": 5.29,
         "discount_pct": null,
         "image_url": "data/images/intermarche-085.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Boursin",
-        "old_price": null,
-        "new_price": 3.65,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-086.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 230,
+          "fat_100g": 18,
+          "saturated_fat_100g": 12,
+          "carbs_100g": 5,
+          "sugars_100g": 5,
+          "fiber_100g": null,
+          "proteins_100g": 12,
+          "salt_100g": 2.2
+        },
+        "ingredients": "Lait écrémé réhydraté, fromages (bleu 13% dans la variété Bleu), beurre, protéines de lait, sels de fonte : polyphosphates, citrates de sodium et acide citrique, préparation dans la variété Tomate (concentré de purée de tomate 3%, sel, saccharose, oignon et ail en poudre, arôme de tomate), sel, arômes, exhausteur de goût: glutamate monosodique, arômes de fumée,",
+        "allergens": [
+          "en:milk"
+        ],
+        "additives": [
+          "en:e330",
+          "en:e452",
+          "en:e621"
+        ],
+        "labels": [],
+        "brands": "Apéricube",
+        "categories": "Cheeses, Processed cheeses, Cheese appetizers"
       },
       {
         "store": "intermarche",
@@ -1278,15 +1162,6 @@
         "new_price": 2.19,
         "discount_pct": null,
         "image_url": "data/images/intermarche-088.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Starbucks",
-        "old_price": null,
-        "new_price": 2.19,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-089.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -1332,34 +1207,39 @@
         "new_price": 2.0,
         "discount_pct": null,
         "image_url": "data/images/intermarche-094.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Part de tarte individuelle",
-        "old_price": null,
-        "new_price": 2.0,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-095.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Part de tarte individuelle",
-        "old_price": null,
-        "new_price": 2.0,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-096.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Part de tarte individuelle",
-        "old_price": null,
-        "new_price": 2.0,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-097.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 438,
+          "fat_100g": 25,
+          "saturated_fat_100g": 8.2,
+          "carbs_100g": 46,
+          "sugars_100g": 29,
+          "fiber_100g": 2.2,
+          "proteins_100g": 6.2,
+          "salt_100g": 0.3
+        },
+        "ingredients": "Farine de blé, sucre, ceufs entiers, huile de coiza, chocolat noir 11% (sucre, pâte de cacao, beurre de cacao. émulsifiant lécithine (soja)) (UE/hors UE), beurre, eau, noisettes 4% (hors UE), pépites de chocolat noir 2% (sucre, pâte de cacao, beurre de cacao, dextrose, émulsifiant: lécithine de scia), cacao en poudre, poudre à lever: diphosphateset carbonates de sodium, sel, miel. Elaboré dans un atelier utilisant: autres fruits à coque.",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:nuts",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i"
+        ],
+        "labels": [
+          "en:no-preservatives",
+          "en:green-dot",
+          "en:made-in-france",
+          "en:no-colorings",
+          "fr:triman"
+        ],
+        "brands": "L’atelier Georget",
+        "categories": "Brookies"
       },
       {
         "store": "intermarche",
@@ -1417,30 +1297,30 @@
       },
       {
         "store": "intermarche",
-        "name": "Nestlé Extrême",
-        "old_price": null,
-        "new_price": 4.89,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-104.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Mc Cain",
         "old_price": null,
         "new_price": 6.98,
         "discount_pct": null,
         "image_url": "data/images/intermarche-105.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Mc Cain",
-        "old_price": null,
-        "new_price": 6.98,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-106.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "B",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 149,
+          "fat_100g": 4.3,
+          "saturated_fat_100g": 0.5,
+          "carbs_100g": 24,
+          "sugars_100g": 0.2,
+          "fiber_100g": 2.3,
+          "proteins_100g": 2.5,
+          "salt_100g": 0.6
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "McCain",
+        "categories": "Frites surgelées"
       },
       {
         "store": "intermarche",
@@ -1453,48 +1333,30 @@
       },
       {
         "store": "intermarche",
-        "name": "Mora",
-        "old_price": null,
-        "new_price": 5.45,
-        "discount_pct": 20,
-        "image_url": "data/images/intermarche-108.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Iglo",
         "old_price": null,
         "new_price": 6.89,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-109.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Iglo",
-        "old_price": null,
-        "new_price": 6.89,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-110.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Iglo",
-        "old_price": null,
-        "new_price": 6.99,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-111.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Iglo",
-        "old_price": null,
-        "new_price": 6.99,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-112.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 101,
+          "fat_100g": 1.7,
+          "saturated_fat_100g": 0.2,
+          "carbs_100g": 9.9,
+          "sugars_100g": 1.5,
+          "fiber_100g": 3.2,
+          "proteins_100g": 10,
+          "salt_100g": 0.4725
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Iglo",
+        "categories": ""
       },
       {
         "store": "intermarche",
@@ -1503,15 +1365,6 @@
         "new_price": 5.98,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-113.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Yoplait",
-        "old_price": null,
-        "new_price": 5.98,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-114.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -1539,16 +1392,25 @@
         "new_price": 5.49,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-117.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Douwe Egberts",
-        "old_price": null,
-        "new_price": 5.49,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-118.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 95,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 21,
+          "sugars_100g": 20,
+          "fiber_100g": 2.3,
+          "proteins_100g": 1.5,
+          "salt_100g": 0.00075
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Douwe Egberts",
+        "categories": ""
       },
       {
         "store": "intermarche",
@@ -1575,52 +1437,34 @@
         "new_price": 2.09,
         "discount_pct": null,
         "image_url": "data/images/intermarche-121.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Paquito",
-        "old_price": null,
-        "new_price": 1.89,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-122.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Paquito",
-        "old_price": null,
-        "new_price": 1.25,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-123.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Paquito",
-        "old_price": null,
-        "new_price": 1.19,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-124.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Paquito",
-        "old_price": null,
-        "new_price": 3.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-125.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Paquito",
-        "old_price": null,
-        "new_price": 1.55,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-126.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 248,
+          "fat_100g": 0.5,
+          "saturated_fat_100g": 0.1,
+          "carbs_100g": 61,
+          "sugars_100g": 58,
+          "fiber_100g": 0.7,
+          "proteins_100g": 0.5,
+          "salt_100g": 0.01
+        },
+        "ingredients": "Fraises, sucre, sucre roux de canne, gélifiant : pectines, acidifiant : acide citrique. Préparée avec 50 g de fruits pour 100 g.",
+        "allergens": [],
+        "additives": [
+          "en:e330",
+          "en:e440"
+        ],
+        "labels": [
+          "en:distributor-labels",
+          "en:nutriscore",
+          "en:nutriscore-grade-d",
+          "fr:selection-intermarche",
+          "fr:triman"
+        ],
+        "brands": "Intermarché, Paquito",
+        "categories": "en:fruits-based-foods, Confitures de fraises, Confitures gelees ou marmelades"
       },
       {
         "store": "intermarche",
@@ -1651,15 +1495,6 @@
       },
       {
         "store": "intermarche",
-        "name": "Lindt",
-        "old_price": null,
-        "new_price": 8.45,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-130.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Twix",
         "old_price": null,
         "new_price": 4.29,
@@ -1674,7 +1509,36 @@
         "new_price": 2.99,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-132.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 489,
+          "fat_100g": 23,
+          "saturated_fat_100g": 7.6,
+          "carbs_100g": 60,
+          "sugars_100g": 51,
+          "fiber_100g": null,
+          "proteins_100g": 8.6,
+          "salt_100g": 0.52
+        },
+        "ingredients": "Sucre, sirop de glucose, cacahuètes, lait écrémé en poudre, beure de cacao, pâte de cacao, perméat de lactosérum (lait), hule de tournesol, matière grasse du lait, matière grasse de palme sel émulsifiant (lécithine de soja), blanc d'oeuf en poudre. (Peut contenir: noisettes). Le chocolat au lait contient des matières grasses végétales en plus du beurre de cacao. A T",
+        "allergens": [
+          "en:eggs",
+          "en:milk",
+          "en:peanuts",
+          "en:soybeans",
+          "nl:cacahuètes",
+          "nl:lait",
+          "nl:lécithine de soja"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i"
+        ],
+        "labels": [],
+        "brands": "Mars",
+        "categories": "en:Candy chocolate bars filled with caramel and peanuts"
       },
       {
         "store": "intermarche",
@@ -1683,15 +1547,6 @@
         "new_price": 2.79,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-133.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Quaker",
-        "old_price": null,
-        "new_price": 5.55,
-        "discount_pct": 25,
-        "image_url": "data/images/intermarche-134.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -1705,39 +1560,40 @@
       },
       {
         "store": "intermarche",
-        "name": "Lu",
-        "old_price": null,
-        "new_price": 3.75,
-        "discount_pct": 25,
-        "image_url": "data/images/intermarche-136.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Lu",
-        "old_price": null,
-        "new_price": 3.89,
-        "discount_pct": 25,
-        "image_url": "data/images/intermarche-137.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Sacla",
         "old_price": null,
         "new_price": 4.25,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-138.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Sacla",
-        "old_price": null,
-        "new_price": 4.39,
-        "discount_pct": 25,
-        "image_url": "data/images/intermarche-139.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 380,
+          "fat_100g": 36,
+          "saturated_fat_100g": 5,
+          "carbs_100g": 8,
+          "sugars_100g": 3.5,
+          "fiber_100g": null,
+          "proteins_100g": 4.9,
+          "salt_100g": 3.3
+        },
+        "ingredients": "Huile de tournesol, Basilic italien 36%, Noix de Cajou FRUITS A COQUE), Fromage Grana Padano AOP LAIT, OEUF), Sel marin, Glucose, Fromage Pecorino Romano AOP (LAIT DE BREBIS), Pommes de terre, Pignons piles, Huile d'olive extra vierge, Arômes, Arôme naturel d'ail, Correcteur d'acidité: Acide lactique,",
+        "allergens": [
+          "en:eggs",
+          "en:milk",
+          "en:nuts"
+        ],
+        "additives": [
+          "en:e270"
+        ],
+        "labels": [
+          "en:no-gluten",
+          "en:green-dot",
+          "en:made-in-italy"
+        ],
+        "brands": "Saclà",
+        "categories": "Conserves, Pestos au basilic, en:groceries"
       },
       {
         "store": "intermarche",
@@ -1759,15 +1615,6 @@
       },
       {
         "store": "intermarche",
-        "name": "Tyrrell's",
-        "old_price": null,
-        "new_price": 2.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-142.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Chio",
         "old_price": null,
         "new_price": 2.59,
@@ -1777,21 +1624,38 @@
       },
       {
         "store": "intermarche",
-        "name": "Chio",
-        "old_price": null,
-        "new_price": 2.05,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-144.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Pombar",
         "old_price": null,
         "new_price": 1.89,
         "discount_pct": null,
         "image_url": "data/images/intermarche-145.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 511,
+          "fat_100g": 26.1,
+          "saturated_fat_100g": 2.6,
+          "carbs_100g": 63.4,
+          "sugars_100g": 2.2,
+          "fiber_100g": 5,
+          "proteins_100g": 3,
+          "salt_100g": 1.5
+        },
+        "ingredients": "Pomme de terre en poudre (32%), huile de tournesol, amidon de maïs, fécule de pomme de terre, dextrine de maïs, sucre, sel iodé, émulsifiant (mono - et diglycerides d'acides gras), sel, extrait de levure, poudre",
+        "allergens": [],
+        "additives": [
+          "en:e1400",
+          "en:e471"
+        ],
+        "labels": [
+          "en:vegetarian",
+          "en:no-gluten",
+          "en:vegan",
+          "en:no-colorings"
+        ],
+        "brands": "Chio",
+        "categories": "Puffed salty snacks made from potato"
       },
       {
         "store": "intermarche",
@@ -1800,42 +1664,6 @@
         "new_price": 2.99,
         "discount_pct": null,
         "image_url": "data/images/intermarche-146.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Heinz",
-        "old_price": null,
-        "new_price": 5.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-147.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Heinz",
-        "old_price": null,
-        "new_price": 0.96,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-148.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Heinz",
-        "old_price": null,
-        "new_price": 1.95,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-149.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Heinz",
-        "old_price": null,
-        "new_price": 0.84,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-150.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -1849,30 +1677,30 @@
       },
       {
         "store": "intermarche",
-        "name": "La Fiammante - Passata",
-        "old_price": null,
-        "new_price": 2.6,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-152.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Spa Fruit",
         "old_price": null,
         "new_price": 7.59,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-153.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Spa Fruit",
-        "old_price": null,
-        "new_price": 8.88,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-154.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 12,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 3,
+          "sugars_100g": 2.6,
+          "fiber_100g": null,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": ""
       },
       {
         "store": "intermarche",
@@ -1926,7 +1754,27 @@
         "new_price": 5.49,
         "discount_pct": null,
         "image_url": "data/images/intermarche-160.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 183,
+          "fat_100g": 6.1,
+          "saturated_fat_100g": 1,
+          "carbs_100g": 18,
+          "sugars_100g": 10,
+          "fiber_100g": 0,
+          "proteins_100g": 11,
+          "salt_100g": 12.1
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:soybeans"
+        ],
+        "additives": [],
+        "labels": [],
+        "brands": "Hikari",
+        "categories": "en:Misos, Miso Paste"
       },
       {
         "store": "intermarche",
@@ -1939,75 +1787,44 @@
       },
       {
         "store": "intermarche",
-        "name": "Souq",
-        "old_price": null,
-        "new_price": 3.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-162.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Souq",
-        "old_price": null,
-        "new_price": 2.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-163.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Souq",
-        "old_price": null,
-        "new_price": 2.69,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-164.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Patak's",
         "old_price": null,
         "new_price": 2.59,
         "discount_pct": null,
         "image_url": "data/images/intermarche-165.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Patak's",
-        "old_price": null,
-        "new_price": 2.19,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-166.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Patak's",
-        "old_price": null,
-        "new_price": 3.39,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-167.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Patak's",
-        "old_price": null,
-        "new_price": 3.39,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-168.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Patak's",
-        "old_price": null,
-        "new_price": 3.55,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-169.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "E",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 262,
+          "fat_100g": 22.3,
+          "saturated_fat_100g": 1.6,
+          "carbs_100g": 5.6,
+          "sugars_100g": 0.7,
+          "fiber_100g": null,
+          "proteins_100g": 3.9,
+          "salt_100g": 4.8
+        },
+        "ingredients": "Eau, épices moulues (24%) (coriandre (10%), paprika (3%), curcuma (2%), cumin (2%), épices, fenugrec, cannelle, fenouil), huile de colza, sel, farine de mais, acidifiants (acide acétique, acide citrique, tamarin, poudre de _moutarde_, poudre d'ail.",
+        "allergens": [
+          "en:mustard",
+          "nl:mosterdpoeder"
+        ],
+        "additives": [
+          "en:e260",
+          "en:e330"
+        ],
+        "labels": [
+          "en:vegetarian",
+          "en:no-gluten",
+          "en:no-artificial-preservatives",
+          "en:vegan",
+          "en:green-dot",
+          "en:no-artificial-colors",
+          "en:no-artificial-colours-and-preservatives"
+        ],
+        "brands": "Patak&#039;s",
+        "categories": "en:Meal sauces, Gele Currypastas"
       },
       {
         "store": "intermarche",
@@ -2016,52 +1833,33 @@
         "new_price": 4.19,
         "discount_pct": null,
         "image_url": "data/images/intermarche-170.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "El Taco Truck",
-        "old_price": null,
-        "new_price": 3.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-171.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "El Taco Truck",
-        "old_price": null,
-        "new_price": 1.77,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-172.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "El Taco Truck",
-        "old_price": null,
-        "new_price": 1.69,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-173.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "El Taco Truck",
-        "old_price": null,
-        "new_price": 3.45,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-174.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "El Taco Truck",
-        "old_price": null,
-        "new_price": 3.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-175.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 226,
+          "fat_100g": 2.2,
+          "saturated_fat_100g": 0.4,
+          "carbs_100g": 43,
+          "sugars_100g": 0.8,
+          "fiber_100g": 0,
+          "proteins_100g": 5.3,
+          "salt_100g": 1
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [
+          "en:e202",
+          "en:e282",
+          "en:e296",
+          "en:e412",
+          "en:e466"
+        ],
+        "labels": [
+          "en:no-gluten"
+        ],
+        "brands": "El Taco Truck",
+        "categories": "en:Dagligvarer"
       },
       {
         "store": "intermarche",
@@ -2101,21 +1899,30 @@
       },
       {
         "store": "intermarche",
-        "name": "Agromonte",
-        "old_price": null,
-        "new_price": 2.89,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-180.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Panealba",
         "old_price": null,
         "new_price": 2.19,
         "discount_pct": null,
         "image_url": "data/images/intermarche-181.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 448,
+          "fat_100g": 15,
+          "saturated_fat_100g": 4.4,
+          "carbs_100g": 63,
+          "sugars_100g": 3.2,
+          "fiber_100g": null,
+          "proteins_100g": 13,
+          "salt_100g": 1.6
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Panealba",
+        "categories": "Cereali e patate"
       },
       {
         "store": "intermarche",
@@ -2133,52 +1940,43 @@
         "new_price": 0.79,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-183.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Yum Yum",
-        "old_price": null,
-        "new_price": 0.79,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-184.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Yum Yum",
-        "old_price": null,
-        "new_price": 0.89,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-185.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Yum Yum",
-        "old_price": null,
-        "new_price": 0.79,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-186.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Yum Yum",
-        "old_price": null,
-        "new_price": 0.89,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-187.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Yum Yum",
-        "old_price": null,
-        "new_price": 0.79,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-188.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "Nouilles: Farine de blé, Huile de palme (contient des antioxydants: E319), Fécule de tapioca, Soupe (arôme, exhausteur de goût E621, E627, E631, extrait de levure), Sel, régulateurs d'acidité: E500, E452, E451 s Épaississant E466, Condiments: Sel, Sucre, Huile de palme (contient des antioxydants: E320) )Légumes (ail et oignon blanc), Exhausteurs de goût: E621, E627, E631, Épices, amidon de mais, Acide: E296, colorant: E150c, Poudre de coriandre, 627, Ce produit est susceptible de contenir des traces de crustacés, poison lai arôme de canard (contient des graines de soja), céleri et sésame,",
+        "allergens": [
+          "en:gluten",
+          "en:soybeans",
+          "nl:Sojaeiweiß",
+          "nl:Weizenmehl"
+        ],
+        "additives": [
+          "en:e150c",
+          "en:e296",
+          "en:e306",
+          "en:e466",
+          "en:e621",
+          "en:e635"
+        ],
+        "labels": [
+          "en:sustainable",
+          "en:sustainable-palm-oil",
+          "en:halal",
+          "en:roundtable-on-sustainable-palm-oil",
+          "fr:triman"
+        ],
+        "brands": "Yum Yum",
+        "categories": "Soepen, Instantnoedelsoepen"
       },
       {
         "store": "intermarche",
@@ -2187,24 +1985,6 @@
         "new_price": 1.95,
         "discount_pct": null,
         "image_url": "data/images/intermarche-189.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Powerade",
-        "old_price": null,
-        "new_price": 1.95,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-190.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Powerade",
-        "old_price": null,
-        "new_price": 1.95,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-191.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -2218,39 +1998,38 @@
       },
       {
         "store": "intermarche",
-        "name": "Crazy Tiger",
-        "old_price": null,
-        "new_price": 1.3,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-193.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Capri-Sun",
         "old_price": null,
         "new_price": 1.65,
         "discount_pct": null,
         "image_url": "data/images/intermarche-194.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Capri-Sun",
-        "old_price": null,
-        "new_price": 1.65,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-195.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Capri-Sun",
-        "old_price": null,
-        "new_price": 1.65,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-196.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 30,
+          "fat_100g": 0.5,
+          "saturated_fat_100g": 0.1,
+          "carbs_100g": 7.1,
+          "sugars_100g": 7.1,
+          "fiber_100g": null,
+          "proteins_100g": 0.5,
+          "salt_100g": 0.01
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:kiwi"
+        ],
+        "additives": [
+          "en:e300"
+        ],
+        "labels": [
+          "en:vegetarian",
+          "en:vegan",
+          "fr:triman"
+        ],
+        "brands": "Capri-Sun",
+        "categories": "Frugtbaserede drikkevarer"
       },
       {
         "store": "intermarche",
@@ -2259,24 +2038,6 @@
         "new_price": 7.95,
         "discount_pct": null,
         "image_url": "data/images/intermarche-197.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Fuze Tea",
-        "old_price": null,
-        "new_price": 7.95,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-198.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Fuze Tea",
-        "old_price": null,
-        "new_price": 5.69,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-199.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -2290,21 +2051,30 @@
       },
       {
         "store": "intermarche",
-        "name": "Spa",
-        "old_price": null,
-        "new_price": 6.0,
-        "discount_pct": 25,
-        "image_url": "data/images/intermarche-201.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Fanta",
         "old_price": null,
         "new_price": 5.11,
         "discount_pct": null,
         "image_url": "data/images/intermarche-202.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": 48,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 11.7,
+          "sugars_100g": 11.7,
+          "fiber_100g": null,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Fanta",
+        "categories": ""
       },
       {
         "store": "intermarche",
@@ -2367,7 +2137,25 @@
         "new_price": 4.09,
         "discount_pct": 25,
         "image_url": "data/images/intermarche-209.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "UNKNOWN",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "pied boeuf",
+        "categories": ""
       },
       {
         "store": "intermarche",
@@ -2398,47 +2186,11 @@
       },
       {
         "store": "intermarche",
-        "name": "Tiseco",
-        "old_price": null,
-        "new_price": 5.99,
-        "discount_pct": -50,
-        "image_url": "data/images/intermarche-213.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Tiseco",
-        "old_price": null,
-        "new_price": 5.99,
-        "discount_pct": -50,
-        "image_url": "data/images/intermarche-214.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Tiseco",
-        "old_price": null,
-        "new_price": 5.99,
-        "discount_pct": -50,
-        "image_url": "data/images/intermarche-215.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Varta",
         "old_price": null,
         "new_price": 11.99,
         "discount_pct": null,
         "image_url": "data/images/intermarche-216.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Varta",
-        "old_price": null,
-        "new_price": 11.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-217.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -2475,7 +2227,25 @@
         "new_price": 1.9,
         "discount_pct": 20,
         "image_url": "data/images/intermarche-221.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
+        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
+        "nutriscore": "NOT-APPLICABLE",
+        "nova_group": null,
+        "nutrition": {
+          "energy_kcal_100g": null,
+          "fat_100g": null,
+          "saturated_fat_100g": null,
+          "carbs_100g": null,
+          "sugars_100g": null,
+          "fiber_100g": null,
+          "proteins_100g": null,
+          "salt_100g": null
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "William Lawson's",
+        "categories": "Boissons alcoolisées"
       },
       {
         "store": "intermarche",
@@ -2533,56 +2303,11 @@
       },
       {
         "store": "intermarche",
-        "name": "Gourmet",
-        "old_price": null,
-        "new_price": 3.95,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-228.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Gourmet",
-        "old_price": null,
-        "new_price": 3.95,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-229.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Nivea",
         "old_price": null,
         "new_price": 6.99,
         "discount_pct": null,
         "image_url": "data/images/intermarche-230.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Nivea",
-        "old_price": null,
-        "new_price": 3.19,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-231.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Nivea",
-        "old_price": null,
-        "new_price": 3.19,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-232.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Nivea",
-        "old_price": null,
-        "new_price": 3.05,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-233.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -2596,24 +2321,6 @@
       },
       {
         "store": "intermarche",
-        "name": "Le Chat",
-        "old_price": null,
-        "new_price": 12.69,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-235.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Le Chat",
-        "old_price": null,
-        "new_price": 5.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-236.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Mr. Propre",
         "old_price": null,
         "new_price": 4.99,
@@ -2623,29 +2330,11 @@
       },
       {
         "store": "intermarche",
-        "name": "Mr. Propre",
-        "old_price": null,
-        "new_price": 4.99,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-238.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Antikal",
         "old_price": null,
         "new_price": 4.29,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-239.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Antikal",
-        "old_price": null,
-        "new_price": 5.65,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-240.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -2664,15 +2353,6 @@
         "new_price": 8.19,
         "discount_pct": null,
         "image_url": "data/images/intermarche-242.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Ultra Doux",
-        "old_price": null,
-        "new_price": 4.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-243.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -2713,33 +2393,6 @@
       },
       {
         "store": "intermarche",
-        "name": "Häagen-Dazs",
-        "old_price": null,
-        "new_price": 7.39,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-248.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Häagen-Dazs",
-        "old_price": null,
-        "new_price": 7.39,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-249.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Häagen-Dazs",
-        "old_price": null,
-        "new_price": 7.39,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-250.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Pepsi",
         "old_price": null,
         "new_price": 6.39,
@@ -2749,47 +2402,11 @@
       },
       {
         "store": "intermarche",
-        "name": "Pepsi",
-        "old_price": null,
-        "new_price": 6.29,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-252.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Pepsi",
-        "old_price": null,
-        "new_price": 6.99,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-253.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
         "name": "Vin de France",
         "old_price": null,
         "new_price": 19.98,
         "discount_pct": 50,
         "image_url": "data/images/intermarche-254.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Vin de France",
-        "old_price": null,
-        "new_price": 19.98,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-255.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Vin de France",
-        "old_price": null,
-        "new_price": 19.98,
-        "discount_pct": 50,
-        "image_url": "data/images/intermarche-256.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       },
       {
@@ -2808,42 +2425,6 @@
         "new_price": 2.33,
         "discount_pct": null,
         "image_url": "data/images/intermarche-258.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Axe",
-        "old_price": null,
-        "new_price": 2.33,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-259.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Axe",
-        "old_price": null,
-        "new_price": 2.33,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-260.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Axe",
-        "old_price": null,
-        "new_price": 2.33,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-261.webp",
-        "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
-      },
-      {
-        "store": "intermarche",
-        "name": "Axe",
-        "old_price": null,
-        "new_price": 2.33,
-        "discount_pct": null,
-        "image_url": "data/images/intermarche-262.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/"
       }
     ]
