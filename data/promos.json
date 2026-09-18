@@ -1,0 +1,413 @@
+{
+  "generated_at": "2026-09-18T06:44:46Z",
+  "stores_meta": {
+    "colruyt": {
+      "name": "Colruyt",
+      "emoji": "🔴",
+      "color": "#DE3B24",
+      "addr": "Chaussée de Liège, Marche",
+      "dist": 0.45
+    },
+    "delhaize": {
+      "name": "Delhaize",
+      "emoji": "🦁",
+      "color": "#C8102E",
+      "addr": "Rue du Luxembourg, Marche",
+      "dist": 0.9
+    },
+    "carrefour": {
+      "name": "Carrefour",
+      "emoji": "🔵",
+      "color": "#0057B8",
+      "addr": "Rue des Tanneurs, Marche",
+      "dist": 1.3
+    },
+    "lidl": {
+      "name": "Lidl",
+      "emoji": "🟡",
+      "color": "#F4B400",
+      "addr": "Route de Bastogne, Marche",
+      "dist": 1.7
+    },
+    "aldi": {
+      "name": "Aldi",
+      "emoji": "🔷",
+      "color": "#1B6FB5",
+      "addr": "Chaussée de l'Ourthe, Marche",
+      "dist": 2.1
+    }
+  },
+  "offers": {
+    "colruyt": [
+      {
+        "store": "colruyt",
+        "name": "Eres Produits d'Antan",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      },
+      {
+        "store": "colruyt",
+        "name": "Soupline",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      },
+      {
+        "store": "colruyt",
+        "name": "Finish toutes les tablettes pour lave-vaisselle",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      },
+      {
+        "store": "colruyt",
+        "name": "Ecover",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      },
+      {
+        "store": "colruyt",
+        "name": "Ecover",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      },
+      {
+        "store": "colruyt",
+        "name": "Boni Selection petits pois extrafins",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      },
+      {
+        "store": "colruyt",
+        "name": "Crevettes roses",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      },
+      {
+        "store": "colruyt",
+        "name": "Bio Poivrons en lanières",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/86bddb08-7894-4325-bfa8-71ee23c0f26d/small.png?v=63929989892",
+        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
+      }
+    ],
+    "delhaize": [
+      {
+        "store": "delhaize",
+        "name": "25% de remise Sauce tomate",
+        "old_price": 6.1,
+        "new_price": 4.58,
+        "discount_pct": 25,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      },
+      {
+        "store": "delhaize",
+        "name": "20% de remise Winter édition",
+        "old_price": 3.38,
+        "new_price": 2.7,
+        "discount_pct": 20,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      },
+      {
+        "store": "delhaize",
+        "name": "50% de remise Cruesli protein",
+        "old_price": 10.38,
+        "new_price": 5.19,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      },
+      {
+        "store": "delhaize",
+        "name": "30% de remise Lait battu à la vanille",
+        "old_price": 3.99,
+        "new_price": 2.79,
+        "discount_pct": 30,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      },
+      {
+        "store": "delhaize",
+        "name": "Croc poulet croustillant",
+        "old_price": null,
+        "new_price": 3.89,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      },
+      {
+        "store": "delhaize",
+        "name": "50% de remise Essuie-tout ou papier toilette",
+        "old_price": null,
+        "new_price": 6.45,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      },
+      {
+        "store": "delhaize",
+        "name": "Delhaize Crème dessert",
+        "old_price": null,
+        "new_price": 1.45,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      },
+      {
+        "store": "delhaize",
+        "name": "Delhaize Dés de butternut",
+        "old_price": null,
+        "new_price": 2.19,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d7dbd268-36d1-4230-a633-c1dcb3ad3400/small.png?v=63929990296",
+        "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
+      }
+    ],
+    "carrefour": [
+      {
+        "store": "carrefour",
+        "name": "Plaid Pokémon",
+        "old_price": null,
+        "new_price": 9.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      },
+      {
+        "store": "carrefour",
+        "name": "Cape de bain",
+        "old_price": null,
+        "new_price": 12.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      },
+      {
+        "store": "carrefour",
+        "name": "Housse de couette + 1 taie Pokémon",
+        "old_price": null,
+        "new_price": 29.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      },
+      {
+        "store": "carrefour",
+        "name": "22% de remise Mix de fruits Luxe",
+        "old_price": 4.5,
+        "new_price": 3.5,
+        "discount_pct": 22,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      },
+      {
+        "store": "carrefour",
+        "name": "33% de remise Cailles",
+        "old_price": 18.0,
+        "new_price": 12.0,
+        "discount_pct": 33,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      },
+      {
+        "store": "carrefour",
+        "name": "50% de remise Croissants et pains au chocolat pur beurre",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      },
+      {
+        "store": "carrefour",
+        "name": "50% de remise Le Boucher Végétarien Produits véganes et végétariens",
+        "old_price": 7.98,
+        "new_price": 3.99,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      },
+      {
+        "store": "carrefour",
+        "name": "Poulet d'antan entier rôti",
+        "old_price": null,
+        "new_price": 5.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/8d539087-ab3c-445c-9748-ac98cbab3ee7/small.png?v=63929989865",
+        "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
+      }
+    ],
+    "lidl": [
+      {
+        "store": "lidl",
+        "name": "Cordon-bleu au fromage à raclette",
+        "old_price": null,
+        "new_price": 4.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      },
+      {
+        "store": "lidl",
+        "name": "50% de remise Lard en tranches",
+        "old_price": 9.9,
+        "new_price": 4.95,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      },
+      {
+        "store": "lidl",
+        "name": "50% de remise Épinards frais",
+        "old_price": 1.99,
+        "new_price": 0.99,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      },
+      {
+        "store": "lidl",
+        "name": "50% de remise Pain turc",
+        "old_price": 1.98,
+        "new_price": 0.99,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      },
+      {
+        "store": "lidl",
+        "name": "25% de remise Croissant fourré choco-noisette",
+        "old_price": 3.16,
+        "new_price": 2.37,
+        "discount_pct": 25,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      },
+      {
+        "store": "lidl",
+        "name": "33% de remise Corte Aurelio Grillo DOP",
+        "old_price": 14.37,
+        "new_price": 9.58,
+        "discount_pct": 33,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      },
+      {
+        "store": "lidl",
+        "name": "50% de remise Ice tea black tea peach-hibiscus",
+        "old_price": 9.1,
+        "new_price": 4.55,
+        "discount_pct": 50,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      },
+      {
+        "store": "lidl",
+        "name": "33% de remise Filet de saumon sans peau",
+        "old_price": 8.99,
+        "new_price": 5.99,
+        "discount_pct": 33,
+        "image_url": "https://cdn.jafolders.com/shops/219b66e2-2bb2-4df9-9f98-cc66b7159eef/small.png?v=63929998111",
+        "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
+      }
+    ],
+    "aldi": [
+      {
+        "store": "aldi",
+        "name": "EMOJI® Album de collection",
+        "old_price": null,
+        "new_price": 2.49,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "NESTLÉ® Gourde à presser XL",
+        "old_price": null,
+        "new_price": 1.79,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "Warme William Mural",
+        "old_price": null,
+        "new_price": 24.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "Puzzle",
+        "old_price": null,
+        "new_price": 5.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "Warme William Mural",
+        "old_price": null,
+        "new_price": 24.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "Ensemble bébé, 2 pcs",
+        "old_price": null,
+        "new_price": 8.99,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "LAY'S® Ringlings",
+        "old_price": null,
+        "new_price": 1.49,
+        "discount_pct": null,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "25% de remise Après-shampoing",
+        "old_price": 9.58,
+        "new_price": 7.18,
+        "discount_pct": 25,
+        "image_url": "https://cdn.jafolders.com/shops/d5abeff7-16e7-4e0a-98dc-1c8105ee1d15/small.png?v=63929989182",
+        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      }
+    ]
+  },
+  "errors": []
+}
