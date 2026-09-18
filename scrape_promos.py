@@ -107,13 +107,62 @@ def parse_price(text: str) -> float | None:
     return float(m.group(1).replace(".", "").replace(",", "."))
 
 
+# Préfixes "d'accroche" retirés du nom du produit pour ne garder que le nom réel.
+# Ex : "25% de remise Sauce tomate" -> "Sauce tomate"
+DISCOUNT_PREFIX_RE = re.compile(
+    r"^\s*(?:\d+\s*%\s*(?:de\s*remise|d'economie|de repos|sur)?\s*|"
+    r"(?:2e|2ème|2eme|seconde?|autre)\s*(?:achat|article|produit)?\s*(?:à|a)\s*-?\d+\s*%\s*|"
+    r"(?:1\+1|2\+1|3\+2)\s*(?:gratuit|offert|gratuits|offerts|offerte)\s*|"
+    r"\d+\s*(?:x|article)s?\s*(?:pour|à)\s*|"
+    r"-?\d+\s*%\s*)",
+    re.IGNORECASE,
+)
+
+
+def clean_product_name(text: str) -> str:
+    """Extrait et nettoie le nom du produit depuis le texte d'une offre."""
+    # On coupe au premier prix, sinon toute la chaîne
+    name = re.split(r"€|€\s*$", text)[0]
+    # Si un motif "X% de remise" introduit le nom, on le retire
+    name = DISCOUNT_PREFIX_RE.sub("", name, count=1)
+    name = re.sub(r"\s*-\s*$", "", name)
+    name = re.sub(r"\s+", " ", name).strip(" -:;")
+    return name
+
+
+def infer_prices(text: str) -> tuple[float | None, float | None, int | None]:
+    """Renvoie (old_price, new_price, discount_pct) en exploitant toutes les
+    infos disponibles : 2 prix explicites, ou 1 prix + un pourcentage de remise
+    (ex: '50% de remise ... € 6,45' -> ancien prix déduit ≈ 12,90)."""
+    prices = [float(p.replace(".", "").replace(",", ".")) for p in PRICE_RE.findall(text)]
+    disc_match = DISCOUNT_RE.search(text)
+    discount_pct = int(disc_match.group(1)) if disc_match else None
+
+    if len(prices) >= 2:
+        old_price, new_price = max(prices), min(prices)
+        if discount_pct is None and old_price:
+            discount_pct = round((1 - new_price / old_price) * 100)
+        return old_price, new_price, discount_pct
+
+    if len(prices) == 1:
+        new_price = prices[0]
+        if discount_pct and 0 < discount_pct < 100:
+            old_price = round(new_price / (1 - discount_pct / 100), 2)
+            return old_price, new_price, discount_pct
+        return None, new_price, discount_pct
+
+    return None, None, discount_pct
+
+
 def scrape_store(slug: str) -> list[Offer]:
     url = BASE_URL.format(slug=slug)
     resp = requests.get(url, headers=HEADERS, timeout=20)
     resp.raise_for_status()
+    resp.encoding = resp.apparent_encoding or "utf-8"
     soup = BeautifulSoup(resp.text, "html.parser")
 
     offers: list[Offer] = []
+    seen_names: set[str] = set()
 
     # Chaque offre est un lien dont l'URL contient "?offer=" sur promopromo.be
     for link in soup.select('a[href*="?offer="]'):
@@ -121,27 +170,14 @@ def scrape_store(slug: str) -> list[Offer]:
         if not text:
             continue
 
-        # Le nom du produit est généralement la portion de texte après "Offre:"
-        name_match = re.search(r"Offre\s*:\s*(.+?)(?:€|\d+\s*%|$)", text)
-        name = name_match.group(1).strip() if name_match else text.split("€")[0].strip()
-        name = re.sub(r"\s+", " ", name).strip(" -")
+        name = clean_product_name(text)
         if not name:
             continue
+        if name in seen_names:
+            continue
+        seen_names.add(name)
 
-        prices = PRICE_RE.findall(text)
-        prices = [float(p.replace(".", "").replace(",", ".")) for p in prices]
-        old_price = prices[0] if len(prices) >= 2 else None
-        new_price = prices[-1] if prices else None
-
-        disc_match = DISCOUNT_RE.search(text)
-        discount_pct = int(disc_match.group(1)) if disc_match else None
-
-        img_tag = link.find("img")
-        image_url = None
-        if img_tag:
-            image_url = img_tag.get("src") or img_tag.get("data-src")
-            if image_url and image_url.startswith("//"):
-                image_url = "https:" + image_url
+        old_price, new_price, discount_pct = infer_prices(text)
 
         offers.append(Offer(
             store=slug,

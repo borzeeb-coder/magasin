@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T06:44:46Z",
+  "generated_at": "2026-09-18T08:17:24Z",
   "stores_meta": {
     "colruyt": {
       "name": "Colruyt",
@@ -40,14 +40,14 @@
       "name": "Spar",
       "emoji": "🟢",
       "color": "#00843D",
-      "addr": "Rue de Bastogne 19, Marche",
+      "addr": "Rue de Bastogne, Marche",
       "dist": 1.1
     },
     "intermarche": {
       "name": "Intermarché",
       "emoji": "🟠",
       "color": "#E8590C",
-      "addr": "Route de Libramont 35, Marche",
+      "addr": "Route de Libramont, Marche",
       "dist": 1.5
     }
   },
@@ -91,20 +91,11 @@
       },
       {
         "store": "colruyt",
-        "name": "Ecover",
-        "old_price": null,
-        "new_price": null,
-        "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
-      },
-      {
-        "store": "colruyt",
         "name": "Boni Selection petits pois extrafins",
         "old_price": null,
         "new_price": null,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/colruyt/folder-offres"
       },
       {
@@ -129,7 +120,7 @@
     "delhaize": [
       {
         "store": "delhaize",
-        "name": "25% de remise Sauce tomate",
+        "name": "Sauce tomate",
         "old_price": 6.1,
         "new_price": 4.58,
         "discount_pct": 25,
@@ -138,7 +129,7 @@
       },
       {
         "store": "delhaize",
-        "name": "20% de remise Winter édition",
+        "name": "Winter édition",
         "old_price": 3.38,
         "new_price": 2.7,
         "discount_pct": 20,
@@ -147,16 +138,16 @@
       },
       {
         "store": "delhaize",
-        "name": "50% de remise Cruesli protein",
+        "name": "Cruesli protein",
         "old_price": 10.38,
         "new_price": 5.19,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       },
       {
         "store": "delhaize",
-        "name": "30% de remise Lait battu à la vanille",
+        "name": "Lait battu à la vanille",
         "old_price": 3.99,
         "new_price": 2.79,
         "discount_pct": 30,
@@ -174,8 +165,8 @@
       },
       {
         "store": "delhaize",
-        "name": "50% de remise Essuie-tout ou papier toilette",
-        "old_price": null,
+        "name": "Essuie-tout ou papier toilette",
+        "old_price": 12.9,
         "new_price": 6.45,
         "discount_pct": 50,
         "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
@@ -196,7 +187,7 @@
         "old_price": null,
         "new_price": 2.19,
         "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/delhaize/folder-offres"
       }
     ],
@@ -230,16 +221,16 @@
       },
       {
         "store": "carrefour",
-        "name": "22% de remise Mix de fruits Luxe",
+        "name": "Mix de fruits Luxe",
         "old_price": 4.5,
         "new_price": 3.5,
         "discount_pct": 22,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
         "store": "carrefour",
-        "name": "33% de remise Cailles",
+        "name": "Cailles",
         "old_price": 18.0,
         "new_price": 12.0,
         "discount_pct": 33,
@@ -248,7 +239,7 @@
       },
       {
         "store": "carrefour",
-        "name": "50% de remise Croissants et pains au chocolat pur beurre",
+        "name": "Croissants et pains au chocolat pur beurre",
         "old_price": null,
         "new_price": null,
         "discount_pct": 50,
@@ -257,11 +248,11 @@
       },
       {
         "store": "carrefour",
-        "name": "50% de remise Le Boucher Végétarien Produits véganes et végétariens",
+        "name": "Le Boucher Végétarien Produits véganes et végétariens",
         "old_price": 7.98,
         "new_price": 3.99,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/carrefour/folder-offres"
       },
       {
@@ -286,16 +277,16 @@
       },
       {
         "store": "lidl",
-        "name": "50% de remise Lard en tranches",
+        "name": "Lard en tranches",
         "old_price": 9.9,
         "new_price": 4.95,
         "discount_pct": 50,
-        "image_url": "https://images.unsplash.com/photo-1546549032-9571cd6b27df?w=500&auto=format&fit=crop&q=80",
+        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
         "store": "lidl",
-        "name": "50% de remise Épinards frais",
+        "name": "Épinards frais",
         "old_price": 1.99,
         "new_price": 0.99,
         "discount_pct": 50,
@@ -304,7 +295,7 @@
       },
       {
         "store": "lidl",
-        "name": "50% de remise Pain turc",
+        "name": "Pain turc",
         "old_price": 1.98,
         "new_price": 0.99,
         "discount_pct": 50,
@@ -313,7 +304,7 @@
       },
       {
         "store": "lidl",
-        "name": "25% de remise Croissant fourré choco-noisette",
+        "name": "Croissant fourré choco-noisette",
         "old_price": 3.16,
         "new_price": 2.37,
         "discount_pct": 25,
@@ -322,16 +313,16 @@
       },
       {
         "store": "lidl",
-        "name": "33% de remise Corte Aurelio Grillo DOP",
+        "name": "Corte Aurelio Grillo DOP",
         "old_price": 14.37,
         "new_price": 9.58,
         "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1546549032-9571cd6b27df?w=500&auto=format&fit=crop&q=80",
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
         "source_url": "https://www.promopromo.be/fr/lidl/folder-offres"
       },
       {
         "store": "lidl",
-        "name": "50% de remise Ice tea black tea peach-hibiscus",
+        "name": "Ice tea black tea peach-hibiscus",
         "old_price": 9.1,
         "new_price": 4.55,
         "discount_pct": 50,
@@ -340,7 +331,7 @@
       },
       {
         "store": "lidl",
-        "name": "33% de remise Filet de saumon sans peau",
+        "name": "Filet de saumon sans peau",
         "old_price": 8.99,
         "new_price": 5.99,
         "discount_pct": 33,
@@ -387,15 +378,6 @@
       },
       {
         "store": "aldi",
-        "name": "Warme William Mural",
-        "old_price": null,
-        "new_price": 24.99,
-        "discount_pct": null,
-        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
-      },
-      {
-        "store": "aldi",
         "name": "Ensemble bébé, 2 pcs",
         "old_price": null,
         "new_price": 8.99,
@@ -414,7 +396,7 @@
       },
       {
         "store": "aldi",
-        "name": "25% de remise Après-shampoing",
+        "name": "Après-shampoing",
         "old_price": 9.58,
         "new_price": 7.18,
         "discount_pct": 25,
@@ -425,149 +407,149 @@
     "spar": [
       {
         "store": "spar",
-        "name": "Filet de poulet fermier",
-        "old_price": 8.99,
-        "new_price": 5.99,
-        "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
-      },
-      {
-        "store": "spar",
-        "name": "Beurre doux Ardenne 250g",
-        "old_price": 2.89,
-        "new_price": 1.99,
-        "discount_pct": 31,
-        "image_url": "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
-      },
-      {
-        "store": "spar",
-        "name": "Yaourts nature x8",
-        "old_price": 3.49,
-        "new_price": 2.29,
-        "discount_pct": 34,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
-      },
-      {
-        "store": "spar",
-        "name": "Pain au chocolat pur beurre x4",
-        "old_price": 3.20,
-        "new_price": 1.99,
-        "discount_pct": 38,
-        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
-      },
-      {
-        "store": "spar",
-        "name": "Jus d'orange pressé 1L",
-        "old_price": 3.19,
-        "new_price": 1.89,
-        "discount_pct": 41,
-        "image_url": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
-      },
-      {
-        "store": "spar",
-        "name": "Tomates grappe Belgique 1kg",
-        "old_price": 2.99,
-        "new_price": 1.79,
-        "discount_pct": 40,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
-      },
-      {
-        "store": "spar",
-        "name": "Fromage de chèvre frais 150g",
-        "old_price": 2.49,
-        "new_price": 1.59,
-        "discount_pct": 36,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
-      },
-      {
-        "store": "spar",
-        "name": "Café moulu Torréfaction 250g",
-        "old_price": 4.59,
-        "new_price": 2.99,
-        "discount_pct": 35,
+        "name": "Pâtes ou croque monsieur",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": 50,
         "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/spar/folder-offers"
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+      },
+      {
+        "store": "spar",
+        "name": "Petits pains de l'empereur",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": 33,
+        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+      },
+      {
+        "store": "spar",
+        "name": "Petits pains au chocolat",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": 33,
+        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+      },
+      {
+        "store": "spar",
+        "name": "Pils",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+      },
+      {
+        "store": "spar",
+        "name": "Magnum mini",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": 50,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+      },
+      {
+        "store": "spar",
+        "name": "Sauces + gratis rijst",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+      },
+      {
+        "store": "spar",
+        "name": "Coca-Cola, Fanta, Sprite, Fuze Tea, Aquarius ou Powerade",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
+      },
+      {
+        "store": "spar",
+        "name": "Charlotte Pommes de terre",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": 50,
+        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/spar/folder-offres"
       }
     ],
     "intermarche": [
       {
         "store": "intermarche",
-        "name": "Entrecôte de bœuf Label Rouge",
-        "old_price": 16.99,
-        "new_price": 11.99,
-        "discount_pct": 29,
-        "image_url": "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+        "name": "Escal",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Saumon entier d'Écosse",
-        "old_price": 14.99,
-        "new_price": 9.99,
-        "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+        "name": "Tripel Karmeliet",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Fraises de Belgique 500g",
-        "old_price": 4.49,
-        "new_price": 2.99,
-        "discount_pct": 33,
-        "image_url": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+        "name": "Capri Sun",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Poulet fermier entier jaune",
-        "old_price": 9.99,
-        "new_price": 6.99,
-        "discount_pct": 30,
-        "image_url": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+        "name": "Crazy Tiger Boisson énergisante",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Fromage Gouda jeune 400g",
-        "old_price": 5.29,
-        "new_price": 3.49,
-        "discount_pct": 34,
+        "name": "Powerade",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
+      },
+      {
+        "store": "intermarche",
+        "name": "Mars, Snickers, Twix, Balisto, Bounty ou Milk",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
         "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Croissants pur beurre x4",
-        "old_price": 3.99,
-        "new_price": 2.49,
-        "discount_pct": 38,
-        "image_url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+        "name": "Lindt Tablettes de chocolat ou Lindor chocola",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       },
       {
         "store": "intermarche",
-        "name": "Chocolat noir 72% tablette",
-        "old_price": 3.49,
-        "new_price": 2.19,
-        "discount_pct": 37,
-        "image_url": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
-      },
-      {
-        "store": "intermarche",
-        "name": "Lait demi-écrémé 1L",
-        "old_price": 1.49,
-        "new_price": 0.99,
-        "discount_pct": 34,
-        "image_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&auto=format&fit=crop&q=80",
-        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offers"
+        "name": "Sodebo Pasta Box, Cremio Box ou Xtrem Box",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&auto=format&fit=crop&q=80",
+        "source_url": "https://www.promopromo.be/fr/intermarche/folder-offres"
       }
     ]
   },
