@@ -1,6 +1,7 @@
 /* Smoke test : charge l'app (http.server local), vérifie qu'elle s'affiche
  * sans erreur JS, que les cartes/donnees/images sont presentes, et que la
- * PWA (manifest, service worker) est servie correctement. */
+ * PWA (manifest, service worker) est servie correctement.
+ * Extensions : comparateur, carte magasins, favoris-prix en baisse. */
 const { spawn } = require('node:child_process');
 const path = require('node:path');
 const { chromium } = require('playwright');
@@ -69,6 +70,25 @@ async function main() {
     check(imgs404.length === 0, `${localImgs.length} images de carte OK${imgs404.length ? ' (échec: ' + imgs404.join(',') + ')' : ''}`);
 
     check(errors.length === 0, 'aucune erreur JS console/page' + (errors.length ? ' — ' + errors.join(' | ') : ''));
+
+    // --- NOUVELLES VALIDATIONS ---
+    
+    // 1. Comparateur : la balise "🏆 le moins cher" doit être présente
+    const cmpBest = await page.locator('.cmp-best-tag').count();
+    check(cmpBest > 0, 'balise "🏆 le moins cher" présente dans le comparateur');
+
+    // 2. Carte des magasins : la section #view-stores doit exister
+    const mapSection = await page.locator('#view-stores').count();
+    check(mapSection === 1, 'section carte des magasins #view-stores présente');
+
+    // 3. Favoris : la barre d\'alerte de seuil doit être présente dans le DOM
+    const alertBars = await page.locator('.fav-alert-bar').count();
+    check(alertBars >= 1, 'barre d\'alerte favori présente (seuil configurable)');
+    
+    // 4. Bouton comparateur présent
+    const cmpBtn = await page.locator('#pdCompareBtn').count();
+    check(cmpBtn === 1, 'bouton comparateur #pdCompareBtn présent');
+
   } catch (err) {
     check(false, 'erreur du test : ' + err.message);
   } finally {

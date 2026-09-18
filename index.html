@@ -280,8 +280,13 @@
   .pd-noprice{text-align:center; font-size:13px; color:var(--ink-soft); padding:8px 0 4px;}
   .fav-remove{font-size:18px; color:var(--ink-soft); cursor:pointer; width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:50%;}
   .fav-remove:hover{color:var(--red); background:var(--paper-2);}
-  .fav-block{margin-bottom:10px;}
+  .fav-block{margin-bottom:10px; position:relative;}
   .fav-block .store-row{margin-bottom:0; border-radius:14px 14px 0 0;}
+  .fav-price-drop{
+    position:absolute; top:6px; right:6px; background:var(--green); color:var(--paper);
+    font-size:10px; padding:2px 6px; border-radius:10px; font-weight:700;
+    display:none;
+  }
   .fav-alert-bar{
     display:flex; align-items:center; gap:6px; flex-wrap:wrap;
     background:var(--card); border:1px solid var(--line); border-top:none;
@@ -417,6 +422,7 @@
     <div class="top-actions">
       <button class="icon-btn" id="installBtn" style="display:none;" title="Installer l'application">📲</button>
       <button class="icon-btn" id="themeBtn" title="Mode sombre">🌙</button>
+      <button class="icon-btn" id="pwaUpdateBtn" style="display:none;" title="Nouvelle version">🆕</button>
     </div>
   </div>
   <div class="search-row">
@@ -1545,10 +1551,15 @@ function normKey(name){
 function similarProducts(p){
   const tokens = normKey(p.name).split(' ').filter(t=>t.length>=3);
   if(!tokens.length) return [];
+  // Match strict : tous les tokens doivent être présents
   const cand = PRODUCTS.filter(q=>q.id!==p.id && tokens.every(t=>normKey(q.name).includes(t)));
+  // Si pas assez de correspondance stricte, élargir : au moins 2 tokens en commun
   if(cand.length < 2){
-    PRODUCTS.filter(q=>q.id!==p.id && q.cat===p.cat && !cand.includes(q))
-      .forEach(q=>cand.push(q));
+    const need = Math.max(2, Math.ceil(tokens.length/2));
+    const broad = PRODUCTS.filter(q=>q.id!==p.id && normKey(q.name).split(' ').filter(t=>tokens.includes(t)).length >= need);
+    // Fusion dédup
+    const seen = new Set();
+    cand.push(...broad.filter(q=>!seen.has(q.id) && !seen.add(q.id)));
   }
   return cand.slice(0,6);
 }
@@ -1577,6 +1588,16 @@ function openComparator(id){
     row.addEventListener('click', ()=>{ closeSheet('compareSheet'); openProduct(r.p.id); });
     list.appendChild(row);
   });
+  // Résumé des économies potentielles
+  const prices = rows.map(r=>priceOf(r.p)||0);
+  const maxPrice = Math.max(...prices);
+  const bestPrice = best ? priceOf(best.p) : null;
+  const summary = document.createElement('div');
+  summary.style.cssText = 'margin-top:12px;';
+  summary.innerHTML = bestPrice !== null && maxPrice > bestPrice
+    ? `<div class="trow save"><span>Économisez potentiellement</span><span>− ${(maxPrice - bestPrice).toFixed(2).replace(".", ",")} €</span></div>`
+    : '';
+  list.appendChild(summary);
   openSheet('compareSheet');
 }
 

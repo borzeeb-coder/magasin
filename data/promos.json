@@ -402,6 +402,1266 @@
         "discount_pct": 25,
         "image_url": "data/images/aldi-6.webp",
         "source_url": "https://www.promopromo.be/fr/aldi/folder-offres"
+      },
+      {
+        "store": "aldi",
+        "name": "Piles, 20 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Miroir",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bulbes à fleurs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pommes de terre à purée",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Projecteur à LED",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bougies chauffe-plat parfumées",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Chrysanthème",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Brie",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Oignons frits",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Confiture",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Cœurs de céleris",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Serviettes, 40 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Chicons",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Lampes LED avec détecteur de mouvement, 3 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Fromages de chèvre panés, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Oranges à jus",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Curcuma ou cannelle",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Ratatouille",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Cassette antimites, 2 pcs*",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Safran",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pommes Jonagold",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Kiwi sungold",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Peluche Stitch",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Barrière de sécurité pour escalier ou porte",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Crackers au paprika",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Lecteur CD/MP3/cassette",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Couverture pour bébés",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Doudoune légère sans manches",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Fruittella, pack de 7",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Poires",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Nettoyant pour W.-C., 2 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Spray Oxi Action, 2 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Blanc de Bœuf",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Literie pour bébés",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Drap-housse pour lit de bébé, 2 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Sauce",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Petits rochers au chocolat croquants",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Éponges en acier inoxydable",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pull",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Sauce prête à l'emploi",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Croissant au chocolat",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Friandises",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Ringlings",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Filet de poitrine de poulet",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Kinder Maxi, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pâte à modeler, 8 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Œufs de poules élevées au sol, 30 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pizza pocket",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Frites pour four",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Snackpot aux pâtes",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Livre de coloriage à l’eau",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Minipeluche, 10 cm",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Minipain turc, 4 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Doudoune sans manches",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pull 2 en 1",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pantalon",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Mocassins",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bougie parfumée avec couvercle",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bière blonde, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Saumon frais avec peau, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Yogolino, 4 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Snacks",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Agrumes zero, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Croquettes de crevettes, 4 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pâte de curry",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Solo liquide",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Kit d’activités",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pepsi zero sugar lemon, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Accessoires pour le ménage",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Raisins sans pépins",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Joues de porc",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Service de table en silicone pour enfants",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Sneakers LED",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bitty POP, pack de 4",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Lampe d’ambiance sur pied",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Caméra de sécurité intelligente",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Livre de découverte avec rabats",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Spiringue",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Jus de citron",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Gamme pour économie d'énergie",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Fuze tea",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Crema catalana, 2 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Mélange de snacks cocktail",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Tortilla",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Cuire et rôtir",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Potiron",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bas de porte magnétique",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Eau buccale",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Burger Limousin",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Éclairage de jardin, 2 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Diffuseur de parfum",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bougie parfumée ou diffuseur de parfum",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Boîte de rangement pour enfants",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bavoir ou set de table en silicone pour bébés",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Jeu de cliquets ou de douilles",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Corde multifonctionnelle",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Assortiment de colles",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Livre de coloriage ou d'autocollants",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Livre de questions et réponses",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Livre de bricolage et de coloriage",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Veilleuse LED",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Sac de couchage pour enfants",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Veste matelassée",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Chino",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Tapis en fausse fourrure",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Plaid poncho",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Sandales",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Poncho ou cape de bain",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Boîte de blocs de construction, 528 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Peluche qui danse et parle, 40 cm",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Legging",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pull d'intérieur",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pantalon de jogging",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pyjama pour femmes",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Body pour bébés, 2 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Serviettes hygiéniques platinum",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Organiseur en polaire teddy",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Tarte aux fraises",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Désodorisant automatique ou recharges",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Poudre pour crema catalana et flan",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Flan de huevo, 4 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Liquide vaisselle",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Chuck eye steak Black Angus",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Kéfir nature, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Lindahls protein crunchy, 2 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Feuilleté de Mousse, 4 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pilons de poulet",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Framboises au chocolat",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Cordon bleu, 4 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Pain blanc carré",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Gourde à presser XL",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Poivrons pointus",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Nettoie-tout",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Zitrone fit, 6 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Radis sans feuilles",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Hachis de poulet",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Filet de poulet à la minute",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Bulbes à fleurs d'ail d’ornement",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Tagliatelles",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
+      },
+      {
+        "store": "aldi",
+        "name": "Riz long grain, 8 pcs",
+        "old_price": null,
+        "new_price": null,
+        "discount_pct": null,
+        "image_url": null,
+        "source_url": "https://www.aldi.be/fr/offres-de-la-semaine-prochaine.html"
       }
     ],
     "spar": [

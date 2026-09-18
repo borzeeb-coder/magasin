@@ -772,12 +772,17 @@ function renderMapMarkers() {
       fillOpacity: 1
     }).addTo(mapMarkersGroup);
 
+    const link = referenceCoords
+      ? `<br>
+        <a href="https://www.google.com/maps/dir/${referenceCoords[0]},${referenceCoords[1]}/${store.coords[0]},${store.coords[1]}" target="_blank" style="color:var(--green); font-weight:700;">Itinéraire Google Maps</a>`
+      : '';
+
     marker.bindPopup(`
       <div style="font-family:var(--font); font-size:12px;">
         <strong style="color:${store.brandColor};">${store.name}</strong><br>
         <span>${store.address}</span><br>
         <b style="color:var(--blue);">Distance : ${formatDist(store.distanceKm)}</b><br>
-        <span style="color:green;">${store.hours}</span>
+        <span style="color:green;">${store.hours}</span>${link}
       </div>
     `);
 
@@ -1184,6 +1189,15 @@ function setupEventListeners() {
 
   // Thème
   document.getElementById("btn-theme-toggle").addEventListener("click", toggleTheme);
+  
+  // Mise à jour du service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.oncontrollerchange = () => {
+      showToast('🆕 Nouvelle version — actualisez la page');
+      const badge = document.getElementById('pwaUpdateBtn');
+      if (badge) badge.style.display = 'inline-block';
+    };
+  }
 }
 
 function closeLocationModal() {

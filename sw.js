@@ -44,6 +44,12 @@ self.addEventListener('activate', (event) => {
     )
   );
   self.clients.claim();
+  // Notify all open windows that a new SW is active
+  self.clients.matchAll({type: 'window', includeUncontrolled: true}).then((clients) => {
+    clients.forEach((client) => {
+      if (client.ready) client.postMessage({type: 'PWA_UPDATE'});
+    });
+  });
 });
 
 self.addEventListener('push', (event) => {
