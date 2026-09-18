@@ -645,7 +645,7 @@ function renderProducts(){
         ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
         <span class="pcard-emoji-fallback" style="${p.image ? 'display:none;' : ''}">${p.emoji}</span>
         ${discountPct(p) > 0 ? `<span class="badge-discount">-${discountPct(p)}%</span>` : ''}
-        <span class="badge-store"><img src="logos/${st.id}.logo.svg" alt="" loading="lazy" onerror="this.remove()">${st.name}</span>
+        <span class="badge-store"><img src="logos/${st.id}.logo.svg" alt="${st.name}" title="${st.name}" loading="lazy" onerror="this.remove()"></span>
       </div>
       <div class="pcard-body">
         <div class="pcard-name">${p.name}</div>
