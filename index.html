@@ -101,7 +101,7 @@
     display:flex; align-items:center; gap:6px; cursor:pointer; white-space:nowrap;
     color:var(--ink-soft); transition:.15s;
   }
-  .chip img{width:15px; height:15px; object-fit:contain; border-radius:2px;}
+  .chip img{height:16px; width:auto; object-fit:contain;}
   .chip.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
   .chip.store-active-colruyt{background:#DE3B24; border-color:#DE3B24; color:#fff;}
   .chip.store-active-delhaize{background:#C8102E; border-color:#C8102E; color:#fff;}
@@ -133,7 +133,7 @@
     height:92px; display:flex; align-items:center; justify-content:center;
     font-size:40px; background:var(--paper-2); position:relative; overflow:hidden;
   }
-  .pcard-img img{width:100%; height:100%; object-fit:contain; padding:8px;}
+  .pcard-img > img{width:100%; height:100%; object-fit:contain; padding:8px;}
   .pcard-emoji-fallback{display:flex; align-items:center; justify-content:center; width:100%; height:100%;}
   .badge-discount{
     position:absolute; top:8px; left:8px; background:var(--red); color:#fff;
@@ -142,8 +142,8 @@
   }
   .badge-store{position:absolute; top:8px; right:8px; font-size:10px; font-weight:700;
     background:#fff; border:1px solid var(--line); padding:3px 7px; border-radius:999px;
-    display:flex; align-items:center; gap:4px;}
-  .badge-store img{width:13px; height:13px; object-fit:contain;}
+    display:flex; align-items:center; gap:5px; z-index:2;}
+  .badge-store img{height:14px; width:auto; max-width:42px; object-fit:contain;}
   .pcard-body{padding:9px 10px 11px; display:flex; flex-direction:column; gap:4px; flex:1;}
   .pcard-name{font-size:13.5px; font-weight:700; line-height:1.25;}
   .pcard-dist{font-size:11px; color:var(--ink-soft);}
@@ -164,7 +164,7 @@
     border:1px solid var(--line); border-radius:var(--radius); padding:12px; margin-bottom:10px;
   }
   .store-dot{width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:#fff; border:1px solid var(--line); overflow:hidden;}
-  .store-dot img{max-width:80%; max-height:80%; object-fit:contain;}
+  .store-dot img{height:26px; width:auto; max-width:80%; object-fit:contain;}
   .store-info{flex:1; min-width:0;}
   .store-info .sname{font-weight:800; font-size:14.5px;}
   .store-info .saddr{font-size:12px; color:var(--ink-soft); margin-top:1px;}
@@ -472,6 +472,7 @@ async function loadPromoData(){
       if(!meta) return;
       items.forEach(o=>{
         if(!o.new_price) return; // pas de prix exploitable
+        const dPct = o.discount_pct || null;
         const oldP = o.old_price && o.old_price > o.new_price ? o.old_price : o.new_price;
         list.push({
           id: id++,
@@ -482,7 +483,8 @@ async function loadPromoData(){
           image: o.image_url || null,
           old: oldP,
           new: o.new_price,
-          offer: (o.discount_pct ? `-${o.discount_pct}% chez ${meta.name}` : `Promo ${meta.name}`),
+          dPct: dPct,
+          offer: (dPct ? `-${dPct}% chez ${meta.name}` : `Promo ${meta.name}`),
           valid: 'Voir conditions sur le prospectus',
           avail: `En rayon à ${state.city ? state.city.name : 'Marche-en-Famenne'}`,
           nutri: '—',
@@ -528,7 +530,11 @@ function save(key,val){
   try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){}
 }
 
-function discountPct(p){ return Math.round((1 - p.new/p.old)*100); }
+function discountPct(p){
+  if(p.dPct) return p.dPct;
+  if(p.old && p.old > 0) return Math.round((1 - p.new/p.old)*100);
+  return 0;
+}
 function storeOf(id){ return STORES.find(s=>s.id===id); }
 
 /* ---------------------------------------------------------
@@ -638,7 +644,7 @@ function renderProducts(){
       <div class="pcard-img" style="background:${st.color}22;">
         ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
         <span class="pcard-emoji-fallback" style="${p.image ? 'display:none;' : ''}">${p.emoji}</span>
-        <span class="badge-discount">-${discountPct(p)}%</span>
+        ${discountPct(p) > 0 ? `<span class="badge-discount">-${discountPct(p)}%</span>` : ''}
         <span class="badge-store"><img src="logos/${st.id}.logo.svg" alt="" loading="lazy" onerror="this.remove()">${st.name}</span>
       </div>
       <div class="pcard-body">
@@ -743,7 +749,7 @@ function renderCart(){
       <div class="cart-line-img">${p.emoji}</div>
       <div class="cart-line-info">
         <div class="n">${p.name}</div>
-        <div class="p"><img src="logos/${st.id}.logo.svg" alt="" style="width:12px;height:12px;object-fit:contain;vertical-align:-2px;margin-right:3px;" onerror="this.remove()">${st.name} · ${p.new.toFixed(2)} € / pièce</div>
+        <div class="p"><img src="logos/${st.id}.logo.svg" alt="" style="height:13px;width:auto;vertical-align:-2px;margin-right:3px;" onerror="this.remove()">${st.name} · ${p.new.toFixed(2)} € / pièce</div>
       </div>
       <div class="cart-line-qty">
         <button data-act="dec">−</button>
@@ -782,7 +788,7 @@ function openProduct(id){
       ${p.image ? `<img src="${p.image}" alt="${p.name}" style="max-width:100%; max-height:100%; object-fit:contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
       <span style="${p.image ? 'display:none;' : ''}">${p.emoji}</span>
     </div>
-    <div class="pd-store"><img src="logos/${st.id}.logo.svg" alt="" style="width:16px;height:16px;object-fit:contain;vertical-align:-3px;margin-right:5px;" onerror="this.remove()"> ${st.name} · ${st.addr} · 📍 ${st.dist*1000|0} m</div>
+    <div class="pd-store"><img src="logos/${st.id}.logo.svg" alt="" style="height:18px;width:auto;vertical-align:-4px;margin-right:6px;" onerror="this.remove()"> ${st.name} · ${st.addr} · 📍 ${st.dist*1000|0} m</div>
     <h2 class="pd-name">${p.name}</h2>
     <div class="pd-price-row">
       <span class="pd-old">${p.old.toFixed(2)} €</span>
