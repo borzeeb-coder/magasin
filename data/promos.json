@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T17:07:27.563781Z",
+  "generated_at": "2026-09-19T06:35:26.350917Z",
   "stores_meta": {
     "colruyt": {
       "name": "Colruyt",
@@ -66,7 +66,7 @@
         "image_url": "data/images/intermarche-000.webp",
         "image_filename": "intermarche-000.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:16.561574Z"
+        "fetched_at": "2026-09-19T06:33:37.220202Z"
       },
       {
         "name": "Moules de Zélande",
@@ -81,7 +81,7 @@
         "image_url": "data/images/intermarche-001.webp",
         "image_filename": "intermarche-001.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:17.358599Z"
+        "fetched_at": "2026-09-19T06:33:38.034697Z"
       },
       {
         "name": "Pâturages",
@@ -96,7 +96,7 @@
         "image_url": "data/images/intermarche-002.webp",
         "image_filename": "intermarche-002.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:18.086063Z",
+        "fetched_at": "2026-09-19T06:33:38.841055Z",
         "nutriscore": "E",
         "nova_group": 2,
         "nutrition": {
@@ -146,7 +146,7 @@
         "image_url": "data/images/intermarche-003.webp",
         "image_filename": "intermarche-003.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:18.865016Z"
+        "fetched_at": "2026-09-19T06:33:39.632974Z"
       },
       {
         "name": "Parmareggio",
@@ -161,7 +161,7 @@
         "image_url": "data/images/intermarche-004.webp",
         "image_filename": "intermarche-004.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:19.665499Z",
+        "fetched_at": "2026-09-19T06:33:40.418028Z",
         "nutriscore": "D",
         "nova_group": null,
         "nutrition": {
@@ -200,7 +200,7 @@
         "image_url": "data/images/intermarche-005.webp",
         "image_filename": "intermarche-005.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:20.313664Z"
+        "fetched_at": "2026-09-19T06:33:41.086992Z"
       },
       {
         "name": "Chouquettes",
@@ -215,7 +215,7 @@
         "image_url": "data/images/intermarche-006.webp",
         "image_filename": "intermarche-006.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:20.988154Z"
+        "fetched_at": "2026-09-19T06:33:41.752329Z"
       },
       {
         "name": "Danette",
@@ -230,7 +230,7 @@
         "image_url": "data/images/intermarche-007.webp",
         "image_filename": "intermarche-007.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:21.742378Z",
+        "fetched_at": "2026-09-19T06:33:42.486940Z",
         "nutriscore": "E",
         "nova_group": 4,
         "nutrition": {
@@ -271,7 +271,7 @@
         "image_url": "data/images/intermarche-008.webp",
         "image_filename": "intermarche-008.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:22.460315Z",
+        "fetched_at": "2026-09-19T06:33:43.195293Z",
         "nutriscore": "A",
         "nova_group": null,
         "nutrition": {
@@ -304,7 +304,7 @@
         "image_url": "data/images/intermarche-009.webp",
         "image_filename": "intermarche-009.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:23.217331Z",
+        "fetched_at": "2026-09-19T06:33:43.970092Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -337,7 +337,7 @@
         "image_url": "data/images/intermarche-010.webp",
         "image_filename": "intermarche-010.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:23.931800Z",
+        "fetched_at": "2026-09-19T06:33:44.732007Z",
         "nutriscore": "A",
         "nova_group": 3,
         "nutrition": {
@@ -376,7 +376,7 @@
         "image_url": "data/images/intermarche-011.webp",
         "image_filename": "intermarche-011.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:24.953475Z",
+        "fetched_at": "2026-09-19T06:33:45.535489Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -409,7 +409,7 @@
         "image_url": "data/images/intermarche-012.webp",
         "image_filename": "intermarche-012.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:25.715745Z"
+        "fetched_at": "2026-09-19T06:33:46.242765Z"
       },
       {
         "name": "Saint Eloi",
@@ -424,7 +424,7 @@
         "image_url": "data/images/intermarche-013.webp",
         "image_filename": "intermarche-013.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:26.515239Z"
+        "fetched_at": "2026-09-19T06:33:46.987665Z"
       },
       {
         "name": "Florette",
@@ -439,7 +439,7 @@
         "image_url": "data/images/intermarche-014.webp",
         "image_filename": "intermarche-014.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:27.262965Z",
+        "fetched_at": "2026-09-19T06:33:47.721923Z",
         "nutriscore": "A",
         "nova_group": 4,
         "nutrition": {
@@ -485,7 +485,7 @@
         "image_url": "data/images/intermarche-015.webp",
         "image_filename": "intermarche-015.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:28.012364Z"
+        "fetched_at": "2026-09-19T06:33:48.571330Z"
       },
       {
         "name": "Avocats Hass",
@@ -500,7 +500,7 @@
         "image_url": "data/images/intermarche-016.webp",
         "image_filename": "intermarche-016.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:28.734632Z"
+        "fetched_at": "2026-09-19T06:33:49.427205Z"
       },
       {
         "name": "Myrtilles",
@@ -515,7 +515,7 @@
         "image_url": "data/images/intermarche-017.webp",
         "image_filename": "intermarche-017.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:29.516988Z"
+        "fetched_at": "2026-09-19T06:33:50.199814Z"
       },
       {
         "name": "Brochettes de porc",
@@ -530,7 +530,7 @@
         "image_url": "data/images/intermarche-018.webp",
         "image_filename": "intermarche-018.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:30.287815Z"
+        "fetched_at": "2026-09-19T06:33:50.983032Z"
       },
       {
         "name": "Pains de viande",
@@ -545,7 +545,7 @@
         "image_url": "data/images/intermarche-019.webp",
         "image_filename": "intermarche-019.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:31.024892Z"
+        "fetched_at": "2026-09-19T06:33:51.755190Z"
       },
       {
         "name": "Roulades de porc",
@@ -560,7 +560,7 @@
         "image_url": "data/images/intermarche-020.webp",
         "image_filename": "intermarche-020.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:31.762034Z"
+        "fetched_at": "2026-09-19T06:33:52.504172Z"
       },
       {
         "name": "Hachis porc et boeuf",
@@ -575,7 +575,7 @@
         "image_url": "data/images/intermarche-021.webp",
         "image_filename": "intermarche-021.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:32.472675Z"
+        "fetched_at": "2026-09-19T06:33:53.219909Z"
       },
       {
         "name": "Rôti de porc Orloff",
@@ -590,7 +590,7 @@
         "image_url": "data/images/intermarche-022.webp",
         "image_filename": "intermarche-022.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:33.248290Z"
+        "fetched_at": "2026-09-19T06:33:53.985626Z"
       },
       {
         "name": "Cailles - Le Gaulois",
@@ -605,7 +605,7 @@
         "image_url": "data/images/intermarche-023.webp",
         "image_filename": "intermarche-023.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:34.023111Z"
+        "fetched_at": "2026-09-19T06:33:54.706219Z"
       },
       {
         "name": "Pilons de poulet",
@@ -620,7 +620,7 @@
         "image_url": "data/images/intermarche-024.webp",
         "image_filename": "intermarche-024.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:34.845256Z"
+        "fetched_at": "2026-09-19T06:33:55.485622Z"
       },
       {
         "name": "Pintade - Le Gaulois",
@@ -635,7 +635,7 @@
         "image_url": "data/images/intermarche-025.webp",
         "image_filename": "intermarche-025.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:35.576591Z"
+        "fetched_at": "2026-09-19T06:33:56.236721Z"
       },
       {
         "name": "Abats de poulet",
@@ -650,7 +650,7 @@
         "image_url": "data/images/intermarche-026.webp",
         "image_filename": "intermarche-026.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:36.392647Z"
+        "fetched_at": "2026-09-19T06:33:56.967601Z"
       },
       {
         "name": "Saucisses de poulet",
@@ -665,7 +665,7 @@
         "image_url": "data/images/intermarche-027.webp",
         "image_filename": "intermarche-027.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:37.154241Z"
+        "fetched_at": "2026-09-19T06:33:57.702368Z"
       },
       {
         "name": "Chipolatas de poulet",
@@ -680,7 +680,7 @@
         "image_url": "data/images/intermarche-028.webp",
         "image_filename": "intermarche-028.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:37.880964Z"
+        "fetched_at": "2026-09-19T06:33:58.417316Z"
       },
       {
         "name": "Poulet entier maïs",
@@ -695,7 +695,7 @@
         "image_url": "data/images/intermarche-029.webp",
         "image_filename": "intermarche-029.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:38.621889Z"
+        "fetched_at": "2026-09-19T06:33:59.145173Z"
       },
       {
         "name": "Maison Briau",
@@ -710,7 +710,7 @@
         "image_url": "data/images/intermarche-030.webp",
         "image_filename": "intermarche-030.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:39.352911Z"
+        "fetched_at": "2026-09-19T06:33:59.904068Z"
       },
       {
         "name": "Appetit",
@@ -725,7 +725,7 @@
         "image_url": "data/images/intermarche-031.webp",
         "image_filename": "intermarche-031.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:40.131790Z"
+        "fetched_at": "2026-09-19T06:34:00.723478Z"
       },
       {
         "name": "Jambon à l'os fumé maison",
@@ -740,7 +740,7 @@
         "image_url": "data/images/intermarche-032.webp",
         "image_filename": "intermarche-032.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:40.860047Z"
+        "fetched_at": "2026-09-19T06:34:01.405806Z"
       },
       {
         "name": "Herta",
@@ -755,7 +755,7 @@
         "image_url": "data/images/intermarche-033.webp",
         "image_filename": "intermarche-033.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:41.612043Z",
+        "fetched_at": "2026-09-19T06:34:02.176523Z",
         "nutriscore": "D",
         "nova_group": null,
         "nutrition": {
@@ -793,7 +793,7 @@
         "image_url": "data/images/intermarche-034.webp",
         "image_filename": "intermarche-034.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:42.411413Z"
+        "fetched_at": "2026-09-19T06:34:02.903812Z"
       },
       {
         "name": "Tête pressée",
@@ -808,7 +808,7 @@
         "image_url": "data/images/intermarche-035.webp",
         "image_filename": "intermarche-035.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:43.127960Z"
+        "fetched_at": "2026-09-19T06:34:03.682674Z"
       },
       {
         "name": "Charcuterie Ardennaise",
@@ -823,7 +823,7 @@
         "image_url": "data/images/intermarche-036.webp",
         "image_filename": "intermarche-036.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:43.881075Z"
+        "fetched_at": "2026-09-19T06:34:04.433890Z"
       },
       {
         "name": "Salami",
@@ -838,7 +838,7 @@
         "image_url": "data/images/intermarche-037.webp",
         "image_filename": "intermarche-037.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:44.669283Z"
+        "fetched_at": "2026-09-19T06:34:05.271622Z"
       },
       {
         "name": "Filet de lieu noir",
@@ -853,7 +853,7 @@
         "image_url": "data/images/intermarche-038.webp",
         "image_filename": "intermarche-038.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:45.425524Z"
+        "fetched_at": "2026-09-19T06:34:06.169270Z"
       },
       {
         "name": "Jambon Serrano",
@@ -868,7 +868,7 @@
         "image_url": "data/images/intermarche-039.webp",
         "image_filename": "intermarche-039.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:46.274637Z"
+        "fetched_at": "2026-09-19T06:34:06.948790Z"
       },
       {
         "name": "Salades tartinables",
@@ -883,7 +883,7 @@
         "image_url": "data/images/intermarche-040.webp",
         "image_filename": "intermarche-040.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:47.030832Z"
+        "fetched_at": "2026-09-19T06:34:07.687576Z"
       },
       {
         "name": "Peka",
@@ -898,7 +898,7 @@
         "image_url": "data/images/intermarche-041.webp",
         "image_filename": "intermarche-041.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:47.673386Z"
+        "fetched_at": "2026-09-19T06:34:08.368892Z"
       },
       {
         "name": "Vol-au-vent",
@@ -913,7 +913,7 @@
         "image_url": "data/images/intermarche-042.webp",
         "image_filename": "intermarche-042.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:48.507882Z"
+        "fetched_at": "2026-09-19T06:34:09.132536Z"
       },
       {
         "name": "Sodebo",
@@ -928,7 +928,7 @@
         "image_url": "data/images/intermarche-043.webp",
         "image_filename": "intermarche-043.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:49.266871Z",
+        "fetched_at": "2026-09-19T06:34:09.928357Z",
         "nutriscore": "C",
         "nova_group": 4,
         "nutrition": {
@@ -978,7 +978,7 @@
         "image_url": "data/images/intermarche-044.webp",
         "image_filename": "intermarche-044.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:50.093424Z"
+        "fetched_at": "2026-09-19T06:34:10.668577Z"
       },
       {
         "name": "St Môret",
@@ -993,7 +993,7 @@
         "image_url": "data/images/intermarche-045.webp",
         "image_filename": "intermarche-045.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:50.850970Z"
+        "fetched_at": "2026-09-19T06:34:11.382031Z"
       },
       {
         "name": "Boursin",
@@ -1008,7 +1008,7 @@
         "image_url": "data/images/intermarche-046.webp",
         "image_filename": "intermarche-046.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:51.635343Z"
+        "fetched_at": "2026-09-19T06:34:12.141537Z"
       },
       {
         "name": "Apéricube",
@@ -1023,7 +1023,7 @@
         "image_url": "data/images/intermarche-047.webp",
         "image_filename": "intermarche-047.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:52.408859Z",
+        "fetched_at": "2026-09-19T06:34:12.913899Z",
         "nutriscore": "E",
         "nova_group": 4,
         "nutrition": {
@@ -1062,7 +1062,7 @@
         "image_url": "data/images/intermarche-048.webp",
         "image_filename": "intermarche-048.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:53.155684Z"
+        "fetched_at": "2026-09-19T06:34:13.658028Z"
       },
       {
         "name": "Starbucks",
@@ -1077,7 +1077,7 @@
         "image_url": "data/images/intermarche-049.webp",
         "image_filename": "intermarche-049.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:53.882133Z"
+        "fetched_at": "2026-09-19T06:34:14.351821Z"
       },
       {
         "name": "Baguette",
@@ -1092,7 +1092,7 @@
         "image_url": "data/images/intermarche-050.webp",
         "image_filename": "intermarche-050.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:54.594278Z",
+        "fetched_at": "2026-09-19T06:34:15.069421Z",
         "nutriscore": "C",
         "nova_group": null,
         "nutrition": {
@@ -1126,7 +1126,7 @@
         "image_url": "data/images/intermarche-051.webp",
         "image_filename": "intermarche-051.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:55.347501Z"
+        "fetched_at": "2026-09-19T06:34:15.835206Z"
       },
       {
         "name": "Chaussons",
@@ -1141,7 +1141,7 @@
         "image_url": "data/images/intermarche-052.webp",
         "image_filename": "intermarche-052.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:56.044222Z"
+        "fetched_at": "2026-09-19T06:34:16.578997Z"
       },
       {
         "name": "Triangles",
@@ -1156,7 +1156,7 @@
         "image_url": "data/images/intermarche-053.webp",
         "image_filename": "intermarche-053.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:56.834560Z"
+        "fetched_at": "2026-09-19T06:34:17.283364Z"
       },
       {
         "name": "Part de tarte individuelle",
@@ -1171,7 +1171,7 @@
         "image_url": "data/images/intermarche-054.webp",
         "image_filename": "intermarche-054.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:57.571527Z",
+        "fetched_at": "2026-09-19T06:34:17.985462Z",
         "nutriscore": "E",
         "nova_group": 4,
         "nutrition": {
@@ -1218,7 +1218,7 @@
         "image_url": "data/images/intermarche-055.webp",
         "image_filename": "intermarche-055.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:58.323868Z"
+        "fetched_at": "2026-09-19T06:34:18.704522Z"
       },
       {
         "name": "Chamois d'Or",
@@ -1233,7 +1233,7 @@
         "image_url": "data/images/intermarche-056.webp",
         "image_filename": "intermarche-056.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:59.072418Z"
+        "fetched_at": "2026-09-19T06:34:19.471348Z"
       },
       {
         "name": "Vieux Pané",
@@ -1248,7 +1248,7 @@
         "image_url": "data/images/intermarche-057.webp",
         "image_filename": "intermarche-057.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:05:59.804029Z"
+        "fetched_at": "2026-09-19T06:34:20.254860Z"
       },
       {
         "name": "Saint Albray",
@@ -1263,7 +1263,7 @@
         "image_url": "data/images/intermarche-058.webp",
         "image_filename": "intermarche-058.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:00.641383Z"
+        "fetched_at": "2026-09-19T06:34:21.030632Z"
       },
       {
         "name": "Provolone",
@@ -1278,7 +1278,7 @@
         "image_url": "data/images/intermarche-059.webp",
         "image_filename": "intermarche-059.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:01.393298Z"
+        "fetched_at": "2026-09-19T06:34:21.784141Z"
       },
       {
         "name": "Nestlé Extrême",
@@ -1293,7 +1293,7 @@
         "image_url": "data/images/intermarche-060.webp",
         "image_filename": "intermarche-060.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:02.100664Z"
+        "fetched_at": "2026-09-19T06:34:22.490004Z"
       },
       {
         "name": "Mc Cain",
@@ -1308,7 +1308,7 @@
         "image_url": "data/images/intermarche-061.webp",
         "image_filename": "intermarche-061.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:02.794537Z",
+        "fetched_at": "2026-09-19T06:34:23.137986Z",
         "nutriscore": "B",
         "nova_group": null,
         "nutrition": {
@@ -1341,7 +1341,7 @@
         "image_url": "data/images/intermarche-062.webp",
         "image_filename": "intermarche-062.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:03.544514Z"
+        "fetched_at": "2026-09-19T06:34:23.893371Z"
       },
       {
         "name": "Iglo",
@@ -1356,7 +1356,7 @@
         "image_url": "data/images/intermarche-063.webp",
         "image_filename": "intermarche-063.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:04.216524Z",
+        "fetched_at": "2026-09-19T06:34:24.616564Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -1389,7 +1389,7 @@
         "image_url": "data/images/intermarche-064.webp",
         "image_filename": "intermarche-064.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:04.950809Z",
+        "fetched_at": "2026-09-19T06:34:25.294811Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -1427,7 +1427,7 @@
         "image_url": "data/images/intermarche-065.webp",
         "image_filename": "intermarche-065.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:05.689488Z"
+        "fetched_at": "2026-09-19T06:34:25.959747Z"
       },
       {
         "name": "Nesquik",
@@ -1442,7 +1442,7 @@
         "image_url": "data/images/intermarche-066.webp",
         "image_filename": "intermarche-066.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:06.432625Z"
+        "fetched_at": "2026-09-19T06:34:26.703082Z"
       },
       {
         "name": "Douwe Egberts",
@@ -1457,7 +1457,7 @@
         "image_url": "data/images/intermarche-067.webp",
         "image_filename": "intermarche-067.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:07.211373Z",
+        "fetched_at": "2026-09-19T06:34:27.464659Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -1490,7 +1490,7 @@
         "image_url": "data/images/intermarche-068.webp",
         "image_filename": "intermarche-068.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:07.965185Z"
+        "fetched_at": "2026-09-19T06:34:28.385555Z"
       },
       {
         "name": "Jacqmotte",
@@ -1505,7 +1505,7 @@
         "image_url": "data/images/intermarche-069.webp",
         "image_filename": "intermarche-069.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:08.663032Z"
+        "fetched_at": "2026-09-19T06:34:29.088491Z"
       },
       {
         "name": "Paquito",
@@ -1520,7 +1520,7 @@
         "image_url": "data/images/intermarche-070.webp",
         "image_filename": "intermarche-070.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:09.383477Z",
+        "fetched_at": "2026-09-19T06:34:29.822955Z",
         "nutriscore": "D",
         "nova_group": 4,
         "nutrition": {
@@ -1562,7 +1562,7 @@
         "image_url": "data/images/intermarche-071.webp",
         "image_filename": "intermarche-071.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:10.134052Z",
+        "fetched_at": "2026-09-19T06:34:30.625751Z",
         "nutriscore": "UNKNOWN",
         "nova_group": 4,
         "nutrition": {
@@ -1600,7 +1600,7 @@
         "image_url": "data/images/intermarche-072.webp",
         "image_filename": "intermarche-072.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:10.893110Z"
+        "fetched_at": "2026-09-19T06:34:31.387123Z"
       },
       {
         "name": "Lindt",
@@ -1615,7 +1615,7 @@
         "image_url": "data/images/intermarche-073.webp",
         "image_filename": "intermarche-073.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:11.722567Z"
+        "fetched_at": "2026-09-19T06:34:32.114344Z"
       },
       {
         "name": "Twix",
@@ -1630,7 +1630,7 @@
         "image_url": "data/images/intermarche-074.webp",
         "image_filename": "intermarche-074.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:12.488001Z"
+        "fetched_at": "2026-09-19T06:34:32.834808Z"
       },
       {
         "name": "Snickers",
@@ -1645,7 +1645,7 @@
         "image_url": "data/images/intermarche-075.webp",
         "image_filename": "intermarche-075.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:13.198202Z",
+        "fetched_at": "2026-09-19T06:34:33.562876Z",
         "nutriscore": "E",
         "nova_group": 4,
         "nutrition": {
@@ -1689,7 +1689,7 @@
         "image_url": "data/images/intermarche-076.webp",
         "image_filename": "intermarche-076.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:13.920235Z"
+        "fetched_at": "2026-09-19T06:34:34.281235Z"
       },
       {
         "name": "Lu",
@@ -1704,7 +1704,7 @@
         "image_url": "data/images/intermarche-077.webp",
         "image_filename": "intermarche-077.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:14.782541Z",
+        "fetched_at": "2026-09-19T06:34:35.027515Z",
         "nutriscore": "D",
         "nova_group": 4,
         "nutrition": {
@@ -1758,7 +1758,7 @@
         "image_url": "data/images/intermarche-078.webp",
         "image_filename": "intermarche-078.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:15.565166Z",
+        "fetched_at": "2026-09-19T06:34:35.816465Z",
         "nutriscore": "E",
         "nova_group": 4,
         "nutrition": {
@@ -1801,7 +1801,7 @@
         "image_url": "data/images/intermarche-079.webp",
         "image_filename": "intermarche-079.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:16.305744Z"
+        "fetched_at": "2026-09-19T06:34:36.537549Z"
       },
       {
         "name": "Tyrrell's",
@@ -1816,7 +1816,7 @@
         "image_url": "data/images/intermarche-080.webp",
         "image_filename": "intermarche-080.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:17.155216Z"
+        "fetched_at": "2026-09-19T06:34:37.266140Z"
       },
       {
         "name": "Chio",
@@ -1831,7 +1831,7 @@
         "image_url": "data/images/intermarche-081.webp",
         "image_filename": "intermarche-081.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:17.916094Z"
+        "fetched_at": "2026-09-19T06:34:38.006451Z"
       },
       {
         "name": "Pombar",
@@ -1846,7 +1846,7 @@
         "image_url": "data/images/intermarche-082.webp",
         "image_filename": "intermarche-082.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:18.679291Z",
+        "fetched_at": "2026-09-19T06:34:38.762017Z",
         "nutriscore": "D",
         "nova_group": 4,
         "nutrition": {
@@ -1887,7 +1887,7 @@
         "image_url": "data/images/intermarche-083.webp",
         "image_filename": "intermarche-083.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:19.459325Z"
+        "fetched_at": "2026-09-19T06:34:39.486147Z"
       },
       {
         "name": "La Fiammante - Passata",
@@ -1902,7 +1902,7 @@
         "image_url": "data/images/intermarche-084.webp",
         "image_filename": "intermarche-084.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:20.213818Z",
+        "fetched_at": "2026-09-19T06:34:40.190778Z",
         "nutriscore": "A",
         "nova_group": 4,
         "nutrition": {
@@ -1944,7 +1944,7 @@
         "image_url": "data/images/intermarche-085.webp",
         "image_filename": "intermarche-085.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:21.022357Z",
+        "fetched_at": "2026-09-19T06:34:40.912365Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -1977,7 +1977,7 @@
         "image_url": "data/images/intermarche-086.webp",
         "image_filename": "intermarche-086.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:21.800840Z"
+        "fetched_at": "2026-09-19T06:34:41.709250Z"
       },
       {
         "name": "Hello",
@@ -1992,7 +1992,7 @@
         "image_url": "data/images/intermarche-087.webp",
         "image_filename": "intermarche-087.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:22.458576Z"
+        "fetched_at": "2026-09-19T06:34:42.458291Z"
       },
       {
         "name": "Ottogi",
@@ -2007,7 +2007,7 @@
         "image_url": "data/images/intermarche-088.webp",
         "image_filename": "intermarche-088.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:23.341961Z"
+        "fetched_at": "2026-09-19T06:34:43.217189Z"
       },
       {
         "name": "Ajumma",
@@ -2022,7 +2022,7 @@
         "image_url": "data/images/intermarche-089.webp",
         "image_filename": "intermarche-089.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:24.086241Z"
+        "fetched_at": "2026-09-19T06:34:43.982930Z"
       },
       {
         "name": "Shiratak",
@@ -2037,7 +2037,7 @@
         "image_url": "data/images/intermarche-090.webp",
         "image_filename": "intermarche-090.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:24.876672Z"
+        "fetched_at": "2026-09-19T06:34:44.770101Z"
       },
       {
         "name": "Hikari",
@@ -2052,7 +2052,7 @@
         "image_url": "data/images/intermarche-091.webp",
         "image_filename": "intermarche-091.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:25.656973Z",
+        "fetched_at": "2026-09-19T06:34:45.566878Z",
         "nutriscore": "E",
         "nova_group": 3,
         "nutrition": {
@@ -2087,7 +2087,7 @@
         "image_url": "data/images/intermarche-092.webp",
         "image_filename": "intermarche-092.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:26.405660Z"
+        "fetched_at": "2026-09-19T06:34:46.297150Z"
       },
       {
         "name": "Patak's",
@@ -2102,7 +2102,7 @@
         "image_url": "data/images/intermarche-093.webp",
         "image_filename": "intermarche-093.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:27.069521Z",
+        "fetched_at": "2026-09-19T06:34:46.950723Z",
         "nutriscore": "E",
         "nova_group": 3,
         "nutrition": {
@@ -2149,7 +2149,7 @@
         "image_url": "data/images/intermarche-094.webp",
         "image_filename": "intermarche-094.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:27.850058Z",
+        "fetched_at": "2026-09-19T06:34:47.697850Z",
         "nutriscore": "C",
         "nova_group": 4,
         "nutrition": {
@@ -2190,7 +2190,7 @@
         "image_url": "data/images/intermarche-095.webp",
         "image_filename": "intermarche-095.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:28.528438Z"
+        "fetched_at": "2026-09-19T06:34:48.369319Z"
       },
       {
         "name": "Maretti",
@@ -2205,7 +2205,7 @@
         "image_url": "data/images/intermarche-096.webp",
         "image_filename": "intermarche-096.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:29.213073Z"
+        "fetched_at": "2026-09-19T06:34:49.097022Z"
       },
       {
         "name": "Elephant",
@@ -2220,7 +2220,7 @@
         "image_url": "data/images/intermarche-097.webp",
         "image_filename": "intermarche-097.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:30.024295Z"
+        "fetched_at": "2026-09-19T06:34:49.922067Z"
       },
       {
         "name": "Agromonte",
@@ -2235,7 +2235,7 @@
         "image_url": "data/images/intermarche-098.webp",
         "image_filename": "intermarche-098.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:30.802070Z"
+        "fetched_at": "2026-09-19T06:34:50.688917Z"
       },
       {
         "name": "Panealba",
@@ -2250,7 +2250,7 @@
         "image_url": "data/images/intermarche-099.webp",
         "image_filename": "intermarche-099.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:31.521567Z",
+        "fetched_at": "2026-09-19T06:34:51.427872Z",
         "nutriscore": "D",
         "nova_group": null,
         "nutrition": {
@@ -2283,7 +2283,7 @@
         "image_url": "data/images/intermarche-100.webp",
         "image_filename": "intermarche-100.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:32.340014Z",
+        "fetched_at": "2026-09-19T06:34:52.196031Z",
         "nutriscore": "D",
         "nova_group": null,
         "nutrition": {
@@ -2317,7 +2317,7 @@
         "image_url": "data/images/intermarche-101.webp",
         "image_filename": "intermarche-101.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:33.021433Z",
+        "fetched_at": "2026-09-19T06:34:52.943765Z",
         "nutriscore": "C",
         "nova_group": 4,
         "nutrition": {
@@ -2368,7 +2368,7 @@
         "image_url": "data/images/intermarche-102.webp",
         "image_filename": "intermarche-102.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:33.792320Z"
+        "fetched_at": "2026-09-19T06:34:53.680783Z"
       },
       {
         "name": "Crazy Tiger",
@@ -2383,7 +2383,7 @@
         "image_url": "data/images/intermarche-103.webp",
         "image_filename": "intermarche-103.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:34.522810Z"
+        "fetched_at": "2026-09-19T06:34:54.370630Z"
       },
       {
         "name": "Capri-Sun",
@@ -2398,7 +2398,7 @@
         "image_url": "data/images/intermarche-104.webp",
         "image_filename": "intermarche-104.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:35.217169Z",
+        "fetched_at": "2026-09-19T06:34:55.113757Z",
         "nutriscore": "D",
         "nova_group": 4,
         "nutrition": {
@@ -2439,7 +2439,7 @@
         "image_url": "data/images/intermarche-105.webp",
         "image_filename": "intermarche-105.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:35.969975Z"
+        "fetched_at": "2026-09-19T06:34:55.864647Z"
       },
       {
         "name": "Spa",
@@ -2454,7 +2454,7 @@
         "image_url": "data/images/intermarche-106.webp",
         "image_filename": "intermarche-106.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:36.685261Z"
+        "fetched_at": "2026-09-19T06:34:56.632067Z"
       },
       {
         "name": "Fanta",
@@ -2469,7 +2469,7 @@
         "image_url": "data/images/intermarche-107.webp",
         "image_filename": "intermarche-107.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:37.409983Z",
+        "fetched_at": "2026-09-19T06:34:57.304605Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -2502,7 +2502,7 @@
         "image_url": "data/images/intermarche-108.webp",
         "image_filename": "intermarche-108.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:38.152200Z"
+        "fetched_at": "2026-09-19T06:34:57.970082Z"
       },
       {
         "name": "Bush",
@@ -2517,7 +2517,7 @@
         "image_url": "data/images/intermarche-109.webp",
         "image_filename": "intermarche-109.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:38.804076Z"
+        "fetched_at": "2026-09-19T06:34:58.670875Z"
       },
       {
         "name": "Cuvée des Trolls",
@@ -2532,7 +2532,7 @@
         "image_url": "data/images/intermarche-110.webp",
         "image_filename": "intermarche-110.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:39.535857Z"
+        "fetched_at": "2026-09-19T06:34:59.431503Z"
       },
       {
         "name": "Tongerlo",
@@ -2547,7 +2547,7 @@
         "image_url": "data/images/intermarche-111.webp",
         "image_filename": "intermarche-111.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:40.288396Z"
+        "fetched_at": "2026-09-19T06:35:00.183291Z"
       },
       {
         "name": "Super 8",
@@ -2562,7 +2562,7 @@
         "image_url": "data/images/intermarche-112.webp",
         "image_filename": "intermarche-112.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:41.012435Z"
+        "fetched_at": "2026-09-19T06:35:00.909350Z"
       },
       {
         "name": "Corona",
@@ -2577,7 +2577,7 @@
         "image_url": "data/images/intermarche-113.webp",
         "image_filename": "intermarche-113.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:41.744691Z",
+        "fetched_at": "2026-09-19T06:35:01.615911Z",
         "nutriscore": "NOT-APPLICABLE",
         "nova_group": null,
         "nutrition": {
@@ -2611,7 +2611,7 @@
         "image_url": "data/images/intermarche-114.webp",
         "image_filename": "intermarche-114.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:42.535295Z",
+        "fetched_at": "2026-09-19T06:35:02.379792Z",
         "nutriscore": "UNKNOWN",
         "nova_group": null,
         "nutrition": {
@@ -2644,7 +2644,7 @@
         "image_url": "data/images/intermarche-115.webp",
         "image_filename": "intermarche-115.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:43.303385Z"
+        "fetched_at": "2026-09-19T06:35:03.102449Z"
       },
       {
         "name": "Victoria",
@@ -2659,7 +2659,7 @@
         "image_url": "data/images/intermarche-116.webp",
         "image_filename": "intermarche-116.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:44.080262Z"
+        "fetched_at": "2026-09-19T06:35:03.871756Z"
       },
       {
         "name": "Tiseco",
@@ -2674,7 +2674,7 @@
         "image_url": "data/images/intermarche-117.webp",
         "image_filename": "intermarche-117.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:44.893425Z"
+        "fetched_at": "2026-09-19T06:35:04.635071Z"
       },
       {
         "name": "Varta",
@@ -2689,7 +2689,7 @@
         "image_url": "data/images/intermarche-118.webp",
         "image_filename": "intermarche-118.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:45.682739Z"
+        "fetched_at": "2026-09-19T06:35:05.358230Z"
       },
       {
         "name": "AOP Gigondas",
@@ -2704,7 +2704,7 @@
         "image_url": "data/images/intermarche-119.webp",
         "image_filename": "intermarche-119.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:46.438618Z"
+        "fetched_at": "2026-09-19T06:35:06.122956Z"
       },
       {
         "name": "AOP Gros Plant du pays Nantais",
@@ -2719,7 +2719,7 @@
         "image_url": "data/images/intermarche-120.webp",
         "image_filename": "intermarche-120.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:47.122303Z"
+        "fetched_at": "2026-09-19T06:35:06.834642Z"
       },
       {
         "name": "Scottex",
@@ -2734,7 +2734,7 @@
         "image_url": "data/images/intermarche-121.webp",
         "image_filename": "intermarche-121.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:47.829657Z"
+        "fetched_at": "2026-09-19T06:35:07.533869Z"
       },
       {
         "name": "William Lawson",
@@ -2749,7 +2749,7 @@
         "image_url": "data/images/intermarche-122.webp",
         "image_filename": "intermarche-122.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:48.605303Z",
+        "fetched_at": "2026-09-19T06:35:08.305600Z",
         "nutriscore": "NOT-APPLICABLE",
         "nova_group": null,
         "nutrition": {
@@ -2782,7 +2782,7 @@
         "image_url": "data/images/intermarche-123.webp",
         "image_filename": "intermarche-123.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:49.378307Z"
+        "fetched_at": "2026-09-19T06:35:09.036732Z"
       },
       {
         "name": "Martini",
@@ -2797,7 +2797,7 @@
         "image_url": "data/images/intermarche-124.webp",
         "image_filename": "intermarche-124.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:50.128100Z"
+        "fetched_at": "2026-09-19T06:35:09.755170Z"
       },
       {
         "name": "Eristoff",
@@ -2812,7 +2812,7 @@
         "image_url": "data/images/intermarche-125.webp",
         "image_filename": "intermarche-125.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:50.840899Z",
+        "fetched_at": "2026-09-19T06:35:10.501061Z",
         "nutriscore": "NOT-APPLICABLE",
         "nova_group": 4,
         "nutrition": {
@@ -2855,7 +2855,7 @@
         "image_url": "data/images/intermarche-126.webp",
         "image_filename": "intermarche-126.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:51.638110Z"
+        "fetched_at": "2026-09-19T06:35:11.201717Z"
       },
       {
         "name": "Whiskas",
@@ -2870,7 +2870,7 @@
         "image_url": "data/images/intermarche-127.webp",
         "image_filename": "intermarche-127.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:52.409195Z"
+        "fetched_at": "2026-09-19T06:35:11.992471Z"
       },
       {
         "name": "Gourmet",
@@ -2885,7 +2885,7 @@
         "image_url": "data/images/intermarche-128.webp",
         "image_filename": "intermarche-128.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:53.093191Z"
+        "fetched_at": "2026-09-19T06:35:12.717378Z"
       },
       {
         "name": "Nivea",
@@ -2900,7 +2900,7 @@
         "image_url": "data/images/intermarche-129.webp",
         "image_filename": "intermarche-129.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:53.829474Z"
+        "fetched_at": "2026-09-19T06:35:13.426643Z"
       },
       {
         "name": "Le Chat",
@@ -2915,7 +2915,7 @@
         "image_url": "data/images/intermarche-130.webp",
         "image_filename": "intermarche-130.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:54.526745Z"
+        "fetched_at": "2026-09-19T06:35:14.118844Z"
       },
       {
         "name": "Mr. Propre",
@@ -2930,7 +2930,7 @@
         "image_url": "data/images/intermarche-131.webp",
         "image_filename": "intermarche-131.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:55.245731Z"
+        "fetched_at": "2026-09-19T06:35:14.813620Z"
       },
       {
         "name": "Antikal",
@@ -2945,7 +2945,7 @@
         "image_url": "data/images/intermarche-132.webp",
         "image_filename": "intermarche-132.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:55.935691Z"
+        "fetched_at": "2026-09-19T06:35:15.527409Z"
       },
       {
         "name": "Belle Color",
@@ -2960,7 +2960,7 @@
         "image_url": "data/images/intermarche-133.webp",
         "image_filename": "intermarche-133.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:56.649313Z"
+        "fetched_at": "2026-09-19T06:35:16.236007Z"
       },
       {
         "name": "Ultra Doux",
@@ -2975,7 +2975,7 @@
         "image_url": "data/images/intermarche-134.webp",
         "image_filename": "intermarche-134.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:57.402716Z"
+        "fetched_at": "2026-09-19T06:35:16.975495Z"
       },
       {
         "name": "Garnier",
@@ -2990,7 +2990,7 @@
         "image_url": "data/images/intermarche-135.webp",
         "image_filename": "intermarche-135.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:58.203502Z"
+        "fetched_at": "2026-09-19T06:35:17.722114Z"
       },
       {
         "name": "Pampers",
@@ -3005,7 +3005,7 @@
         "image_url": "data/images/intermarche-136.webp",
         "image_filename": "intermarche-136.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:58.911214Z"
+        "fetched_at": "2026-09-19T06:35:18.409604Z"
       },
       {
         "name": "Dreft",
@@ -3020,7 +3020,7 @@
         "image_url": "data/images/intermarche-137.webp",
         "image_filename": "intermarche-137.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:06:59.736226Z"
+        "fetched_at": "2026-09-19T06:35:19.159642Z"
       },
       {
         "name": "Häagen-Dazs",
@@ -3035,7 +3035,7 @@
         "image_url": "data/images/intermarche-138.webp",
         "image_filename": "intermarche-138.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:07:00.522919Z"
+        "fetched_at": "2026-09-19T06:35:19.881405Z"
       },
       {
         "name": "Pepsi",
@@ -3050,7 +3050,7 @@
         "image_url": "data/images/intermarche-139.webp",
         "image_filename": "intermarche-139.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:07:01.280486Z"
+        "fetched_at": "2026-09-19T06:35:20.654356Z"
       },
       {
         "name": "Vin de France",
@@ -3065,7 +3065,7 @@
         "image_url": "data/images/intermarche-140.webp",
         "image_filename": "intermarche-140.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:07:02.037561Z"
+        "fetched_at": "2026-09-19T06:35:21.412443Z"
       },
       {
         "name": "Raisins blancs Italia",
@@ -3080,7 +3080,7 @@
         "image_url": "data/images/intermarche-141.webp",
         "image_filename": "intermarche-141.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:07:02.850787Z"
+        "fetched_at": "2026-09-19T06:35:22.158511Z"
       },
       {
         "name": "Axe",
@@ -3095,7 +3095,7 @@
         "image_url": "data/images/intermarche-142.webp",
         "image_filename": "intermarche-142.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-18T17:07:03.765226Z"
+        "fetched_at": "2026-09-19T06:35:22.965035Z"
       }
     ],
     "aldi": [
@@ -3113,7 +3113,7 @@
         "unit": "2 x 100 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/1080_tongscharfilet_op_plankje_25-2",
         "source_url": "https://www.aldi.be/fr/filets-de-limande-sole-2-pcs-1080",
-        "fetched_at": "2026-09-18T17:07:05.490473Z",
+        "fetched_at": "2026-09-19T06:35:24.548055Z",
         "ean": null
       },
       {
@@ -3130,7 +3130,7 @@
         "unit": "2 x 200 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/1928_dik_gesneden_spek_25-0b-grp",
         "source_url": "https://www.aldi.be/fr/tranches-epaisses-de-lard-1928",
-        "fetched_at": "2026-09-18T17:07:05.490598Z",
+        "fetched_at": "2026-09-19T06:35:24.548169Z",
         "ean": null
       },
       {
@@ -3147,7 +3147,7 @@
         "unit": "400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/2278_miniromatrostomaten_uv-2",
         "source_url": "https://www.aldi.be/fr/minitomates-roma-en-grappe-2278",
-        "fetched_at": "2026-09-18T17:07:05.490678Z",
+        "fetched_at": "2026-09-19T06:35:24.548245Z",
         "ean": null
       },
       {
@@ -3162,7 +3162,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/2803.margaux_chateau_les_gravieres_de_marsac_aop-2023.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/margaux-chateau-grand-tayac-aop-2803",
-        "fetched_at": "2026-09-18T17:07:05.490756Z",
+        "fetched_at": "2026-09-19T06:35:24.548312Z",
         "ean": null
       },
       {
@@ -3177,7 +3177,7 @@
         "unit": "1.9 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/2919.beloningssnoepjes_voor_honden-0.all_belu.2026.cw38-grp",
         "source_url": "https://www.aldi.be/fr/bonbons-de-recompense-pour-chiens-2919",
-        "fetched_at": "2026-09-18T17:07:05.490806Z",
+        "fetched_at": "2026-09-19T06:35:24.548357Z",
         "ean": null
       },
       {
@@ -3192,7 +3192,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/2981_32-2026_battery-electric-shaver_flex-shaver-trimmer_0-grp",
         "source_url": "https://www.aldi.be/fr/rasoir-2981",
-        "fetched_at": "2026-09-18T17:07:05.490841Z",
+        "fetched_at": "2026-09-19T06:35:24.548389Z",
         "ean": null
       },
       {
@@ -3209,7 +3209,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3906.brouilly_aop.all_belu.2026.cw38-med",
         "source_url": "https://www.aldi.be/fr/brouilly-aop-3906",
-        "fetched_at": "2026-09-18T17:07:05.490907Z",
+        "fetched_at": "2026-09-19T06:35:24.548450Z",
         "ean": null
       },
       {
@@ -3224,7 +3224,7 @@
         "unit": "150 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/4116.0.fondant-authentique.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/le-fondant-authentique-4116",
-        "fetched_at": "2026-09-18T17:07:05.490951Z",
+        "fetched_at": "2026-09-19T06:35:24.548489Z",
         "ean": null
       },
       {
@@ -3239,7 +3239,7 @@
         "unit": "2 x 400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/4157.zure_matten-0.all_belu.2026.cw26-grp",
         "source_url": "https://www.aldi.be/fr/rubans-fraise-ou-coca-4157",
-        "fetched_at": "2026-09-18T17:07:05.490994Z",
+        "fetched_at": "2026-09-19T06:35:24.548532Z",
         "ean": null
       },
       {
@@ -3254,7 +3254,7 @@
         "unit": "350 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/4568.snackmix-0.all_belu.2026.cw38-grp",
         "source_url": "https://www.aldi.be/fr/melange-de-snacks-4568",
-        "fetched_at": "2026-09-18T17:07:05.491043Z",
+        "fetched_at": "2026-09-19T06:35:24.548578Z",
         "ean": null
       },
       {
@@ -3269,7 +3269,7 @@
         "unit": "400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/4680.witte_tonijn.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/thon-blanc-4680",
-        "fetched_at": "2026-09-18T17:07:05.491086Z",
+        "fetched_at": "2026-09-19T06:35:24.548619Z",
         "ean": null
       },
       {
@@ -3284,7 +3284,7 @@
         "unit": "4 x 28 pcs",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/5200.0.kauwrepen-voor-honden-28-st.all_belu.2025.cw39-grp",
         "source_url": "https://www.aldi.be/fr/batons-a-macher-pour-chiens-28-pcs-5200",
-        "fetched_at": "2026-09-18T17:07:05.491133Z",
+        "fetched_at": "2026-09-19T06:35:24.548663Z",
         "ean": null
       },
       {
@@ -3299,7 +3299,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/5818_stepladder-0-2527-grp",
         "source_url": "https://www.aldi.be/fr/escabeau-repliable-5818",
-        "fetched_at": "2026-09-18T17:07:05.491209Z",
+        "fetched_at": "2026-09-19T06:35:24.548730Z",
         "ean": null
       },
       {
@@ -3316,7 +3316,7 @@
         "unit": "2 x 500 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6128_blauwe_druiven_verpakking_24-2",
         "source_url": "https://www.aldi.be/fr/raisins-noirs-sans-pepins-6128",
-        "fetched_at": "2026-09-18T17:07:05.491277Z",
+        "fetched_at": "2026-09-19T06:35:24.548790Z",
         "ean": null
       },
       {
@@ -3331,7 +3331,7 @@
         "unit": "500 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6138.zweedse_kottbullar.all_belu.2026.cw17",
         "source_url": "https://www.aldi.be/fr/kottbullar-suedoises-6138",
-        "fetched_at": "2026-09-18T17:07:05.491323Z",
+        "fetched_at": "2026-09-19T06:35:24.548828Z",
         "ean": null
       },
       {
@@ -3348,7 +3348,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6143_mango_los",
         "source_url": "https://www.aldi.be/fr/mangue-6143",
-        "fetched_at": "2026-09-18T17:07:05.491357Z",
+        "fetched_at": "2026-09-19T06:35:24.548858Z",
         "ean": null
       },
       {
@@ -3365,7 +3365,7 @@
         "unit": "750 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6146_pruimen_750gr",
         "source_url": "https://www.aldi.be/fr/prunes-6146",
-        "fetched_at": "2026-09-18T17:07:05.491390Z",
+        "fetched_at": "2026-09-19T06:35:24.548888Z",
         "ean": null
       },
       {
@@ -3382,7 +3382,7 @@
         "unit": "1 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6195-dam-6115_small_potatoes-triplets-01",
         "source_url": "https://www.aldi.be/fr/grenailles-6195",
-        "fetched_at": "2026-09-18T17:07:05.491427Z",
+        "fetched_at": "2026-09-19T06:35:24.548923Z",
         "ean": null
       },
       {
@@ -3399,7 +3399,7 @@
         "unit": "500 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6212_paprikamix_verpakking_24-1",
         "source_url": "https://www.aldi.be/fr/melange-de-poivrons-6212",
-        "fetched_at": "2026-09-18T17:07:05.491467Z",
+        "fetched_at": "2026-09-19T06:35:24.548959Z",
         "ean": null
       },
       {
@@ -3416,7 +3416,7 @@
         "unit": "2 x 250 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6260_fijne_champignons_23-4",
         "source_url": "https://www.aldi.be/fr/champignons-fins-6260",
-        "fetched_at": "2026-09-18T17:07:05.491506Z",
+        "fetched_at": "2026-09-19T06:35:24.548996Z",
         "ean": null
       },
       {
@@ -3431,7 +3431,7 @@
         "unit": "300 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6301.0.hotdogworsten-8-st.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/saucisses-hot-dog-8-pcs-6301",
-        "fetched_at": "2026-09-18T17:07:05.491549Z",
+        "fetched_at": "2026-09-19T06:35:24.549034Z",
         "ean": null
       },
       {
@@ -3448,7 +3448,7 @@
         "unit": "2 x 100 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6499.0.paprikawokkels.all_belu.2026.cw28",
         "source_url": "https://www.aldi.be/fr/wokkels-au-paprika-6499",
-        "fetched_at": "2026-09-18T17:07:05.491589Z",
+        "fetched_at": "2026-09-19T06:35:24.549071Z",
         "ean": null
       },
       {
@@ -3467,7 +3467,7 @@
         "unit": "2 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6690_verse_zeeuwse_super-mosselen_24-1",
         "source_url": "https://www.aldi.be/fr/moules-de-zelande-fraiches-super-2-kg-6690",
-        "fetched_at": "2026-09-18T17:07:05.491637Z",
+        "fetched_at": "2026-09-19T06:35:24.549118Z",
         "ean": null
       },
       {
@@ -3482,7 +3482,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/6992.ronco_di_sassi_primitivo_appassimento_puglia_igt.all_belu.2026.cw38-w",
         "source_url": "https://www.aldi.be/fr/ronco-di-sassi-primitivo-appassimento-puglia-igt-6992",
-        "fetched_at": "2026-09-18T17:07:05.491688Z",
+        "fetched_at": "2026-09-19T06:35:24.549163Z",
         "ean": null
       },
       {
@@ -3497,7 +3497,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/7472_37-2026_garden-bag-foldable_0-grp",
         "source_url": "https://www.aldi.be/fr/sac-a-dechets-verts-7472",
-        "fetched_at": "2026-09-18T17:07:05.491742Z",
+        "fetched_at": "2026-09-19T06:35:24.549210Z",
         "ean": null
       },
       {
@@ -3512,7 +3512,7 @@
         "unit": "158 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/7619.0.mon-cheri-15-st.all_belu.2026.cw50",
         "source_url": "https://www.aldi.be/fr/mon-cheri-15-pcs-7619",
-        "fetched_at": "2026-09-18T17:07:05.491784Z",
+        "fetched_at": "2026-09-19T06:35:24.549246Z",
         "ean": null
       },
       {
@@ -3527,7 +3527,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/7638_08-2026_submersiblewastewaterpump-01_dam",
         "source_url": "https://www.aldi.be/fr/pompe-submersible-pour-eaux-usees-7638",
-        "fetched_at": "2026-09-18T17:07:05.491833Z",
+        "fetched_at": "2026-09-19T06:35:24.549290Z",
         "ean": null
       },
       {
@@ -3542,7 +3542,7 @@
         "unit": "750 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/7967.hondenkoekjes-0.all_belu.2026.cw24-grp",
         "source_url": "https://www.aldi.be/fr/biscuits-pour-chiens-7967",
-        "fetched_at": "2026-09-18T17:07:05.491895Z",
+        "fetched_at": "2026-09-19T06:35:24.549345Z",
         "ean": null
       },
       {
@@ -3557,7 +3557,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/8392_39-2026_cloth-duct-tape_0-grp",
         "source_url": "https://www.aldi.be/fr/ruban-adhesif-toile-8392",
-        "fetched_at": "2026-09-18T17:07:05.491934Z",
+        "fetched_at": "2026-09-19T06:35:24.549381Z",
         "ean": null
       },
       {
@@ -3574,7 +3574,7 @@
         "unit": "12 x 70 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/8574.kippenburger.all_belu.2026.cw08",
         "source_url": "https://www.aldi.be/fr/burger-de-poulet-12-pcs-8574",
-        "fetched_at": "2026-09-18T17:07:05.492002Z",
+        "fetched_at": "2026-09-19T06:35:24.549442Z",
         "ean": null
       },
       {
@@ -3589,7 +3589,7 @@
         "unit": "le lot",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/8823_38-2026_household-utensil-bag-closure-clips-set-16pcs-ae_bag-closure-clips-set-16pcs-1",
         "source_url": "https://www.aldi.be/fr/clips-de-fermeture-16-pcs-8823",
-        "fetched_at": "2026-09-18T17:07:05.492046Z",
+        "fetched_at": "2026-09-19T06:35:24.549481Z",
         "ean": null
       },
       {
@@ -3606,7 +3606,7 @@
         "unit": "400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3001049.gekookte_kikkererwten.all_belu.2025.cw10",
         "source_url": "https://www.aldi.be/fr/pois-chiches-cuits-3001049",
-        "fetched_at": "2026-09-18T17:07:05.492156Z",
+        "fetched_at": "2026-09-19T06:35:24.549577Z",
         "ean": null
       },
       {
@@ -3623,7 +3623,7 @@
         "unit": "4 x 32 pcs",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3001218_koffiepads_dessert_26-1",
         "source_url": "https://www.aldi.be/fr/dosettes-de-cafe-dessert-32-pcs-3001218",
-        "fetched_at": "2026-09-18T17:07:05.492850Z",
+        "fetched_at": "2026-09-19T06:35:24.550180Z",
         "ean": null
       },
       {
@@ -3640,7 +3640,7 @@
         "unit": "4 x 32 pcs",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3001220_koffiepads_moka_royal_24-2",
         "source_url": "https://www.aldi.be/fr/dosettes-de-cafe-moka-royal-32-pcs-3001220",
-        "fetched_at": "2026-09-18T17:07:05.492906Z",
+        "fetched_at": "2026-09-19T06:35:24.550241Z",
         "ean": null
       },
       {
@@ -3657,7 +3657,7 @@
         "unit": "2 x 400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3001856_kalkoenmedaillons_op_plankje-2_1",
         "source_url": "https://www.aldi.be/fr/medaillons-de-filet-de-dinde-3001856",
-        "fetched_at": "2026-09-18T17:07:05.493024Z",
+        "fetched_at": "2026-09-19T06:35:24.550359Z",
         "ean": null
       },
       {
@@ -3672,7 +3672,7 @@
         "unit": "400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3002747.spekreepjes-0.all_belu.2026.cw04-grp",
         "source_url": "https://www.aldi.be/fr/allumettes-de-lardons-3002747",
-        "fetched_at": "2026-09-18T17:07:05.493075Z",
+        "fetched_at": "2026-09-19T06:35:24.550412Z",
         "ean": null
       },
       {
@@ -3687,7 +3687,7 @@
         "unit": "1 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3002779_kippenchipolata_family_pack_op_plankje-2",
         "source_url": "https://www.aldi.be/fr/chipolatas-de-poulet-4-pcs-3002779",
-        "fetched_at": "2026-09-18T17:07:05.493117Z",
+        "fetched_at": "2026-09-19T06:35:24.550455Z",
         "ean": null
       },
       {
@@ -3702,7 +3702,7 @@
         "unit": "2.8 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3003077.0.droge-kattenvoeding.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/aliment-sec-pour-chats-3003077",
-        "fetched_at": "2026-09-18T17:07:05.493155Z",
+        "fetched_at": "2026-09-19T06:35:24.550495Z",
         "ean": null
       },
       {
@@ -3717,7 +3717,7 @@
         "unit": "3 x 150 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3003188.kipcervelas.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/cervelas-de-poulet-3-pcs-3003188",
-        "fetched_at": "2026-09-18T17:07:05.493194Z",
+        "fetched_at": "2026-09-19T06:35:24.550535Z",
         "ean": null
       },
       {
@@ -3732,7 +3732,7 @@
         "unit": "1 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3003438-kippenhaasjes",
         "source_url": "https://www.aldi.be/fr/aiguillettes-de-poulet-3003438",
-        "fetched_at": "2026-09-18T17:07:05.493234Z",
+        "fetched_at": "2026-09-19T06:35:24.550579Z",
         "ean": null
       },
       {
@@ -3749,7 +3749,7 @@
         "unit": "2 x (4 x 125 g)",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3003619_yoghurt_met_vezels_24-0b-grp",
         "source_url": "https://www.aldi.be/fr/yaourt-aux-fibres-4-pcs-3003619",
-        "fetched_at": "2026-09-18T17:07:05.493272Z",
+        "fetched_at": "2026-09-19T06:35:24.550619Z",
         "ean": null
       },
       {
@@ -3764,7 +3764,7 @@
         "unit": "1 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3003780_kipfilet_a_la_minute_1kg_op_plankje_22-2",
         "source_url": "https://www.aldi.be/fr/filet-de-poulet-a-la-minute-3003780",
-        "fetched_at": "2026-09-18T17:07:05.493313Z",
+        "fetched_at": "2026-09-19T06:35:24.550661Z",
         "ean": null
       },
       {
@@ -3779,7 +3779,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3003811_12-2026_lmreadingglassestwotone_0-grp",
         "source_url": "https://www.aldi.be/fr/lunettes-de-lecture-a-monture-bicolore-3003811",
-        "fetched_at": "2026-09-18T17:07:05.493358Z",
+        "fetched_at": "2026-09-19T06:35:24.550710Z",
         "ean": null
       },
       {
@@ -3794,7 +3794,7 @@
         "unit": "2 x (6 x 40 cl)",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3004096_limonade_aardbei-watermeloen_2638-lv1",
         "source_url": "https://www.aldi.be/fr/limonade-fraise-pasteque-6-pcs-3004096",
-        "fetched_at": "2026-09-18T17:07:05.493398Z",
+        "fetched_at": "2026-09-19T06:35:24.550752Z",
         "ean": null
       },
       {
@@ -3809,7 +3809,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3004149_17-2026_steamassortment-grp",
         "source_url": "https://www.aldi.be/fr/defroisseur-a-vapeur-rabattable-ou-fer-a-vapeur-3004149",
-        "fetched_at": "2026-09-18T17:07:05.493451Z",
+        "fetched_at": "2026-09-19T06:35:24.550801Z",
         "ean": null
       },
       {
@@ -3824,7 +3824,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3004786_38-2026_l-polo-neck-pullover_0-grp",
         "source_url": "https://www.aldi.be/fr/pull-3004786",
-        "fetched_at": "2026-09-18T17:07:05.493478Z",
+        "fetched_at": "2026-09-19T06:35:24.550828Z",
         "ean": null
       },
       {
@@ -3839,7 +3839,7 @@
         "unit": "20 pcs",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3004998.royco_minute_soep-0.all_belu.2024.cw05-grp",
         "source_url": "https://www.aldi.be/fr/soupe-instantanee-20-pcs-3004998",
-        "fetched_at": "2026-09-18T17:07:05.493547Z",
+        "fetched_at": "2026-09-19T06:35:24.550900Z",
         "ean": null
       },
       {
@@ -3856,7 +3856,7 @@
         "unit": "2 x 180 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3005642_vegetarische_burger-schnitzel_24-2",
         "source_url": "https://www.aldi.be/fr/escalope-vegetalienne-3005642",
-        "fetched_at": "2026-09-18T17:07:05.493640Z",
+        "fetched_at": "2026-09-19T06:35:24.550994Z",
         "ean": null
       },
       {
@@ -3871,7 +3871,7 @@
         "unit": "6 x 100 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3005754.duo_van_verse_kaas.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/duo-de-fromages-frais-6-pcs-3005754",
-        "fetched_at": "2026-09-18T17:07:05.493679Z",
+        "fetched_at": "2026-09-19T06:35:24.551033Z",
         "ean": null
       },
       {
@@ -3888,7 +3888,7 @@
         "unit": "2 x (7 x 50 g)",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3006251_twix_7-pack_26-1",
         "source_url": "https://www.aldi.be/fr/twix-pack-de-7-3006251",
-        "fetched_at": "2026-09-18T17:07:05.493713Z",
+        "fetched_at": "2026-09-19T06:35:24.551068Z",
         "ean": null
       },
       {
@@ -3903,7 +3903,7 @@
         "unit": "3 x 75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3006394.primitivo_nero_di_troia_igp.all_belu.2026.cw38-w",
         "source_url": "https://www.aldi.be/fr/primitivo-nero-di-troia-igp-3006394",
-        "fetched_at": "2026-09-18T17:07:05.493752Z",
+        "fetched_at": "2026-09-19T06:35:24.551109Z",
         "ean": null
       },
       {
@@ -3918,7 +3918,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3006542.primitivo_rosato_puglia_igt.all_belu.2026.cw38-w",
         "source_url": "https://www.aldi.be/fr/primitivo-rosato-puglia-igt-3006542",
-        "fetched_at": "2026-09-18T17:07:05.493790Z",
+        "fetched_at": "2026-09-19T06:35:24.551148Z",
         "ean": null
       },
       {
@@ -3935,7 +3935,7 @@
         "unit": "4 x 20 pcs, le paquet",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3006545_koffiecapsules_lungo_dessert_26-1",
         "source_url": "https://www.aldi.be/fr/capsules-de-cafe-lungo-dessert-20-pcs-3006545",
-        "fetched_at": "2026-09-18T17:07:05.493833Z",
+        "fetched_at": "2026-09-19T06:35:24.551195Z",
         "ean": null
       },
       {
@@ -3950,7 +3950,7 @@
         "unit": "le lot",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3006557.4.mezenbollen-30-st.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/boules-pour-mesanges-30-pcs-3006557",
-        "fetched_at": "2026-09-18T17:07:05.493871Z",
+        "fetched_at": "2026-09-19T06:35:24.551235Z",
         "ean": null
       },
       {
@@ -3967,7 +3967,7 @@
         "unit": "2 x (7 x 45 g)",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3006560_mars_7-pack_26-1",
         "source_url": "https://www.aldi.be/fr/mars-pack-de-7-3006560",
-        "fetched_at": "2026-09-18T17:07:05.493910Z",
+        "fetched_at": "2026-09-19T06:35:24.551271Z",
         "ean": null
       },
       {
@@ -3984,7 +3984,7 @@
         "unit": "2 x (7 x 50 g)",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3006561_snickers_7-pack_26-1",
         "source_url": "https://www.aldi.be/fr/snickers-pack-de-7-3006561",
-        "fetched_at": "2026-09-18T17:07:05.493946Z",
+        "fetched_at": "2026-09-19T06:35:24.551308Z",
         "ean": null
       },
       {
@@ -3999,7 +3999,7 @@
         "unit": "1 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3007204_spruiten_1kg_23-1",
         "source_url": "https://www.aldi.be/fr/choux-de-bruxelles-3007204",
-        "fetched_at": "2026-09-18T17:07:05.494019Z",
+        "fetched_at": "2026-09-19T06:35:24.551453Z",
         "ean": null
       },
       {
@@ -4014,7 +4014,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3007379_31-2026_smoke-detector-5year-2_smoke-detector-5-years-1",
         "source_url": "https://www.aldi.be/fr/detecteur-de-fumee-3007379",
-        "fetched_at": "2026-09-18T17:07:05.494073Z",
+        "fetched_at": "2026-09-19T06:35:24.551528Z",
         "ean": null
       },
       {
@@ -4029,7 +4029,7 @@
         "unit": "165 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3007577.sneetjes_oud_brugge-1.all_belu.2025.cw37",
         "source_url": "https://www.aldi.be/fr/brugge-vieux-en-tranches-3007577",
-        "fetched_at": "2026-09-18T17:07:05.494124Z",
+        "fetched_at": "2026-09-19T06:35:24.551612Z",
         "ean": null
       },
       {
@@ -4044,7 +4044,7 @@
         "unit": "la paire",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3007720_38-2026_c-fashion-boots-boys_grp",
         "source_url": "https://www.aldi.be/fr/bottines-3007720",
-        "fetched_at": "2026-09-18T17:07:05.494154Z",
+        "fetched_at": "2026-09-19T06:35:24.551679Z",
         "ean": null
       },
       {
@@ -4061,7 +4061,7 @@
         "unit": "6 x 33 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3007774_pils_cristal-1.all_belu.2025.cw43",
         "source_url": "https://www.aldi.be/fr/pils-6-pcs-3007774",
-        "fetched_at": "2026-09-18T17:07:05.494187Z",
+        "fetched_at": "2026-09-19T06:35:24.551751Z",
         "ean": null
       },
       {
@@ -4076,7 +4076,7 @@
         "unit": "1 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3008022.lasagne_kip-mascarpone.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/lasagne-poulet-mascarpone-3008022",
-        "fetched_at": "2026-09-18T17:07:05.494226Z",
+        "fetched_at": "2026-09-19T06:35:24.551823Z",
         "ean": null
       },
       {
@@ -4091,7 +4091,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3008322_38-2026_clothes-dog-coat-0-grp",
         "source_url": "https://www.aldi.be/fr/veste-pour-chiens-3008322",
-        "fetched_at": "2026-09-18T17:07:05.494330Z",
+        "fetched_at": "2026-09-19T06:35:24.551897Z",
         "ean": null
       },
       {
@@ -4106,7 +4106,7 @@
         "unit": "2 x (6 x 60 g)",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3008942.0.nesquik-petit-6-st.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/nesquik-petit-6-pcs-3008942",
-        "fetched_at": "2026-09-18T17:07:05.494569Z",
+        "fetched_at": "2026-09-19T06:35:24.552036Z",
         "ean": null
       },
       {
@@ -4121,7 +4121,7 @@
         "unit": "750 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3009340.spaghetti-of_kippenkruiden-0.all_belu.2026.cw15-grp",
         "source_url": "https://www.aldi.be/fr/epices-pour-spaghettis-ou-epices-pour-poulet-3009340",
-        "fetched_at": "2026-09-18T17:07:05.494820Z",
+        "fetched_at": "2026-09-19T06:35:24.552194Z",
         "ean": null
       },
       {
@@ -4136,7 +4136,7 @@
         "unit": "4 x 33 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3009532.la_chouffe_cherry-1.all_belu.2025.cw31",
         "source_url": "https://www.aldi.be/fr/chouffe-cherry-pack-de-4-3009532",
-        "fetched_at": "2026-09-18T17:07:05.494931Z",
+        "fetched_at": "2026-09-19T06:35:24.552265Z",
         "ean": null
       },
       {
@@ -4154,7 +4154,7 @@
         "unit": "560 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3009576.1.power-cereal.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/power-cereal-3009576",
-        "fetched_at": "2026-09-18T17:07:05.495038Z",
+        "fetched_at": "2026-09-19T06:35:24.552333Z",
         "ean": null
       },
       {
@@ -4169,7 +4169,7 @@
         "unit": "2 x 91 cycles",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3010011.0.wasverzachter-active-fresh.all_belu.2026.cw38-grp",
         "source_url": "https://www.aldi.be/fr/adoucissant-active-fresh-3010011",
-        "fetched_at": "2026-09-18T17:07:05.495177Z",
+        "fetched_at": "2026-09-19T06:35:24.552407Z",
         "ean": null
       },
       {
@@ -4186,7 +4186,7 @@
         "unit": "2 x 800 ml",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3010398_antikal_25-1b",
         "source_url": "https://www.aldi.be/fr/spray-anticalcaire-3010398",
-        "fetched_at": "2026-09-18T17:07:05.495365Z",
+        "fetched_at": "2026-09-19T06:35:24.552478Z",
         "ean": null
       },
       {
@@ -4201,7 +4201,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3010482_32-2026_bath-mat-fun_0-grp",
         "source_url": "https://www.aldi.be/fr/tapis-de-bain-3010482",
-        "fetched_at": "2026-09-18T17:07:05.495484Z",
+        "fetched_at": "2026-09-19T06:35:24.552553Z",
         "ean": null
       },
       {
@@ -4216,7 +4216,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3010743_38-2026_l-jeans-wide-leg_0-grp",
         "source_url": "https://www.aldi.be/fr/jean-3010743",
-        "fetched_at": "2026-09-18T17:07:05.495802Z",
+        "fetched_at": "2026-09-19T06:35:24.552770Z",
         "ean": null
       },
       {
@@ -4231,7 +4231,7 @@
         "unit": "la paire",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3010744_38-2026_l-rain-booties_grp",
         "source_url": "https://www.aldi.be/fr/bottes-de-pluie-3010744",
-        "fetched_at": "2026-09-18T17:07:05.495933Z",
+        "fetched_at": "2026-09-19T06:35:24.552834Z",
         "ean": null
       },
       {
@@ -4248,7 +4248,7 @@
         "unit": "2 x 340 g, poids variable",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3010863_runderbrochette-op_plankje_25-1",
         "source_url": "https://www.aldi.be/fr/brochette-de-boeuf-2-pcs-3010863",
-        "fetched_at": "2026-09-18T17:07:05.496154Z",
+        "fetched_at": "2026-09-19T06:35:24.552962Z",
         "ean": null
       },
       {
@@ -4263,7 +4263,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3010952_38-2026_clothes-dog-all-weather-coat_black_0-grp",
         "source_url": "https://www.aldi.be/fr/veste-pour-chiens-3010952",
-        "fetched_at": "2026-09-18T17:07:05.496235Z",
+        "fetched_at": "2026-09-19T06:35:24.553028Z",
         "ean": null
       },
       {
@@ -4278,7 +4278,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3011069_38-2026_l-raincape_0-grp",
         "source_url": "https://www.aldi.be/fr/cape-de-pluie-pliable-3011069",
-        "fetched_at": "2026-09-18T17:07:05.496314Z",
+        "fetched_at": "2026-09-19T06:35:24.553097Z",
         "ean": null
       },
       {
@@ -4293,7 +4293,7 @@
         "unit": "450 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3011254.spruitjes_met_spek-2.all_belu.2025.cw40",
         "source_url": "https://www.aldi.be/fr/choux-de-bruxelles-aux-lardons-3011254",
-        "fetched_at": "2026-09-18T17:07:05.496433Z",
+        "fetched_at": "2026-09-19T06:35:24.553178Z",
         "ean": null
       },
       {
@@ -4308,7 +4308,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3011550-heide_2538-0-grp",
         "source_url": "https://www.aldi.be/fr/bruyere-3011550",
-        "fetched_at": "2026-09-18T17:07:05.496534Z",
+        "fetched_at": "2026-09-19T06:35:24.553267Z",
         "ean": null
       },
       {
@@ -4325,7 +4325,7 @@
         "unit": "6 x 25 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3011570_nalu_25-1",
         "source_url": "https://www.aldi.be/fr/boisson-energisante-3011570",
-        "fetched_at": "2026-09-18T17:07:05.496629Z",
+        "fetched_at": "2026-09-19T06:35:24.553331Z",
         "ean": null
       },
       {
@@ -4340,7 +4340,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3012159.2.chardonnay-pays-doc-igp-les-ordons.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/chardonnay-pays-doc-igp-les-ordons-3012159",
-        "fetched_at": "2026-09-18T17:07:05.496740Z",
+        "fetched_at": "2026-09-19T06:35:24.553397Z",
         "ean": null
       },
       {
@@ -4355,7 +4355,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3012160.pinot_gris_alsace_grynbaum_aoc.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/pinot-gris-alsace-grynbaum-aoc-3012160",
-        "fetched_at": "2026-09-18T17:07:05.496802Z",
+        "fetched_at": "2026-09-19T06:35:24.553462Z",
         "ean": null
       },
       {
@@ -4370,7 +4370,7 @@
         "unit": "200 ml",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3012451.showerscrub-0.all_belu.2026.cw38-grp",
         "source_url": "https://www.aldi.be/fr/douche-gommante-3012451",
-        "fetched_at": "2026-09-18T17:07:05.496882Z",
+        "fetched_at": "2026-09-19T06:35:24.553528Z",
         "ean": null
       },
       {
@@ -4385,7 +4385,7 @@
         "unit": "1.5 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3012537-1068_royal_gala-appels_01",
         "source_url": "https://www.aldi.be/fr/pommes-royal-gala-xxl-3012537",
-        "fetched_at": "2026-09-18T17:07:05.496925Z",
+        "fetched_at": "2026-09-19T06:35:24.553591Z",
         "ean": null
       },
       {
@@ -4400,7 +4400,7 @@
         "unit": "le paquet",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3013400.2.dentastix-mini-56-st-.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/dentastix-mini-56-pcs-3013400",
-        "fetched_at": "2026-09-18T17:07:05.496990Z",
+        "fetched_at": "2026-09-19T06:35:24.553731Z",
         "ean": null
       },
       {
@@ -4415,7 +4415,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3013590_23-2026_l-m-tank-top-0-grp",
         "source_url": "https://www.aldi.be/fr/debardeur-3013590",
-        "fetched_at": "2026-09-18T17:07:05.497065Z",
+        "fetched_at": "2026-09-19T06:35:24.553909Z",
         "ean": null
       },
       {
@@ -4430,7 +4430,7 @@
         "unit": "le lot",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3013872_32-2026_over-door-organizer_0-grp",
         "source_url": "https://www.aldi.be/fr/organisateur-de-porte-3013872",
-        "fetched_at": "2026-09-18T17:07:05.497159Z",
+        "fetched_at": "2026-09-19T06:35:24.554132Z",
         "ean": null
       },
       {
@@ -4445,7 +4445,7 @@
         "unit": "pièce/le lot",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3013904_32-2026_storage-accessories_textile-grp",
         "source_url": "https://www.aldi.be/fr/organiseurs-3013904",
-        "fetched_at": "2026-09-18T17:07:05.497196Z",
+        "fetched_at": "2026-09-19T06:35:24.554262Z",
         "ean": null
       },
       {
@@ -4460,7 +4460,7 @@
         "unit": "200 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014090.0.cookie-dough.all_belu.2026.cw38-grp",
         "source_url": "https://www.aldi.be/fr/cookie-dough-3014090",
-        "fetched_at": "2026-09-18T17:07:05.497229Z",
+        "fetched_at": "2026-09-19T06:35:24.554365Z",
         "ean": null
       },
       {
@@ -4475,7 +4475,7 @@
         "unit": "pièce/le lot",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014205_38-2026_safety-article-assortment_grp",
         "source_url": "https://www.aldi.be/fr/articles-de-securite-3014205",
-        "fetched_at": "2026-09-18T17:07:05.497379Z",
+        "fetched_at": "2026-09-19T06:35:24.554817Z",
         "ean": null
       },
       {
@@ -4490,7 +4490,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014221_38-2026_printed-digital-doormat-50x70-cm-0-grp",
         "source_url": "https://www.aldi.be/fr/paillasson-imprime-3014221",
-        "fetched_at": "2026-09-18T17:07:05.497443Z",
+        "fetched_at": "2026-09-19T06:35:24.555063Z",
         "ean": null
       },
       {
@@ -4505,7 +4505,7 @@
         "unit": "la paire",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014223_38-2026_c-autumn-boots-ae_grp",
         "source_url": "https://www.aldi.be/fr/bottines-3014223",
-        "fetched_at": "2026-09-18T17:07:05.497474Z",
+        "fetched_at": "2026-09-19T06:35:24.555172Z",
         "ean": null
       },
       {
@@ -4520,7 +4520,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014226-dekbed-2638-lv1",
         "source_url": "https://www.aldi.be/fr/couette-3014226",
-        "fetched_at": "2026-09-18T17:07:05.497504Z",
+        "fetched_at": "2026-09-19T06:35:24.555253Z",
         "ean": null
       },
       {
@@ -4535,7 +4535,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014229-38-2026_bed-linen-soft-touch-renforce-0-grp",
         "source_url": "https://www.aldi.be/fr/parure-de-lit-en-coton-renforce-3014229",
-        "fetched_at": "2026-09-18T17:07:05.497589Z",
+        "fetched_at": "2026-09-19T06:35:24.555470Z",
         "ean": null
       },
       {
@@ -4550,7 +4550,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014230-38-2026_bed-linen-soft-touch-renforce-0-grp",
         "source_url": "https://www.aldi.be/fr/parure-de-lit-xxl-en-coton-renforce-3014230",
-        "fetched_at": "2026-09-18T17:07:05.497631Z",
+        "fetched_at": "2026-09-19T06:35:24.555575Z",
         "ean": null
       },
       {
@@ -4565,7 +4565,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014264_38-2026_c-sweatshirt-ae_grp",
         "source_url": "https://www.aldi.be/fr/sweatshirt-3014264",
-        "fetched_at": "2026-09-18T17:07:05.497780Z",
+        "fetched_at": "2026-09-19T06:35:24.555963Z",
         "ean": null
       },
       {
@@ -4580,7 +4580,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014265_38-2026_c-pilot-jacket_grp",
         "source_url": "https://www.aldi.be/fr/blouson-aviateur-3014265",
-        "fetched_at": "2026-09-18T17:07:05.497821Z",
+        "fetched_at": "2026-09-19T06:35:24.556082Z",
         "ean": null
       },
       {
@@ -4595,7 +4595,7 @@
         "unit": "pièce",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014266_38-2026_c-denim-ae_grp",
         "source_url": "https://www.aldi.be/fr/pantalon-en-denim-3014266",
-        "fetched_at": "2026-09-18T17:07:05.497872Z",
+        "fetched_at": "2026-09-19T06:35:24.556200Z",
         "ean": null
       },
       {
@@ -4610,7 +4610,7 @@
         "unit": "415 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014340.0.heinz-beanz-blik-415g.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/haricots-a-la-sauce-tomate-3014340",
-        "fetched_at": "2026-09-18T17:07:05.497980Z",
+        "fetched_at": "2026-09-19T06:35:24.556421Z",
         "ean": null
       },
       {
@@ -4625,7 +4625,7 @@
         "unit": "2 pcs",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3014365-3002297_tijgerpistolet_21-1",
         "source_url": "https://www.aldi.be/fr/pistolet-tigre-3014365",
-        "fetched_at": "2026-09-18T17:07:05.498016Z",
+        "fetched_at": "2026-09-19T06:35:24.556542Z",
         "ean": null
       },
       {
@@ -4640,7 +4640,7 @@
         "unit": "160 pcs",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015128.0.dreft-adw-platinum-plus-original-vaatwastabletten-160wb-promobox.all_belu.2026.cw15",
         "source_url": "https://www.aldi.be/fr/platinum-plus-citron-160-pcs-3015128",
-        "fetched_at": "2026-09-18T17:07:05.498079Z",
+        "fetched_at": "2026-09-19T06:35:24.556632Z",
         "ean": null
       },
       {
@@ -4655,7 +4655,7 @@
         "unit": "550 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015185_vruchtencake_26-0-grp",
         "source_url": "https://www.aldi.be/fr/gateau-aux-fruits-3015185",
-        "fetched_at": "2026-09-18T17:07:05.498114Z",
+        "fetched_at": "2026-09-19T06:35:24.556762Z",
         "ean": null
       },
       {
@@ -4670,7 +4670,7 @@
         "unit": "3 x 150 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015244_varkensmignonettes-op_plankje_26-1",
         "source_url": "https://www.aldi.be/fr/mignonnettes-de-porc-3-pcs-3015244",
-        "fetched_at": "2026-09-18T17:07:05.498153Z",
+        "fetched_at": "2026-09-19T06:35:24.556899Z",
         "ean": null
       },
       {
@@ -4685,7 +4685,7 @@
         "unit": "400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015245_gesneden_varkensspek-op_plankje_26-1",
         "source_url": "https://www.aldi.be/fr/lard-de-porc-en-tranches-3015245",
-        "fetched_at": "2026-09-18T17:07:05.498216Z",
+        "fetched_at": "2026-09-19T06:35:24.556964Z",
         "ean": null
       },
       {
@@ -4700,7 +4700,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015500.cotes_du_brian_rose_igp_pomeline.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/cotes-du-brian-rose-igp-pomeline-3015500",
-        "fetched_at": "2026-09-18T17:07:05.498291Z",
+        "fetched_at": "2026-09-19T06:35:24.557008Z",
         "ean": null
       },
       {
@@ -4715,7 +4715,7 @@
         "unit": "4 x 125 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015507.9.danette-dubai-style-4x125g.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/danette-dubai-style-4-pcs-3015507",
-        "fetched_at": "2026-09-18T17:07:05.498333Z",
+        "fetched_at": "2026-09-19T06:35:24.557046Z",
         "ean": null
       },
       {
@@ -4733,7 +4733,7 @@
         "unit": "400 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015891_bruin_vierkant_brood_26n-b",
         "source_url": "https://www.aldi.be/fr/pain-gris-carre-3015891",
-        "fetched_at": "2026-09-18T17:07:05.498373Z",
+        "fetched_at": "2026-09-19T06:35:24.557082Z",
         "ean": null
       },
       {
@@ -4748,7 +4748,7 @@
         "unit": "2 x 75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015895.comte-tolosan-igp-rood-75cl.all_belu.2026.cw38w",
         "source_url": "https://www.aldi.be/fr/comte-tolosan-igp-demon-noir-3015895",
-        "fetched_at": "2026-09-18T17:07:05.498416Z",
+        "fetched_at": "2026-09-19T06:35:24.557122Z",
         "ean": null
       },
       {
@@ -4763,7 +4763,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015896.0.fr-entre-deux-mers-wit-75cl.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/entre-deux-mers-aop-3015896",
-        "fetched_at": "2026-09-18T17:07:05.498470Z",
+        "fetched_at": "2026-09-19T06:35:24.557158Z",
         "ean": null
       },
       {
@@ -4778,7 +4778,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3015897.viura-chardonnay_oscura.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/viura-chardonnay-oscura-3015897",
-        "fetched_at": "2026-09-18T17:07:05.498506Z",
+        "fetched_at": "2026-09-19T06:35:24.557196Z",
         "ean": null
       },
       {
@@ -4793,7 +4793,7 @@
         "unit": "12 x 37.5 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3016133_coca-cola_zero_sugar_2632-lv1",
         "source_url": "https://www.aldi.be/fr/coca-cola-zero-sugar-3016133",
-        "fetched_at": "2026-09-18T17:07:05.498592Z",
+        "fetched_at": "2026-09-19T06:35:24.557243Z",
         "ean": null
       },
       {
@@ -4808,7 +4808,7 @@
         "unit": "8 x 50 ml",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3016489.0.twister-mini-pineapple.all_belu.2026.cw38",
         "source_url": "https://www.aldi.be/fr/twister-mini-pineapple-8-pcs-3016489",
-        "fetched_at": "2026-09-18T17:07:05.498666Z",
+        "fetched_at": "2026-09-19T06:35:24.557283Z",
         "ean": null
       },
       {
@@ -4825,7 +4825,7 @@
         "unit": "1 kg",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/3016701-minneola-26-lv1",
         "source_url": "https://www.aldi.be/fr/tangelo-3016701",
-        "fetched_at": "2026-09-18T17:07:05.498726Z",
+        "fetched_at": "2026-09-19T06:35:24.557315Z",
         "ean": null
       },
       {
@@ -4842,7 +4842,7 @@
         "unit": "2 x 200 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/0259_verse_zalmfilet_op_plankje",
         "source_url": "https://www.aldi.be/fr/filet-de-saumon-frais-0259",
-        "fetched_at": "2026-09-18T17:07:05.498772Z",
+        "fetched_at": "2026-09-19T06:35:24.557359Z",
         "ean": null
       },
       {
@@ -4857,7 +4857,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/0190.rosso_della_puglia_forte_elerone.all_belu.2026.cw38-m",
         "source_url": "https://www.aldi.be/fr/rosso-della-puglia-forte-elerone-0190",
-        "fetched_at": "2026-09-18T17:07:05.498813Z",
+        "fetched_at": "2026-09-19T06:35:24.557404Z",
         "ean": null
       },
       {
@@ -4872,7 +4872,7 @@
         "unit": "75 cl",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/0420.ronco_di_sassi_bianco.all_belu.2026.cw38-w",
         "source_url": "https://www.aldi.be/fr/ronco-di-sassi-bianco-0420",
-        "fetched_at": "2026-09-18T17:07:05.498871Z",
+        "fetched_at": "2026-09-19T06:35:24.557442Z",
         "ean": null
       },
       {
@@ -4887,7 +4887,7 @@
         "unit": "220 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/0820.0.b-ready-10-st.all_belu.2026.cw1",
         "source_url": "https://www.aldi.be/fr/b-ready-10-pcs-0820",
-        "fetched_at": "2026-09-18T17:07:05.498908Z",
+        "fetched_at": "2026-09-19T06:35:24.557479Z",
         "ean": null
       },
       {
@@ -4904,295 +4904,2365 @@
         "unit": "2 x 250 g",
         "image_url": "https://s7g10.scene7.com/is/image/aldinord/0946_becel_proactiv_23-1",
         "source_url": "https://www.aldi.be/fr/becel-proactiv-0946",
-        "fetched_at": "2026-09-18T17:07:05.498942Z",
+        "fetched_at": "2026-09-19T06:35:24.557533Z",
         "ean": null
       }
     ],
     "carrefour": [
       {
         "name": "Mouchoirs Double Épaisseur 150 Pièces",
-        "brand": "",
+        "brand": "Produits blancs",
         "category": "",
-        "description": "Mouchoirs Double Épaisseur 150 Pièces",
+        "description": "",
         "new_price": 0.75,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "0,75 €/pièce",
         "image_url": "https://cdn.carrefour.eu/420_05986244_T1.webp",
         "source_url": "https://www.carrefour.be/fr/mouchoirs-double-epaisseur-150-pieces/05986244.html",
-        "fetched_at": "2026-09-18T17:07:07.361861Z",
-        "ean": "05986244"
+        "fetched_at": "2026-09-19T06:35:25.855501Z",
+        "ean": null
       },
       {
         "name": "Demi-Baguettes Précuites 2 Pièces 300 g",
-        "brand": "",
+        "brand": "Carrefour",
         "category": "",
-        "description": "Carrefour Demi-Baguettes Précuites 2 Pièces 300 g",
+        "description": "",
         "new_price": 0.85,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "2,83 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_04985162_T1.webp",
         "source_url": "https://www.carrefour.be/fr/demi-baguettes-precuites-2-pieces-300-g/04985162.html",
-        "fetched_at": "2026-09-18T17:07:08.375411Z",
-        "ean": "04985162"
+        "fetched_at": "2026-09-19T06:35:25.859359Z",
+        "ean": null
       },
       {
         "name": "Mozzarella 200 g",
-        "brand": "",
+        "brand": "Simpl",
         "category": "",
-        "description": "Simpl Mozzarella 200 g",
+        "description": "",
         "new_price": 0.69,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "5,52 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_06058564_T1.webp",
         "source_url": "https://www.carrefour.be/fr/mozzarella-200-g/06058564.html",
-        "fetched_at": "2026-09-18T17:07:09.396614Z",
-        "ean": "06058564"
+        "fetched_at": "2026-09-19T06:35:25.862174Z",
+        "ean": null
       },
       {
         "name": "Zero Sugar 15x330ml Boite",
-        "brand": "",
+        "brand": "Coca-Cola",
         "category": "",
-        "description": "Coca-Cola Zero Sugar 15x330ml Boite",
+        "description": "",
         "new_price": 12.29,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "2,48 €/l",
         "image_url": "https://cdn.carrefour.eu/420_05245197_05449000288622_H1L1_en_MPM.webp",
         "source_url": "https://www.carrefour.be/fr/zero-sugar-15x330ml-boite/05245197.html",
-        "fetched_at": "2026-09-18T17:07:10.415817Z",
-        "ean": "05245197"
+        "fetched_at": "2026-09-19T06:35:25.865211Z",
+        "ean": null
       },
       {
         "name": "Purée de Tomates 500 g",
-        "brand": "",
+        "brand": "Produits blancs",
         "category": "",
-        "description": "Purée de Tomates 500 g",
+        "description": "",
         "new_price": 0.59,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "1,18 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_05253554_T1.webp",
         "source_url": "https://www.carrefour.be/fr/puree-de-tomates-500-g/05253554.html",
-        "fetched_at": "2026-09-18T17:07:11.421604Z",
-        "ean": "05253554"
+        "fetched_at": "2026-09-19T06:35:25.868263Z",
+        "ean": null
       },
       {
         "name": "Petits Pains Précuits 4 Pièces 300 g",
-        "brand": "",
+        "brand": "Carrefour",
         "category": "",
-        "description": "Carrefour Petits Pains Précuits 4 Pièces 300 g",
+        "description": "",
         "new_price": 0.85,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "2,83 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_04985123_T1.webp",
         "source_url": "https://www.carrefour.be/fr/petits-pains-precuits-4-pieces-300-g/04985123.html",
-        "fetched_at": "2026-09-18T17:07:12.493457Z",
-        "ean": "04985123"
+        "fetched_at": "2026-09-19T06:35:25.872082Z",
+        "ean": null
       },
       {
         "name": "Farine de Blé 1 kg",
-        "brand": "",
+        "brand": "No Brand",
         "category": "",
-        "description": "Farine de Blé 1 kg",
+        "description": "",
         "new_price": 0.49,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "0,49 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_04867795_T1.webp",
         "source_url": "https://www.carrefour.be/fr/farine-de-ble-1-kg/04867795.html",
-        "fetched_at": "2026-09-18T17:07:13.521147Z",
-        "ean": "04867795"
+        "fetched_at": "2026-09-19T06:35:25.876017Z",
+        "ean": null
       },
       {
         "name": "Zero Sugar 8x1.5L PET",
-        "brand": "",
+        "brand": "Coca-Cola",
         "category": "",
-        "description": "Coca-Cola Zero Sugar 8x1.5L PET",
+        "description": "",
         "new_price": 18.65,
         "old_price": null,
         "discount_pct": null,
-        "promo_text": "",
-        "unit": "",
+        "promo_text": "2 + 1 gratuit - Offre valable jusqu’au 21/09/2026 inclus",
+        "unit": "1,55 €/l",
         "image_url": "https://cdn.carrefour.eu/420_06953788_05449000180667_H1L1_en_MPM.webp",
         "source_url": "https://www.carrefour.be/fr/zero-sugar-8x1.5l-pet/06953788.html",
-        "fetched_at": "2026-09-18T17:07:14.556734Z",
-        "ean": "06953788"
+        "fetched_at": "2026-09-19T06:35:25.879151Z",
+        "ean": null
+      },
+      {
+        "name": "Deco Super Soft Mouchoirs 3-Épaisseurs 48 Pièces",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 1.05,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,05 €/pièce",
+        "image_url": "https://cdn.carrefour.eu/420_06065900_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/deco-super-soft-mouchoirs-3-epaisseurs-48-pieces/06065900.html",
+        "fetched_at": "2026-09-19T06:35:25.882174Z",
+        "ean": null
+      },
+      {
+        "name": "Haricots Rouges 400 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 1.05,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,12 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01670302_main_20230927_01_PM.webp",
+        "source_url": "https://www.carrefour.be/fr/haricots-rouges-400-g/01670302.html",
+        "fetched_at": "2026-09-19T06:35:25.885517Z",
+        "ean": null
       },
       {
         "name": "Pâte Brisée 230 g",
-        "brand": "",
+        "brand": "Carrefour",
         "category": "",
-        "description": "Carrefour Pâte Brisée 230 g",
+        "description": "",
         "new_price": 0.89,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "3,87 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_01835862_T1.webp",
         "source_url": "https://www.carrefour.be/fr/pate-brisee-230-g/01835862.html",
-        "fetched_at": "2026-09-18T17:07:15.673327Z",
-        "ean": "01835862"
-      },
-      {
-        "name": "Haricots Rouges 400 g",
-        "brand": "",
-        "category": "",
-        "description": "Carrefour Haricots Rouges 400 g",
-        "new_price": 1.05,
-        "old_price": null,
-        "discount_pct": null,
-        "promo_text": "",
-        "unit": "",
-        "image_url": "https://cdn.carrefour.eu/420_01670302_main_20230927_01_PM.webp",
-        "source_url": "https://www.carrefour.be/fr/haricots-rouges-400-g/01670302.html",
-        "fetched_at": "2026-09-18T17:07:16.732541Z",
-        "ean": "01670302"
-      },
-      {
-        "name": "Deco Super Soft Mouchoirs 3-Épaisseurs 48 Pièces",
-        "brand": "",
-        "category": "",
-        "description": "Carrefour Deco Super Soft Mouchoirs 3-Épaisseurs 48 Pièces",
-        "new_price": 1.05,
-        "old_price": null,
-        "discount_pct": null,
-        "promo_text": "",
-        "unit": "",
-        "image_url": "https://cdn.carrefour.eu/420_06065900_T1.webp",
-        "source_url": "https://www.carrefour.be/fr/deco-super-soft-mouchoirs-3-epaisseurs-48-pieces/06065900.html",
-        "fetched_at": "2026-09-18T17:07:17.826987Z",
-        "ean": "06065900"
+        "fetched_at": "2026-09-19T06:35:25.890349Z",
+        "ean": null
       },
       {
         "name": "Yaourt Nature 4 x 125 g",
-        "brand": "",
+        "brand": "Carrefour",
         "category": "",
-        "description": "Carrefour Classic' Yaourt Nature 4 x 125 g",
+        "description": "",
         "new_price": 0.85,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "1,70 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_01736305_T1.webp",
         "source_url": "https://www.carrefour.be/fr/yaourt-nature-4-x-125-g/01736305.html",
-        "fetched_at": "2026-09-18T17:07:18.820401Z",
-        "ean": "01736305"
+        "fetched_at": "2026-09-19T06:35:25.893789Z",
+        "ean": null
       },
       {
         "name": "Pet 1,5L 8x",
-        "brand": "",
+        "brand": "Coca-Cola",
         "category": "",
-        "description": "Coca-Cola Pet 1,5L 8x",
+        "description": "",
         "new_price": 19.05,
         "old_price": null,
         "discount_pct": null,
-        "promo_text": "",
-        "unit": "",
+        "promo_text": "2 + 1 gratuit - Offre valable jusqu’au 21/09/2026 inclus",
+        "unit": "1,59 €/l",
         "image_url": "https://cdn.carrefour.eu/420_06953746_M1_20240618.webp",
         "source_url": "https://www.carrefour.be/fr/pet-15l-8x/06953746.html",
-        "fetched_at": "2026-09-18T17:07:19.823662Z",
-        "ean": "06953746"
+        "fetched_at": "2026-09-19T06:35:25.897045Z",
+        "ean": null
       },
       {
         "name": "Pâte Feuilletée 230 g",
-        "brand": "",
+        "brand": "Carrefour",
         "category": "",
-        "description": "Carrefour Pâte Feuilletée 230 g",
+        "description": "",
         "new_price": 0.89,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "3,87 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_01835861_T1.webp",
         "source_url": "https://www.carrefour.be/fr/pate-feuilletee-230-g/01835861.html",
-        "fetched_at": "2026-09-18T17:07:20.891677Z",
-        "ean": "01835861"
+        "fetched_at": "2026-09-19T06:35:25.900147Z",
+        "ean": null
       },
       {
         "name": "Classic' Lentilles 400 g",
-        "brand": "",
+        "brand": "Carrefour",
         "category": "",
-        "description": "Carrefour Classic' Lentilles 400 g",
+        "description": "",
         "new_price": 0.69,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "2,60 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_04339359_T1.webp",
         "source_url": "https://www.carrefour.be/fr/classic-lentilles-400-g/04339359.html",
-        "fetched_at": "2026-09-18T17:07:21.957103Z",
-        "ean": "04339359"
+        "fetched_at": "2026-09-19T06:35:25.903390Z",
+        "ean": null
       },
       {
         "name": "Jus de Citron 125 ml",
-        "brand": "",
+        "brand": "Carrefour",
         "category": "",
-        "description": "Carrefour Jus de Citron 125 ml",
+        "description": "",
         "new_price": 0.69,
         "old_price": null,
         "discount_pct": null,
-        "promo_text": "",
-        "unit": "",
+        "promo_text": "-5% à l'achat de 2 - Offre valable jusqu’au 31/12/2026 inclus",
+        "unit": "5,52 €/l",
         "image_url": "https://cdn.carrefour.eu/420_04686386_M1_20250926.webp",
         "source_url": "https://www.carrefour.be/fr/jus-de-citron-125-ml/04686386.html",
-        "fetched_at": "2026-09-18T17:07:23.053423Z",
-        "ean": "04686386"
-      },
-      {
-        "name": "Coke Soft drink Canette 6 x 330 ml",
-        "brand": "",
-        "category": "",
-        "description": "Coca-Cola Coke Soft drink Canette 6 x 330 ml",
-        "new_price": 5.09,
-        "old_price": null,
-        "discount_pct": null,
-        "promo_text": "",
-        "unit": "",
-        "image_url": "https://cdn.carrefour.eu/420_04410018_M1_20250115.webp",
-        "source_url": "https://www.carrefour.be/fr/coke-soft-drink-canette-6-x-330-ml/04410018.html",
-        "fetched_at": "2026-09-18T17:07:25.233157Z",
-        "ean": "04410018"
+        "fetched_at": "2026-09-19T06:35:25.908034Z",
+        "ean": null
       },
       {
         "name": "Maïs Doux 300 g",
-        "brand": "",
+        "brand": "Simpl",
         "category": "",
-        "description": "Simpl Maïs Doux 300 g",
+        "description": "",
         "new_price": 0.79,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "2,77 €/kg",
         "image_url": "https://cdn.carrefour.eu/420_05128182_T1.webp",
         "source_url": "https://www.carrefour.be/fr/mais-doux-300-g/05128182.html",
-        "fetched_at": "2026-09-18T17:07:26.303124Z",
-        "ean": "05128182"
+        "fetched_at": "2026-09-19T06:35:25.913897Z",
+        "ean": null
+      },
+      {
+        "name": "Coke Soft drink Canette 6 x 330 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,57 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_04410018_M1_20250115.webp",
+        "source_url": "https://www.carrefour.be/fr/coke-soft-drink-canette-6-x-330-ml/04410018.html",
+        "fetched_at": "2026-09-19T06:35:25.917260Z",
+        "ean": null
       },
       {
         "name": "Zero Sugar 1L PET",
-        "brand": "",
+        "brand": "Coca-Cola",
         "category": "",
-        "description": "Coca-Cola Zero Sugar 1L PET",
+        "description": "",
         "new_price": 1.79,
         "old_price": null,
         "discount_pct": null,
         "promo_text": "",
-        "unit": "",
+        "unit": "1,79 €/l",
         "image_url": "https://cdn.carrefour.eu/420_06395570_05449000133328_H1N1_en_MPM.webp",
         "source_url": "https://www.carrefour.be/fr/zero-sugar-1l-pet/06395570.html",
-        "fetched_at": "2026-09-18T17:07:27.356984Z",
-        "ean": "06395570"
+        "fetched_at": "2026-09-19T06:35:25.920670Z",
+        "ean": null
+      },
+      {
+        "name": "Champignons de Paris Pieds & Morceaux 400 g",
+        "brand": "Simpl",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,30 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06209242_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/champignons-de-paris-pieds-and-morceaux-400-g/06209242.html",
+        "fetched_at": "2026-09-19T06:35:25.925250Z",
+        "ean": null
+      },
+      {
+        "name": "Cacao Dessert 200 g",
+        "brand": "Milchfrisch",
+        "category": "",
+        "description": "",
+        "new_price": 0.45,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,25 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06607403_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/cacao-dessert-200-g/06607403.html",
+        "fetched_at": "2026-09-19T06:35:25.927059Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar 6x330ml Boite",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,57 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_04447539_05449000217165_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-6x330ml-boite/04447539.html",
+        "fetched_at": "2026-09-19T06:35:25.928730Z",
+        "ean": null
+      },
+      {
+        "name": "Coke Soft drink  1000 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 1.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,79 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06395568_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/coke-soft-drink--1000-ml/06395568.html",
+        "fetched_at": "2026-09-19T06:35:25.930393Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Sel Fin Iodé 750 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,05 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04818716_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-sel-fin-iode-750-g/04818716.html",
+        "fetched_at": "2026-09-19T06:35:25.932056Z",
+        "ean": null
+      },
+      {
+        "name": "Tomates Entières Pelées au Jus 400 g",
+        "brand": "No Brand",
+        "category": "",
+        "description": "",
+        "new_price": 0.59,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,48 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04876423_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/tomates-entieres-pelees-au-jus-400-g/04876423.html",
+        "fetched_at": "2026-09-19T06:35:25.933668Z",
+        "ean": null
+      },
+      {
+        "name": "Coke Soft drink 6 x 1 L",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 10.69,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,78 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06395487_05449000053060_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/coke-soft-drink-6-x-1-l/06395487.html",
+        "fetched_at": "2026-09-19T06:35:25.938479Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Zero Caffeine 6x1.5L PET",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 13.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "2 + 1 gratuit - Offre valable jusqu’au 21/09/2026 inclus",
+        "unit": "1,55 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06638415_05449000179197_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-zero-caffeine-6x1.5l-pet/06638415.html",
+        "fetched_at": "2026-09-19T06:35:25.942485Z",
+        "ean": null
+      },
+      {
+        "name": "Disques à Démaquiller 100 Pièces",
+        "brand": "Produits blancs",
+        "category": "",
+        "description": "",
+        "new_price": 0.42,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "0,42 €/pièce",
+        "image_url": "https://cdn.carrefour.eu/420_05995127_M1_20220921.webp",
+        "source_url": "https://www.carrefour.be/fr/disques-a-demaquiller-100-pieces/05995127.html",
+        "fetched_at": "2026-09-19T06:35:25.945614Z",
+        "ean": null
+      },
+      {
+        "name": "Boisson Soja Nature 1 L",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.75,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "0,75 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06566504_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/boisson-soja-nature-1-l/06566504.html",
+        "fetched_at": "2026-09-19T06:35:25.948735Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Zero Caffeine 6x330ml Boite",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,97 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06728927_05449000233721_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-zero-caffeine-6x330ml-boite/06728927.html",
+        "fetched_at": "2026-09-19T06:35:25.951846Z",
+        "ean": null
+      },
+      {
+        "name": "Pet 0,5L 8x",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 10.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,75 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05216202_05449000175878_C1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/pet-05l-8x/05216202.html",
+        "fetched_at": "2026-09-19T06:35:25.956489Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar 8x500ml PET",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 10.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,75 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05216382_05449000060860_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-8x500ml-pet/05216382.html",
+        "fetched_at": "2026-09-19T06:35:25.960257Z",
+        "ean": null
+      },
+      {
+        "name": "Coke Soft drink 8 x 250 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 8.45,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,23 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05216351_05449000128836_C1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/coke-soft-drink-8-x-250-ml/05216351.html",
+        "fetched_at": "2026-09-19T06:35:25.963118Z",
+        "ean": null
+      },
+      {
+        "name": "Riz Long Grain Étuvé 4 x 125  g",
+        "brand": "Produits blancs",
+        "category": "",
+        "description": "",
+        "new_price": 0.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,78 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05373868_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/riz-long-grain-etuve-4-x-125--g/05373868.html",
+        "fetched_at": "2026-09-19T06:35:25.965874Z",
+        "ean": null
+      },
+      {
+        "name": "Chapelure 200 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.45,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,25 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05259724_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/chapelure-200-g/05259724.html",
+        "fetched_at": "2026-09-19T06:35:25.967689Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Levure Chimique 11 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.49,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "7,42 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06834228_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-levure-chimique-11-g/06834228.html",
+        "fetched_at": "2026-09-19T06:35:25.969369Z",
+        "ean": null
+      },
+      {
+        "name": "Chips Grills Fumé 40 gr",
+        "brand": "Lay's",
+        "category": "",
+        "description": "",
+        "new_price": 0.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "19,75 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05659695_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/chips-grills-fume-40-gr/05659695.html",
+        "fetched_at": "2026-09-19T06:35:25.973195Z",
+        "ean": null
+      },
+      {
+        "name": "Terrine au Bœuf 100 g",
+        "brand": "Simpl",
+        "category": "",
+        "description": "",
+        "new_price": 0.29,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,90 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05588867_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/terrine-au-bouf-100-g/05588867.html",
+        "fetched_at": "2026-09-19T06:35:25.976806Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar 8x250ml PET",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 8.45,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,23 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05216358_05449000175830_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-8x250ml-pet/05216358.html",
+        "fetched_at": "2026-09-19T06:35:25.979865Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Haricots Blancs à la Tomate 400 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,98 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01670283_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-haricots-blancs-a-la-tomate-400-g/01670283.html",
+        "fetched_at": "2026-09-19T06:35:25.983025Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Vitalive Terrine au Veau et aux Carottes 100 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.39,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,90 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01749429_M1_20250926.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-vitalive-terrine-au-veau-et-aux-carottes-100-g/01749429.html",
+        "fetched_at": "2026-09-19T06:35:25.985585Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Sel Fin 750 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,05 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04367133_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-sel-fin-750-g/04367133.html",
+        "fetched_at": "2026-09-19T06:35:25.987467Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Haricots Blancs 400 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 1.19,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,49 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01670286_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-haricots-blancs-400-g/01670286.html",
+        "fetched_at": "2026-09-19T06:35:25.991439Z",
+        "ean": null
+      },
+      {
+        "name": "en Sauce au Lapin 85 g",
+        "brand": "Sheba",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05553860_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/en-sauce-au-lapin-85-g/05553860.html",
+        "fetched_at": "2026-09-19T06:35:25.994274Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Sticks au Bœuf 6 x 5 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "28,33 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05050318_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-sticks-au-bouf-6-x-5-g/05050318.html",
+        "fetched_at": "2026-09-19T06:35:25.997581Z",
+        "ean": null
+      },
+      {
+        "name": "Farine Fermentante 1 kg",
+        "brand": "No Brand",
+        "category": "",
+        "description": "",
+        "new_price": 0.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "0,85 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01730292_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/farine-fermentante-1-kg/01730292.html",
+        "fetched_at": "2026-09-19T06:35:26.000621Z",
+        "ean": null
+      },
+      {
+        "name": "Chips Sel 50 g",
+        "brand": "Crackito",
+        "category": "",
+        "description": "",
+        "new_price": 0.3,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "6,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06013907_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/chips-sel-50-g/06013907.html",
+        "fetched_at": "2026-09-19T06:35:26.003811Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Minies Snacks 50 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "17,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05581803_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-minies-snacks-50-g/05581803.html",
+        "fetched_at": "2026-09-19T06:35:26.008192Z",
+        "ean": null
+      },
+      {
+        "name": "Light Coke Soft drink Canette 15 x 330 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 14.19,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,87 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_MOBILE_READY_HERO_IMAGE_05449000288608_H1L1_en.webp",
+        "source_url": "https://www.carrefour.be/fr/light-coke-soft-drink-canette-15-x-330-ml/04897239.html",
+        "fetched_at": "2026-09-19T06:35:26.011073Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Vitalive Terrine au Poulet 100 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.39,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,90 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01749425_M1_20250926.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-vitalive-terrine-au-poulet-100-g/01749425.html",
+        "fetched_at": "2026-09-19T06:35:26.014073Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Petits Pois & Carottes Extra-Fins 400 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 1.05,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,96 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01670297_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-petits-pois-and-carottes-extra-fins-400-g/01670297.html",
+        "fetched_at": "2026-09-19T06:35:26.017369Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Flageolets Extra-Fins 400 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,74 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01670249_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-flageolets-extra-fins-400-g/01670249.html",
+        "fetched_at": "2026-09-19T06:35:26.020711Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Zero Caffeine 6x500ml PET",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 10.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,36 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06063117_05449000201942_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-zero-caffeine-6x500ml-pet/06063117.html",
+        "fetched_at": "2026-09-19T06:35:26.024832Z",
+        "ean": null
+      },
+      {
+        "name": "Mini Filets Barquette en Sauce au Poulet & à la Dinde 85 g",
+        "brand": "Sheba",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05553859_M19_20240425.webp",
+        "source_url": "https://www.carrefour.be/fr/mini-filets-barquette-en-sauce-au-poulet-and-a-la-dinde-85-g/05553859.html",
+        "fetched_at": "2026-09-19T06:35:26.027805Z",
+        "ean": null
+      },
+      {
+        "name": "Chips Paprika 50 g",
+        "brand": "Crackito",
+        "category": "",
+        "description": "",
+        "new_price": 0.3,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "6,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06010108_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/chips-paprika-50-g/06010108.html",
+        "fetched_at": "2026-09-19T06:35:26.030786Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Zero Caffeine 1.5L PET",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 2.34,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "12 + 6 gratuits - Offre valable jusqu’au 21/09/2026 inclus",
+        "unit": "1,56 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06640769_05449000169358_C1N1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-zero-caffeine-1.5l-pet/06640769.html",
+        "fetched_at": "2026-09-19T06:35:26.033563Z",
+        "ean": null
+      },
+      {
+        "name": "Préparation à Base de Fromage 40 g",
+        "brand": "ForGio",
+        "category": "",
+        "description": "",
+        "new_price": 0.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "22,25 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01826003_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/preparation-a-base-de-fromage-40-g/01826003.html",
+        "fetched_at": "2026-09-19T06:35:26.040906Z",
+        "ean": null
+      },
+      {
+        "name": "Lave Vitres 1 L",
+        "brand": "Carrefour Discount",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "0,99 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_04863613_M1_20220907.webp",
+        "source_url": "https://www.carrefour.be/fr/lave-vitres-1-l/04863613.html",
+        "fetched_at": "2026-09-19T06:35:26.043826Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance 3+ dès 3 ans 1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,99 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05294208_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-3-des-3-ans-1l/05294208.html",
+        "fetched_at": "2026-09-19T06:35:26.046964Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Sticks au Saumon 6 x 5 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "28,33 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05256879_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-sticks-au-saumon-6-x-5-g/05256879.html",
+        "fetched_at": "2026-09-19T06:35:26.050004Z",
+        "ean": null
+      },
+      {
+        "name": "LIGHT Coke Soft drink SLEEKCAN 330ML X 6",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.69,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,87 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_04410017_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/light-coke-soft-drink-sleekcan-330ml-x-6/04410017.html",
+        "fetched_at": "2026-09-19T06:35:26.053029Z",
+        "ean": null
+      },
+      {
+        "name": "Coke Light Pet 0,5L 6x",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 8.59,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,86 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_01386838_05449000026132_C1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/coke-light-pet-05l-6x/01386838.html",
+        "fetched_at": "2026-09-19T06:35:26.057333Z",
+        "ean": null
+      },
+      {
+        "name": "O BIO Galettes de riz Pomme pour bébé 7+M 40g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "47,25 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06905898_08713500012856_C1N1_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/o-bio-galettes-de-riz-pomme-pour-bebe-7m-40g/06905898.html",
+        "fetched_at": "2026-09-19T06:35:26.060551Z",
+        "ean": null
+      },
+      {
+        "name": "Apero Time Mini Toasts 80 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "10,63 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04009454_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/apero-time-mini-toasts-80-g/04009454.html",
+        "fetched_at": "2026-09-19T06:35:26.063498Z",
+        "ean": null
+      },
+      {
+        "name": "Chien Beefstick Bœuf 12 gr",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.97,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "80,83 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01213991_04008239230096_C1N1_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/chien-beefstick-bouf-12-gr/01213991.html",
+        "fetched_at": "2026-09-19T06:35:26.066661Z",
+        "ean": null
+      },
+      {
+        "name": "Sachets Sandwich 1L 20 Sachets",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "0,99 €/pièce",
+        "image_url": "https://cdn.carrefour.eu/420_04018826_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/sachets-sandwich-1l-20-sachets/04018826.html",
+        "fetched_at": "2026-09-19T06:35:26.069535Z",
+        "ean": null
+      },
+      {
+        "name": "Terrine au bœuf 300 g",
+        "brand": "Carrefour Discount",
+        "category": "",
+        "description": "",
+        "new_price": 0.59,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,97 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04870146_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/terrine-au-bouf-300-g/04870146.html",
+        "fetched_at": "2026-09-19T06:35:26.073837Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Ballz Goût Fromage 75 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,87 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05694568_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-ballz-gout-fromage-75-g/05694568.html",
+        "fetched_at": "2026-09-19T06:35:26.077298Z",
+        "ean": null
+      },
+      {
+        "name": "Poésie Création dinde sauce au fromage 85 g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05738589_04008239590213_C1L1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/poesie-creation-dinde-sauce-au-fromage-85-g/05738589.html",
+        "fetched_at": "2026-09-19T06:35:26.080048Z",
+        "ean": null
+      },
+      {
+        "name": "Nouilles instantanées saveur poulet 60g",
+        "brand": "Yum Yum",
+        "category": "",
+        "description": "",
+        "new_price": 0.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "13,17 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06091491_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nouilles-instantanees-saveur-poulet-60g/06091491.html",
+        "fetched_at": "2026-09-19T06:35:26.082768Z",
+        "ean": null
+      },
+      {
+        "name": "Gel Shampooing Douche Cèdre 300 ml",
+        "brand": "Unbranded",
+        "category": "",
+        "description": "",
+        "new_price": 0.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,97 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05544769_M1_20250325.webp",
+        "source_url": "https://www.carrefour.be/fr/gel-shampooing-douche-cedre-300-ml/05544769.html",
+        "fetched_at": "2026-09-19T06:35:26.085574Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Rings Goût Oignon 60 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.69,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05293268_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-rings-gout-oignon-60-g/05293268.html",
+        "fetched_at": "2026-09-19T06:35:26.089885Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro 3 Lait de Croissance poudre bébé dès 1 an 800g",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 15.45,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "19,31 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06316459_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-3-lait-de-croissance-poudre-bebe-des-1-an-800g/06316459.html",
+        "fetched_at": "2026-09-19T06:35:26.093064Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Lemon Coke Soft Drink  6 x 330 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,97 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06839599_05449000227584_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-lemon-coke-soft-drink--6-x-330-ml/06839599.html",
+        "fetched_at": "2026-09-19T06:35:26.096199Z",
+        "ean": null
+      },
+      {
+        "name": "Bio alimentation pour bébés melty veggie sticks 7+ Mois 15g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.56,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "104,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717615_05024121319129_C1N1_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/bio-alimentation-pour-bebes-melty-veggie-sticks-7-mois-15g/06717615.html",
+        "fetched_at": "2026-09-19T06:35:26.099068Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Snapies au Poulet 10 Pièces 104 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "8,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05464014_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-snapies-au-poulet-10-pieces-104-g/05464014.html",
+        "fetched_at": "2026-09-19T06:35:26.101942Z",
+        "ean": null
+      },
+      {
+        "name": "Serviettes Serviette Ultra Minces Normal 16 Pièces",
+        "brand": "Simpl",
+        "category": "",
+        "description": "",
+        "new_price": 0.95,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "0,06 €/pièce",
+        "image_url": "https://cdn.carrefour.eu/420_04875123_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/serviettes-serviette-ultra-minces-normal-16-pieces/04875123.html",
+        "fetched_at": "2026-09-19T06:35:26.105352Z",
+        "ean": null
+      },
+      {
+        "name": "Cherry 330ml Boite",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,00 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06839604_05449000214843_H1N1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/cherry-330ml-boite/06839604.html",
+        "fetched_at": "2026-09-19T06:35:26.109095Z",
+        "ean": null
+      },
+      {
+        "name": "Bio aliments pour bébé 6+ Mois mangue, poire & granola 100g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "18,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717649_08713500011538_C1N1_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/bio-aliments-pour-bebe-6-mois-mangue-poire-and-granola-100g/06717649.html",
+        "fetched_at": "2026-09-19T06:35:26.111967Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Dental Care Mini < 10 kg Triple Action 110 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.69,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "6,27 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06766343_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-dental-care-mini-%3C-10-kg-triple-action-110-g/06766343.html",
+        "fetched_at": "2026-09-19T06:35:26.114932Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Oignons Aigres-Doux 340 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,47 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01633139_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-oignons-aigres-doux-340-g/01633139.html",
+        "fetched_at": "2026-09-19T06:35:26.118173Z",
+        "ean": null
+      },
+      {
+        "name": "Beef-Stick à l'agneau 12 g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.97,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "80,83 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01499769_04008239231093_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/beef-stick-a-lagneau-12-g/01499769.html",
+        "fetched_at": "2026-09-19T06:35:26.121329Z",
+        "ean": null
+      },
+      {
+        "name": "Terrine au Poulet 300 g",
+        "brand": "Simpl",
+        "category": "",
+        "description": "",
+        "new_price": 0.59,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,97 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05566457_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/terrine-au-poulet-300-g/05566457.html",
+        "fetched_at": "2026-09-19T06:35:26.125763Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro 1+ Lait de Croissance liquide bébé dès 1 an 1L",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 2.35,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,35 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05456835_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-1-lait-de-croissance-liquide-bebe-des-1-an-1l/05456835.html",
+        "fetched_at": "2026-09-19T06:35:26.128666Z",
+        "ean": null
+      },
+      {
+        "name": "Companino Vitalive Terrine pour Chien au Lapin 150 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "5,93 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04350579_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/companino-vitalive-terrine-pour-chien-au-lapin-150-g/04350579.html",
+        "fetched_at": "2026-09-19T06:35:26.131714Z",
+        "ean": null
+      },
+      {
+        "name": "Beef-Stick à la dinde 12 g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.97,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "80,83 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01499768_04008239231109_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/beef-stick-a-la-dinde-12-g/01499768.html",
+        "fetched_at": "2026-09-19T06:35:26.134627Z",
+        "ean": null
+      },
+      {
+        "name": "Beef Stick au gibier 12 g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.97,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "80,83 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01213993_04008239230294_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/beef-stick-au-gibier-12-g/01213993.html",
+        "fetched_at": "2026-09-19T06:35:26.138034Z",
+        "ean": null
+      },
+      {
+        "name": "Sensation Croustiz' Goût Emmental 90 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "9,89 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05700624_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/sensation-croustiz-gout-emmental-90-g/05700624.html",
+        "fetched_at": "2026-09-19T06:35:26.142192Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Coke Soft drink Verre 6 x 1000 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 14.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,35 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05543370_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-coke-soft-drink-verre-6-x-1000-ml/05543370.html",
+        "fetched_at": "2026-09-19T06:35:26.145283Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Yogolino Laitage Vanille dès 6 mois 4x100g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 2.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "7,48 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04008050_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-yogolino-laitage-vanille-des-6-mois-4x100g/04008050.html",
+        "fetched_at": "2026-09-19T06:35:26.148320Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro 5 Lait de Croissance poudre bébé dès 3 ans 800g",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 15.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "19,74 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06316480_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-5-lait-de-croissance-poudre-bebe-des-3-ans-800g/06316480.html",
+        "fetched_at": "2026-09-19T06:35:26.151267Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance Biscuit à partir de 1 an 1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,99 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05145532_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-biscuit-a-partir-de-1-an-1l/05145532.html",
+        "fetched_at": "2026-09-19T06:35:26.154473Z",
+        "ean": null
+      },
+      {
+        "name": "Classic' Lait Demi-Écrémė 25 cl",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.59,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,36 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05126350_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/classic-lait-demi-ecrem%C4%97-25-cl/05126350.html",
+        "fetched_at": "2026-09-19T06:35:26.158764Z",
+        "ean": null
+      },
+      {
+        "name": "Aliments pour bébés nutri fiber Bio 12+ mois Avoine pomme 100g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "18,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717654_08713500011996_C1N1_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/aliments-pour-bebes-nutri-fiber-bio-12-mois-avoine-pomme-100g/06717654.html",
+        "fetched_at": "2026-09-19T06:35:26.161658Z",
+        "ean": null
+      },
+      {
+        "name": "Bio aliments pour bébé 12+ Mois pomme, fraise & quinoa 100g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "18,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717617_08713500011880_C1N1_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/bio-aliments-pour-bebe-12-mois-pomme-fraise-and-quinoa-100g/06717617.html",
+        "fetched_at": "2026-09-19T06:35:26.164598Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Cherry Coke Soft Drink 6 x 330 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,97 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06839517_05449000306081_H1N1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-cherry-coke-soft-drink-6-x-330-ml/06839517.html",
+        "fetched_at": "2026-09-19T06:35:26.167694Z",
+        "ean": null
+      },
+      {
+        "name": "Bio Oatmeal, Apricot & Banana 12+ Mois 100 g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "18,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717653_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/bio-oatmeal-apricot-and-banana-12-mois-100-g/06717653.html",
+        "fetched_at": "2026-09-19T06:35:26.170749Z",
+        "ean": null
+      },
+      {
+        "name": "Bio Apple, Strawberry & Blueberry 6+ Mois 100 g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "18,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717651_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/bio-apple-strawberry-and-blueberry-6-mois-100-g/06717651.html",
+        "fetched_at": "2026-09-19T06:35:26.174814Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Pet 0,5L 6x",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 8.29,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,76 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_04447546_05449000134554_C1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-pet-05l-6x/04447546.html",
+        "fetched_at": "2026-09-19T06:35:26.176685Z",
+        "ean": null
+      },
+      {
+        "name": "Cherry 6x330ml Boite",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,97 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06839603_05449000287489_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/cherry-6x330ml-boite/06839603.html",
+        "fetched_at": "2026-09-19T06:35:26.178326Z",
+        "ean": null
+      },
+      {
+        "name": "Coke Soft Drink 24 x 200 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 18.95,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,95 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_01398719_05449000000002_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/coke-soft-drink-24-x-200-ml/01398719.html",
+        "fetched_at": "2026-09-19T06:35:26.179897Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance Biscuit à partir de 1 an 6x1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 11.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,98 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05145520_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-biscuit-a-partir-de-1-an-6x1l/05145520.html",
+        "fetched_at": "2026-09-19T06:35:26.181381Z",
+        "ean": null
+      },
+      {
+        "name": "Poésie Poulet et Légumes 85g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05738139_04008239590237_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/poesie-poulet-et-legumes-85g/05738139.html",
+        "fetched_at": "2026-09-19T06:35:26.182894Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro 2+ Lait de Croissance liquide bébé dès 2 ans 1L",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 2.19,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,19 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05712432_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-2-lait-de-croissance-liquide-bebe-des-2-ans-1l/05712432.html",
+        "fetched_at": "2026-09-19T06:35:26.184441Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Yogolino Laitage Pêche-Banane dès 6mois 4x90g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 3.55,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "9,86 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06999025_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-yogolino-laitage-peche-banane-des-6mois-4x90g/06999025.html",
+        "fetched_at": "2026-09-19T06:35:26.186184Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Sporty Fruits dès 12 mois gourde 110g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.65,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "15,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_07004333_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-sporty-fruits-des-12-mois-gourde-110g/07004333.html",
+        "fetched_at": "2026-09-19T06:35:26.188433Z",
+        "ean": null
+      },
+      {
+        "name": "Lait Demi-Écrémé 50 cl",
+        "brand": "Carrefour Bio",
+        "category": "",
+        "description": "",
+        "new_price": 1.02,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,04 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05495325_M1_20250926.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-demi-ecreme-50-cl/05495325.html",
+        "fetched_at": "2026-09-19T06:35:26.192411Z",
+        "ean": null
+      },
+      {
+        "name": "Jogobella Myrtille 150 g",
+        "brand": "Zott",
+        "category": "",
+        "description": "",
+        "new_price": 0.61,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,07 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06029659_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/jogobella-myrtille-150-g/06029659.html",
+        "fetched_at": "2026-09-19T06:35:26.195306Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Yogolino Laitage Fraise dès 6 mois 4x100g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 2.57,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "6,43 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04338189_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-yogolino-laitage-fraise-des-6-mois-4x100g/04338189.html",
+        "fetched_at": "2026-09-19T06:35:26.198325Z",
+        "ean": null
+      },
+      {
+        "name": "Bio Pear & Raspberry 6+ Mois 100 g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 1.85,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "18,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717648_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/bio-pear-and-raspberry-6-mois-100-g/06717648.html",
+        "fetched_at": "2026-09-19T06:35:26.201592Z",
+        "ean": null
+      },
+      {
+        "name": "Nestlé Céréale Biscuitée pour Panades de Fruits dès 6 mois 800g",
+        "brand": "Cerelac",
+        "category": "",
+        "description": "",
+        "new_price": 7.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "-5% à l'achat de 2 - Offre valable jusqu’au 31/12/2026 inclus",
+        "unit": "9,74 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06204413_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-cereale-biscuitee-pour-panades-de-fruits-des-6-mois-800g/06204413.html",
+        "fetched_at": "2026-09-19T06:35:26.205422Z",
+        "ean": null
+      },
+      {
+        "name": "Gel Désodorisant Lavande 150 g",
+        "brand": "Carrefour",
+        "category": "",
+        "description": "",
+        "new_price": 0.95,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "6,33 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05034142_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/gel-desodorisant-lavande-150-g/05034142.html",
+        "fetched_at": "2026-09-19T06:35:26.209130Z",
+        "ean": null
+      },
+      {
+        "name": "Beef-Stick legumes 12 g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.97,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "80,83 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01377045_04008239231475_C1N1_s02_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/beef-stick-legumes-12-g/01377045.html",
+        "fetched_at": "2026-09-19T06:35:26.211840Z",
+        "ean": null
+      },
+      {
+        "name": "BIO Bâtonnets croustillantes de carottes et d'herbes 12+M 60g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 3.75,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "62,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717564_08718285800117_C1N1_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/bio-batonnets-croustillantes-de-carottes-et-dherbes-12m-60g/06717564.html",
+        "fetched_at": "2026-09-19T06:35:26.217823Z",
+        "ean": null
+      },
+      {
+        "name": "Pet 0,5L 6x",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 8.59,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,86 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_01386837_05449000021199_C1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/pet-05l-6x/01386837.html",
+        "fetched_at": "2026-09-19T06:35:26.221528Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Yogolino Laitage Fraise-Banane dès 6mois 4x90g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 3.55,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "9,86 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06999024_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-yogolino-laitage-fraise-banane-des-6mois-4x90g/06999024.html",
+        "fetched_at": "2026-09-19T06:35:26.225008Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance 3+ dès 3 ans 6x1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 11.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,98 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05294145_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-3-des-3-ans-6x1l/05294145.html",
+        "fetched_at": "2026-09-19T06:35:26.226841Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Yogolino Laitage Cacao dès 6 mois 4x100g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 2.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "7,48 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04008048_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-yogolino-laitage-cacao-des-6-mois-4x100g/04008048.html",
+        "fetched_at": "2026-09-19T06:35:26.228347Z",
+        "ean": null
+      },
+      {
+        "name": "Yogolino Laitage Pomme Fraise dès 6 mois gourde 100g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.55,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "15,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06748552_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/yogolino-laitage-pomme-fraise-des-6-mois-gourde-100g/06748552.html",
+        "fetched_at": "2026-09-19T06:35:26.229841Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro Lait de Croissance 2+ dès 2 ans 6x1L",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 13.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,18 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05712431_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-lait-de-croissance-2-des-2-ans-6x1l/05712431.html",
+        "fetched_at": "2026-09-19T06:35:26.232812Z",
+        "ean": null
+      },
+      {
+        "name": "Baby Cereals Riz Vanille dès 6 mois 250g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 3.25,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "13,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05570457_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/baby-cereals-riz-vanille-des-6-mois-250g/05570457.html",
+        "fetched_at": "2026-09-19T06:35:26.234309Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro 4 Lait de Croissance poudre bébé dès 2 ans 800g",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 15.75,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "19,69 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06316467_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-4-lait-de-croissance-poudre-bebe-des-2-ans-800g/06316467.html",
+        "fetched_at": "2026-09-19T06:35:26.236304Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Baby Biscuit Pépites de Chocolat dès 12 mois 150g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 3.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "20,60 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05445640_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-baby-biscuit-pepites-de-chocolat-des-12-mois-150g/05445640.html",
+        "fetched_at": "2026-09-19T06:35:26.240088Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Sunny Fruits dès 12 mois gourde 110g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.65,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "15,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_07004331_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-sunny-fruits-des-12-mois-gourde-110g/07004331.html",
+        "fetched_at": "2026-09-19T06:35:26.243271Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance 2+ à partir de 2 ans 1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,99 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05294163_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-2-a-partir-de-2-ans-1l/05294163.html",
+        "fetched_at": "2026-09-19T06:35:26.246368Z",
+        "ean": null
+      },
+      {
+        "name": "Yogolino Laitage Banane dès 6 mois gourde 100g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.55,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "15,50 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06748554_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/yogolino-laitage-banane-des-6-mois-gourde-100g/06748554.html",
+        "fetched_at": "2026-09-19T06:35:26.249077Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Lait de Croissance Céréales dès 1 an 1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,99 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_04808146_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-lait-de-croissance-cereales-des-1-an-1l/04808146.html",
+        "fetched_at": "2026-09-19T06:35:26.251798Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro 1 Lait pour Nourrissons 800g",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 13.49,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "16,86 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06206205_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-1-lait-pour-nourrissons-800g/06206205.html",
+        "fetched_at": "2026-09-19T06:35:26.253789Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Yogolino Laitage Banane dès 6 mois 4x100g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 2.57,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "6,43 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04008051_T596.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-yogolino-laitage-banane-des-6-mois-4x100g/04008051.html",
+        "fetched_at": "2026-09-19T06:35:26.257818Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Lemon 500ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 1.69,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,38 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06876748_05449000227553_H1N1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-lemon-500ml/06876748.html",
+        "fetched_at": "2026-09-19T06:35:26.260710Z",
+        "ean": null
+      },
+      {
+        "name": "Poésie Colin aux Pâtes & Tomate 85g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05738668_04008239590190_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/poesie-colin-aux-pates-and-tomate-85g/05738668.html",
+        "fetched_at": "2026-09-19T06:35:26.262235Z",
+        "ean": null
+      },
+      {
+        "name": "Poésie Boeuf et Carottes 85g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05738666_04008239590206_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/poesie-boeuf-et-carottes-85g/05738666.html",
+        "fetched_at": "2026-09-19T06:35:26.265562Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro Lait de Suite 6-12 Mois 800 g",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 15.69,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "19,61 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06316307_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-lait-de-suite-6-12-mois-800-g/06316307.html",
+        "fetched_at": "2026-09-19T06:35:26.267308Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Cherry 330ml Boite",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,00 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06839598_05449000224699_H1N1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-cherry-330ml-boite/06839598.html",
+        "fetched_at": "2026-09-19T06:35:26.269157Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance 2+ dès 2 ans 6x1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 11.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,98 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05294144_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-2-des-2-ans-6x1l/05294144.html",
+        "fetched_at": "2026-09-19T06:35:26.271807Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Lemon 6x500ml PET",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 10.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,36 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06876697_05449000242730_C1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-lemon-6x500ml-pet/06876697.html",
+        "fetched_at": "2026-09-19T06:35:26.275864Z",
+        "ean": null
+      },
+      {
+        "name": "rganix Farm Animal Biscuits 12 Mois 100 g",
+        "brand": "Organix",
+        "category": "",
+        "description": "",
+        "new_price": 4.29,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "42,90 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06717558_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/rganix-farm-animal-biscuits-12-mois-100-g/06717558.html",
+        "fetched_at": "2026-09-19T06:35:26.278983Z",
+        "ean": null
+      },
+      {
+        "name": "Coca Cola Zero Coke Soft drink 24 x 200 ml",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 20.59,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "4,29 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05570454_05449000134394_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/coca-cola-zero-coke-soft-drink-24-x-200-ml/05570454.html",
+        "fetched_at": "2026-09-19T06:35:26.282032Z",
+        "ean": null
+      },
+      {
+        "name": "Baby Cereals Cacao dès 6 mois 250g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 4.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "16,36 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05570519_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/baby-cereals-cacao-des-6-mois-250g/05570519.html",
+        "fetched_at": "2026-09-19T06:35:26.284363Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Lait de Croissance Céréales dès 1 an 6x1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 11.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,98 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_04808171_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-lait-de-croissance-cereales-des-1-an-6x1l/04808171.html",
+        "fetched_at": "2026-09-19T06:35:26.286264Z",
+        "ean": null
+      },
+      {
+        "name": "Baby Cereals 5 Céréales dès 6 mois 250g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 4.05,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "16,20 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05570552_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/baby-cereals-5-cereales-des-6-mois-250g/05570552.html",
+        "fetched_at": "2026-09-19T06:35:26.289282Z",
+        "ean": null
+      },
+      {
+        "name": "Poésie Saumon & Épinard 85g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05738465_04008239313195_C1N1_s05_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/poesie-saumon-and-epinard-85g/05738465.html",
+        "fetched_at": "2026-09-19T06:35:26.292541Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance 1+ dès 1 an 6x1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 11.89,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,98 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05294143_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-1-des-1-an-6x1l/05294143.html",
+        "fetched_at": "2026-09-19T06:35:26.295510Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro Lait de Croissance 1+ dès 1 an 6x1L",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 14.09,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "2,35 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05447606_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-lait-de-croissance-1-des-1-an-6x1l/05447606.html",
+        "fetched_at": "2026-09-19T06:35:26.298550Z",
+        "ean": null
+      },
+      {
+        "name": "Zero Sugar Vanilla 6x330ml Boite",
+        "brand": "Coca-Cola",
+        "category": "",
+        "description": "",
+        "new_price": 5.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "3,03 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_06728950_05449000304292_H1L1_en_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/zero-sugar-vanilla-6x330ml-boite/06728950.html",
+        "fetched_at": "2026-09-19T06:35:26.301805Z",
+        "ean": null
+      },
+      {
+        "name": "Lait de Croissance 1+ dès 1 an 1L",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "1,99 €/l",
+        "image_url": "https://cdn.carrefour.eu/420_05294162_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/lait-de-croissance-1-des-1-an-1l/05294162.html",
+        "fetched_at": "2026-09-19T06:35:26.303398Z",
+        "ean": null
+      },
+      {
+        "name": "Poésie Créations Gibier en Gelée de Cranberries 85g",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "11,65 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05738669_04008239590145_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/poesie-creations-gibier-en-gelee-de-cranberries-85g/05738669.html",
+        "fetched_at": "2026-09-19T06:35:26.313281Z",
+        "ean": null
+      },
+      {
+        "name": "Beef-Stick à la Panse 12g 1p",
+        "brand": "Vitakraft",
+        "category": "",
+        "description": "",
+        "new_price": 0.97,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "97,00 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_01499763_04008239231468_C1N1_s01_MPM.webp",
+        "source_url": "https://www.carrefour.be/fr/beef-stick-a-la-panse-12g-1p/01499763.html",
+        "fetched_at": "2026-09-19T06:35:26.316427Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Yogolino Laitage Semoule au Lait dès 6 mois 4x100g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 3.25,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "8,13 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_04756064_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-yogolino-laitage-semoule-au-lait-des-6-mois-4x100g/04756064.html",
+        "fetched_at": "2026-09-19T06:35:26.319308Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Baby Biscuit Nature dès 12 mois 180g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 3.25,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "18,06 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05445645_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-baby-biscuit-nature-des-12-mois-180g/05445645.html",
+        "fetched_at": "2026-09-19T06:35:26.323300Z",
+        "ean": null
+      },
+      {
+        "name": "Baby Cereals Miel dès 6 mois 250g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 3.39,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "13,56 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05562068_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/baby-cereals-miel-des-6-mois-250g/05562068.html",
+        "fetched_at": "2026-09-19T06:35:26.326718Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Baby Fruit Pomme Banane Fraise dès 6 mois gourde 90g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 5.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "16,08 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_07008164_T597.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-baby-fruit-pomme-banane-fraise-des-6-mois-gourde-90g/07008164.html",
+        "fetched_at": "2026-09-19T06:35:26.332705Z",
+        "ean": null
+      },
+      {
+        "name": "NESTLÉ Baby Fruit 4 Fruits dès 6 mois gourde 90g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 5.79,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "16,08 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_07008162_T597.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-baby-fruit-4-fruits-des-6-mois-gourde-90g/07008162.html",
+        "fetched_at": "2026-09-19T06:35:26.335732Z",
+        "ean": null
+      },
+      {
+        "name": "Optipro Satiété 3 Lait de Croissance Épaissi pour Petits Gourmands dès 1 An 800 g",
+        "brand": "NAN",
+        "category": "",
+        "description": "",
+        "new_price": 16.99,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "21,24 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_05578925_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/optipro-satiete-3-lait-de-croissance-epaissi-pour-petits-gourmands-des-1-an-800-g/05578925.html",
+        "fetched_at": "2026-09-19T06:35:26.339817Z",
+        "ean": null
+      },
+      {
+        "name": "Nestlé Céréale Biscuitée pour Panades de Fruits sans Gluten dès 6 mois 300g",
+        "brand": "Cerelac",
+        "category": "",
+        "description": "",
+        "new_price": 5.19,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "17,30 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_06669214_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/nestle-cereale-biscuitee-pour-panades-de-fruits-sans-gluten-des-6-mois-300g/06669214.html",
+        "fetched_at": "2026-09-19T06:35:26.342980Z",
+        "ean": null
+      },
+      {
+        "name": "Baby Fruit Pomme Banane Fraise dès 6 mois gourde 90g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.45,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "16,11 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_07008165_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/baby-fruit-pomme-banane-fraise-des-6-mois-gourde-90g/07008165.html",
+        "fetched_at": "2026-09-19T06:35:26.346168Z",
+        "ean": null
+      },
+      {
+        "name": "Baby Fruit 4 Fruits dès 6 mois gourde 90g",
+        "brand": "Nestlé",
+        "category": "",
+        "description": "",
+        "new_price": 1.45,
+        "old_price": null,
+        "discount_pct": null,
+        "promo_text": "",
+        "unit": "16,11 €/kg",
+        "image_url": "https://cdn.carrefour.eu/420_07008163_T1.webp",
+        "source_url": "https://www.carrefour.be/fr/baby-fruit-4-fruits-des-6-mois-gourde-90g/07008163.html",
+        "fetched_at": "2026-09-19T06:35:26.349174Z",
+        "ean": null
       }
     ],
     "colruyt": [

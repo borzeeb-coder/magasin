@@ -227,148 +227,162 @@ def _parse_aldi_offers(algolia_map: Dict) -> List[Dict]:
 
 # ============ CARREFOUR SCRAPER ============
 
+CARREFOUR_API_URL = 'https://www.carrefour.be/on/demandware.store/Sites-carrefour-be-Site/fr_BE/Search-UpdateGrid'
+
+
 def scrape_carrefour() -> List[Dict]:
-    """Scrape Carrefour promotions using JSON-LD ItemList + Product pages"""
-    url = 'https://www.carrefour.be/fr/promotions'
+    """Scrape Carrefour Belgium weekly promotions via SFCC API (Search-UpdateGrid).
+
+    One request returns all products in the promotions category (up to sz=500).
+    """
     offers = []
     
     try:
-        r = requests.get(url, headers=UA, timeout=20)
+        params = {
+            'cgid': 'promotions-navigation',
+            'pmin': '0,01',
+            'start': '0',
+            'sz': '200',
+        }
+        r = requests.get(CARREFOUR_API_URL, params=params, headers=UA, timeout=30)
+        r.raise_for_status()
         soup = BeautifulSoup(r.text, 'html.parser')
         
-        # Get product URLs from ItemList JSON-LD
-        product_urls = _get_carrefour_product_urls(soup)
+        products = [p for p in soup.find_all('div')
+                    if 'js-product' in (p.get('class') or []) and p.get('data-pid')]
         
-        # Fetch each product page (limit to avoid timeout)
-        for purl in product_urls[:20]:  # Limit to 20 for speed
+        for p in products:
             try:
-                offer = _fetch_carrefour_product(purl)
+                offer = _parse_carrefour_tile(p)
                 if offer and not should_skip_nutriscore(offer['name']):
                     offers.append(offer)
-                time.sleep(0.2)  # Be nice
             except Exception as e:
-                print(f"Error fetching Carrefour product {purl}: {e}")
+                print(f"Error parsing Carrefour tile: {e}")
                 continue
-        
+
     except Exception as e:
         print(f"Carrefour scrape error: {e}")
     
+    offers = _dedupe_carrefour(offers)
     print(f"Carrefour: {len(offers)} valid food offers")
     return offers
 
 
-def _get_carrefour_product_urls(soup: BeautifulSoup) -> List[str]:
-    """Extract product URLs from ItemList JSON-LD"""
-    urls = []
-    scripts = soup.find_all('script', type='application/ld+json')
-    for s in scripts:
-        if s.string:
-            try:
-                ld = json.loads(s.string)
-                if ld.get('@type') == 'ItemList':
-                    for item in ld.get('itemListElement', []):
-                        if item.get('@type') == 'ListItem' and item.get('url'):
-                            urls.append(item['url'])
-            except:
-                pass
-    return urls
-
-
-def _fetch_carrefour_product(url: str) -> Optional[Dict]:
-    """Fetch full product data from Carrefour product page"""
-    try:
-        r = requests.get(url, headers=UA, timeout=15)
-        soup = BeautifulSoup(r.text, 'html.parser')
-        
-        # Get Product JSON-LD
-        scripts = soup.find_all('script', type='application/ld+json')
-        product_ld = None
-        for s in scripts:
-            if s.string:
-                try:
-                    ld = json.loads(s.string)
-                    if ld.get('@type') == 'Product':
-                        product_ld = ld
-                        break
-                except:
-                    pass
-        
-        if not product_ld:
-            return None
-        
-        # Extract image from HTML (not in JSON-LD)
-        img_url = ''
-        # Try img[itemprop="image"] first (Carrefour uses this)
-        img_tag = soup.select_one('img[itemprop="image"]')
-        if img_tag and img_tag.get('src'):
-            img_url = img_tag['src']
-        elif img_tag and img_tag.get('data-src'):
-            img_url = img_tag['data-src']
-        else:
-            # Try meta og:image
-            og_img = soup.find('meta', property='og:image')
-            if og_img and og_img.get('content'):
-                img_url = og_img['content']
-            else:
-                # Try first product image
-                img_tag = soup.select_one('.product-image img, .product-gallery img, [data-testid="product-image"] img, .product-main-image img')
-                if img_tag and img_tag.get('src'):
-                    img_url = img_tag['src']
-                elif img_tag and img_tag.get('data-src'):
-                    img_url = img_tag['data-src']
-        
-        return _parse_carrefour_product(product_ld, url, img_url)
-    except Exception as e:
-        print(f"Error fetching Carrefour product {url}: {e}")
+def _parse_carrefour_tile(p) -> Optional[Dict]:
+    """Parse a Carrefour product tile from the Search-UpdateGrid API response."""
+    pid = p.get('data-pid', '')
     
-    return None
-
-
-def _parse_carrefour_product(ld: Dict, url: str, img_url: str = '') -> Optional[Dict]:
-    """Parse Product JSON-LD into offer format"""
-    try:
-        name = ld.get('name', '').strip()
-        if not name:
-            return None
-        
-        # Price
-        offers = ld.get('offers', {})
-        if isinstance(offers, list):
-            offers = offers[0] if offers else {}
-        
-        price = offers.get('price')
-        old_price = None
-        
-        # Try to get old price from strike-through or was-price
-        # (would need to parse HTML for this)
-        
-        # Discount
-        discount_pct = None
-        # Could calculate if we have both prices
-        
-        # SKU/EAN
-        sku = ld.get('sku', '') or ld.get('mpn', '')
-        
-        offer = {
-            'name': name,
-            'brand': ld.get('brand', {}).get('name', '') if isinstance(ld.get('brand'), dict) else '',
-            'category': '',  # Not in Product schema
-            'description': ld.get('description', ''),
-            'new_price': float(price) if price else None,
-            'old_price': old_price,
-            'discount_pct': None,
-            'promo_text': '',
-            'unit': '',
-            'image_url': img_url,
-            'source_url': url,
-            'fetched_at': datetime.utcnow().isoformat() + 'Z',
-            'ean': sku if sku and sku.isdigit() and len(sku) in [8, 13] else None,
-        }
-        
-        return offer
-    except Exception as e:
-        print(f"Error parsing Carrefour product: {e}")
+    # Name
+    name_el = p.select_one('.pdp-link .link')
+    name = name_el.get_text(strip=True) if name_el else ''
+    if not name:
+        mobile = p.select_one('.mobile-name')
+        name = mobile.get_text(strip=True) if mobile else ''
+    if not name:
+        img = p.select_one('.tile-image')
+        name = img.get('alt') if img else ''
+    name = name.strip()
+    if not name:
         return None
+    # Name appears twice (mobile + desktop) in some tiles - dedupe
+    mid = len(name) // 2
+    if len(name) > 4 and name[:mid] == name[mid:]:
+        name = name[:mid]
+    
+    # Image
+    img_url = ''
+    img_tag = p.select_one('.tile-image')
+    if img_tag:
+        img_url = img_tag.get('src') or img_tag.get('data-src') or img_tag.get('data-lazy-src') or ''
+    if not img_url and pid:
+        img_url = f'https://cdn.carrefour.eu/420_{pid}_T1.webp'
+    
+    # Price
+    new_price = None
+    price_el = p.select_one('.sales .value')
+    if price_el and price_el.get('content'):
+        try:
+            new_price = float(price_el['content'])
+        except:
+            pass
+    elif price_el:
+        new_price = parse_price(price_el.get_text(strip=True))
+    
+    # Promo badge text + validity
+    promo_text = ''
+    validity = ''
+    promo_tag = p.select_one('.promo-tag-text')
+    if promo_tag:
+        promo_text = promo_tag.get_text(strip=True)
+    validity_el = p.select_one('.promo-validity-date')
+    if validity_el:
+        validity = validity_el.get_text(strip=True)
+    if promo_text and validity:
+        promo_text = promo_text + ' - ' + validity
+    elif validity:
+        promo_text = validity
+    
+    # Brand
+    brand_el = p.select_one('.brand-wrapper a')
+    brand = brand_el.get_text(strip=True) if brand_el else ''
+    
+    # Unit price
+    unit = ''
+    unit_el = p.select_one('.price-per-unit-wrapper')
+    if unit_el:
+        unit = unit_el.get_text(strip=True)
+    
+    # Product URL
+    source_url = ''
+    link = p.select_one('.pdp-link a')
+    if link and link.get('href'):
+        href = link['href']
+        source_url = href if href.startswith('http') else 'https://www.carrefour.be' + href
+    
+    # Category from GTM data attribute
+    category = ''
+    gtm = p.get('data-select-item-event-object')
+    if gtm:
+        try:
+            gtm_json = json.loads(gtm.replace('&quot;', '"'))
+            items = gtm_json.get('ecommerce', {}).get('items', [])
+            if items and items[0].get('item_category'):
+                category = items[0]['item_category']
+        except:
+            pass
+    
+    # EAN - Carrefour product IDs are 8-digit codes, not always EANs
+    ean = pid if pid.isdigit() and len(pid) == 13 else None
+    
+    offer = {
+        'name': name,
+        'brand': brand,
+        'category': category,
+        'description': '',
+        'new_price': new_price,
+        'old_price': None,
+        'discount_pct': None,
+        'promo_text': promo_text,
+        'unit': unit,
+        'image_url': img_url,
+        'source_url': source_url,
+        'fetched_at': datetime.utcnow().isoformat() + 'Z',
+        'ean': ean,
+    }
+    
+    return offer
+
+
+def _dedupe_carrefour(offers: List[Dict]) -> List[Dict]:
+    """Remove duplicate names from Carrefour offers"""
+    seen = set()
+    unique = []
+    for o in offers:
+        name = o.get('name', '')
+        if name and name not in seen:
+            seen.add(name)
+            unique.append(o)
+    return unique
 
 
 # ============ DELHAIZE SCRAPER (Placeholder - needs GraphQL/API) ============
