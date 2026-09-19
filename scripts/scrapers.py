@@ -638,12 +638,142 @@ def scrape_lidl() -> List[Dict]:
     return offers
 
 
-# ============ COLRUYT SCRAPER (AntiBot protected) ============
+# ============ COLRUYT SCRAPER ============
+
+COLRUYT_API_URL = 'https://apip.collectandgo.be/gateway/ecomfoodb2c.eshop.wcsproductviewsearchsvc/v1/store/90004/productview/byCategory/133007'
+COLRUYT_API_KEY = '502b657c-624c-11eb-8024-f4d06b721e80'
+COLRUYT_IMG_PREFIX = 'https://images.collectandgo.be/images/step/JPG/'
+
+
+def _colruyt_barcode(attrs: List) -> Optional[str]:
+    """Extract the GTIN/EAN barcode from Colruyt attributes."""
+    for a in attrs or []:
+        s = str(a)
+        if "'identifier': 'DefaultBarcode'" in s:
+            m = re.search(r"'value': '(\d{8,14})'", s)
+            if m:
+                return m.group(1)
+    return None
+
 
 def scrape_colruyt() -> List[Dict]:
-    """Scrape Colruyt - blocked by AntiBot"""
-    print("Colruyt: AntiBot protection - skipping")
-    return []
+    """Scrape Colruyt Group promotions (Collect&Go) via their product search API.
+
+    Category 133007 = "Nos meilleures promos" (the weekly promotions listing).
+    Returns ~50 products per page; pageNumber 0 starts, then 2, 3, ... (pageNumber=1
+    is ignored by the API so we dedupe by product id).
+    """
+    offers = []
+    seen = set()
+    headers = {**UA, 'X-CG-APIKey': COLRUYT_API_KEY, 'Accept-Language': 'fr-BE,fr;q=0.9'}
+
+    for target_start in [0, 50, 100, 150, 200, 250, 300, 350]:
+        page = 0 if target_start == 0 else (target_start // 50) + 1
+        begin = target_start
+        params = {
+            'catalogId': '10429',
+            'searchSource': 'E',
+            'beginIndex': begin,
+            'langId': '-2',
+            'storeId': '90004',
+            'categoryId': '133007',
+            'categoryNavigation': 'true',
+            'pageSize': 50,
+            'pageNumber': str(page),
+            'orderBy': '1',
+            'customFilterExpr': 'x_productstock:10429_*_Y',
+            'fromPageParam': 'promos',
+        }
+        try:
+            r = requests.get(COLRUYT_API_URL, params=params, headers=headers, timeout=60)
+            r.raise_for_status()
+            d = r.json()
+            prods = d.get('catalogEntryView', [])
+            if not prods:
+                break
+            start = d.get('recordSetStartNumber', 0)
+            if start != target_start:
+                # pagination quirk: this pageNumber returned a duplicated page, skip
+                print(f"Colruyt start={target_start}: got start={start} (skip duplicate)")
+                continue
+
+            for p in prods:
+                uid = p.get('uniqueID') or p.get('singleSKUCatalogEntryID')
+                name = (p.get('name') or '').strip()
+                if not name or uid in seen:
+                    continue
+                if should_skip_nutriscore(name):
+                    continue
+
+                price = None
+                unit = ''
+                xp = p.get('xprice') or []
+                if xp:
+                    try:
+                        price = float(xp[0].get('basePrice', '').replace(',', '.'))
+                    except (ValueError, AttributeError):
+                        price = None
+                    vol = xp[0].get('basePriceVol', '')
+                    if vol:
+                        unit = f"{vol}/kg"
+                if price is None:
+                    continue
+
+                # Promotion info
+                promo_text = ''
+                discount_pct = None
+                end_date = ''
+                proms = p.get('promotions') or []
+                if proms:
+                    promo_text = (proms[0].get('strapLine') or '').strip()
+                    disc = proms[0].get('discount')
+                    if disc:
+                        try:
+                            discount_pct = int(disc)
+                        except ValueError:
+                            discount_pct = None
+                    end = proms[0].get('endDate') or ''
+                    if end:
+                        end_date = f"jusqu'au {end}"
+
+                old_price = None
+                if discount_pct and price:
+                    old_price = round(price / (1 - discount_pct / 100), 2)
+
+                # Image
+                img_url = ''
+                thumb = p.get('thumbnail')
+                if thumb:
+                    img_url = COLRUYT_IMG_PREFIX + thumb.lstrip('/')
+
+                ean = _colruyt_barcode(p.get('attributes'))
+
+                offer = {
+                    'name': name,
+                    'brand': p.get('owner') or '',
+                    'category': '',
+                    'description': p.get('productLongName') or '',
+                    'new_price': price,
+                    'old_price': old_price,
+                    'discount_pct': discount_pct,
+                    'promo_text': f"{promo_text} {end_date}".strip(),
+                    'unit': unit,
+                    'image_url': img_url,
+                    'source_url': f'https://www.collectandgo.be/fr/assortiment/promos?p={uid}',
+                    'fetched_at': datetime.utcnow().isoformat() + 'Z',
+                    'ean': ean,
+                }
+                offers.append(offer)
+                seen.add(uid)
+
+            print(f"Colruyt start={target_start}: {len(prods)} raw, total so far {len(offers)}")
+
+        except Exception as e:
+            print(f"Colruyt page {page} error: {e}")
+            break
+
+    print(f"Colruyt: {len(offers)} valid food offers")
+    return offers
 
 
 # ============ SPAR SCRAPER (Wrong URL) ============

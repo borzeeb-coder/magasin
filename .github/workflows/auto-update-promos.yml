@@ -38,6 +38,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Enrich Nutri-Score
+        run: |
+          python scripts/enrich_nutriscore.py 2>&1 | tail -n 20
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Check for changes
         id: changes
         run: |
@@ -55,7 +61,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          git add data/promos.json data/images/ data/ean_mapping.json
+          git add data/promos.json data/images/ data/ean_mapping.json data/nutri_cache.json
           git commit -m "chore: auto-update promos $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
 

@@ -179,6 +179,18 @@
     border-radius:50%; width:30px; height:30px; display:flex; align-items:center;
     justify-content:center; transition:transform .15s; user-select:none;
   }
+  .nutri-badge{
+    position:absolute; right:8px; bottom:42px; z-index:3;
+    background:var(--ink); color:#fff; font-family:'Archivo Black',sans-serif;
+    font-size:12px; padding:3px 7px; border-radius:7px; line-height:1.15;
+    letter-spacing:.3px; box-shadow:0 1px 4px rgba(0,0,0,.18);
+  }
+  .nutri-badge.text-only{font-size:9px; max-width:72px; text-align:center;}
+  .ns-bar{display:inline-flex; gap:2px; border-radius:4px; overflow:hidden; vertical-align:middle;}
+  .ns-cell{width:16px; height:16px; display:inline-flex; align-items:center; justify-content:center;
+    color:#fff; font-size:10px; font-weight:800; font-family:'Archivo Black',sans-serif;}
+  .v-nutri{font-weight:800; text-transform:uppercase; letter-spacing:.3px;}
+  .v-nutri.muted{color:var(--ink-soft); font-weight:600;}
   .card-fav.on{color:var(--red);}
   .card-fav:active{transform:scale(1.25);}
   .no-price{font-family:'Work Sans',sans-serif; font-size:12.5px; color:var(--ink-soft); font-weight:600;}
@@ -631,6 +643,36 @@ function categorize(name){
   return 'epicerie';
 }
 
+function nutriGrade(nutri){
+  const s = String(nutri||'').trim().toUpperCase();
+  const m = s.match(/^([A-E])/);
+  return m ? m[1] : (['UNKNOWN','NOT-APPLICABLE'].includes(s) ? s : '');
+}
+function nutriColor(grade){
+  const colors = {A:'#00823f', B:'#85bb2f', C:'#ffc20e', D:'#ef7d00', E:'#e03e3e'};
+  if(grade && colors[grade]) return colors[grade];
+  return null;
+}
+function nutriBadgeHTML(nutri){
+  const g = nutriGrade(nutri);
+  if(!g || g==='NOT-APPLICABLE') return '';
+  const c = nutriColor(g);
+  const label = /^[A-E]$/.test(g) ? `Nutri-Score ${g}` : g;
+  const text = c ? g : g.replace('-',' ');
+  return `<span class="nutri-badge ${c?'':'text-only'}" ${c?`style="background:${c};"`:''} title="${label}">${text}</span>`;
+}
+function modalNutriHTML(nutri){
+  const g = nutriGrade(nutri);
+  if(!g) return `<span class="v-nutri muted">—</span>`;
+  const c = nutriColor(g);
+  if(/^[A-E]$/.test(g)){
+    const colors = {A:'#00823f', B:'#85bb2f', C:'#ffc20e', D:'#ef7d00', E:'#e03e3e'};
+    const bar = 'ABCDE'.split('').map(L=>`<span class="ns-cell" style="background:${colors[L]};${L===g?'outline:2px solid #000; outline-offset:-2px;':''}">${L}</span>`).join('');
+    return `<span class="ns-bar" title="Nutri-Score ${g}">${bar}</span>`;
+  }
+  return `<span class="v-nutri muted">${g.replace('-',' ')}</span>`;
+}
+
 async function loadPromoData(){
   try{
     const res = await fetch('./data/promos.json', {cache:'no-store'});
@@ -664,7 +706,7 @@ async function loadPromoData(){
           offer: (dPct ? `-${dPct}% chez ${meta.name}` : `Promo ${meta.name}`),
           valid: 'Voir conditions sur le prospectus',
           avail: `En rayon à ${state.city ? state.city.name : 'Marche-en-Famenne'}`,
-          nutri: '—',
+          nutri: o.nutriscore || '—',
           desc: `Offre relevée sur le prospectus ${meta.name}, via promopromo.be. ${o.source_url ? '' : ''}`.trim(),
           source_url: o.source_url || null,
         });
@@ -855,6 +897,7 @@ function renderProducts(){
         <span class="pcard-emoji-fallback" style="${p.image ? 'display:none;' : ''}">${p.emoji}</span>
         ${discountPct(p) > 0 ? `<span class="badge-discount">-${discountPct(p)}%</span>` : ''}
         ${isNew ? `<span class="badge-new">NOUVEAU</span>` : ''}
+        ${nutriBadgeHTML(p.nutri)}
         <span class="badge-store"><img src="logos/${st.id}.logo.svg" alt="${st.name}" title="${st.name}" loading="lazy" onerror="this.remove()"></span>
         <span class="card-fav ${isFav?'on':''}" data-fav="${p.id}">${isFav?'♥':'♡'}</span>
       </div>
@@ -1073,7 +1116,7 @@ function openProduct(id){
       <div class="pd-meta-item"><div class="k">Offre</div><div class="v">${p.offer}</div></div>
       <div class="pd-meta-item"><div class="k">Validité</div><div class="v">${p.valid}</div></div>
       <div class="pd-meta-item"><div class="k">Disponibilité</div><div class="v">${p.avail}</div></div>
-      <div class="pd-meta-item"><div class="k">Nutri-Score</div><div class="v">${p.nutri}</div></div>
+      <div class="pd-meta-item"><div class="k">Nutri-Score</div><div class="v">${modalNutriHTML(p.nutri)}</div></div>
     </div>
     <p class="pd-desc">${p.desc}${p.source_url ? ` <a href="${p.source_url}" target="_blank" rel="noopener" style="color:var(--green); font-weight:700;">Voir le prospectus ↗</a>` : ''}</p>
     ${np ? `

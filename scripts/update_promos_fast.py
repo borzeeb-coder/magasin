@@ -136,14 +136,17 @@ def main():
         if removed > 0:
             print(f"Removed {removed} expired {store} promos")
     
-    # Preserve existing Nutri-Score data by name
+    # Preserve existing Nutri-Score data by name or EAN
     nutri_cache = {}
     for store, offers in promos['offers'].items():
         for o in offers:
             if o.get('nutriscore'):
-                nutri_cache[o.get('name', '')] = {k: v for k, v in o.items() 
+                data = {k: v for k, v in o.items() 
                     if k in ['nutriscore', 'nova_group', 'nutrition', 'ingredients', 
                             'allergens', 'additives', 'labels', 'brands', 'categories', 'ean']}
+                if o.get('ean'):
+                    nutri_cache[o['ean']] = data
+                nutri_cache[o.get('name', '')] = data
     
     # Fetch new data
     all_offers = {}
@@ -151,7 +154,7 @@ def main():
     # Reload scrapers module to get latest code
     import importlib
     importlib.reload(scrapers_module)
-    from scripts.scrapers import scrape_aldi, scrape_carrefour, scrape_delhaize, scrape_lidl
+    from scripts.scrapers import scrape_aldi, scrape_carrefour, scrape_delhaize, scrape_lidl, scrape_colruyt
     
     try:
         all_offers['intermarche'] = fetch_intermarche()
@@ -187,16 +190,27 @@ def main():
         print(f"Error Lidl: {e}")
         all_offers['lidl'] = promos['offers'].get('lidl', [])
     
+    try:
+        print("Scraping Colruyt...")
+        all_offers['colruyt'] = scrape_colruyt()
+    except Exception as e:
+        print(f"Error Colruyt: {e}")
+        all_offers['colruyt'] = promos['offers'].get('colruyt', [])
+    
     # Keep other stores as-is (no scrapers yet)
-    for store in ['colruyt', 'spar']:
+    for store in ['spar']:
         all_offers[store] = promos['offers'].get(store, [])
     
     # Restore Nutri-Score from cache
     for store, offers in all_offers.items():
         for o in offers:
-            name = o.get('name', '')
-            if name in nutri_cache:
-                o.update(nutri_cache[name])
+            cached = None
+            if o.get('ean'):
+                cached = nutri_cache.get(o['ean'])
+            if cached is None:
+                cached = nutri_cache.get(o.get('name', ''))
+            if cached:
+                o.update(cached)
     
     # Update promos
     promos['generated_at'] = datetime.utcnow().isoformat() + 'Z'
