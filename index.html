@@ -1836,15 +1836,20 @@ function openRecipeModal(recipeId){
       <strong>Coût estimé avec promos : ~${total} €</strong>
       <span>${matches.length}/${r.ingredients.length} ingrédients en promo</span>
     </div>
-    <h3>Ingrédients :</h3>
+    <h3>Ingrédients & Préparation :</h3>
     <ul class="recipe-ingredients">
       ${r.ingredients.map(ing => {
         const promo = matches.find(m => {
           const name = m.name.toLowerCase();
           return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
         });
+        const tip = promo ? getPrepTip(ing, promo.name) : null;
         if(promo){
-          return `<li class="has-promo"><span class="ing-name">${ing}</span><span class="ing-promo">🏷️ ${promo.name} — <strong>${priceOf(promo).toFixed(2)} €</strong> (${storeOf(promo.store).name})</span></li>`;
+          return `<li class="has-promo">
+            <span class="ing-name">${ing}</span>
+            <span class="ing-promo">🏷️ ${promo.name} — <strong>${priceOf(promo).toFixed(2)} €</strong> (${storeOf(promo.store).name})</span>
+            ${tip ? `<div class="ing-tip">💡 ${tip}</div>` : ''}
+          </li>`;
         }
         return `<li><span class="ing-name">${ing}</span><span class="ing-no-promo">❌ Pas de promo</span></li>`;
       }).join("")}
@@ -2086,8 +2091,180 @@ function openSemaineTab() {
 }
 
 /* ---------------------------------------------------------
-   INIT
-   -------------------------------------------------------- */
+   TIPS PRÉPARATION PAR INGRÉDIENT + TYPE PRODUIT
+   --------------------------------------------------------- */
+const PREP_TIPS = {
+  // Pâtes
+  "pâtes": {
+    default: "Cuire al dente (temps indiqué -1 min), garder 1 louche eau cuisson pour lier la sauce",
+    "spaghetti": "10-11 min, idéal pour sauces lisses (carbonara, tomate)",
+    "penne": "11-12 min, parfait pour sauces épaisses (bolognaise, arrabbiata)",
+    "tagliatelle": "8-10 min frais, 11-13 min sèches, pour sauces crémeuses",
+    "lasagnes": "Précuisson 5 min si sèches, sinon direct au four avec sauce",
+    "farfalle": "10-12 min, tient bien la sauce, idéal salades pâtes"
+  },
+  // Viandes
+  "viande hachée": {
+    default: "Saisir feu vif 3-4 min sans remuer pour croûte, puis égrainer",
+    "bœuf 5%": "Moins gras, cuire 5-6 min, dégraisser si besoin",
+    "bœuf 15%": "Plus goûteux, cuire 6-7 min, garde jus pour sauce",
+    "veau": "Plus délicat, cuire 4-5 min feu moyen",
+    "porc": "Bien cuire 7-8 min, idéal pour bolognaise"
+  },
+  "poulet": {
+    default: "Découper en morceaux 3-4 cm, saisir 5-6 min feu vif",
+    "filet": "Couper en dés, cuire 6-7 min, ne pas surcuire (sec)",
+    "escalope": "Aplatir, cuire 3-4 min/côté, repos 2 min",
+    "cuisse": "Désosser, cuire 8-10 min, plus juteux",
+    "aile": "Mariner 30 min, four 200°C 25-30 min"
+  },
+  "saumon": {
+    default: "Pavé : peau côté poêle 4 min, retour 2 min. Vapeur 8-10 min",
+    "pavé": "Saisir peau croustillante 4-5 min, finir 2 min chair",
+    "fumé": "Pas de cuisson, froid en entrée ou tiède 2 min fin cuisson",
+    "truite": "Comme saumon mais 2-3 min moins (plus fin)"
+  },
+  "poisson": {
+    default: "Cuire 3-4 min/côté selon épaisseur, chair opaque = cuit",
+    "cabillaud": "Poêle 4-5 min/côté, délicat - spatule large",
+    "colin": "Comme cabillaud, moins cher",
+    "merlu": "Vapeur 8-10 min, chair blanche ferme"
+  },
+  // Légumes
+  "brocoli": {
+    default: "Bouquets 3-4 min eau bouillante salée ou vapeur 5-6 min",
+    "frais": "Équeuter, couper tronçons égaux pour cuisson uniforme",
+    "surgelé": "Direct poêle 5-6 min ou vapeur 4-5 min (pas décongeler)"
+  },
+  "carottes": {
+    default: "Rondelles 8-10 min eau / 6-7 min vapeur / 10 min poêle",
+    "rondelles": "Épaisseur 5 mm = cuisson uniforme",
+    "bâtonnets": "Apéritif cru ou cuits 12 min vapeur",
+    "râpées": "Crues en salade, citron pour éviter noircissement"
+  },
+  "haricots verts": {
+    default: "Équeuter, 8-10 min eau bouillante / 6-8 min vapeur",
+    "fins": "5-6 min seulement, garder croquant",
+    "beurre": "Plus plats, 10-12 min, beurrer après cuisson"
+  },
+  "courgettes": {
+    default: "Rondelles 3-4 min poêle / 5-6 min four 200°C",
+    "rondelles": "Saisir feu vif 2 min/côté, sel en fin",
+    "demi-lunes": "Gratin 20 min 180°C avec fromage",
+    "spaghetti": "Spiraliser, 2 min poêle, sauce carbonara"
+  },
+  "poivrons": {
+    default: "Épépiner, lanières 5-6 min poêle / 20 min four 200°C",
+    "rouge": "Plus sucré, cru en salade ou cuit",
+    "vert": "Plus amer, toujours cuit",
+    "jaune": "Intermédiaire, polyvalent"
+  },
+  "oignon": {
+    default: "Émincer, 3-4 min feu doux beurre/huile jusqu'à translucide",
+    "jaune": "Standard cuisson, base sauces",
+    "rouge": "Plus doux, cru en salade ou confit 20 min",
+    "échalote": "Plus fine, 2 min, ne pas brûler"
+  },
+  "ail": {
+    default: "Écraser (plus de goût) ou hacher, 30 sec feu doux",
+    "entier": "Chemise four 30 min 180°C, pâte douce",
+    "haché": "Ajouter en fin cuisson (brûle vite)"
+  },
+  "pommes de terre": {
+    default: "Laver, cuire peau 20-25 min eau / 45 min four 200°C",
+    "chair ferme": "Charlotte, Ratte - salade, vapeur, sautées",
+    "chair farineuse": "Bintje, Manon - purée, frites, gratin",
+    "grenaille": "Entières peau, 15 min vapeur, beurre persil"
+  },
+  "tomate": {
+    default: "Monder (ébouillanter 30s) pour sauces, concasser",
+    "grappes": "Crue salade, cuite sauce 15-20 min",
+    "cerises": "Entières rôtis 15 min 200°C huile/herbes",
+    "concassées": "Boîte = gain temps, réduire 10 min"
+  },
+  "sauce tomate": {
+    default: "Réduire 10-15 min, ajouter basilic fin, sucre si acide",
+    "basilic": "Ajouter hors feu pour garder arôme",
+    "piquante": "Piment oiseau 1 min avant fin"
+  },
+  // Fromages
+  "fromage râpé": {
+    default: "Saupoudrer fin cuisson, gratiner 3-4 min four 220°C",
+    "emmental": "Fondant, filant, gratin dauphinois/lasagnes",
+    "comté": "Plus goûté, gratiner soupe oignon",
+    "mozzarella": "Pizza, lasagnes - égoutter si humide",
+    "parmesan": "Finition assiette, ne pas cuire (amertume)"
+  },
+  "crème fraîche": {
+    default: "Ajouter hors feu, ne pas bouillir (trancher)",
+    "épaisse": "Sauces, gratins, quiches - 20cl = 200g",
+    "légère": "12% MG - sauces légères, soupes",
+    "soja": "Végétale, même usage, ne bout pas"
+  },
+  "œufs": {
+    default: "Température ambiante 30 min avant = mieux montent",
+    "entiers": "Omelette 2-3 min, battre fourchette pas mixeur",
+    "blancs": "Neige ferme = bol propre, pas jaune, sucre fin",
+    "jaunes": "Liaison sauces (tempérer avec chaud)"
+  },
+  // Épicerie
+  "riz": {
+    default: "Rincer jusqu'eau claire, 1 vol riz / 1.5 vol eau, 10-12 min couvert",
+    "basmati": "Parfumé, 10 min, égrainer fourchette",
+    "arborio": "Risotto - ne pas rincer, ajouter bouillon louche par louche",
+    "complet": "25-30 min, plus nutritif, mâche plus",
+    "thaï": "Collant, cuiseur vapeur idéal"
+  },
+  "pâtes lasagnes": {
+    default: "Précuisson 5 min eau bouillante si sèches, égoutter à plat",
+    "fraîches": "Direct au four, plus de sauce",
+    "sèches": "Précuisson 5 min, refroidir eau froide"
+  },
+  "pâte brisée": {
+    default: "Sortir 10 min avant, piquer fond, précuire 10 min 180°C (poids)",
+    "feuilletée": "Décongeler 1h frigo, dorer jaune d'œuf"
+  },
+  "lardons": {
+    default: "Saisir 3-4 min sans matière grasse, égoutter gras",
+    "fumés": "Plus goûteux, moins sel dans recette",
+    "nature": "Ajouter herbes/ail en fin"
+  },
+  "haricots rouges": {
+    default: "Rincer boîte, réchauffer 5 min dans sauce",
+    "secs": "Tremper 12h, cuire 1h30 / autocuiseur 30 min"
+  },
+  "pois chiches": {
+    default: "Rincer boîte (aquafaba = blanc œuf végan), rôtir 20 min 200°C croustillant",
+    "secs": "Tremper 12h + bicarbonate, cuire 1h"
+  },
+  "épinards": {
+    default: "Frais : laver, essorer, 2 min poêle beurre/ail. Surgelés : décongeler, égoutter presser",
+    "frais": "Jeunes pousses = crues salade",
+    "surgelés": "Presser fort pour enlever eau"
+  },
+  "champignons": {
+    default: "Ne pas laver (éponge), brosser, saisir feu vif 5-6 min",
+    "paris": "Lames fines crues salade ou cuits",
+    "shiitake": "Pied dur retiré, 6-7 min",
+    "pleurote": "Déchirer mains, cuisson rapide"
+  }
+};
+
+// Récupère tip pour ingrédient + nom produit
+function getPrepTip(ingredient, productName) {
+  const ing = ingredient.toLowerCase();
+  const prod = productName.toLowerCase();
+  const tips = PREP_TIPS[ing];
+  if (!tips) return null;
+  
+  // Cherche match spécifique dans nom produit
+  for (const [key, tip] of Object.entries(tips)) {
+    if (key !== 'default' && prod.includes(key)) {
+      return tip;
+    }
+  }
+  return tips.default || null;
+}
 function rerenderAll(){
   renderStoreChips();
   renderCatChips();

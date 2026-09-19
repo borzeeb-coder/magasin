@@ -1433,6 +1433,18 @@ html, body {
   color: var(--text);
 }
 
+.ing-tip {
+  font-size: 11px;
+  color: var(--blue);
+  background: var(--blue-soft);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-top: 4px;
+  line-height: 1.4;
+  font-style: italic;
+  border-left: 3px solid var(--blue);
+}
+
 /* ============ SEMAINE MALIGNE ============ */
 .semaine-controls {
   padding: 0 16px 12px;
