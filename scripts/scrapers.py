@@ -788,7 +788,175 @@ def scrape_spar() -> List[Dict]:
 # ============ ACTION SCRAPER (via promotiez.be) ============
 
 ACTION_PROMOTIEZ_URL = 'https://www.promotiez.be/winkels/action/promoties'
+ACTION_PROMOTIEZ_PAGES = 3  # Number of paginated pages to fetch
 ACTION_DETAIL_BASE = 'https://www.promotiez.be'
+
+# Dutch to French translations for common Action product terms
+NL_TO_FR = {
+    # Categories
+    'dekbedovertrek': 'housse de couette',
+    'fleece': 'polaire',
+    'douchegel': 'gel douche',
+    'adventskalender': 'calendrier de l\'avent',
+    'batterijen': 'piles',
+    'pedaalemmer': 'seau à pédale',
+    'roestvrij stalen': 'acier inoxydable',
+    'tekenezel': 'tableau de dessin',
+    'koffie': 'café',
+    'ratel- en doppenset': 'jeu de cliquets et douilles',
+    'driekleurige contourpoeder': 'poudre contouring 3 couleurs',
+    'muurverf': 'peinture murale',
+    'vloerkleed': 'tapis',
+    'imitatiebont': 'fausse fourrure',
+    'trekband': 'à cordon',
+    'afvalzakken': 'sacs poubelle',
+    'labelprinter': 'imprimante étiquettes',
+    'meubelgrepen': 'poignées de meuble',
+    'hoofdkussen': 'coussin de tête',
+    'gezichtsreinigingsset': 'kit nettoyant visage',
+    'microvezeldoeken': 'chiffons microfibre',
+    'auto-luchtverfrisser': 'parfum voiture',
+    'lichaamsscrub': 'gommage corps',
+    'knoopcelbatterijen': 'piles bouton',
+    'opblaasbare gymnastiekmat': 'tapis gym gonflable',
+    'uittrekbaar windscherm': 'pare-vent rétractable',
+    'chocobrownie': 'brownie choco',
+    'bloxx': 'bloxx',
+    'noodradio': 'radio de secours',
+    'zaklamp': 'lampe torche',
+    'powerbank': 'batterie externe',
+    'bloembollen': 'bulbes à fleurs',
+    'verfemmer': 'godet de peinture',
+    'kattenkrabpaal': 'griffoir chat',
+    'wondlamp': 'applique murale',
+    'ledlicht': 'lumière LED',
+    'chocoladechips': 'pépites chocolat',
+    'smart connect': 'connecté',
+    'slimme': 'intelligent',
+    'rgb vloerlamp': 'lampe sol RGB',
+    'sneakersokken': 'chaussettes sneakers',
+    'geurkaars': 'bougie parfumée',
+    'kunstwimpers': 'faux cils',
+    'hondenkauwsticks': 'bâtonnets à mâcher chien',
+    'slime shaker': 'shaker slime',
+    'pyjama': 'pyjama',
+    'oreo wafelrolletjes': 'rouleaux gaufres Oreo',
+    'vanille': 'vanille',
+    'peelable gummies': 'gummies à éplucher',
+    'mixed soda': 'soda mixte',
+    'halloween knuffel': 'peluche Halloween',
+    'heren boxershorts': 'boxers homme',
+    'pantoffels': 'pantoufles',
+    'kwastenset': 'set pinceaux',
+    'hondensnacks': 'friandises chien',
+    'jersey hoeslaken': 'drap housse jersey',
+    'slimme voederbak': 'distributeur intelligent',
+    'golden rolls': 'rouleaux dorés',
+    'ooplbare batterijen': 'piles rechargeables',
+    'verzorgingsset': 'kit soin',
+    'namaste': 'namaste',
+    'mini': 'mini',
+    'sfeerverlichting': 'éclairage d\'ambiance',
+    'comfibeds': 'comfibeds',
+    'wit': 'blanc',
+    'koekjes in trommel': 'biscuits en boîte',
+    'ledbalk': 'barre LED',
+    'afplaktape': 'ruban adhésif',
+    'afdekzeil': 'bâche de protection',
+    'eau de toilette': 'eau de toilette',
+    'cosmetische hoofdband': 'bandeau cosmétique',
+    'chewy sticks': 'bâtonnets à mâcher',
+    'creamy oogschaduw': 'fard à paupières crémeux',
+    'vuilniszakken': 'sacs poubelle',
+    'verfroller': 'rouleau peinture',
+    'telescoopsteel': 'manche télescopique',
+    'wafels': 'gaufres',
+    'dierenvoerbak': 'gamelle',
+    'bamboe houder': 'support bambou',
+    'smarties': 'smarties',
+    'draadloze oordopjes': 'écouteurs sans fil',
+    'vriendschapsarmband': 'bracelet amitié',
+    'wooden flower puzzle': 'puzzle fleurs en bois',
+    'hondensnack': 'friandise chien',
+    'dentastix': 'dentastix',
+    'ultraeasy vloersysteem': 'système sol ultraeasy',
+    'met emmer': 'avec seau',
+    # Brands
+    'geribbeld': 'gaufre',
+    'studio home': 'studio home',
+    'vileda': 'vileda',
+    'disney princess': 'disney princess',
+    'varta': 'varta',
+    'palazzo': 'palazzo',
+    'werckmann': 'werckmann',
+    'max & more': 'max & more',
+    'home vision': 'home vision',
+    'dumil': 'dumil',
+    'fichero': 'fichero',
+    'kaily beauty studio': 'kaily beauty studio',
+    'little joe': 'little joe',
+    'hammam': 'hammam',
+    'milka': 'milka',
+    'maoam': 'maoam',
+    'spectrum': 'spectrum',
+    'candra': 'candra',
+    'bonjolie': 'bonjolie',
+    'furry friends': 'furry friends',
+    'so slime': 'so slime',
+    'ziki': 'ziki',
+    'comfibeds': 'comfibeds',
+    'lsc smart connect': 'lsc smart connect',
+    'golden rolls': 'golden rolls',
+    'gp': 'gp',
+    'verzorgingsset namaste': 'kit soin namaste',
+    'lion': 'lion',
+    'mr. goodlad': 'mr. goodlad',
+    'baltimore': 'baltimore',
+    'wooffilicious': 'wooffilicious',
+    'revlon': 'revlon',
+    'charlie red': 'charlie red',
+    'betty\'s': 'betty\'s',
+    'pinky': 'pinky',
+    'dumil': 'dumil',
+    'redfire': 'redfire',
+    'tuinhaard': 'cheminée jardin',
+    'kingston': 'kingston',
+    'kracher rainbow edition': 'kracher édition arc-en-ciel',
+    'verfroller': 'rouleau peinture',
+    'philips': 'philips',
+    'smarties': 'smarties',
+    'solix': 'solix',
+    'pedigree': 'pedigree',
+    'ultraeasy': 'ultraeasy',
+    'mentos': 'mentos',
+    'adidas': 'adidas',
+    # Units
+    'stuks': 'pièces',
+    'stuk': 'pièce',
+    'rol': 'rouleau',
+    'rollen': 'rouleaux',
+    'pak': 'pack',
+    'delig': 'pièces',
+    # Validity
+    'geldig': 'valable',
+    't/m': 'jusqu\'au',
+    'bijna geldig': 'bientôt valable',
+    'dagen': 'jours',
+    'dag': 'jour',
+    'over': 'dans',
+    'bijna': 'bientôt',
+    # Misc
+    'diverse kleuren': 'diverses couleurs',
+    'met knoopsluiting': 'avec boutons',
+    'diverse varianten': 'diverses variantes',
+    'bekijk folder': 'voir prospectus',
+    'andere bekeken ook': 'autres ont aussi regardé',
+    'vergelijkbare promoties': 'promotions similaires',
+    'dichtstbijzijnde': 'le plus proche',
+    'filiaal': 'magasin',
+    'jouw locatie': 'votre position',
+    'is geblokkeerd': 'est bloquée',
+}
 
 
 def scrape_action() -> List[Dict]:
@@ -796,114 +964,135 @@ def scrape_action() -> List[Dict]:
 
     promotiez.be aggregates Action's weekly folder offers and is not Cloudflare-protected.
     Fetches detail pages for richer data (description, category, brand, validity dates).
+    Fetches all 3 paginated pages. Translates Dutch to French.
     """
     offers = []
     seen = set()
     headers = {**UA, 'Accept-Language': 'fr-BE,fr;q=0.9,nl;q=0.8'}
 
-    try:
-        r = requests.get(ACTION_PROMOTIEZ_URL, headers=headers, timeout=30)
-        r.raise_for_status()
-        soup = BeautifulSoup(r.text, 'html.parser')
+    for page in range(1, ACTION_PROMOTIEZ_PAGES + 1):
+        page_url = f'{ACTION_PROMOTIEZ_URL}?sort=promo_popular_views_weekly_alpha&page={page}'
+        try:
+            r = requests.get(page_url, headers=headers, timeout=30)
+            r.raise_for_status()
+            soup = BeautifulSoup(r.text, 'html.parser')
 
-        # Find all offer tiles: links with js-offer-link-item class
-        offer_tiles = soup.select('a.js-offer-link-item')
+            # Find all offer tiles: links with js-offer-link-item class
+            offer_tiles = soup.select('a.js-offer-link-item')
 
-        for tile in offer_tiles:
-            try:
-                # Name from .product__name element or title attribute
-                name_el = tile.select_one('.product__name')
-                name = name_el.get_text(strip=True) if name_el else tile.get('title', '').replace('Action ', '').replace(' aanbieding', '').strip()
-                if not name or name in seen:
+            for tile in offer_tiles:
+                try:
+                    # Name from .product__name element or title attribute
+                    name_el = tile.select_one('.product__name')
+                    name = name_el.get_text(strip=True) if name_el else tile.get('title', '').replace('Action ', '').replace(' aanbieding', '').strip()
+                    if not name or name in seen:
+                        continue
+                    if should_skip_nutriscore(name):
+                        continue
+                    seen.add(name)
+
+                    # Price: look for .product__price-offer
+                    price_el = tile.select_one('.product__price-offer')
+                    new_price = None
+                    if price_el:
+                        price_text = price_el.get_text(strip=True)
+                        new_price = parse_price(price_text)
+
+                    # Original price (if crossed out)
+                    old_price = None
+                    normal_price_el = tile.select_one('.product__price-normal')
+                    if normal_price_el:
+                        price_text = normal_price_el.get_text(strip=True)
+                        old_price = parse_price(price_text)
+
+                    # Discount percentage
+                    discount_pct = None
+                    if old_price and new_price and old_price > new_price:
+                        discount_pct = round((1 - new_price / old_price) * 100)
+
+                    # Image - use larger thumbWebP version if available
+                    img_url = ''
+                    img_el = tile.select_one('.product__image img')
+                    if img_el:
+                        img_url = img_el.get('src') or img_el.get('data-src') or ''
+                    if img_url and 'thumbSmallWebP' in img_url:
+                        img_url = img_url.replace('thumbSmallWebP', 'thumbWebP')
+
+                    # Product URL (detail page) - construct from data-offer-id and name
+                    source_url = ''
+                    offer_id = tile.get('data-offer-id', '')
+                    if offer_id:
+                        slug = name.lower()
+                        slug = re.sub(r'[^a-z0-9]+', '-', slug)
+                        slug = slug.strip('-')
+                        source_url = f'{ACTION_DETAIL_BASE}/winkels/action/promoties/{slug}-promotie-{offer_id}/'
+                    else:
+                        href = tile.get('href', '')
+                        if href:
+                            source_url = href if href.startswith('http') else ACTION_DETAIL_BASE + href
+
+                    # Validity (days remaining)
+                    promo_text = ''
+                    date_el = tile.select_one('.product-date')
+                    if date_el:
+                        promo_text = date_el.get_text(strip=True)
+
+                    if new_price is None:
+                        continue
+
+                    # Fetch detail page for richer data
+                    detail = {}
+                    if source_url:
+                        detail = fetch_action_detail(source_url, headers)
+                        time.sleep(0.1)  # be polite
+
+                    offer = {
+                        'name': translate_to_french(name),
+                        'brand': translate_to_french(detail.get('brand', '')),
+                        'category': translate_to_french(detail.get('category', 'Non-food')),
+                        'description': translate_to_french(detail.get('description', '')),
+                        'new_price': new_price,
+                        'old_price': old_price,
+                        'discount_pct': discount_pct,
+                        'promo_text': translate_to_french(detail.get('validity', promo_text)),
+                        'unit': translate_to_french(detail.get('unit', '')),
+                        'image_url': detail.get('image_url', img_url),
+                        'source_url': source_url,
+                        'fetched_at': datetime.utcnow().isoformat() + 'Z',
+                        'ean': detail.get('ean'),
+                    }
+                    offers.append(offer)
+
+                except Exception as e:
+                    print(f"Error parsing Action tile: {e}")
                     continue
-                if should_skip_nutriscore(name):
-                    continue
-                seen.add(name)
 
-                # Price: look for .product__price-offer
-                price_el = tile.select_one('.product__price-offer')
-                new_price = None
-                if price_el:
-                    price_text = price_el.get_text(strip=True)
-                    new_price = parse_price(price_text)
+            time.sleep(0.5)  # be polite between pages
 
-                # Original price (if crossed out)
-                old_price = None
-                normal_price_el = tile.select_one('.product__price-normal')
-                if normal_price_el:
-                    price_text = normal_price_el.get_text(strip=True)
-                    old_price = parse_price(price_text)
-
-                # Discount percentage
-                discount_pct = None
-                if old_price and new_price and old_price > new_price:
-                    discount_pct = round((1 - new_price / old_price) * 100)
-
-                # Image - use larger thumbWebP version if available
-                img_url = ''
-                img_el = tile.select_one('.product__image img')
-                if img_el:
-                    img_url = img_el.get('src') or img_el.get('data-src') or ''
-                # Upgrade to larger thumbWebP version
-                if img_url and 'thumbSmallWebP' in img_url:
-                    img_url = img_url.replace('thumbSmallWebP', 'thumbWebP')
-
-                # Product URL (detail page) - construct from data-offer-id and name
-                source_url = ''
-                offer_id = tile.get('data-offer-id', '')
-                if offer_id:
-                    # Create slug from name
-                    slug = name.lower()
-                    slug = re.sub(r'[^a-z0-9]+', '-', slug)
-                    slug = slug.strip('-')
-                    source_url = f'{ACTION_DETAIL_BASE}/winkels/action/promoties/{slug}-promotie-{offer_id}/'
-                else:
-                    # Fallback to list page URL
-                    href = tile.get('href', '')
-                    if href:
-                        source_url = href if href.startswith('http') else ACTION_DETAIL_BASE + href
-
-                # Validity (days remaining)
-                promo_text = ''
-                date_el = tile.select_one('.product-date')
-                if date_el:
-                    promo_text = date_el.get_text(strip=True)
-
-                if new_price is None:
-                    continue
-
-                # Fetch detail page for richer data
-                detail = {}
-                if source_url:
-                    detail = fetch_action_detail(source_url, headers)
-                    time.sleep(0.1)  # be polite
-
-                offer = {
-                    'name': name,
-                    'brand': detail.get('brand', ''),
-                    'category': detail.get('category', 'Non-food'),
-                    'description': detail.get('description', ''),
-                    'new_price': new_price,
-                    'old_price': old_price,
-                    'discount_pct': discount_pct,
-                    'promo_text': detail.get('validity', promo_text),
-                    'unit': detail.get('unit', ''),
-                    'image_url': detail.get('image_url', img_url),
-                    'source_url': source_url,
-                    'fetched_at': datetime.utcnow().isoformat() + 'Z',
-                    'ean': detail.get('ean'),
-                }
-                offers.append(offer)
-
-            except Exception as e:
-                print(f"Error parsing Action tile: {e}")
-                continue
-
-    except Exception as e:
-        print(f"Action scrape error: {e}")
+        except Exception as e:
+            print(f"Action page {page} scrape error: {e}")
 
     print(f"Action: {len(offers)} valid offers")
     return offers
+
+
+def translate_to_french(text: str) -> str:
+    """Translate Dutch product names/descriptions to French using dictionary."""
+    if not text:
+        return text
+    result = text
+    # Sort by length descending to match longer phrases first
+    for nl, fr in sorted(NL_TO_FR.items(), key=lambda x: -len(x[0])):
+        # Case-insensitive replacement preserving original case for first letter
+        import re
+        pattern = re.compile(re.escape(nl), re.IGNORECASE)
+        def repl(match):
+            matched = match.group()
+            if matched[0].isupper():
+                return fr.capitalize()
+            return fr
+        result = pattern.sub(repl, result)
+    return result
 
 
 def fetch_action_detail(url: str, headers: Dict) -> Dict:
