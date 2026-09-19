@@ -34,7 +34,7 @@ jobs:
       - name: Run promo updater
         id: updater
         run: |
-          python scripts/update_promos.py
+          python scripts/update_promos_fast.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
