@@ -839,11 +839,14 @@ def scrape_action() -> List[Dict]:
                 if old_price and new_price and old_price > new_price:
                     discount_pct = round((1 - new_price / old_price) * 100)
 
-                # Image
+                # Image - use larger thumbWebP version if available
                 img_url = ''
                 img_el = tile.select_one('.product__image img')
                 if img_el:
                     img_url = img_el.get('src') or img_el.get('data-src') or ''
+                # Upgrade to larger thumbWebP version
+                if img_url and 'thumbSmallWebP' in img_url:
+                    img_url = img_url.replace('thumbSmallWebP', 'thumbWebP')
 
                 # Product URL (detail page) - construct from data-offer-id and name
                 source_url = ''
@@ -934,11 +937,14 @@ def fetch_action_detail(url: str, headers: Dict) -> Dict:
         if validity_el:
             detail['validity'] = validity_el.get_text(strip=True)
 
-        # Better image from detail page
-        img_el = soup.select_one('.offer img, .offer-image img, .product-image img')
+        # Better image from detail page - main offer image is in .offer-image container
+        img_el = soup.select_one('.offer-image img')
         if img_el:
             img_src = img_el.get('src') or img_el.get('data-src') or ''
             if img_src and img_src.startswith('http'):
+                # Upgrade to larger version if it's a small thumbnail
+                if 'thumbSmallWebP' in img_src:
+                    img_src = img_src.replace('thumbSmallWebP', 'thumbWebP')
                 detail['image_url'] = img_src
 
         # Unit/quantity - from .offer-info
