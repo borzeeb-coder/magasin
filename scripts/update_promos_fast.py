@@ -154,7 +154,7 @@ def main():
     # Reload scrapers module to get latest code
     import importlib
     importlib.reload(scrapers_module)
-    from scripts.scrapers import scrape_aldi, scrape_carrefour, scrape_delhaize, scrape_lidl, scrape_colruyt
+    from scripts.scrapers import scrape_aldi, scrape_carrefour, scrape_delhaize, scrape_lidl, scrape_colruyt, scrape_action
     
     try:
         all_offers['intermarche'] = fetch_intermarche()
@@ -196,6 +196,13 @@ def main():
     except Exception as e:
         print(f"Error Colruyt: {e}")
         all_offers['colruyt'] = promos['offers'].get('colruyt', [])
+    
+    try:
+        print("Scraping Action...")
+        all_offers['action'] = scrape_action()
+    except Exception as e:
+        print(f"Error Action: {e}")
+        all_offers['action'] = promos['offers'].get('action', [])
     
     # Keep other stores as-is (no scrapers yet)
     for store in ['spar']:

@@ -94,6 +94,17 @@ const STORES_DATA = [
     coords: [50.2185, 5.3390],
     hours: "Ouvert jusqu'à 20h00",
     leafletIconEmoji: "🟠"
+  },
+  {
+    id: "action-marche",
+    name: "Action Marche-en-Famenne",
+    brand: "Action",
+    brandClass: "tag-action",
+    brandColor: "#e85a0e",
+    address: "Rue du Parc Industriel 5, 6900 Marche-en-Famenne",
+    coords: [50.2239, 5.3299],
+    hours: "Ouvert 9h00-18h30",
+    leafletIconEmoji: "🟤"
   }
 ];
 

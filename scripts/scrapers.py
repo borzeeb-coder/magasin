@@ -785,6 +785,110 @@ def scrape_spar() -> List[Dict]:
     return []
 
 
+# ============ ACTION SCRAPER (via promotiez.be) ============
+
+ACTION_PROMOTIEZ_URL = 'https://www.promotiez.be/winkels/action/promoties'
+
+
+def scrape_action() -> List[Dict]:
+    """Scrape Action Belgium promotions from promotiez.be
+
+    promotiez.be aggregates Action's weekly folder offers and is not Cloudflare-protected.
+    """
+    offers = []
+    seen = set()
+    headers = {**UA, 'Accept-Language': 'fr-BE,fr;q=0.9,nl;q=0.8'}
+
+    try:
+        r = requests.get(ACTION_PROMOTIEZ_URL, headers=headers, timeout=30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
+
+        # Find all offer tiles: links with js-offer-link-item class
+        offer_tiles = soup.select('a.js-offer-link-item')
+
+        for tile in offer_tiles:
+            try:
+                # Name from .product__name element or title attribute
+                name_el = tile.select_one('.product__name')
+                name = name_el.get_text(strip=True) if name_el else tile.get('title', '').replace('Action ', '').replace(' aanbieding', '').strip()
+                if not name or name in seen:
+                    continue
+                if should_skip_nutriscore(name):
+                    continue
+                seen.add(name)
+
+                # Price: look for .product__price-offer
+                price_el = tile.select_one('.product__price-offer')
+                new_price = None
+                if price_el:
+                    price_text = price_el.get_text(strip=True)
+                    new_price = parse_price(price_text)
+
+                # Original price (if crossed out)
+                old_price = None
+                normal_price_el = tile.select_one('.product__price-normal')
+                if normal_price_el:
+                    price_text = normal_price_el.get_text(strip=True)
+                    old_price = parse_price(price_text)
+
+                # Discount percentage
+                discount_pct = None
+                if old_price and new_price and old_price > new_price:
+                    discount_pct = round((1 - new_price / old_price) * 100)
+
+                # Image
+                img_url = ''
+                img_el = tile.select_one('.product__image img')
+                if img_el:
+                    img_url = img_el.get('src') or img_el.get('data-src') or ''
+
+                # Product URL
+                source_url = ''
+                href = tile.get('href', '')
+                if href:
+                    source_url = href if href.startswith('http') else 'https://www.promotiez.be' + href
+
+                # Category from URL or default
+                category = 'Non-food'
+
+                # Validity (days remaining)
+                promo_text = ''
+                date_el = tile.select_one('.product-date')
+                if date_el:
+                    promo_text = date_el.get_text(strip=True)
+
+                if new_price is None:
+                    continue
+
+                offer = {
+                    'name': name,
+                    'brand': '',
+                    'category': category,
+                    'description': '',
+                    'new_price': new_price,
+                    'old_price': old_price,
+                    'discount_pct': discount_pct,
+                    'promo_text': promo_text,
+                    'unit': '',
+                    'image_url': img_url,
+                    'source_url': source_url,
+                    'fetched_at': datetime.utcnow().isoformat() + 'Z',
+                    'ean': None,
+                }
+                offers.append(offer)
+
+            except Exception as e:
+                print(f"Error parsing Action tile: {e}")
+                continue
+
+    except Exception as e:
+        print(f"Action scrape error: {e}")
+
+    print(f"Action: {len(offers)} valid offers")
+    return offers
+
+
 # ============ MAIN EXPORTS ============
 
 STORE_SCRAPERS = {
@@ -794,4 +898,5 @@ STORE_SCRAPERS = {
     'lidl': scrape_lidl,
     'colruyt': scrape_colruyt,
     'spar': scrape_spar,
+    'action': scrape_action,
 }

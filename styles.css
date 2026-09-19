@@ -34,6 +34,8 @@
   --spar-soft: #f0fdf4;
   --intermarche: #E8590C;
   --intermarche-soft: #fff7ed;
+  --action: #e85a0e;
+  --action-soft: #fff7ed;
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.06);
@@ -477,6 +479,7 @@ html, body {
 .tag-aldi { background: var(--aldi); }
 .tag-spar { background: #00843D; }
 .tag-intermarche { background: #E8590C; }
+.tag-action { background: var(--action); }
 
 .card-info {
   flex: 1;
