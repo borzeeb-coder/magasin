@@ -385,23 +385,257 @@ def _dedupe_carrefour(offers: List[Dict]) -> List[Dict]:
     return unique
 
 
-# ============ DELHAIZE SCRAPER (Placeholder - needs GraphQL/API) ============
+# ============ DELHAIZE SCRAPER ============
 
-def scrape_delhaize() -> List[Dict]:
-    """Scrape Delhaize promotions - needs GraphQL API"""
-    # Delhaize uses GraphQL API that requires authentication/tokens
-    # For now, return empty list
-    print("Delhaize: GraphQL API needed - skipping")
-    return []
+DELHAIZE_API_URL = 'https://www.delhaize.be/api/v1/'
+
+# GraphQL query reconstructed from the Delhaize web app bundles.
+# productListingType PROMOTION_SEARCH = the promotions listing.
+DELHAIZE_QUERY = """query ProductList($productListingType:String!, $lang:String, $sort:String, $searchQuery:String, $productCodes:String, $categoryCode:String, $excludedProductCodes:String, $brands:String, $keywords:String, $productTypes:String, $lazyLoadCount:Int, $pageNumber:Int, $offerId:String, $hideProductsWithoutPromo:Boolean, $hideUnavailableProducts:Boolean, $maxItemsToDisplay:Int, $includePotentialActivatableOffers:Boolean, $facetsOnly:Boolean, $customerSegment:String, $campaignId:String) {productList(productListingType:$productListingType, lang:$lang, sort:$sort, searchQuery:$searchQuery, productCodes:$productCodes, categoryCode:$categoryCode, excludedProductCodes:$excludedProductCodes, brands:$brands, keywords:$keywords, productTypes:$productTypes, lazyLoadCount:$lazyLoadCount, pageNumber:$pageNumber, offerId:$offerId, hideProductsWithoutPromo:$hideProductsWithoutPromo, hideUnavailableProducts:$hideUnavailableProducts, maxItemsToDisplay:$maxItemsToDisplay, includePotentialActivatableOffers:$includePotentialActivatableOffers, facetsOnly:$facetsOnly, customerSegment:$customerSegment, campaignId:$campaignId) {products {...ProductBlockDetails} breadcrumbs {facetCode facetName facetUiType facetValueName facetValueCode removeQuery {query {value}}} facets {code name category facetUiType values {code count name query {query {value}} selected thumbnailUrl}} sorts {name selected code} pagination {currentPage totalResults totalPages sort} freeTextSearch currentQuery {query {value}}}}
+
+fragment ProductBlockDetails on Product {available averageRating numberOfReviews manufacturerName manufacturerSubBrandName code deliveryType country countryFlagUrl badges {...ProductBlockProductBadge} badgeBrand {...ProductBlockProductBadge} promoBadges {...ProductBlockProductBadge} delivered littleLion firstLevelCategory {code name nameNonLocalized url} freshnessDuration freshnessDurationTipFormatted frozen recyclable images {format imageType url} isBundle isProductWithOnlineExclusivePromo isProtectedDesignationOrigin isProtectedGeographicalIndication isWine maxOrderQuantity limitedAssortment mobileFees {...MobileFee} name newProduct onlineExclusive potentialPromotions {...ProductPromotionFragment} potentialActivatablePromotions {...ProductPromotionFragment} price {approximatePriceSymbol currencySymbol currencyIso formattedValue priceType supplementaryPriceLabel1 supplementaryPriceLabel2 showStrikethroughPrice discountedPriceFormatted discountedUnitPriceFormatted unit unitPriceFormatted unitCode unitPrice value wasPrice} purchasable productPackagingQuantity productProposedPackaging productProposedPackaging2 promotionThemes stock {inStock inStockBeforeMaxAdvanceOrderingDate partiallyInStock availableFromDate} url previouslyBought nutriScoreLetter isLowPriceGuarantee isHouseholdBasket isPermanentPriceReduction freeGift plasticFee score bestSellerScore}
+
+fragment ProductBlockProductBadge on ProductBadge {code image {...ProductBlockImage} tooltipMessage name}
+
+fragment ProductBlockImage on Image {altText format galleryIndex imageType url}
+
+fragment ProductPromotionFragment on Promotion {isMassFlashOffer endDate alternativePromotionMessage alternativePromotionBadge code priceToBurn promotionType pickAndMix qualifyingCount freeCount range redemptionLevel toDisplay description title promoBooster simplePromotionMessage offerType restrictionType priority percentageDiscount onlineOnly promotionTypeCode points startDate offerId memberAccountId}
+
+fragment MobileFee on MobileFee {feeName feeValue}"""
 
 
-# ============ LIDL SCRAPER (Placeholder - needs API) ============
+def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
+    """Scrape Delhaize promotions via their GraphQL API (PROMOTION_SEARCH listing).
+
+    One call = one page of ~40 products. We fetch the first `max_pages` pages.
+    """
+    offers = []
+    seen = set()
+    headers = {**UA, 'Content-Type': 'application/json', 'Accept': 'application/json'}
+
+    for page in range(max_pages):
+        try:
+            variables = {
+                'productListingType': 'PROMOTION_SEARCH',
+                'lang': 'fr',
+                'pageNumber': page,
+                'lazyLoadCount': 40,
+                'numberOfItemsToDisplay': 40,
+                'hideProductsWithoutPromo': False,
+                'hideUnavailableProducts': True,
+            }
+            payload = {'operationName': 'ProductList', 'variables': variables, 'query': DELHAIZE_QUERY}
+            r = requests.post(DELHAIZE_API_URL, headers=headers, json=payload, timeout=60)
+            r.raise_for_status()
+            data = r.json()
+            if 'errors' in data:
+                print(f"Delhaize page {page} error: {data['errors'][0]['message'][:100]}")
+                break
+            products = data.get('data', {}).get('productList', {}).get('products', [])
+            if not products:
+                break
+
+            for p in products:
+                code = p.get('code', '')
+                name = (p.get('name') or '').strip()
+                if not name or code in seen:
+                    continue
+                if should_skip_nutriscore(name):
+                    continue
+
+                price_data = p.get('price') or {}
+                new_price = price_data.get('value')
+                if new_price is None:
+                    new_price = price_data.get('discountedPriceFormatted')
+                old_price = price_data.get('wasPrice')
+
+                discount_pct = None
+                if old_price and new_price and old_price > new_price:
+                    discount_pct = round((1 - new_price / old_price) * 100)
+
+                # Promo text: take the first displayable promotion message
+                promo_text = ''
+                for prom in (p.get('potentialPromotions') or []):
+                    if prom.get('toDisplay') and (prom.get('description') or prom.get('simplePromotionMessage') or prom.get('title')):
+                        promo_text = prom.get('description') or prom.get('simplePromotionMessage') or prom.get('title')
+                        end_date = prom.get('endDate')
+                        if end_date:
+                            date_part = str(end_date).split(' ')[0]
+                            promo_text = f"{promo_text} - jusqu'au {date_part}"
+                        break
+
+                # Brand: manufacturer name or badgeBrand name
+                brand = p.get('manufacturerName') or ''
+                if not brand:
+                    badge = p.get('badgeBrand') or {}
+                    brand = badge.get('name') or ''
+
+                # Images
+                img_url = ''
+                images = p.get('images') or []
+                for img in images:
+                    if img.get('format') == 'respListGrid' or img.get('imageType') == 'PRIMARY':
+                        u = img.get('url', '')
+                        if u:
+                            img_url = u if u.startswith('http') else 'https://www.delhaize.be' + u
+                            break
+
+                # Category
+                category = ''
+                fc = p.get('firstLevelCategory') or {}
+                category = fc.get('name') or fc.get('nameNonLocalized') or ''
+
+                # Unit - use supplementary label ("6 x 75 cl") or unit price
+                unit = ''
+                if price_data.get('supplementaryPriceLabel2'):
+                    unit = price_data['supplementaryPriceLabel2']
+                elif price_data.get('unitPriceFormatted'):
+                    unit = f"{price_data['unitPriceFormatted']}/{price_data.get('unitCode', '')}".strip('/')
+
+                # URL
+                url = p.get('url') or ''
+                source_url = url if url.startswith('http') else 'https://www.delhaize.be' + url
+
+                offer = {
+                    'name': name,
+                    'brand': brand,
+                    'category': category,
+                    'description': '',
+                    'new_price': new_price,
+                    'old_price': old_price,
+                    'discount_pct': discount_pct,
+                    'promo_text': promo_text,
+                    'unit': unit,
+                    'image_url': img_url,
+                    'source_url': source_url,
+                    'fetched_at': datetime.utcnow().isoformat() + 'Z',
+                    'ean': None,
+                }
+                offers.append(offer)
+                seen.add(code)
+
+            print(f"Delhaize page {page}: {len(products)} products (total so far {len(offers)})")
+
+        except Exception as e:
+            print(f"Delhaize page {page} scrape error: {e}")
+            break
+
+    print(f"Delhaize: {len(offers)} valid food offers")
+    return offers
+
+
+# ============ LIDL SCRAPER ============
+
+LIDL_PROMO_URL = 'https://www.lidl.be/c/fr-BE/offres-de-la-semaine/a10082242'
+
+
+def _html_unescape(s: str) -> str:
+    return (s.replace('&quot;', '"').replace('&amp;', '&')
+             .replace('&#39;', "'").replace('&lt;', '<').replace('&gt;', '>'))
+
 
 def scrape_lidl() -> List[Dict]:
-    """Scrape Lidl promotions - needs API endpoint"""
-    # Lidl uses Vue/Pinia with complex state - need to find API
-    print("Lidl: API endpoint needed - skipping")
-    return []
+    """Scrape Lidl promotions from the weekly offers page.
+
+    Products are server-rendered as tiles with a data-grid-data JSON attribute.
+    """
+    offers = []
+    seen = set()
+    headers = {**UA, 'Accept-Language': 'fr-BE,fr;q=0.9'}
+
+    for url in [LIDL_PROMO_URL]:
+        try:
+            r = requests.get(url, headers=headers, timeout=60)
+            r.raise_for_status()
+            html = r.text
+        except Exception as e:
+            print(f"Lidl fetch {url} error: {e}")
+            continue
+
+        tiles = re.findall(r'data-grid-data="(.*?)"\s+data-country="BE"', html, re.S)
+        print(f"Lidl {url}: {len(tiles)} product tiles")
+
+        for raw in tiles:
+            try:
+                d = json.loads(_html_unescape(raw))
+            except Exception:
+                continue
+
+            name = (d.get('title') or '').strip()
+            if not name or name in seen:
+                continue
+            if should_skip_nutriscore(name):
+                continue
+
+            price_data = d.get('price') or {}
+            price = price_data.get('price')
+            if price is None:
+                continue
+
+            old_price = price_data.get('oldPrice')
+            if old_price is None:
+                discount = price_data.get('discount') or {}
+                old_price = discount.get('deletedPrice')
+
+            discount_pct = None
+            if old_price and price and old_price > price:
+                discount_pct = round((1 - price / old_price) * 100)
+
+            discount = price_data.get('discount') or {}
+            promo_text = discount.get('discountText') or ''
+            if not promo_text and discount_pct:
+                promo_text = f"-{discount_pct}%"
+            bargain = discount.get('bargainHintText') or ''
+            if bargain and bargain not in promo_text:
+                promo_text = f"{bargain} {promo_text}".strip() if promo_text else bargain
+
+            # Unit: basePrice text if available
+            unit = ''
+            bp = price_data.get('basePrice')
+            if isinstance(bp, dict):
+                unit = bp.get('text') or ''
+            if not unit:
+                unit = price_data.get('basePriceText') or ''
+
+            # Image: first image
+            img_url = ''
+            img_list = d.get('imageList_V1') or []
+            if img_list and isinstance(img_list[0], dict):
+                img_url = img_list[0].get('image') or ''
+            if not img_url:
+                img_v1 = d.get('image_V1') or {}
+                img_url = img_v1.get('image') or ''
+
+            # Product URL
+            path = d.get('canonicalPath') or d.get('canonicalUrl') or f"/p/fr-BE/{name.lower().replace(' ','-')}/p{int(d.get('productId') or 0)}"
+            source_url = path if path.startswith('http') else 'https://www.lidl.be' + path
+
+            category = d.get('category') or ''
+            brand = ''
+            brand_data = d.get('brand') or {}
+            if isinstance(brand_data, dict) and brand_data.get('showBrand'):
+                brand = brand_data.get('name') or ''
+
+            offer = {
+                'name': name,
+                'brand': brand,
+                'category': category,
+                'description': '',
+                'new_price': float(price),
+                'old_price': float(old_price) if old_price else None,
+                'discount_pct': discount_pct,
+                'promo_text': promo_text,
+                'unit': unit,
+                'image_url': img_url,
+                'source_url': source_url,
+                'fetched_at': datetime.utcnow().isoformat() + 'Z',
+                'ean': None,
+            }
+            offers.append(offer)
+            seen.add(name)
+
+    print(f"Lidl: {len(offers)} valid food offers")
+    return offers
 
 
 # ============ COLRUYT SCRAPER (AntiBot protected) ============

@@ -151,7 +151,7 @@ def main():
     # Reload scrapers module to get latest code
     import importlib
     importlib.reload(scrapers_module)
-    from scripts.scrapers import scrape_aldi, scrape_carrefour
+    from scripts.scrapers import scrape_aldi, scrape_carrefour, scrape_delhaize, scrape_lidl
     
     try:
         all_offers['intermarche'] = fetch_intermarche()
@@ -173,8 +173,22 @@ def main():
         print(f"Error Carrefour: {e}")
         all_offers['carrefour'] = promos['offers'].get('carrefour', [])
     
+    try:
+        print("Scraping Delhaize (12 pages, ~480 products)...")
+        all_offers['delhaize'] = scrape_delhaize(max_pages=12)
+    except Exception as e:
+        print(f"Error Delhaize: {e}")
+        all_offers['delhaize'] = promos['offers'].get('delhaize', [])
+    
+    try:
+        print("Scraping Lidl...")
+        all_offers['lidl'] = scrape_lidl()
+    except Exception as e:
+        print(f"Error Lidl: {e}")
+        all_offers['lidl'] = promos['offers'].get('lidl', [])
+    
     # Keep other stores as-is (no scrapers yet)
-    for store in ['colruyt', 'delhaize', 'lidl', 'spar']:
+    for store in ['colruyt', 'spar']:
         all_offers[store] = promos['offers'].get(store, [])
     
     # Restore Nutri-Score from cache
