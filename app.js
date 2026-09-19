@@ -654,7 +654,292 @@ function checkStoreOpenNow(store) {
 }
 
 // =========================================================
-// 5. BANDEAU INFÉRIEUR FIXE : NAVIGATION SANS FAILLE
+// 5. RECETTES BASÉES SUR LES PROMOS
+// =========================================================
+const RECIPE_DB = [
+  {
+    id: "pates-bolognaise",
+    name: "Pâtes bolognaise",
+    emoji: "🍝",
+    servings: 4,
+    time: 30,
+    ingredients: [
+      { name: "pâtes", qty: "500g", category: "epicerie" },
+      { name: "viande hachée", qty: "400g", category: "boucherie" },
+      { name: "sauce tomate", qty: "1 bocal", category: "epicerie" },
+      { name: "oignon", qty: "1", category: "fruits" },
+      { name: "ail", qty: "2 gousses", category: "fruits" },
+      { name: "fromage râpé", qty: "100g", category: "frais" }
+    ]
+  },
+  {
+    id: "poulet-riz",
+    name: "Poulet riz légumes",
+    emoji: "🍗",
+    servings: 4,
+    time: 35,
+    ingredients: [
+      { name: "poulet", qty: "4 filets", category: "boucherie" },
+      { name: "riz", qty: "300g", category: "epicerie" },
+      { name: "brocoli", qty: "1 tête", category: "fruits" },
+      { name: "carottes", qty: "3", category: "fruits" },
+      { name: "crème fraîche", qty: "20cl", category: "frais" }
+    ]
+  },
+  {
+    id: "saumon-legumes",
+    name: "Saumon légumes vapeur",
+    emoji: "🐟",
+    servings: 2,
+    time: 20,
+    ingredients: [
+      { name: "saumon", qty: "2 pavés", category: "poisson" },
+      { name: "haricots verts", qty: "300g", category: "fruits" },
+      { name: "pommes de terre", qty: "4", category: "fruits" },
+      { name: "citron", qty: "1", category: "fruits" },
+      { name: "aneth", qty: "1 botte", category: "fruits" }
+    ]
+  },
+  {
+    id: "quiche-lardons",
+    name: "Quiche lardons fromage",
+    emoji: "🥧",
+    servings: 4,
+    time: 40,
+    ingredients: [
+      { name: "pâte brisée", qty: "1", category: "frais" },
+      { name: "lardons", qty: "200g", category: "boucherie" },
+      { name: "œufs", qty: "3", category: "frais" },
+      { name: "crème fraîche", qty: "20cl", category: "frais" },
+      { name: "fromage râpé", qty: "100g", category: "frais" },
+      { name: "oignon", qty: "1", category: "fruits" }
+    ]
+  },
+  {
+    id: "chili-con-carne",
+    name: "Chili con carne",
+    emoji: "🌶️",
+    servings: 6,
+    time: 45,
+    ingredients: [
+      { name: "viande hachée", qty: "500g", category: "boucherie" },
+      { name: "haricots rouges", qty: "1 boîte", category: "epicerie" },
+      { name: "tomates concassées", qty: "1 boîte", category: "epicerie" },
+      { name: "oignon", qty: "1", category: "fruits" },
+      { name: "poivron", qty: "1", category: "fruits" },
+      { name: "riz", qty: "300g", category: "epicerie" }
+    ]
+  },
+  {
+    id: "gratins-dauphinois",
+    name: "Gratin dauphinois",
+    emoji: "🥔",
+    servings: 4,
+    time: 60,
+    ingredients: [
+      { name: "pommes de terre", qty: "1.5kg", category: "fruits" },
+      { name: "crème fraîche", qty: "50cl", category: "frais" },
+      { name: "ail", qty: "2 gousses", category: "fruits" },
+      { name: "fromage râpé", qty: "150g", category: "frais" },
+      { name: "noix de muscade", qty: "1 pincée", category: "epicerie" }
+    ]
+  },
+  {
+    id: "omelette-legumes",
+    name: "Omelette légumes fromage",
+    emoji: "🥚",
+    servings: 2,
+    time: 15,
+    ingredients: [
+      { name: "œufs", qty: "4", category: "frais" },
+      { name: "poivron", qty: "1", category: "fruits" },
+      { name: "tomate", qty: "1", category: "fruits" },
+      { name: "fromage râpé", qty: "50g", category: "frais" },
+      { name: "herbes", qty: "1 botte", category: "fruits" }
+    ]
+  },
+  {
+    id: "lasagnes",
+    name: "Lasagnes maison",
+    emoji: "🍝",
+    servings: 6,
+    time: 60,
+    ingredients: [
+      { name: "pâtes lasagnes", qty: "12 feuilles", category: "epicerie" },
+      { name: "viande hachée", qty: "500g", category: "boucherie" },
+      { name: "sauce tomate", qty: "2 bocaux", category: "epicerie" },
+      { name: "béchamel", qty: "50cl", category: "frais" },
+      { name: "fromage râpé", qty: "200g", category: "frais" }
+    ]
+  },
+  {
+    id: "wok-poulet",
+    name: "Wok poulet nouilles",
+    emoji: "🍜",
+    servings: 4,
+    time: 25,
+    ingredients: [
+      { name: "poulet", qty: "400g", category: "boucherie" },
+      { name: "nouilles", qty: "300g", category: "epicerie" },
+      { name: "poivrons", qty: "2", category: "fruits" },
+      { name: "oignons", qty: "2", category: "fruits" },
+      { name: "sauce soja", qty: "3 c.s.", category: "epicerie" },
+      { name: "gingembre", qty: "1 morceau", category: "fruits" }
+    ]
+  }
+];
+
+// Trouve les promos matchant un ingrédient
+function findPromosForIngredient(ingredientName) {
+  const normalized = ingredientName.toLowerCase();
+  return PROMOTIONS_DATA.filter(p => {
+    const promoName = p.name.toLowerCase();
+    return promoName.includes(normalized) || normalized.includes(promoName.split(' ')[0]);
+  }).sort((a, b) => (a.newPrice || 999) - (b.newPrice || 999));
+}
+
+// Calcule le coût estimé d'une recette avec les promos actuelles
+function calculateRecipeCost(recipe) {
+  let totalCost = 0;
+  let promoCount = 0;
+  const details = recipe.ingredients.map(ing => {
+    const promos = findPromosForIngredient(ing.name);
+    const bestPromo = promos[0];
+    if (bestPromo) {
+      promoCount++;
+      // Estimer le prix pour la quantité nécessaire
+      const unitPrice = bestPromo.newPrice;
+      totalCost += unitPrice;
+      return {
+        ingredient: ing.name,
+        qty: ing.qty,
+        promo: bestPromo.name,
+        price: unitPrice,
+        store: bestPromo.storeName,
+        discount: bestPromo.discountPercent
+      };
+    }
+    return {
+      ingredient: ing.name,
+      qty: ing.qty,
+      promo: null,
+      price: null,
+      store: null,
+      discount: null
+    };
+  });
+  return { totalCost: totalCost.toFixed(2), promoCount, details, savings: promoCount > 0 ? "Économies sur " + promoCount + " ingrédients" : "Aucune promo trouvée" };
+}
+
+// Génère les suggestions de recettes triées par nb de promos
+function getRecipeSuggestions() {
+  return RECIPE_DB.map(recipe => {
+    const cost = calculateRecipeCost(recipe);
+    return { ...recipe, cost };
+  }).sort((a, b) => b.cost.promoCount - a.cost.promoCount);
+}
+
+// =========================================================
+// RENDU ONGLET RECETTES
+// =========================================================
+function renderRecipesTab() {
+  const container = document.getElementById("tab-recettes");
+  if (!container) return;
+  
+  const suggestions = getRecipeSuggestions();
+  
+  container.innerHTML = `
+    <div class="recipes-header">
+      <h2>🍳 Recettes avec vos promos</h2>
+      <p class="recipes-subtitle">Idées repas basées sur les promotions de cette semaine</p>
+    </div>
+    <div class="recipes-grid">
+      ${suggestions.map(r => `
+        <article class="recipe-card" onclick="openRecipeModal('${r.id}')">
+          <div class="recipe-emoji">${r.emoji}</div>
+          <div class="recipe-info">
+            <h3>${r.name}</h3>
+            <div class="recipe-meta">
+              <span>👥 ${r.servings} pers.</span>
+              <span>⏱️ ${r.time} min</span>
+              <span class="promo-badge">${r.cost.promoCount}/${r.ingredients.length} ingrédients en promo</span>
+            </div>
+            <div class="recipe-cost">~${r.cost.totalCost} € avec promos</div>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+// Modal recette
+function openRecipeModal(recipeId) {
+  const recipe = RECIPE_DB.find(r => r.id === recipeId);
+  if (!recipe) return;
+  const cost = calculateRecipeCost(recipe);
+  
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay show";
+  modal.innerHTML = `
+    <div class="modal-sheet recipe-modal">
+      <div class="modal-handle"></div>
+      <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">&times;</button>
+      <div class="modal-inner">
+        <div class="recipe-modal-header">
+          <span class="recipe-modal-emoji">${recipe.emoji}</span>
+          <div>
+            <h2>${recipe.name}</h2>
+            <p>👥 ${recipe.servings} personnes • ⏱️ ${recipe.time} min</p>
+          </div>
+        </div>
+        <div class="recipe-modal-cost">
+          <strong>Coût estimé avec promos : ~${cost.totalCost} €</strong>
+          <span>${cost.savings}</span>
+        </div>
+        <h3>Ingrédients :</h3>
+        <ul class="recipe-ingredients">
+          ${cost.details.map(d => `
+            <li class="${d.promo ? 'has-promo' : ''}">
+              <span class="ing-name">${d.ingredient} (${d.qty})</span>
+              ${d.promo ? `
+                <span class="ing-promo">
+                  🏷️ ${d.promo} — <strong>${d.price} €</strong> (${d.store})
+                  ${d.discount ? `<span class="discount-tag">${d.discount}</span>` : ''}
+                </span>
+              ` : '<span class="ing-no-promo">❌ Pas de promo</span>'}
+            </li>
+          `).join("")}
+        </ul>
+        <div class="recipe-actions">
+          <button class="btn-primary" onclick="addRecipeToCart('${recipe.id}'); this.closest('.modal-overlay').remove();">
+            🛒 Ajouter ingrédients au panier
+          </button>
+          <button class="btn-secondary" onclick="this.closest('.modal-overlay').remove()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+// Ajoute les ingrédients d'une recette au panier
+function addRecipeToCart(recipeId) {
+  const recipe = RECIPE_DB.find(r => r.id === recipeId);
+  if (!recipe) return;
+  
+  recipe.ingredients.forEach(ing => {
+    const promos = findPromosForIngredient(ing.name);
+    if (promos[0]) {
+      // Ajouter le produit en promo au panier
+      const promo = promos[0];
+      addToCart(promo.id);
+    }
+  });
+  showToast(`Ingrédients de "${recipe.name}" ajoutés au panier !`);
+}
+
+// =========================================================
+// 6. BANDEAU INFÉRIEUR FIXE : NAVIGATION SANS FAILLE
 // =========================================================
 function switchTab(tabId) {
   activeTab = tabId;

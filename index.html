@@ -462,6 +462,17 @@
     <div class="grid" id="productGrid"></div>
   </section>
 
+  <!-- RECETTES VIEW -->
+  <section class="view" id="view-recettes">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">🍳 Recettes avec promos</h2>
+        <p class="section-sub" id="recettesSub">Idées repas basées sur les promotions de cette semaine</p>
+      </div>
+    </div>
+    <div class="grid" id="recipeGrid"></div>
+  </section>
+
   <!-- STORES VIEW -->
   <section class="view" id="view-stores">
     <div class="section-head">
@@ -505,6 +516,7 @@
 
 <div class="navbar">
   <button class="navbtn" data-view="promos"><span class="ni">🏷️</span>Promos</button>
+  <button class="navbtn" data-view="recettes"><span class="ni">🍳</span>Recettes</button>
   <button class="navbtn" data-view="favs" style="position:relative;"><span class="ni">♥</span>Favoris
     <span class="cart-count" id="favCount" style="display:none;">0</span>
   </button>
@@ -562,6 +574,13 @@
     <p style="font-size:13px; color:var(--ink-soft); margin:0 0 12px;">Où acheter « <span id="cmpName"></span> » au meilleur prix</p>
     <div id="cmpList"></div>
   </div>
+</div>
+
+<!-- Recette sheet -->
+<div class="sheet" id="recipeSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" data-close>✕</button>
+  <div class="sheet-inner" id="recipeSheetBody"></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1341,6 +1360,7 @@ function switchView(name){
   if(name==='stores') renderStores();
   if(name==='cart') renderCart();
   if(name==='favs') renderFavs();
+  if(name==='recettes') renderRecipes();
 }
 document.querySelectorAll('.navbtn').forEach(b=>{
   b.addEventListener('click', ()=>switchView(b.dataset.view));
@@ -1703,8 +1723,143 @@ function sparkline(p, w=64, h=22){
 }
 
 /* ---------------------------------------------------------
+   RECETTES BASÉES SUR LES PROMOS
+   --------------------------------------------------------- */
+function renderRecipes(){
+  const el = document.getElementById('recipeGrid');
+  if(!el) return;
+  
+  // Recettes prédéfinies avec ingrédients
+  const RECIPES = [
+    {id:"pates-bolognaise", name:"Pâtes bolognaise", emoji:"🍝", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
+    {id:"poulet-riz", name:"Poulet riz légumes", emoji:"🍗", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
+    {id:"saumon-legumes", name:"Saumon légumes vapeur", emoji:"🐟", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
+    {id:"quiche-lardons", name:"Quiche lardons fromage", emoji:"🥧", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
+    {id:"chili-con-carne", name:"Chili con carne", emoji:"🌶️", servings:6, time:45, ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
+    {id:"gratins-dauphinois", name:"Gratin dauphinois", emoji:"🥔", servings:4, time:60, ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
+    {id:"omelette-legumes", name:"Omelette légumes fromage", emoji:"🥚", servings:2, time:15, ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
+    {id:"lasagnes", name:"Lasagnes maison", emoji:"🍝", servings:6, time:60, ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
+    {id:"wok-poulet", name:"Wok poulet nouilles", emoji:"🍜", servings:4, time:25, ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]}
+  ];
+  
+  // Pour chaque recette, trouver les promos correspondantes
+  const recipesWithPromos = RECIPES.map(r => {
+    const matches = r.ingredients.map(ing => {
+      const promos = PRODUCTS.filter(p => {
+        const name = p.name.toLowerCase();
+        return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
+      }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
+      return promos[0] || null;
+    }).filter(Boolean);
+    return {...r, promoMatches: matches, promoCount: matches.length};
+  }).sort((a,b) => b.promoCount - a.promoCount);
+  
+  el.innerHTML = recipesWithPromos.map(r => `
+    <article class="recipe-card" onclick="openRecipeModal('${r.id}')">
+      <div class="recipe-emoji">${r.emoji}</div>
+      <div class="recipe-info">
+        <h3>${r.name}</h3>
+        <div class="recipe-meta">
+          <span>👥 ${r.servings} pers.</span>
+          <span>⏱️ ${r.time} min</span>
+          <span class="promo-badge">${r.promoCount}/${r.ingredients.length} ingrédients en promo</span>
+        </div>
+        <div class="recipe-cost">~${r.promoMatches.reduce((s,m)=>s+(priceOf(m)||0),0).toFixed(2)} € avec promos</div>
+      </div>
+    </article>
+  `).join("");
+}
+
+// Modal recette
+function openRecipeModal(recipeId){
+  const RECIPES = {
+    "pates-bolognaise": {name:"Pâtes bolognaise", emoji:"🍝", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
+    "poulet-riz": {name:"Poulet riz légumes", emoji:"🍗", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
+    "saumon-legumes": {name:"Saumon légumes vapeur", emoji:"🐟", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
+    "quiche-lardons": {name:"Quiche lardons fromage", emoji:"🥧", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
+    "chili-con-carne": {name:"Chili con carne", emoji:"🌶️", servings:6, time:45, ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
+    "gratins-dauphinois": {name:"Gratin dauphinois", emoji:"🥔", servings:4, time:60, ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
+    "omelette-legumes": {name:"Omelette légumes fromage", emoji:"🥚", servings:2, time:15, ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
+    "lasagnes": {name:"Lasagnes maison", emoji:"🍝", servings:6, time:60, ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
+    "wok-poulet": {name:"Wok poulet nouilles", emoji:"🍜", servings:4, time:25, ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]}
+  };
+  
+  const r = RECIPES[recipeId];
+  if(!r) return;
+  
+  const matches = r.ingredients.map(ing => {
+    const promos = PRODUCTS.filter(p => {
+      const name = p.name.toLowerCase();
+      return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
+    }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
+    return promos[0] || null;
+  }).filter(Boolean);
+  
+  const total = matches.reduce((s,m)=>s+(priceOf(m)||0),0).toFixed(2);
+  
+  openSheet('recipeSheet');
+  document.getElementById('recipeSheetBody').innerHTML = `
+    <div class="recipe-modal-header">
+      <span class="recipe-modal-emoji">${r.emoji}</span>
+      <div>
+        <h2>${r.name}</h2>
+        <p>👥 ${r.servings} personnes • ⏱️ ${r.time} min</p>
+      </div>
+    </div>
+    <div class="recipe-modal-cost">
+      <strong>Coût estimé avec promos : ~${total} €</strong>
+      <span>${matches.length}/${r.ingredients.length} ingrédients en promo</span>
+    </div>
+    <h3>Ingrédients :</h3>
+    <ul class="recipe-ingredients">
+      ${r.ingredients.map(ing => {
+        const promo = matches.find(m => {
+          const name = m.name.toLowerCase();
+          return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
+        });
+        if(promo){
+          return `<li class="has-promo"><span class="ing-name">${ing}</span><span class="ing-promo">🏷️ ${promo.name} — <strong>${priceOf(promo).toFixed(2)} €</strong> (${storeOf(promo.store).name})</span></li>`;
+        }
+        return `<li><span class="ing-name">${ing}</span><span class="ing-no-promo">❌ Pas de promo</span></li>`;
+      }).join("")}
+    </ul>
+    <div class="recipe-actions">
+      <button class="btn-primary" onclick="addRecipeToCart('${recipeId}'); closeSheet('recipeSheet');">🛒 Ajouter au panier</button>
+      <button class="btn-secondary" onclick="closeSheet('recipeSheet')">Fermer</button>
+    </div>
+  `;
+}
+
+function addRecipeToCart(recipeId){
+  const RECIPES = {
+    "pates-bolognaise": {ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
+    "poulet-riz": {ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
+    "saumon-legumes": {ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
+    "quiche-lardons": {ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
+    "chili-con-carne": {ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
+    "gratins-dauphinois": {ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
+    "omelette-legumes": {ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
+    "lasagnes": {ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
+    "wok-poulet": {ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]}
+  };
+  
+  const r = RECIPES[recipeId];
+  if(!r) return;
+  
+  r.ingredients.forEach(ing => {
+    const promos = PRODUCTS.filter(p => {
+      const name = p.name.toLowerCase();
+      return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
+    }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
+    if(promos[0]) addToCart(promos[0].id, 1);
+  });
+  renderCart();
+  showToast("Ingrédients ajoutés au panier !");
+}
+
+/* ---------------------------------------------------------
    INIT
--------------------------------------------------------- */
+   -------------------------------------------------------- */
 function rerenderAll(){
   renderStoreChips();
   renderCatChips();
