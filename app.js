@@ -16,6 +16,7 @@ const STORES_DATA = [
     address: "Chaussée de Liège 51, 6900 Marche-en-Famenne",
     coords: [50.2312, 5.3520],
     hours: "Ouvert jusqu'à 20h00 (Ven 21h)",
+    hoursStructured: { open: "08:30", close: "20:00", friClose: "21:00" },
     leafletIconEmoji: "🔴"
   },
   {
@@ -27,6 +28,7 @@ const STORES_DATA = [
     address: "Chaussée de Liège 45, 6900 Marche-en-Famenne",
     coords: [50.2305, 5.3505],
     hours: "Ouvert jusqu'à 19h30",
+    hoursStructured: { open: "08:00", close: "19:30" },
     leafletIconEmoji: "🦁"
   },
   {
@@ -38,6 +40,7 @@ const STORES_DATA = [
     address: "Avenue de France 18, 6900 Marche-en-Famenne",
     coords: [50.2245, 5.3410],
     hours: "Ouvert jusqu'à 20h00",
+    hoursStructured: { open: "08:30", close: "20:00" },
     leafletIconEmoji: "🔵"
   },
   {
@@ -49,6 +52,7 @@ const STORES_DATA = [
     address: "Chaussée de Liège 33, 6900 Marche-en-Famenne",
     coords: [50.2295, 5.3485],
     hours: "Ouvert jusqu'à 20h00",
+    hoursStructured: { open: "08:00", close: "20:00" },
     leafletIconEmoji: "🟡"
   },
   {
@@ -60,6 +64,7 @@ const STORES_DATA = [
     address: "Chaussée de Liège 47, 6900 Marche-en-Famenne",
     coords: [50.2308, 5.3512],
     hours: "Ouvert jusqu'à 19h00",
+    hoursStructured: { open: "08:00", close: "19:00" },
     leafletIconEmoji: "🔷"
   },
   {
@@ -71,6 +76,7 @@ const STORES_DATA = [
     address: "Route de Bastogne 19, 6900 Marche-en-Famenne",
     coords: [50.2190, 5.3350],
     hours: "Ouvert jusqu'à 19h30",
+    hoursStructured: { open: "08:30", close: "19:30" },
     leafletIconEmoji: "🛒"
   },
   {
@@ -82,6 +88,7 @@ const STORES_DATA = [
     address: "Rue de Bastogne 12, 6900 Marche-en-Famenne",
     coords: [50.2270, 5.3460],
     hours: "Ouvert jusqu'à 19h00",
+    hoursStructured: { open: "08:00", close: "19:00" },
     leafletIconEmoji: "🟢"
   },
   {
@@ -93,11 +100,22 @@ const STORES_DATA = [
     address: "Route de Libramont 35, 6900 Marche-en-Famenne",
     coords: [50.2185, 5.3390],
     hours: "Ouvert jusqu'à 20h00",
+    hoursStructured: { open: "08:30", close: "20:00" },
     leafletIconEmoji: "🟠"
   },
   {
     id: "action-marche",
     name: "Action Marche-en-Famenne",
+    brand: "Action",
+    brandClass: "tag-action",
+    brandColor: "#0056a0",
+    address: "Rue du Parc Industriel 5, 6900 Marche-en-Famenne",
+    coords: [50.2239, 5.3299],
+    hours: "Ouvert 9h00-18h30",
+    hoursStructured: { open: "09:00", close: "18:30" },
+    leafletIconEmoji: "🟤"
+  }
+];
     brand: "Action",
     brandClass: "tag-action",
     brandColor: "#e85a0e",
@@ -563,6 +581,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 5. Thème mémorisé
   initTheme();
+
+  // 6. Géolocalisation auto (si permission déjà accordée)
+  tryAutoGeolocation();
 });
 
 // Calcul Haversine en km
@@ -591,6 +612,7 @@ function storeLogoFile(brand) {
 function calculateAllDistances(refLat, refLon) {
   STORES_DATA.forEach(store => {
     store.distanceKm = computeHaversine(refLat, refLon, store.coords[0], store.coords[1]);
+    store.isOpenNow = checkStoreOpenNow(store);
   });
 
   PROMOTIONS_DATA.forEach(promo => {
@@ -599,6 +621,36 @@ function calculateAllDistances(refLat, refLon) {
     promo.storeAddress = st.address;
     promo.storeName = st.name;
   });
+}
+
+// Vérifie si un magasin est ouvert maintenant
+function checkStoreOpenNow(store) {
+  const hs = store.hoursStructured;
+  if (!hs) return null;
+  
+  const now = new Date();
+  const day = now.getDay(); // 0 = Dimanche, 6 = Samedi
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const currentMinutes = hour * 60 + minute;
+  
+  const parseTime = (t) => {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+  };
+  
+  const openMinutes = parseTime(hs.open);
+  let closeMinutes = parseTime(hs.close);
+  
+  // Vendredi spécial pour Colruyt
+  if (day === 5 && hs.friClose) {
+    closeMinutes = parseTime(hs.friClose);
+  }
+  
+  // Fermé le dimanche (la plupart des supermarchés en Belgique)
+  if (day === 0) return false;
+  
+  return currentMinutes >= openMinutes && currentMinutes < closeMinutes;
 }
 
 // =========================================================
@@ -717,16 +769,23 @@ function renderStoresList() {
   if (!container) return;
 
   if (countLabel) {
-    countLabel.textContent = `${STORES_DATA.length} supermarchés autour de ${currentCity.split(" ")[0]}`;
+    const openCount = STORES_DATA.filter(s => s.isOpenNow === true).length;
+    countLabel.textContent = `${STORES_DATA.length} supermarchés autour de ${currentCity.split(" ")[0]} • ${openCount} ouvert${openCount > 1 ? 's' : ''} maintenant`;
   }
 
-  container.innerHTML = STORES_DATA.map(s => `
-    <div class="store-detail-card">
+  container.innerHTML = STORES_DATA.map(s => {
+    const isOpen = s.isOpenNow;
+    const openClass = isOpen === true ? 'open' : (isOpen === false ? 'closed' : 'unknown');
+    const openLabel = isOpen === true ? '🟢 Ouvert' : (isOpen === false ? '🔴 Fermé' : '⚪ Horaires ?');
+    const openStyle = isOpen === true ? 'color:var(--green);' : (isOpen === false ? 'color:var(--accent);' : 'color:var(--text-muted);');
+    
+    return `
+    <div class="store-detail-card ${openClass}">
       <div class="store-icon-box"><img src="${storeLogoFile(s.brand)}" alt="${s.brand}" onerror="this.parentElement.textContent='${s.leafletIconEmoji}';"></div>
       <div class="store-main-meta">
         <h4>${s.name}</h4>
         <p>${s.address} • <b style="color:var(--blue);">À ${formatDist(s.distanceKm)}</b></p>
-        <span class="store-open-time">🟢 ${s.hours}</span>
+        <span class="store-open-time" style="${openStyle}">${openLabel} • ${s.hours}</span>
       </div>
       <button class="btn-filter-store" onclick="filterByStore('${s.brand}')">
         Ses promos ➔
@@ -866,6 +925,62 @@ function activateUserGps() {
     },
     { timeout: 8000, enableHighAccuracy: true }
   );
+}
+
+// Géolocalisation auto au chargement (silencieuse si permission accordée)
+function tryAutoGeolocation() {
+  if (!navigator.geolocation) return;
+  
+  // Vérifier si permission déjà accordée
+  navigator.permissions?.query({ name: 'geolocation' }).then(permissionStatus => {
+    if (permissionStatus.state === 'granted') {
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          const lat = pos.coords.latitude;
+          const lon = pos.coords.longitude;
+          userGpsCoords = [lat, lon];
+          referenceCoords = [lat, lon];
+
+          try {
+            const resp = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+            const data = await resp.json();
+            const a = data.address || {};
+            currentCity = a.city || a.town || a.village || a.municipality || "Votre position";
+          } catch (e) {
+            currentCity = "Votre position GPS";
+          }
+
+          document.getElementById("active-city-display").textContent = currentCity;
+          calculateAllDistances(lat, lon);
+          renderPromos();
+          renderStoresList();
+
+          if (mapInstance) {
+            if (!userGpsMarker) {
+              userGpsMarker = L.circleMarker([lat, lon], {
+                radius: 11,
+                fillColor: "#2563eb",
+                color: "#ffffff",
+                weight: 3,
+                fillOpacity: 1
+              }).addTo(mapInstance);
+              userGpsMarker.bindPopup("<b>📍 Vous êtes ici</b>").openPopup();
+            } else {
+              userGpsMarker.setLatLng([lat, lon]).openPopup();
+            }
+            mapInstance.setView([lat, lon], 14);
+          }
+          showToast(`📍 Localisé : ${currentCity}`);
+        },
+        (err) => {
+          // Silencieux - l'utilisateur cliquera sur le bouton GPS si besoin
+        },
+        { timeout: 5000, enableHighAccuracy: true }
+      );
+    }
+  }).catch(() => {
+    // Permissions API non supportée, on ne fait rien
+  });
 }
 
 function selectPredefinedCity(cityName, cp, lat, lon) {
