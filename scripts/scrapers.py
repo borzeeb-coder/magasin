@@ -788,12 +788,14 @@ def scrape_spar() -> List[Dict]:
 # ============ ACTION SCRAPER (via promotiez.be) ============
 
 ACTION_PROMOTIEZ_URL = 'https://www.promotiez.be/winkels/action/promoties'
+ACTION_DETAIL_BASE = 'https://www.promotiez.be'
 
 
 def scrape_action() -> List[Dict]:
     """Scrape Action Belgium promotions from promotiez.be
 
     promotiez.be aggregates Action's weekly folder offers and is not Cloudflare-protected.
+    Fetches detail pages for richer data (description, category, brand, validity dates).
     """
     offers = []
     seen = set()
@@ -843,14 +845,20 @@ def scrape_action() -> List[Dict]:
                 if img_el:
                     img_url = img_el.get('src') or img_el.get('data-src') or ''
 
-                # Product URL
+                # Product URL (detail page) - construct from data-offer-id and name
                 source_url = ''
-                href = tile.get('href', '')
-                if href:
-                    source_url = href if href.startswith('http') else 'https://www.promotiez.be' + href
-
-                # Category from URL or default
-                category = 'Non-food'
+                offer_id = tile.get('data-offer-id', '')
+                if offer_id:
+                    # Create slug from name
+                    slug = name.lower()
+                    slug = re.sub(r'[^a-z0-9]+', '-', slug)
+                    slug = slug.strip('-')
+                    source_url = f'{ACTION_DETAIL_BASE}/winkels/action/promoties/{slug}-promotie-{offer_id}/'
+                else:
+                    # Fallback to list page URL
+                    href = tile.get('href', '')
+                    if href:
+                        source_url = href if href.startswith('http') else ACTION_DETAIL_BASE + href
 
                 # Validity (days remaining)
                 promo_text = ''
@@ -861,20 +869,26 @@ def scrape_action() -> List[Dict]:
                 if new_price is None:
                     continue
 
+                # Fetch detail page for richer data
+                detail = {}
+                if source_url:
+                    detail = fetch_action_detail(source_url, headers)
+                    time.sleep(0.1)  # be polite
+
                 offer = {
                     'name': name,
-                    'brand': '',
-                    'category': category,
-                    'description': '',
+                    'brand': detail.get('brand', ''),
+                    'category': detail.get('category', 'Non-food'),
+                    'description': detail.get('description', ''),
                     'new_price': new_price,
                     'old_price': old_price,
                     'discount_pct': discount_pct,
-                    'promo_text': promo_text,
-                    'unit': '',
-                    'image_url': img_url,
+                    'promo_text': detail.get('validity', promo_text),
+                    'unit': detail.get('unit', ''),
+                    'image_url': detail.get('image_url', img_url),
                     'source_url': source_url,
                     'fetched_at': datetime.utcnow().isoformat() + 'Z',
-                    'ean': None,
+                    'ean': detail.get('ean'),
                 }
                 offers.append(offer)
 
@@ -887,6 +901,79 @@ def scrape_action() -> List[Dict]:
 
     print(f"Action: {len(offers)} valid offers")
     return offers
+
+
+def fetch_action_detail(url: str, headers: Dict) -> Dict:
+    """Fetch detail page for an Action offer to get description, category, brand, etc."""
+    detail = {}
+    try:
+        r = requests.get(url, headers=headers, timeout=20)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
+
+        # Description - from .offer-description
+        desc_el = soup.select_one('.offer-description')
+        if desc_el:
+            detail['description'] = desc_el.get_text(strip=True)
+
+        # Category - from product keyword pills (e.g., "Mentos", "Kauwgom")
+        cat_pills = soup.select('.product-keyword-pill, .js-product-keyword-pill')
+        if cat_pills:
+            categories = []
+            for p in cat_pills:
+                text = p.get_text(strip=True)
+                # Remove leading numbers (IDs)
+                text = re.sub(r'^\d+', '', text).strip()
+                if text:
+                    categories.append(text)
+            if categories:
+                detail['category'] = ' > '.join(categories[:3])
+
+        # Validity - from .offer-header
+        validity_el = soup.select_one('.offer-header, .offer-header--mobile')
+        if validity_el:
+            detail['validity'] = validity_el.get_text(strip=True)
+
+        # Better image from detail page
+        img_el = soup.select_one('.offer img, .offer-image img, .product-image img')
+        if img_el:
+            img_src = img_el.get('src') or img_el.get('data-src') or ''
+            if img_src and img_src.startswith('http'):
+                detail['image_url'] = img_src
+
+        # Unit/quantity - from .offer-info
+        info_el = soup.select_one('.offer-info')
+        if info_el:
+            info_text = info_el.get_text(strip=True)
+            # Extract quantity/unit info (e.g., "Kauwgom: 90 stuks (22,86/kg)")
+            qty_match = re.search(r'(\d+\s*(?:stuks?|st|kg|g|ml|l|rollen?|pak|stuks?))', info_text, re.IGNORECASE)
+            if qty_match:
+                detail['unit'] = qty_match.group(1)
+            # Also try to get unit price
+            unit_price_match = re.search(r'\(([^)]+/(?:kg|g|ml|l|st))\)', info_text)
+            if unit_price_match:
+                if detail.get('unit'):
+                    detail['unit'] += f' ({unit_price_match.group(1)})'
+                else:
+                    detail['unit'] = unit_price_match.group(1)
+
+        # Brand - first keyword without numbers
+        if cat_pills:
+            first = cat_pills[0].get_text(strip=True)
+            detail['brand'] = re.sub(r'^\d+', '', first).strip()
+
+        # EAN/barcode - not typically available on promotiez.be
+        # But check for any data attributes
+        ean_el = soup.select_one('[data-ean], [data-barcode], [data-gtin]')
+        if ean_el:
+            ean = ean_el.get('data-ean') or ean_el.get('data-barcode') or ean_el.get('data-gtin')
+            if ean and ean.isdigit() and len(ean) >= 8:
+                detail['ean'] = ean
+
+    except Exception as e:
+        print(f"Action detail fetch error for {url}: {e}")
+
+    return detail
 
 
 # ============ MAIN EXPORTS ============
