@@ -1432,3 +1432,206 @@ html, body {
   border: 1px solid var(--border);
   color: var(--text);
 }
+
+/* ============ SEMAINE MALIGNE ============ */
+.semaine-controls {
+  padding: 0 16px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin: 0 16px 12px;
+}
+.control-row {
+  display: flex;
+  gap: 16px;
+  padding: 12px 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.control-row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.control-row input[type="number"] {
+  width: 60px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+}
+.control-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.semaine-summary {
+  padding: 0 16px 12px;
+}
+.summary-stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.summary-stats .stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  font-size: 12px;
+}
+.summary-stats .stat strong {
+  display: block;
+  font-size: 16px;
+  color: var(--text);
+}
+.summary-stats .stat.ok {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green);
+}
+.summary-stats .stat.warn {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.semaine-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 0 16px 16px;
+  overflow-x: auto;
+}
+.semaine-day-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  min-width: 140px;
+  flex-shrink: 0;
+}
+.semaine-day-card:active {
+  transform: scale(0.98);
+}
+.day-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.day-recipe {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.day-emoji {
+  font-size: 24px;
+}
+.day-info h4 {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.day-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.day-cost {
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--green);
+  text-align: right;
+}
+
+.semaine-shopping {
+  padding: 0 16px 24px;
+}
+.semaine-shopping h3 {
+  margin: 16px 0 12px;
+  font-size: 15px;
+}
+.shopping-store {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.shopping-store-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--page-bg);
+  border-bottom: 1px solid var(--border);
+}
+.shopping-store-head img {
+  height: 24px;
+  width: auto;
+}
+.shopping-store-head span:first-of-type {
+  flex: 1;
+  font-weight: 700;
+}
+.store-total {
+  font-weight: 800;
+  color: var(--green);
+  font-size: 14px;
+}
+.shopping-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.shopping-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.shopping-list li span:last-child {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+.shopping-note {
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  border-radius: 10px;
+  font-size: 12px;
+  text-align: center;
+}
+.empty-state {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  .semaine-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -473,6 +473,30 @@
     <div class="grid" id="recipeGrid"></div>
   </section>
 
+  <!-- SEMAINE MALIGNE VIEW -->
+  <section class="view" id="view-semaine">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">📅 Semaine Maligne</h2>
+        <p class="section-sub" id="semaineSub">Plan repas optimisé selon vos promos cette semaine</p>
+      </div>
+      <button class="icon-btn" id="regenerateSemaine" title="Regénérer">🔄</button>
+    </div>
+    <div class="semaine-controls">
+      <div class="control-row">
+        <label>Budget hebdo : <input type="number" id="semaineBudget" min="20" max="200" value="60" step="5"> €</label>
+        <label>Personnes : <input type="number" id="semainePersons" min="1" max="8" value="4" step="1"></label>
+      </div>
+      <div class="control-row">
+        <label><input type="checkbox" id="semaineVeggie"> 🌱 Végétarien</label>
+        <label><input type="checkbox" id="semaineBatch"> 🥡 Batch cooking (cuisiner 2x/semaine)</label>
+      </div>
+    </div>
+    <div class="semaine-summary" id="semaineSummary"></div>
+    <div class="semaine-grid" id="semaineGrid"></div>
+    <div class="semaine-shopping" id="semaineShopping"></div>
+  </section>
+
   <!-- STORES VIEW -->
   <section class="view" id="view-stores">
     <div class="section-head">
@@ -517,6 +541,7 @@
 <div class="navbar">
   <button class="navbtn" data-view="promos"><span class="ni">🏷️</span>Promos</button>
   <button class="navbtn" data-view="recettes"><span class="ni">🍳</span>Recettes</button>
+  <button class="navbtn" data-view="semaine"><span class="ni">📅</span>Semaine</button>
   <button class="navbtn" data-view="favs" style="position:relative;"><span class="ni">♥</span>Favoris
     <span class="cart-count" id="favCount" style="display:none;">0</span>
   </button>
@@ -1361,6 +1386,7 @@ function switchView(name){
   if(name==='cart') renderCart();
   if(name==='favs') renderFavs();
   if(name==='recettes') renderRecipes();
+  if(name==='semaine') renderSemaine();
 }
 document.querySelectorAll('.navbtn').forEach(b=>{
   b.addEventListener('click', ()=>switchView(b.dataset.view));
@@ -1855,6 +1881,208 @@ function addRecipeToCart(recipeId){
   });
   renderCart();
   showToast("Ingrédients ajoutés au panier !");
+}
+
+/* ---------------------------------------------------------
+   SEMAINE MALIGNE - Planificateur hebdo intelligent
+   --------------------------------------------------------- */
+
+// Base de recettes étendue avec métadonnées
+const SEMAINE_RECIPES = [
+  {id:"pates-bolognaise", name:"Pâtes bolognaise", emoji:"🍝", servings:4, time:30, cost:8, tags:["familial","rapide"], ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
+  {id:"poulet-riz", name:"Poulet riz légumes", emoji:"🍗", servings:4, time:35, cost:10, tags:["équilibré","batch"], ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
+  {id:"saumon-legumes", name:"Saumon légumes vapeur", emoji:"🐟", servings:2, time:20, cost:14, tags:["sain","rapide","poisson"], ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
+  {id:"quiche-lardons", name:"Quiche lardons fromage", emoji:"🥧", servings:4, time:40, cost:9, tags:["végé","batch","convivial"], ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
+  {id:"chili-con-carne", name:"Chili con carne", emoji:"🌶️", servings:6, time:45, cost:11, tags:["batch","épicé","convivial"], ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
+  {id:"gratins-dauphinois", name:"Gratin dauphinois", emoji:"🥔", servings:4, time:60, cost:7, tags:["végé","confort","batch"], ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
+  {id:"omelette-legumes", name:"Omelette légumes fromage", emoji:"🥚", servings:2, time:15, cost:5, tags:["végé","rapide","pas cher"], ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
+  {id:"lasagnes", name:"Lasagnes maison", emoji:"🍝", servings:6, time:60, cost:13, tags:["familial","batch","convivial"], ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
+  {id:"wok-poulet", name:"Wok poulet nouilles", emoji:"🍜", servings:4, time:25, cost:9, tags:["rapide","asiatique"], ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]},
+  {id:"couscous-legumes", name:"Couscous légumes", emoji:"🥘", servings:6, time:40, cost:10, tags:["végé","batch","végétarien"], ingredients:["semoule","pois chiches","carottes","courgettes","tomates","oignon","ras el hanout"]},
+  {id:"poisson-papillote", name:"Poisson en papillote", emoji:"🐟", servings:4, time:25, cost:12, tags:["sain","rapide","poisson"], ingredients:["cabillaud","courgettes","tomates cerises","citron","herbes","huile olive"]},
+  {id:"risotto-champignons", name:"Risotto champignons", emoji:"🍚", servings:4, time:35, cost:9, tags:["végé","confort"], ingredients:["riz arborio","champignons","oignon","vin blanc","parmesan","bouillon"]},
+  {id:"tacos-viande", name:"Tacos viande hachée", emoji:"🌮", servings:4, time:30, cost:10, tags:["rapide","mexicain","convivial"], ingredients:["tortillas","viande hachée","haricots rouges","maïs","tomates","fromage râpé","épices tacos"]},
+  {id:"curry-legumes", name:"Curry légumes coco", emoji:"🍛", servings:4, time:30, cost:8, tags:["végé","végétarien","batch"], ingredients:["lait coco","pois chiches","épinards","carottes","curry","riz","oignon"]},
+  {id:"hachis-parmentier", name:"Hachis parmentier", emoji:"🥘", servings:6, time:50, cost:11, tags:["familial","batch","confort"], ingredients:["viande hachée","pommes de terre","carottes","oignon","fromage râpé","lait","beurre"]},
+  {id:"poulet-coco", name:"Poulet au lait de coco", emoji:"🍗", servings:4, time:30, cost:10, tags:["asiatique","batch"], ingredients:["poulet","lait coco","curry","riz","poivrons","oignon","citron vert"]},
+  {id:"quiche-saumon", name:"Quiche saumon épinards", emoji:"🥧", servings:4, time:40, cost:13, tags:["poisson","batch","convivial"], ingredients:["pâte brisée","saumon fumé","épinards","œufs","crème fraîche","fromage râpé"]},
+  {id:"pates-carbonara", name:"Pâtes carbonara", emoji:"🍝", servings:4, time:20, cost:9, tags:["rapide","italien"], ingredients:["pâtes","lardons","œufs","parmesan","poivre","crème fraîche"]},
+  {id:"boulettes-tomate", name:"Boulettes sauce tomate", emoji:"🍲", servings:4, time:35, cost:9, tags:["familial","batch"], ingredients:["viande hachée","pain","œuf","sauce tomate","pâtes","fromage râpé","herbes"]},
+  {id:"salade-composee", name:"Grande salade composée", emoji:"🥗", servings:4, time:15, cost:7, tags:["végé","rapide","sain","pas cher"], ingredients:["salade","tomates","concombre","œufs durs","thon","maïs","vinaigrette"]},
+  {id:"gratin-pates", name:"Gratin pâtes jambon fromage", emoji:"🍝", servings:4, time:35, cost:8, tags:["familial","rapide","batch"], ingredients:["pâtes","jambon","crème fraîche","fromage râpé","emmental","muscade"]}
+];
+
+// Trouve le meilleur promo pour un ingrédient
+function findBestPromoForIngredient(ingredient) {
+  const ing = ingredient.toLowerCase();
+  const promos = PRODUCTS.filter(p => {
+    const name = p.name.toLowerCase();
+    return name.includes(ing) || ing.includes(name.split(' ')[0]) || 
+           (ing === 'pâtes' && (name.includes('pâte') || name.includes('spaghetti') || name.includes('penne') || name.includes('tagliatelle'))) ||
+           (ing === 'viande hachée' && (name.includes('haché') || name.includes('steak haché'))) ||
+           (ing === 'fromage râpé' && (name.includes('râpé') || name.includes('emmental') || name.includes('comté') || name.includes('mozzarella'))) ||
+           (ing === 'crème fraîche' && name.includes('crème')) ||
+           (ing === 'pommes de terre' && (name.includes('pomme de terre') || name.includes('patate')));
+  }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
+  return promos[0] || null;
+}
+
+// Calcule le coût d'une recette avec promos actuelles
+function calculateRecipeCostWithPromos(recipe, persons) {
+  const multiplier = persons / recipe.servings;
+  let total = 0;
+  let promoCount = 0;
+  const details = [];
+  
+  recipe.ingredients.forEach(ing => {
+    const promo = findBestPromoForIngredient(ing);
+    if (promo) {
+      promoCount++;
+      const unitPrice = priceOf(promo) || 0;
+      total += unitPrice * multiplier;
+      details.push({ingredient: ing, promo: promo.name, price: unitPrice, store: storeOf(promo.store).name, discount: promo.discountPercent || 0});
+    } else {
+      details.push({ingredient: ing, promo: null});
+    }
+  });
+  
+  return {total: total.toFixed(2), promoCount, details, totalIngredients: recipe.ingredients.length};
+}
+
+// Génère un plan de semaine optimisé
+function generateSemainePlan() {
+  const budget = parseFloat(document.getElementById('semaineBudget').value) || 60;
+  const persons = parseInt(document.getElementById('semainePersons').value) || 4;
+  const veggie = document.getElementById('semaineVeggie').checked;
+  const batch = document.getElementById('semaineBatch').checked;
+  
+  let available = [...SEMAINE_RECIPES];
+  if (veggie) available = available.filter(r => r.tags.includes('végé') || r.tags.includes('végétarien'));
+  if (batch) available = available.filter(r => r.tags.includes('batch'));
+  
+  const scored = available.map(r => {
+    const cost = calculateRecipeCostWithPromos(r, persons);
+    return {...r, costData: cost, score: cost.promoCount * 10 - cost.total};
+  }).filter(r => r.costData.total <= budget * 0.85);
+  
+  scored.sort((a,b) => b.score - a.score);
+  
+  const plan = [];
+  const usedProteins = new Set();
+  const days = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+  
+  for (const day of days) {
+    if (plan.length >= 7) break;
+    for (const recipe of scored) {
+      const protein = recipe.ingredients.find(i => ['viande','poulet','saumon','poisson','cabillaud','lardons','jambon','thon','œufs','pois chiches'].some(p => i.toLowerCase().includes(p)));
+      const proteinKey = protein || recipe.id;
+      
+      if (!usedProteins.has(proteinKey) || plan.length > 4) {
+        plan.push({day, recipe});
+        usedProteins.add(proteinKey);
+        break;
+      }
+    }
+  }
+  
+  while (plan.length < 5) {
+    const remaining = scored.filter(r => !plan.some(p => p.recipe.id === r.id));
+    if (!remaining.length) break;
+    plan.push({day: days[plan.length], recipe: remaining[0]});
+  }
+  
+  return {plan, budget, persons, veggie, batch};
+}
+
+// Affiche le plan de semaine
+function renderSemaine() {
+  const data = generateSemainePlan();
+  const {plan, budget, persons} = data;
+  
+  const shoppingByStore = new Map();
+  let totalCost = 0;
+  let totalPromos = 0;
+  
+  plan.forEach(({recipe}) => {
+    const cost = calculateRecipeCostWithPromos(recipe, persons);
+    totalCost += parseFloat(cost.total);
+    totalPromos += cost.promoCount;
+    cost.details.forEach(d => {
+      if (d.promo) {
+        const store = d.store;
+        if (!shoppingByStore.has(store)) shoppingByStore.set(store, []);
+        shoppingByStore.get(store).push({item: d.ingredient, qty: '1', price: d.price, promo: d.promo, discount: d.discount, recipe: recipe.name});
+      }
+    });
+  });
+  
+  const summaryEl = document.getElementById('semaineSummary');
+  const daysWithPromos = plan.filter(p => p.recipe.costData.promoCount > 0).length;
+  summaryEl.innerHTML = `
+    <div class="summary-stats">
+      <span class="stat"><strong>${plan.length}</strong> repas planifiés</span>
+      <span class="stat"><strong>${totalCost.toFixed(2)} €</strong> / ${budget} € budget</span>
+      <span class="stat"><strong>${totalPromos}</strong> ingrédients en promo</span>
+      <span class="stat"><strong>${Math.round(totalCost/budget*100)}%</strong> du budget</span>
+      <span class="stat ${totalCost <= budget ? 'ok' : 'warn'}">${totalCost <= budget ? '✅ Dans le budget' : '⚠️ Dépasse budget'}</span>
+    </div>
+  `;
+  
+  const gridEl = document.getElementById('semaineGrid');
+  gridEl.innerHTML = plan.map(({day, recipe}) => {
+    const cost = recipe.costData;
+    return `
+      <article class="semaine-day-card" onclick="openRecipeModal('${recipe.id}')">
+        <div class="day-label">${day}</div>
+        <div class="day-recipe">
+          <span class="day-emoji">${recipe.emoji}</span>
+          <div class="day-info">
+            <h4>${recipe.name}</h4>
+            <div class="day-meta">
+              <span>👥 ${persons} pers.</span>
+              <span>⏱️ ${recipe.time} min</span>
+              <span class="promo-badge">${cost.promoCount}/${cost.totalIngredients} promos</span>
+            </div>
+          </div>
+        </div>
+        <div class="day-cost">${cost.total} €</div>
+      </article>
+    `;
+  }).join('');
+  
+  const shopEl = document.getElementById('semaineShopping');
+  if (shoppingByStore.size > 0) {
+    let html = '<h3>🛒 Liste de courses optimisée</h3>';
+    let storeCount = 0;
+    shoppingByStore.forEach((items, store) => {
+      storeCount++;
+      const storeTotal = items.reduce((s, i) => s + i.price, 0);
+      html += `
+        <div class="shopping-store">
+          <div class="shopping-store-head">
+            <img src="logos/${store.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}.logo.svg" alt="${store}" onerror="this.remove()">
+            <span>${store}</span>
+            <span class="store-total">${storeTotal.toFixed(2)} €</span>
+          </div>
+          <ul class="shopping-list">
+            ${items.map(i => `<li><span>${i.item}</span><span>${i.price.toFixed(2)} € <small>(${i.promo})</small></span></li>`).join('')}
+          </ul>
+        </div>
+      `;
+    });
+    html += `<p class="shopping-note">🏪 ${storeCount} magasin${storeCount>1?'s':''} à visiter • Commande drive possible pour ${Array.from(shoppingByStore.keys()).join(', ')}</p>`;
+    shopEl.innerHTML = html;
+  } else {
+    shopEl.innerHTML = '<p class="empty-state">Aucune promo trouvée pour ces recettes. Essayez d\'augmenter le budget ou de désactiver les filtres.</p>';
+  }
+  
+  const btn = document.getElementById('regenerateSemaine');
+  if (btn) btn.onclick = () => { renderSemaine(); showToast('🔄 Nouveau plan généré !'); };
+}
+
+function openSemaineTab() {
+  switchView('semaine');
+  renderSemaine();
 }
 
 /* ---------------------------------------------------------
