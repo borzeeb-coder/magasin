@@ -1046,13 +1046,19 @@ def scrape_action() -> List[Dict]:
                         detail = fetch_action_detail(source_url, headers)
                         time.sleep(0.1)  # be polite
 
+                    # Use detail old_price if list page didn't have it
+                    final_old_price = old_price or detail.get('old_price')
+                    discount_pct = None
+                    if final_old_price and new_price and final_old_price > new_price:
+                        discount_pct = round((1 - new_price / final_old_price) * 100)
+
                     offer = {
                         'name': translate_to_french(name),
                         'brand': translate_to_french(detail.get('brand', '')),
                         'category': translate_to_french(detail.get('category', 'Non-food')),
                         'description': translate_to_french(detail.get('description', '')),
                         'new_price': new_price,
-                        'old_price': old_price,
+                        'old_price': final_old_price,
                         'discount_pct': discount_pct,
                         'promo_text': translate_to_french(detail.get('validity', promo_text)),
                         'unit': translate_to_french(detail.get('unit', '')),
@@ -1156,6 +1162,14 @@ def fetch_action_detail(url: str, headers: Dict) -> Dict:
         if cat_pills:
             first = cat_pills[0].get_text(strip=True)
             detail['brand'] = re.sub(r'^\d+', '', first).strip()
+
+        # Old price - from .offer__price .product__price-normal on detail page
+        old_price_el = soup.select_one('.offer__price .product__price-normal, .offer .product__price-normal')
+        if old_price_el:
+            price_text = old_price_el.get_text(strip=True)
+            old_price = parse_price(price_text)
+            if old_price:
+                detail['old_price'] = old_price
 
         # EAN/barcode - not typically available on promotiez.be
         # But check for any data attributes
