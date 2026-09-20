@@ -431,6 +431,10 @@
   .recipe-tag{display:inline-block; font-size:10px; font-weight:800; letter-spacing:.05em; color:var(--green); background:var(--green-soft); padding:2px 8px; border-radius:999px; margin-bottom:4px;}
   .recipe-modal-header h2{margin:0; font-size:18px;}
   .recipe-modal-header p{margin:2px 0 0; color:var(--ink-soft); font-size:13px;}
+  .recipe-times{margin:2px 0 0; color:var(--blue); font-size:12px; font-weight:700;}
+  .recipe-tools{font-size:12px; color:var(--ink-soft); background:var(--paper-2); border:1px solid var(--line); padding:8px 12px; border-radius:10px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;}
+  .recipe-tools-label{font-weight:800; color:var(--ink);}
+  .ing-qty{color:var(--blue); font-weight:800;}
   .recipe-modal-cost{
     background:var(--green-soft); color:var(--green); padding:10px 12px; border-radius:10px;
     margin-bottom:16px; font-size:13px; font-weight:700; display:flex; flex-direction:column; gap:4px;
@@ -467,6 +471,8 @@
   }
   .cook-stage-text{font-size:17px; font-weight:700; line-height:1.45;}
   .cook-stage-text.done{color:var(--green);}
+  .cook-heat{display:inline-flex; margin-top:10px; padding:6px 14px; border-radius:999px; background:var(--blue-soft); color:var(--blue); font-weight:800; font-size:13px; letter-spacing:.02em; box-shadow:inset 0 0 0 1px var(--blue);}
+  .cook-heat small{display:none;}
   .cook-timer{text-align:center; padding:14px; margin-bottom:14px; background:var(--green-soft); border-radius:var(--radius);}
   .cook-timer-time{font-size:44px; font-weight:900; font-variant-numeric:tabular-nums; color:var(--green); line-height:1;}
   .cook-timer.warn{background:var(--blue-soft);}
@@ -484,6 +490,8 @@
   .cook-steps li.current .n{background:var(--blue); color:#fff;}
   .cook-steps li.done{color:var(--green);}
   .cook-steps li.done .n{background:var(--green); color:#fff;}
+  .cook-steps small{display:block; font-size:10.5px; color:var(--ink-soft); margin-top:2px; font-weight:600;}
+  .cook-steps small.heat{color:var(--blue);}
 
   /* City sheet */
   .city-item{display:flex; align-items:center; justify-content:space-between; padding:13px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
@@ -699,6 +707,7 @@
         <span class="recipe-tag">🍳 MODE CUISSON</span>
         <h2 id="cookTitle">Recette</h2>
         <p id="cookMeta"></p>
+        <p id="cookTools" style="margin:4px 0 0; font-size:11.5px; color:var(--ink-soft);"></p>
       </div>
       <button class="cook-quit" onclick="stopCooking()">✕ Quitter</button>
     </div>
@@ -1950,6 +1959,10 @@ function openRecipeModal(recipeId){
   const r = RECIPE_DB[recipeId];
   if(!r) return;
   
+  const rInfo = RECIPE_INFO[recipeId] || null;
+  const rTools = rInfo && rInfo.tools && rInfo.tools.length ? rInfo.tools.join(' · ') : '';
+  const rQty = RECIPE_QTY[recipeId] || null;
+
   const matches = r.ingredients.map(ing => bestPromo(ing)).filter(Boolean);
   const total = matches.reduce((s,m)=>s+(priceOf(m)||0),0);
   const estMissing = r.ingredients.reduce((s,ing)=>{
@@ -1967,25 +1980,29 @@ function openRecipeModal(recipeId){
         <span class="recipe-tag">🍽️ RECETTE</span>
         <h2>${r.name}</h2>
         <p>👥 ${r.servings} personnes • ⏱️ ${r.time} min</p>
+        ${rInfo ? `<p class="recipe-times">🔪 Prép. ${rInfo.prep} min • 🔥 Cuisson ${rInfo.cook} min</p>` : ''}
       </div>
     </div>
     <div class="recipe-modal-cost">
       <strong>Coût complet estimé : ~${allTotal} €</strong>
       <span>${matches.length}/${r.ingredients.length} ingrédients en promo${estMissing>0 ? ` • ${estMissing.toFixed(2).replace('.', ',')} € hors promo (estimé)` : ''}</span>
     </div>
+    ${rTools ? `<div class="recipe-tools"><span class="recipe-tools-label">🛠️ Ustensiles :</span><span>${rTools}</span></div>` : ''}
     <h3 class="recipe-section-title">🧾 La recette</h3>
     <ul class="recipe-ingredients">
-      ${r.ingredients.map(ing => {
+      ${r.ingredients.map((ing, ix) => {
         const promo = matches.find(m => {
           const name = m.name.toLowerCase();
           return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
         });
         const tip = promo ? getPrepTip(ing, promo.name) : null;
         const est = ingrEstimate(ing);
+        const qty = rQty ? rQty[ix] : '';
+        const nameLine = qty ? `<strong class="ing-qty">${qty}</strong> ${ing}` : ing;
         if(promo){
           return `<li class="has-promo">
             <div class="ing-row">
-              <span class="ing-name">${ing}</span>
+              <span class="ing-name">${nameLine}</span>
               <span class="ing-badge promo">EN PROMO ✓</span>
             </div>
             <div class="ing-sub">🏷️ ${promo.name} · <strong>${priceOf(promo).toFixed(2)} €</strong> · ${storeOf(promo.store).name}</div>
@@ -1995,7 +2012,7 @@ function openRecipeModal(recipeId){
         const estLine = est ? `<div class="ing-sub">≈ ${est.toFixed(2).replace('.', ',')} € · à acheter au prix normal</div>` : '';
         return `<li>
         <div class="ing-row">
-          <span class="ing-name">${ing}</span>
+          <span class="ing-name">${nameLine}</span>
           ${est ? `<span class="ing-badge est">ESTIMÉ</span>` : `<span class="ing-badge none">PAS DE PROMO</span>`}
         </div>
         ${estLine}
@@ -2087,6 +2104,80 @@ const RECIPE_DB = {
   "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
   "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]}
 };
+/* Quantités par ingrédient (alignées sur ingredients[] de RECIPE_DB) */
+const RECIPE_QTY = {
+  "pates-bolognaise": ["400 g", "400 g", "500 g", "1", "1 gousse", "80 g"],
+  "poulet-riz": ["500 g", "300 g", "1", "2", "20 cl"],
+  "saumon-legumes": ["2 pavés (~300 g)", "300 g", "400 g", "1", "1 bouquet d'aneth"],
+  "quiche-lardons": ["1 rouleau", "200 g", "3", "20 cl", "100 g", "1"],
+  "chili-con-carne": ["500 g", "1 boîte (400 g)", "400 g", "2", "1", "300 g"],
+  "gratins-dauphinois": ["1 kg", "30 cl", "1 gousse", "80 g", "1 pincée"],
+  "omelette-legumes": ["4", "1", "2", "50 g", "1 bouquet"],
+  "lasagnes": ["250 g", "500 g", "500 g", "50 cl", "150 g"],
+  "wok-poulet": ["400 g", "300 g", "2", "2", "5 cl", "1 morceau"],
+  "carbonara": ["400 g", "200 g", "3", "100 g", "poivre", "10 cl"],
+  "poulet-coco": ["500 g", "40 cl", "1 cas", "300 g", "2", "1", "1"],
+  "hachis-parmentier": ["600 g", "1 kg", "2", "1", "100 g", "20 cl", "50 g"],
+  "couscous-legumes": ["400 g", "400 g", "3", "2", "4", "1", "1 cas"],
+  "poisson-papillote": ["4 pavés (~500 g)", "2", "250 g", "1", "quelques brins", "3 cas"],
+  "risotto-champignons": ["300 g", "300 g", "1", "10 cl", "80 g", "1 L"],
+  "tacos-viande": ["8", "400 g", "400 g", "200 g", "3", "100 g", "1 sachet"],
+  "curry-legumes": ["40 cl", "400 g", "200 g", "2", "1 cas", "300 g", "1"],
+  "boulettes-tomate": ["500 g", "2 tranches", "1", "500 g", "400 g", "80 g", "quelques brins"],
+  "salade-composee": ["1", "2", "1", "4", "1 boîte", "1 petite boîte", "5 cl"],
+  "gratin-pates": ["400 g", "4 tranches", "20 cl", "100 g", "80 g", "1 pincée"],
+  "quiche-saumon": ["1 rouleau", "150 g", "300 g", "3", "20 cl", "80 g"],
+  "poulet-curry": ["500 g", "1 cas", "40 cl", "300 g", "1", "2"],
+  "saumon-pates": ["400 g", "200 g", "20 cl", "1 bouquet", "1", "150 g"],
+  "chili-vege": ["400 g", "400 g", "400 g", "2", "1", "200 g", "300 g", "1 cas"],
+  "gratin-legumes": ["2", "2", "4", "100 g", "quelques brins", "3 cas"],
+  "omelette-jambon": ["4", "2 tranches", "50 g", "quelques brins", "20 g"],
+  "poulet-roti": ["1 poulet (~1,5 kg)", "800 g", "4", "2", "quelques brins", "50 g"],
+  "lasagnes-vege": ["250 g", "400 g", "250 g", "150 g", "500 g", "2"],
+  "wrap-poulet": ["4", "300 g", "quelques feuilles", "2", "1", "20 cl", "50 g"],
+  "pates-pesto": ["400 g", "1 pot", "300 g", "200 g", "50 g", "30 g"],
+  "bourguignon": ["1 kg", "4", "2", "300 g", "75 cl", "30 cl", "100 g"],
+  "tataki-saumon": ["2 pavés (~250 g)", "150 g", "1 cas", "5 cl", "1", "quelques brins"],
+  "gratin-poireaux": ["4", "4 tranches", "20 cl", "100 g", "1 rouleau", "1 pincée"]
+};
+
+/* Infos complémentaires par recette : temps de préparation, cuisson, ustensiles */
+const RECIPE_INFO = {
+  "pates-bolognaise": {prep:10, cook:20, tools:["Grande casserole", "Poêle", "Écumoire", "Couteau"]},
+  "poulet-riz": {prep:10, cook:15, tools:["Casserole", "Poêle", "Couvercle"]},
+  "saumon-legumes": {prep:10, cook:12, tools:["Cocotte-vapeur", "Couteau"]},
+  "quiche-lardons": {prep:15, cook:30, tools:["Moule à tarte", "Poêle", "Saladier", "Fouet"]},
+  "chili-con-carne": {prep:15, cook:25, tools:["Grande casserole", "Spatule", "Casserole"]},
+  "gratins-dauphinois": {prep:15, cook:45, tools:["Plat à gratin", "Mandoline", "Couteau"]},
+  "omelette-legumes": {prep:10, cook:10, tools:["Poêle", "Saladier", "Fouet"]},
+  "lasagnes": {prep:25, cook:30, tools:["Plat à gratin", "Casserole", "Poêle", "Casserole"]},
+  "wok-poulet": {prep:15, cook:10, tools:["Wok", "Couteau", "Spatule"]},
+  "carbonara": {prep:10, cook:15, tools:["Grande casserole", "Poêle", "Saladier", "Fouet"]},
+  "poulet-coco": {prep:10, cook:18, tools:["Casserole", "Casserole", "Spatule"]},
+  "hachis-parmentier": {prep:20, cook:45, tools:["Casserole", "Casserole (purée)", "Presse-purée", "Plat à gratin", "Plat"]},
+  "couscous-legumes": {prep:20, cook:25, tools:["Saladier", "Couteau", "Grande casserole", "Fourchette"]},
+  "poisson-papillote": {prep:10, cook:17, tools:["Papier cuisson", "Couteau", "Plaque du four"]},
+  "risotto-champignons": {prep:15, cook:25, tools:["Casserole", "Casserole (bouillon)", "Louche", "Couteau"]},
+  "tacos-viande": {prep:15, cook:16, tools:["Poêle", "Couteau"]},
+  "curry-legumes": {prep:15, cook:22, tools:["Casserole", "Casserole (riz)", "Couteau", "Spatule"]},
+  "boulettes-tomate": {prep:15, cook:25, tools:["Saladier", "Poêle", "Casserole (pâtes)"]},
+  "salade-composee": {prep:15, cook:8, tools:["Grand saladier", "Casserole (œufs)", "Couteau"]},
+  "gratin-pates": {prep:10, cook:25, tools:["Casserole (pâtes)", "Plat à gratin", "Couteau"]},
+  "quiche-saumon": {prep:15, cook:30, tools:["Plat à tarte", "Poêle", "Saladier", "Fouet"]},
+  "poulet-curry": {prep:10, cook:18, tools:["Casserole", "Casserole (riz)", "Spatule"]},
+  "saumon-pates": {prep:10, cook:15, tools:["Casserole (pâtes)", "Poêle", "Écumoire"]},
+  "chili-vege": {prep:15, cook:30, tools:["Grande casserole", "Casserole (riz)", "Spatule"]},
+  "gratin-legumes": {prep:15, cook:30, tools:["Plat à gratin", "Poêle", "Couteau"]},
+  "omelette-jambon": {prep:5, cook:7, tools:["Poêle", "Saladier", "Fouet", "Couteau"]},
+  "poulet-roti": {prep:20, cook:55, tools:["Plat à rôtir", "Fourchette", "Économe", "Couteau"]},
+  "lasagnes-vege": {prep:20, cook:30, tools:["Plat à gratin", "Casserole", "Poêle", "Couteau"]},
+  "wrap-poulet": {prep:15, cook:8, tools:["Poêle", "Couteau", "Planche"]},
+  "pates-pesto": {prep:10, cook:15, tools:["Casserole (pâtes)", "Poêle", "Écumoire"]},
+  "bourguignon": {prep:20, cook:90, tools:["Cocotte", "Couvercle", "Couteau"]},
+  "tataki-saumon": {prep:15, cook:12, tools:["Poêle très chaude", "Casserole (riz)", "Couteau"]},
+  "gratin-poireaux": {prep:15, cook:30, tools:["Cocotte-vapeur", "Plat", "Saladier"]}
+};
+
 
 /* Étapes de préparation écrites (option B) : chaque recette a sa vraie méthode.
    Format : [texte, durée_minutes] (0 = étape sans timer) */
@@ -2095,8 +2186,8 @@ const RECIPE_STEPS = {
     ["Porter une grande casserole d'eau salée à ébullition.",0],
     ["Faire revenir l'oignon et l'ail émincés dans l'huile d'olive jusqu'à ce qu'ils soient translucides.",3],
     ["Ajouter la viande hachée et la faire dorer en la remuant pour l'émietter.",6],
-    ["Verser la sauce tomate, saler, poivrer et laisser mijoter à feu doux.",12],
-    ["Plonger les pâtes dans l'eau bouillante et les cuire selon le temps indiqué.",10],
+    ["Verser la sauce tomate, saler, poivrer et laisser mijoter à feu doux.",12,"Feu doux"],
+    ["Plonger les pâtes dans l'eau bouillante et les cuire selon le temps indiqué.",10,"Feu vif"],
     ["Égoutter les pâtes, les mélanger à la sauce et servir aussitôt avec le fromage râpé.",0]
   ],
   "poulet-riz":[
@@ -2108,12 +2199,12 @@ const RECIPE_STEPS = {
   ],
   "saumon-legumes":[
     ["Laver les haricots verts et les pommes de terre, les couper en morceaux.",0],
-    ["Cuire les haricots verts et les pommes de terre à la vapeur.",12],
-    ["Pendant ce temps, déposer le saumon dans le panier vapeur avec le citron et l'aneth.",8],
+    ["Cuire les haricots verts et les pommes de terre à la vapeur.",12,"Vapeur"],
+    ["Pendant ce temps, déposer le saumon dans le panier vapeur avec le citron et l'aneth.",8,"Vapeur"],
     ["Vérifier la cuisson du saumon puis dresser avec les légumes et un filet de citron.",0]
   ],
   "quiche-lardons":[
-    ["Préchauffer le four à 180°C et foncer un moule avec la pâte brisée.",0],
+    ["Préchauffer le four à 180°C et foncer un moule avec la pâte brisée.",0,"180 °C"],
     ["Faire revenir les lardons et l'oignon émincé dans une poêle.",6],
     ["Battre les œufs avec la crème fraîche, saler et poivrer.",2],
     ["Répartir lardons, oignon et fromage râpé sur la pâte puis verser l'appareil.",0],
@@ -2124,12 +2215,12 @@ const RECIPE_STEPS = {
     ["Émincer l'oignon et le poivron, les faire revenir dans une grande casserole.",4],
     ["Ajouter la viande hachée et la faire dorer en remuant.",6],
     ["Verser les tomates concassées, les haricots rouges égouttés et les épices.",0],
-    ["Laisser mijoter à couvert à feu doux pendant 20 minutes.",20],
+    ["Laisser mijoter à couvert à feu doux pendant 20 minutes.",20,"Feu doux"],
     ["Cuire le riz pendant la cuisson du chili.",12],
     ["Servir le chili bien chaud sur un lit de riz.",0]
   ],
   "gratins-dauphinois":[
-    ["Préchauffer le four à 160°C.",0],
+    ["Préchauffer le four à 160°C.",0,"160 °C"],
     ["Éplucher les pommes de terre et les trancher finement.",8],
     ["Frotter un plat à gratin avec l'ail, disposer les pommes de terre en couches.",0],
     ["Saler, poivrer, ajouter la muscade et verser la crème fraîche par-dessus.",0],
@@ -2140,7 +2231,7 @@ const RECIPE_STEPS = {
     ["Émincer le poivron et la tomate, râper le fromage.",0],
     ["Casser les œufs dans un saladier et les battre avec les herbes, du sel et du poivre.",2],
     ["Faire revenir les légumes 3 minutes à la poêle dans l'huile.",3],
-    ["Verser les œufs sur les légumes et cuire à feu moyen.",4],
+    ["Verser les œufs sur les légumes et cuire à feu moyen.",4,"Feu moyen"],
     ["Parsemer de fromage râpé, plier l'omelette et servir chaud.",0]
   ],
   "lasagnes":[
@@ -2148,13 +2239,13 @@ const RECIPE_STEPS = {
     ["Préparer la béchamel : faire fondre du beurre, ajouter farine puis lait.",8],
     ["Beurrer un plat, alterner couches de pâtes, sauce bolognaise et béchamel.",0],
     ["Terminer par la béchamel et le fromage râpé.",0],
-    ["Enfourner à 180°C et cuire 30 minutes jusqu'à dorure.",30],
+    ["Enfourner à 180°C et cuire 30 minutes jusqu'à dorure.",30,"180 °C"],
     ["Laisser reposer 5 minutes avant de servir.",0]
   ],
   "wok-poulet":[
     ["Couper le poulet en lamelles et émincer les poivrons et oignons.",0],
-    ["Faire chauffer le wok à feu vif avec un filet d'huile.",0],
-    ["Saisir le poulet 4 minutes puis ajouter les légumes.",5],
+    ["Faire chauffer le wok à feu vif avec un filet d'huile.",0,"Feu vif"],
+    ["Saisir le poulet 4 minutes puis ajouter les légumes.",5,"Feu vif"],
     ["Ajouter la sauce soja et le gingembre, cuire encore 3 minutes.",3],
     ["Ajouter les nouilles précuites, remuer tout et servir immédiatement.",2]
   ],
@@ -2170,26 +2261,26 @@ const RECIPE_STEPS = {
     ["Cuire le riz.",12],
     ["Faire dorer le poulet en morceaux dans une casserole.",6],
     ["Ajouter l'oignon émincé, les poivrons et le curry, remuer 2 minutes.",2],
-    ["Verser le lait de coco et laisser mijoter 10 minutes.",10],
+    ["Verser le lait de coco et laisser mijoter 10 minutes.",10,"Feu doux"],
     ["Ajouter le jus de citron vert en fin de cuisson et servir sur le riz.",0]
   ],
   "hachis-parmentier":[
-    ["Éplucher les pommes de terre et les faire cuire dans l'eau bouillante salée.",20],
+    ["Éplucher les pommes de terre et les faire cuire dans l'eau bouillante salée.",20,"Feu vif"],
     ["Pendant ce temps, faire revenir l'oignon, la viande hachée et les carottes.",10],
     ["Écraser les pommes de terre avec le lait et le beurre en purée.",4],
     ["Disposer la viande au fond d'un plat, recouvrir avec la purée.",0],
-    ["Parsemer de fromage râpé et gratiner au four 15 minutes.",15],
+    ["Parsemer de fromage râpé et gratiner au four 15 minutes.",15,"Four"],
     ["Servir bien chaud.",0]
   ],
   "couscous-legumes":[
     ["Faire chauffer de l'eau et réhydrater la semoule dans un saladier.",5],
     ["Couper les carottes, courgettes et oignons en gros morceaux.",0],
     ["Faire revenir l'oignon puis ajouter les légumes et l'eau.",0],
-    ["Ajouter les pois chiches, les tomates et le ras el hanout, mijoter 20 minutes.",20],
+    ["Ajouter les pois chiches, les tomates et le ras el hanout, mijoter 20 minutes.",20,"Feu doux"],
     ["Aérer la semoule à la fourchette et servir avec les légumes et le bouillon.",0]
   ],
   "poisson-papillote":[
-    ["Préchauffer le four à 200°C.",0],
+    ["Préchauffer le four à 200°C.",0,"200 °C"],
     ["Couper les courgettes en fines rondelles et laver les tomates cerises.",0],
     ["Déposer le cabillaud sur une feuille de papier cuisson, ajouter légumes, citron et herbes.",0],
     ["Arroser d'huile d'olive, fermer la papillote hermétiquement.",0],
@@ -2206,7 +2297,7 @@ const RECIPE_STEPS = {
   ],
   "tacos-viande":[
     ["Faire revenir la viande hachée avec les épices à tacos dans une poêle.",6],
-    ["Ajouter les haricots rouges, le maïs et les tomates, laisser mijoter.",8],
+    ["Ajouter les haricots rouges, le maïs et les tomates, laisser mijoter.",8,"Feu doux"],
     ["Réchauffer les tortillas à la poêle ou au micro-ondes.",2],
     ["Garnir les tortillas de la préparation, de fromage râpé et rouler.",0],
     ["Servir aussitôt avec la garniture de votre choix.",0]
@@ -2215,19 +2306,19 @@ const RECIPE_STEPS = {
     ["Cuire le riz.",12],
     ["Émincer l'oignon, tailler les carottes en rondelles.",0],
     ["Faire revenir l'oignon, ajouter carottes et curry, remuer 3 minutes.",3],
-    ["Verser le lait de coco et mijoter 10 minutes.",10],
+    ["Verser le lait de coco et mijoter 10 minutes.",10,"Feu doux"],
     ["Ajouter les pois chiches et les épinards, laisser fondre 5 minutes.",5],
     ["Servir le curry sur le riz.",0]
   ],
   "boulettes-tomate":[
     ["Mélanger la viande hachée, l'œuf, le pain émietté puis former des boulettes.",5],
     ["Faire dorer les boulettes dans une poêle huilée.",6],
-    ["Verser la sauce tomate et laisser mijoter 15 minutes.",15],
+    ["Verser la sauce tomate et laisser mijoter 15 minutes.",15,"Feu doux"],
     ["Cuire les pâtes pendant ce temps.",10],
     ["Servir les boulettes sur les pâtes avec le fromage râpé.",0]
   ],
   "salade-composee":[
-    ["Cuire les œufs 8 minutes dans l'eau bouillante puis les écaler.",8],
+    ["Cuire les œufs 8 minutes dans l'eau bouillante puis les écaler.",8,"Feu vif"],
     ["Laver la salade, les tomates et le concombre.",0],
     ["Couper les tomates et le concombre en morceaux, les œufs durs en quartiers.",0],
     ["Assembler le tout dans un grand saladier.",0],
@@ -2238,11 +2329,11 @@ const RECIPE_STEPS = {
     ["Couper le jambon en lanières et mélanger à la crème fraîche, sel, poivre, muscade.",2],
     ["Mélanger les pâtes avec le jambon crémeux dans un plat à gratin.",0],
     ["Recouvrir de fromage râpé et d'emmental.",0],
-    ["Gratiner au four jusqu'à coloration dorée.",15],
+    ["Gratiner au four jusqu'à coloration dorée.",15,"Four"],
     ["Servir bien chaud.",0]
   ],
   "quiche-saumon":[
-    ["Préchauffer le four à 180°C et foncer un plat avec la pâte brisée.",0],
+    ["Préchauffer le four à 180°C et foncer un plat avec la pâte brisée.",0,"180 °C"],
     ["Hacher les épinards et les faire fondre dans une poêle.",4],
     ["Battre les œufs avec la crème fraîche et le fromage râpé.",2],
     ["Répartir épinards et saumon fumé en morceaux sur la pâte.",0],
@@ -2253,11 +2344,11 @@ const RECIPE_STEPS = {
     ["Cuire le riz.",12],
     ["Faire dorer le poulet en morceaux dans une casserole.",6],
     ["Ajouter l'oignon, les poivrons et le curry, remuer.",3],
-    ["Verser le lait de coco et laisser mijoter 10 minutes.",10],
+    ["Verser le lait de coco et laisser mijoter 10 minutes.",10,"Feu doux"],
     ["Servir le poulet au curry sur le riz.",0]
   ],
   "saumon-pates":[
-    ["Cuire les pâtes dans l'eau bouillante salée.",9],
+    ["Cuire les pâtes dans l'eau bouillante salée.",9,"Feu vif"],
     ["Faire chauffer la crème fraîche dans une poêle, ajouter le saumon fumé en lanières.",4],
     ["Ajouter aneth, jus de citron et les épinards, laisser fondre.",2],
     ["Égoutter les pâtes et les mélanger à la sauce.",0],
@@ -2267,12 +2358,12 @@ const RECIPE_STEPS = {
     ["Cuire le riz.",12],
     ["Émincer l'oignon et le poivron, les faire revenir.",4],
     ["Ajouter les haricots rouges et noirs, les tomates concassées et le cumin.",0],
-    ["Laisser mijoter 20 minutes.",20],
+    ["Laisser mijoter 20 minutes.",20,"Feu doux"],
     ["Ajouter le maïs en fin de cuisson.",3],
     ["Servir le chili végétarien sur le riz.",0]
   ],
   "gratin-legumes":[
-    ["Préchauffer le four à 190°C.",0],
+    ["Préchauffer le four à 190°C.",0,"190 °C"],
     ["Trancher les courgettes et les aubergines en rondelles.",0],
     ["Faire revenir les légumes 5 minutes à la poêle dans l'huile d'olive.",5],
     ["Alterner les couches de légumes et de tomates dans un plat.",0],
@@ -2284,11 +2375,11 @@ const RECIPE_STEPS = {
     ["Couper le jambon en dés, râper le fromage.",0],
     ["Casser les œufs, les battre avec les herbes, du sel et du poivre.",1],
     ["Faire fondre le beurre dans une poêle, verser les œufs.",0],
-    ["Ajouter jambon et fromage, cuire à feu moyen.",5],
+    ["Ajouter jambon et fromage, cuire à feu moyen.",5,"Feu moyen"],
     ["Plier l'omelette et servir chaude.",0]
   ],
   "poulet-roti":[
-    ["Préchauffer le four à 190°C.",0],
+    ["Préchauffer le four à 190°C.",0,"190 °C"],
     ["Assaisonner le poulet, l'enduire de beurre.",0],
     ["Éplucher les pommes de terre, carottes et oignons, les disposer autour du poulet.",5],
     ["Enfourner et faire rôtir.",45],
@@ -2300,11 +2391,11 @@ const RECIPE_STEPS = {
     ["Mélanger la ricotta avec les épinards hachés.",3],
     ["Monter les couches : pâtes, ricotta, légumes, sauce tomate dans un plat.",0],
     ["Terminer par le fromage râpé.",0],
-    ["Enfourner à 180°C pendant 30 minutes.",30],
+    ["Enfourner à 180°C pendant 30 minutes.",30,"180 °C"],
     ["Laisser reposer 5 minutes avant de servir.",0]
   ],
   "wrap-poulet":[
-    ["Faire griller le poulet dans une poêle jusqu'à cuisson complète.",8],
+    ["Faire griller le poulet dans une poêle jusqu'à cuisson complète.",8,"Four"],
     ["Laver et couper salade, tomates et concombre.",0],
     ["Préparer la sauce yaourt, y ajouter les herbes.",1],
     ["Trancher le poulet en lanières.",0],
@@ -2312,7 +2403,7 @@ const RECIPE_STEPS = {
     ["Servir aussitôt, tiède ou frais.",0]
   ],
   "pates-pesto":[
-    ["Cuire les pâtes dans l'eau bouillante salée.",9],
+    ["Cuire les pâtes dans l'eau bouillante salée.",9,"Feu vif"],
     ["Couper le poulet en morceaux et le faire sauter à la poêle.",6],
     ["Laver les tomates cerises et les couper en deux.",0],
     ["Égoutter les pâtes, les mélanger au pesto.",0],
@@ -2322,23 +2413,23 @@ const RECIPE_STEPS = {
     ["Faire dorer les lardons puis la viande en morceaux dans une cocotte.",8],
     ["Ajouter les oignons et les champignons, remuer.",4],
     ["Verser le vin rouge et le bouillon, couvrir.",0],
-    ["Laisser mijoter à feu doux 1 heure.",60],
+    ["Laisser mijoter à feu doux 1 heure.",60,"Feu doux"],
     ["Ajouter les carottes et poursuivre la cuisson.",15],
     ["Vérifier l'assaisonnement et servir bien chaud.",0]
   ],
   "tataki-saumon":[
     ["Cuire le riz.",12],
-    ["Saisir le pavé de saumon 1 minute par face dans une poêle très chaude.",2],
+    ["Saisir le pavé de saumon 1 minute par face dans une poêle très chaude.",2,"Feu vif"],
     ["Trancher le saumon en belles lamelles.",0],
     ["Dresser sur le riz, arroser de sauce soja et de citron.",0],
     ["Parsemer de sésame et de ciboulette ciselée.",0]
   ],
   "gratin-poireaux":[
-    ["Laver et émincer les poireaux, les faire cuire à la vapeur ou à la poêle.",12],
+    ["Laver et émincer les poireaux, les faire cuire à la vapeur ou à la poêle.",12,"Vapeur"],
     ["Mélanger la crème fraîche avec le fromage râpé et la muscade.",2],
     ["Disposer les poireaux et le jambon en morceaux dans un plat.",0],
     ["Verser le mélange crème-fromage par-dessus et recouvrir de pâte brisée.",0],
-    ["Enfourner à 180°C jusqu'à ce que le dessus soit doré.",18],
+    ["Enfourner à 180°C jusqu'à ce que le dessus soit doré.",18,"180 °C"],
     ["Laisser tiédir 5 minutes puis servir.",0]
   ]
 };
@@ -2367,19 +2458,26 @@ function generateSteps(recipe){
    MODE CUISSON
    Suivi pas-à-pas avec minuteur par étape, façon Marmiton.
    --------------------------------------------------------- */
-let cookSteps = [], cookIdx = 0, cookTimerId = null, cookRemain = 0, cookRunning = false, cookExpired = false;
+let cookSteps = [], cookIdx = 0, cookTimerId = null, cookRemain = 0, cookRunning = false, cookExpired = false, cookRecipeId = '';
 
 function startCooking(recipeId){
   const r = RECIPE_DB[recipeId];
   if(!r) return;
   stopCooking(true);
+  cookRecipeId = recipeId;
   cookSteps = (RECIPE_STEPS[recipeId] || generateSteps(r));
   cookIdx = 0;
   cookExpired = false;
   cookRemain = (cookSteps[0][1] * 60) || 0;
   cookRunning = false;
+  const inf = RECIPE_INFO[recipeId] || null;
   document.getElementById('cookTitle').textContent = r.emoji + ' ' + r.name;
-  document.getElementById('cookMeta').textContent = '👨‍🍳 ' + r.servings + ' personnes • ⏳ ' + r.time + ' min • ' + cookSteps.length + ' étapes';
+  let meta = '👨‍🍳 ' + r.servings + ' personnes';
+  if(inf) meta += ' • Prép. ' + inf.prep + ' min • Cuisson ' + inf.cook + ' min';
+  meta += ' • ⏳ ' + r.time + ' min • ' + cookSteps.length + ' étapes';
+  document.getElementById('cookMeta').textContent = meta;
+  const tools = (inf && inf.tools && inf.tools.length) ? inf.tools.join(' · ') : '';
+  document.getElementById('cookTools').textContent = tools ? '🛠️ ' + tools : '';
   openSheet('cookSheet');
   cookRender();
 }
@@ -2391,7 +2489,8 @@ function cookRender(){
   document.getElementById('cookProgressBar').style.width = pct + '%';
   document.getElementById('cookStepCount').textContent = 'Étape ' + (cookIdx+1) + ' / ' + total;
   const stage = document.getElementById('cookStage');
-  stage.innerHTML = `<div class="cook-stage-text">${cookIdx+1}. ${st[0]}</div>`;
+  const heat = st[2] || '';
+  stage.innerHTML = `<div class="cook-stage-text">${cookIdx+1}. ${st[0]}</div>${heat ? `<span class="cook-heat">🔥 ${heat}</span>` : ''}`;
   const timerBox = document.getElementById('cookTimer');
   if(st[1] > 0){
     timerBox.style.display = 'block';
@@ -2406,9 +2505,10 @@ function cookRender(){
   document.getElementById('cookNextBtn').disabled = false;
   document.getElementById('cookNextBtn').textContent = (cookIdx >= total - 1) ? '✓ Terminer' : 'Suivant ⏭';
   // Liste des étapes
-  document.getElementById('cookStepsList').innerHTML = cookSteps.map((s,i)=>
-    `<li class="${i===cookIdx?'current':i<cookIdx?'done':''}"><span class="n">${i+1}</span><span>${s[0]}${s[1]>0?` <small>(⏱️ ${s[1]} min)</small>`:''}</span></li>`
-  ).join('');
+  document.getElementById('cookStepsList').innerHTML = cookSteps.map((s,i)=>{
+    const h = s[2] || '';
+    return `<li class="${i===cookIdx?'current':i<cookIdx?'done':''}"><span class="n">${i+1}</span><span>${s[0]}${s[1]>0?` <small>(⏱️ ${s[1]} min)</small>`:''}${h?` <small class="heat">🔥 ${h}</small>`:''}</span></li>`;
+  }).join('');
 }
 
 function cookTimerDisplay(){

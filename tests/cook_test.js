@@ -19,7 +19,19 @@ async function cookSheetChecks(page, check) {
   check(await page.locator('#recipeSheet.show').count() === 1, 'fiche recette ouverte');
   check(await page.locator('.cook-launch').count() >= 1, 'bouton Mode cuisson présent');
 
-  // Lancer le mode cuisson
+  // Détails enrichis : quantités + ustensiles + temps prép/cuisson
+  check(await page.evaluate(() => document.querySelectorAll('#recipeSheet .ing-qty').length > 0), 'quantités par ingrédient affichées');
+  check(await page.evaluate(() => (document.getElementById('recipeSheet').innerHTML || '').includes('Ustensiles')), 'ustensiles affichés dans la fiche recette');
+  check(await page.evaluate(() => (document.getElementById('recipeSheet').innerHTML || '').includes('Prép.')), 'temps prép/cuisson affichés dans la fiche recette');
+  await page.evaluate(() => closeSheet('recipeSheet'));
+
+  // Lancer le mode cuisson sur une recette avec consignes de chaleur (pâtes-bolognaise)
+  await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('#recipeGrid .recipe-card')];
+    const c = cards.find(x => (x.textContent || '').includes('Bolognaise'));
+    if (c) c.click(); else cards[0].click();
+  });
+  await page.waitForTimeout(500);
   await page.locator('#recipeSheet .cook-launch').last().click();
   await page.waitForTimeout(500);
   check(await page.locator('#cookSheet.show').count() === 1, 'sheet mode cuisson ouverte');
@@ -28,6 +40,14 @@ async function cookSheetChecks(page, check) {
   const totalSteps = await page.locator('#cookStepsList li').count();
   check(totalSteps >= 2, `liste des ${totalSteps} étapes visibles`);
   check((await page.locator('#cookMeta').textContent()).includes('personnes'), 'meta recette (quantités/personnes) affichée');
+  const cookMetaTxt = await page.locator('#cookMeta').textContent();
+  check(cookMetaTxt.includes('Prép.') && cookMetaTxt.includes('Cuisson'), 'temps prép/cuisson dans le mode cuisson');
+  check(await page.evaluate(() => (document.getElementById('cookTools').textContent || '').includes('🛠️')), 'ustensiles affichés dans le mode cuisson');
+  const cookStepsWithHeat = await page.locator('#cookStepsList li small.heat').count();
+  check(cookStepsWithHeat > 0, `${cookStepsWithHeat} étapes avec consigne feu/température (liste)`);
+  // Le badge chaleur en tête d'étape doit être visible sur une étape chaude (allons à l'étape 4)
+  for (let i = 1; i < 4; i++) { await page.evaluate(() => document.getElementById('cookNextBtn').click()); await page.waitForTimeout(120); }
+  check(await page.locator('#cookStage .cook-heat').count() === 1, 'badge feu/température sur l\'étape courante');
 
   // Minuteur de la 1ère étape
   if (await page.locator('#cookTimer').isVisible()) {
