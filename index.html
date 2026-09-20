@@ -901,13 +901,14 @@ function modalNutriHTML(nutri){
   return `<span class="v-nutri muted">${g.replace('-',' ')}</span>`;
 }
 
+/* Identifiant stable pour les produits (basé sur le hash) */
+function stableId(store, name){ const str = store + '::' + String(name||'').toLowerCase(); let h = 5381; for(let i=0; i<str.length; i++){ h = ((h*33) ^ str.charCodeAt(i)) >>> 0; } return h; }
+
 async function loadPromoData(){
   try{
-    const res = await fetch('./data/promos.json', {cache:'no-store'});
+const res = await fetch('./data/promos.json', {cache:'no-store'});
     if(!res.ok) throw new Error('promos.json introuvable (HTTP '+res.status+')');
     const json = await res.json();
-    const offers = json.offers || {};
-    let id = 1;
     const list = [];
     Object.entries(offers).forEach(([slug, items])=>{
       const meta = (json.stores_meta && json.stores_meta[slug]) || STORES.find(s=>s.id===slug);
@@ -922,7 +923,7 @@ async function loadPromoData(){
           oldP = Math.round(newPrice/(1-dPct/100)*100)/100; // prix ancien déduit
         }
         list.push({
-          id: id++,
+          id: stableId(slug, o.name),
           name: o.name,
           cat: categorize(o.name),
           store: slug,
