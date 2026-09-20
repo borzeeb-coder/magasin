@@ -1419,26 +1419,45 @@ html, body {
 }
 .recipe-actions {
   display: flex;
-  gap: 10px;
-  padding-top: 8px;
+  gap: 12px;
+  padding-top: 12px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
 }
 .recipe-actions .btn-primary,
 .recipe-actions .btn-secondary {
   flex: 1;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 13px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.recipe-actions .btn-primary:active,
+.recipe-actions .btn-secondary:active {
+  transform: scale(0.97);
 }
 .recipe-actions .btn-primary {
-  background: var(--green);
+  background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
   color: #fff;
   border: none;
 }
+.recipe-actions .btn-primary:before {
+  content: "🛒 ";
+  margin-right: 8px;
+  font-size: 1.1em;
+}
 .recipe-actions .btn-secondary {
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--text);
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(255,90,60,0.3);
+}
+.recipe-actions .btn-secondary:before {
+  content: "✕ ";
+  margin-right: 8px;
+  font-size: 1.1em;
 }
 
 .ing-tip {
