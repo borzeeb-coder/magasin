@@ -379,6 +379,24 @@
     padding:12px 0; font-size:14px; font-weight:700; cursor:pointer; margin-top:8px;
   }
 
+  /* Recipe modal actions */
+  .recipe-actions{display:flex; gap:12px; padding-top:12px; margin-top:8px; border-top:1px solid var(--line);}
+  .recipe-actions .btn-primary,
+  .recipe-actions .btn-secondary{
+    flex:1; padding:18px 24px; border-radius:14px; font-weight:800; font-size:17px; cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.1); transition:transform .1s, box-shadow .1s;
+  }
+  .recipe-actions .btn-primary:active,
+  .recipe-actions .btn-secondary:active{transform:scale(.97);}
+  .recipe-actions .btn-primary{
+    background:linear-gradient(135deg, #2f86ff 0%, #1253d6 100%); color:#fff; border:none;
+    box-shadow:0 3px 12px rgba(47,134,255,.4);
+  }
+  .recipe-actions .btn-secondary{
+    background:linear-gradient(135deg, var(--yellow) 0%, #e8a400 100%); color:#fff; border:none;
+    box-shadow:0 2px 8px rgba(244,180,0,.3);
+  }
+
   /* City sheet */
   .city-item{display:flex; align-items:center; justify-content:space-between; padding:13px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
   .city-item:last-child{border-bottom:none;}
