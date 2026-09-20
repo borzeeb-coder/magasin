@@ -910,7 +910,7 @@ const res = await fetch('./data/promos.json', {cache:'no-store'});
     if(!res.ok) throw new Error('promos.json introuvable (HTTP '+res.status+')');
     const json = await res.json();
     const list = [];
-    Object.entries(offers).forEach(([slug, items])=>{
+    Object.entries(json.offers).forEach(([slug, items])=>{
       const meta = (json.stores_meta && json.stores_meta[slug]) || STORES.find(s=>s.id===slug);
       if(!meta) return;
       items.forEach(o=>{
