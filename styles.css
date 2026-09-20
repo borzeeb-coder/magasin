@@ -1427,10 +1427,10 @@ html, body {
 .recipe-actions .btn-primary,
 .recipe-actions .btn-secondary {
   flex: 1;
-  padding: 16px 20px;
-  border-radius: 12px;
+  padding: 18px 24px;
+  border-radius: 14px;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 17px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform 0.1s, box-shadow 0.1s;
 }
@@ -1439,9 +1439,10 @@ html, body {
   transform: scale(0.97);
 }
 .recipe-actions .btn-primary {
-  background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
+  background: linear-gradient(135deg, #2f86ff 0%, #1253d6 100%);
   color: #fff;
   border: none;
+  box-shadow: 0 3px 12px rgba(47,134,255,0.4);
 }
 .recipe-actions .btn-primary:before {
   content: "🛒 ";
