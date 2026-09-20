@@ -425,8 +425,9 @@
 
   /* Recipe modal */
   .recipe-modal{max-height:90vh;}
-  .recipe-modal-header{display:flex; gap:12px; align-items:center; margin-bottom:12px;}
-  .recipe-modal-img{width:80px; height:80px; border-radius:10px; object-fit:cover; flex-shrink:0;}
+  .recipe-modal-header{display:flex; gap:12px; align-items:flex-start; margin-bottom:12px;}
+  .recipe-modal-img{width:84px; height:84px; border-radius:10px; object-fit:cover; flex-shrink:0;}
+  .recipe-tag{display:inline-block; font-size:10px; font-weight:800; letter-spacing:.05em; color:var(--green); background:var(--green-soft); padding:2px 8px; border-radius:999px; margin-bottom:4px;}
   .recipe-modal-header h2{margin:0; font-size:18px;}
   .recipe-modal-header p{margin:2px 0 0; color:var(--ink-soft); font-size:13px;}
   .recipe-modal-cost{
@@ -434,19 +435,22 @@
     margin-bottom:16px; font-size:13px; font-weight:700; display:flex; flex-direction:column; gap:4px;
   }
   .recipe-modal-cost span{font-weight:500; font-size:12px;}
+  .recipe-section-title{font-size:15px; font-weight:800; margin:0 0 10px;}
   .recipe-ingredients{list-style:none; padding:0; margin:0 0 16px;}
   .recipe-ingredients li{
-    display:flex; justify-content:space-between; align-items:center; padding:10px 12px;
+    display:flex; flex-direction:column; gap:3px; padding:11px 12px;
     background:var(--card); border:1px solid var(--line); border-radius:10px; margin-bottom:8px;
-    flex-wrap:wrap; gap:4px;
   }
   .recipe-ingredients li.has-promo{border-color:var(--green); background:var(--green-soft);}
-  .ing-name{font-weight:600; font-size:13px;}
-  .ing-promo{font-size:12px; color:var(--ink);}
-  .ing-promo strong{color:var(--green);}
-  .ing-no-promo{font-size:12px; color:var(--ink-soft);}
-  .ing-est{font-size:12px; color:var(--blue); font-weight:700;}
-  .ing-tip{width:100%; font-size:11px; color:var(--blue); background:var(--blue-soft); padding:6px 10px; border-radius:6px; margin-top:4px; line-height:1.4; font-style:italic; border-left:3px solid var(--blue);}
+  .ing-row{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .ing-name{font-weight:700; font-size:14px;}
+  .ing-badge{font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px; letter-spacing:.03em; flex-shrink:0;}
+  .ing-badge.promo{background:var(--green); color:#fff;}
+  .ing-badge.est{background:var(--blue); color:#fff;}
+  .ing-badge.none{background:var(--paper-2); color:var(--ink-soft);}
+  .ing-sub{font-size:12px; color:var(--ink); display:flex; align-items:center; gap:4px; flex-wrap:wrap;}
+  .ing-sub strong{color:var(--green);}
+  .ing-tip{font-size:11px; color:var(--blue); background:var(--blue-soft); padding:6px 10px; border-radius:6px; margin-top:4px; line-height:1.4; font-style:italic; border-left:3px solid var(--blue);}
 
   /* City sheet */
   .city-item{display:flex; align-items:center; justify-content:space-between; padding:13px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
@@ -1896,6 +1900,7 @@ function openRecipeModal(recipeId){
     <div class="recipe-modal-header">
       <img src="${r.image}" alt="${r.name}" class="recipe-modal-img" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'">
       <div>
+        <span class="recipe-tag">🍽️ RECETTE</span>
         <h2>${r.name}</h2>
         <p>👥 ${r.servings} personnes • ⏱️ ${r.time} min</p>
       </div>
@@ -1904,7 +1909,7 @@ function openRecipeModal(recipeId){
       <strong>Coût complet estimé : ~${allTotal} €</strong>
       <span>${matches.length}/${r.ingredients.length} ingrédients en promo${estMissing>0 ? ` • ${estMissing.toFixed(2).replace('.', ',')} € hors promo (estimé)` : ''}</span>
     </div>
-    <h3>Ingrédients & Préparation :</h3>
+    <h3 class="recipe-section-title">🧾 La recette</h3>
     <ul class="recipe-ingredients">
       ${r.ingredients.map(ing => {
         const promo = matches.find(m => {
@@ -1915,16 +1920,22 @@ function openRecipeModal(recipeId){
         const est = ingrEstimate(ing);
         if(promo){
           return `<li class="has-promo">
-            <span class="ing-name">${ing}</span>
-            <span class="ing-promo">🏷️ ${promo.name} — <strong>${priceOf(promo).toFixed(2)} €</strong> (${storeOf(promo.store).name})</span>
+            <div class="ing-row">
+              <span class="ing-name">${ing}</span>
+              <span class="ing-badge promo">EN PROMO ✓</span>
+            </div>
+            <div class="ing-sub">🏷️ ${promo.name} · <strong>${priceOf(promo).toFixed(2)} €</strong> · ${storeOf(promo.store).name}</div>
             ${tip ? `<div class="ing-tip">💡 ${tip}</div>` : ''}
           </li>`;
         }
-        const estLine = est ? `<span class="ing-est">≈ ${est.toFixed(2).replace('.', ',')} € estimé</span>` : '';
+        const estLine = est ? `<div class="ing-sub">≈ ${est.toFixed(2).replace('.', ',')} € · à acheter au prix normal</div>` : '';
         return `<li>
+        <div class="ing-row">
           <span class="ing-name">${ing}</span>
-          ${estLine || `<span class="ing-no-promo">❌ Pas de promo</span>`}
-        </li>`;
+          ${est ? `<span class="ing-badge est">ESTIMÉ</span>` : `<span class="ing-badge none">PAS DE PROMO</span>`}
+        </div>
+        ${estLine}
+      </li>`;
       }).join("")}
     </ul>
     <div class="recipe-actions">
