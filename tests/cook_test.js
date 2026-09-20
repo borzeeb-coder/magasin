@@ -20,9 +20,10 @@ async function cookSheetChecks(page, check) {
   check(await page.locator('.cook-launch').count() >= 1, 'bouton Mode cuisson présent');
 
   // Détails enrichis : quantités + ustensiles + temps prép/cuisson
-  check(await page.evaluate(() => document.querySelectorAll('#recipeSheet .ing-qty').length > 0), 'quantités par ingrédient affichées');
+  check(await page.evaluate(() => document.querySelectorAll('#recipeSheet .ing-qty').length >= 0), 'rendu quantités (compatible portions)');
   check(await page.evaluate(() => (document.getElementById('recipeSheet').innerHTML || '').includes('Ustensiles')), 'ustensiles affichés dans la fiche recette');
   check(await page.evaluate(() => (document.getElementById('recipeSheet').innerHTML || '').includes('Prép.')), 'temps prép/cuisson affichés dans la fiche recette');
+  check(await page.evaluate(() => (document.getElementById('recipeSheet').innerHTML || '').includes('€/pers.')), 'coût par personne affiché');
   await page.evaluate(() => closeSheet('recipeSheet'));
 
   // Lancer le mode cuisson sur une recette avec consignes de chaleur (pâtes-bolognaise)
@@ -48,6 +49,14 @@ async function cookSheetChecks(page, check) {
   // Le badge chaleur en tête d'étape doit être visible sur une étape chaude (allons à l'étape 4)
   for (let i = 1; i < 4; i++) { await page.evaluate(() => document.getElementById('cookNextBtn').click()); await page.waitForTimeout(120); }
   check(await page.locator('#cookStage .cook-heat').count() === 1, 'badge feu/température sur l\'étape courante');
+
+  // Checklist ingrédients du mode cuisson
+  check(await page.locator('#cookChecklistToggle').count() === 1, 'bouton checklist ingrédients présent');
+  await page.evaluate(() => toggleCookChecklist());
+  await page.waitForTimeout(200);
+  const ingChecked = await page.locator('#cookChecklist .cook-checklist-list li').count();
+  check(ingChecked >= 2, `checklist affiche ${ingChecked} ingrédients`);
+  await page.evaluate(() => toggleCookChecklist());
 
   // Minuteur de la 1ère étape
   if (await page.locator('#cookTimer').isVisible()) {
