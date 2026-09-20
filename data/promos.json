@@ -834,7 +834,16 @@
         "image_url": "data/images/intermarche-030.webp",
         "image_filename": "intermarche-030.webp",
         "source_url": "https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/",
-        "fetched_at": "2026-09-19T15:21:48.369604Z"
+        "fetched_at": "2026-09-19T15:21:48.369604Z",
+        "nutriscore": "",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": "",
+        "ean": "3571495150626"
       },
       {
         "name": "Appetit",
@@ -11457,7 +11466,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hf8/hd7/13875019218974.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Exclusivites-online/Vins-rouges/France-Bordeaux/Saint-Emilion-Grand-Cru-Classe-2022/p/S2023081100719040000",
         "fetched_at": "2026-09-19T15:23:18.973195Z",
-        "ean": null
+        "ean": "3700400300386",
+        "nutriscore": "NOT-APPLICABLE",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": "Vins"
       },
       {
         "name": "Pomerol | 2022",
@@ -11502,7 +11519,20 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h48/hbc/13866277273630.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Exclusivites-online/Vins-rouges/France-Bordeaux/Saint-Emilion-Grand-Cru-Classe-2021/p/S2022061400631720000",
         "fetched_at": "2026-09-19T15:23:18.973686Z",
-        "ean": null
+        "ean": "20133177",
+        "nutriscore": "NOT-APPLICABLE",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:not-advised-for-specific-people",
+          "en:green-dot",
+          "en:not-advised-for-pregnant-women",
+          "en:AOC St emilion grand cru"
+        ],
+        "brands": "St emilion grand cru",
+        "categories": "saint-émilion grand cru, en:French red wine"
       },
       {
         "name": "Saint-Émilion 1er Grand Cru Classé | 2021",
@@ -11623,7 +11653,20 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h2e/had/13866161078302.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Exclusivites-online/Vins-rouges/France-Bordeaux/Saint-Emilion-Grand-Cru-Classe-2021-Rouge/p/S2022102600659270000",
         "fetched_at": "2026-09-19T15:23:18.974860Z",
-        "ean": null
+        "ean": "20133177",
+        "nutriscore": "NOT-APPLICABLE",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:not-advised-for-specific-people",
+          "en:green-dot",
+          "en:not-advised-for-pregnant-women",
+          "en:AOC St emilion grand cru"
+        ],
+        "brands": "St emilion grand cru",
+        "categories": "saint-émilion grand cru, en:French red wine"
       },
       {
         "name": "Saint-Julien | 2022",
@@ -11698,7 +11741,20 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h77/h05/13868022464542.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Exclusivites-online/Vins-rouges/France-Bordeaux/Saint-Emilion-Grand-Cru-Classe-2021/p/S2022082500647960000",
         "fetched_at": "2026-09-19T15:23:18.975631Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "NOT-APPLICABLE",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:not-advised-for-specific-people",
+          "en:green-dot",
+          "en:not-advised-for-pregnant-women",
+          "en:AOC St emilion grand cru"
+        ],
+        "brands": "St emilion grand cru",
+        "categories": "saint-émilion grand cru, en:French red wine"
       },
       {
         "name": "Saint-Estèphe | 2021",
@@ -11743,7 +11799,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h29/h86/13868148752414.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Exclusivites-online/Vins-blancs/France-Bordeaux/Rayne-Vigneau-Caisse-en-bois-2020-Blanc/p/S2026022600939840000",
         "fetched_at": "2026-09-19T15:23:18.976080Z",
-        "ean": null
+        "ean": "3760159870684",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": ""
       },
       {
         "name": "Demoiselle Sigalas Sec | 2024 | Blanc",
@@ -12021,7 +12085,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h88/he5/13784595988510.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Bebe/Langes/Langes/Taille-4-9-14kg-/Langes-Extra-Care-Taille-4/p/S2023070400711110000",
         "fetched_at": "2026-09-19T15:23:20.224214Z",
-        "ean": null
+        "ean": "5029053508863",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": "Intieme verzorging, Maandverband, Verzorging"
       },
       {
         "name": "75cl | Quina | Amber | Ambre+Bop",
@@ -12081,7 +12153,32 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hd1/hd4/13785159925790.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Boissons-sportives/Boisson-sport-Mountain-blast/p/S2024030900757480099",
         "fetched_at": "2026-09-19T15:23:20.224824Z",
-        "ean": null
+        "ean": "54490482",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 31,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 8,
+          "sugars_100g": 6.3,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [
+          "en:e202",
+          "en:e211",
+          "en:e330",
+          "en:e331",
+          "en:e331iii",
+          "en:e340",
+          "en:e340iii"
+        ],
+        "labels": [],
+        "brands": "Powerade",
+        "categories": "Energy drinks, Dietary drink for sport, Sweetened beverages"
       },
       {
         "name": "Cava | Mediterrania Marine | Brut",
@@ -12141,7 +12238,36 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h8c/h9c/13178989674526.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Iced-tea/Iced-tea-non-petillants/The-vert-Tropical-Fruits-de-la-passion-PET/p/S2025012100819990099",
         "fetched_at": "2026-09-19T15:23:20.225469Z",
-        "ean": null
+        "ean": "5449000101310",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 54,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 13.3,
+          "sugars_100g": 13.3,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "Eau gazéifiée; sucre; acidifiants: acide citrique, citrate de sodium; stabilisants: E1450, E444, E445; arômes; conservateur: benzoate de sodium; colorants: E110, E150d.",
+        "allergens": [],
+        "additives": [
+          "en:e110",
+          "en:e1450",
+          "en:e150d",
+          "en:e211",
+          "en:e330",
+          "en:e331",
+          "en:e444",
+          "en:e445"
+        ],
+        "labels": [
+          "en:green-dot",
+          "fr:triman"
+        ],
+        "brands": "Hawai, The Coca-Cola Company",
+        "categories": "Sodas aux fruits, Limonades, Boissons avec sucre ajouté"
       },
       {
         "name": "Limonade | Plate | Pêche Poire",
@@ -12171,7 +12297,24 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h48/h45/13070923366430.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Boissons-sportives/Golden-Mango/p/S2025020600757450096",
         "fetched_at": "2026-09-19T15:23:20.225765Z",
-        "ean": null
+        "ean": "5449000320988",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {
+          "energy_kcal_100g": 17,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 4.1,
+          "sugars_100g": 4.1,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.13
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Powerade",
+        "categories": ""
       },
       {
         "name": "La Clape | 2022",
@@ -12216,7 +12359,36 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h35/h9c/13816520409118.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vite-et-vraiment-bon/Pret-a-manger/Plats-surgeles/Korean-Crispy-Chicken/p/S2025051200862470000",
         "fetched_at": "2026-09-19T15:23:20.226209Z",
-        "ean": null
+        "ean": "5060960662415",
+        "nutriscore": "UNKNOWN",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 274,
+          "fat_100g": 12.8823529411765,
+          "saturated_fat_100g": 2.29411764705882,
+          "carbs_100g": 24.3529411764706,
+          "sugars_100g": 2.94117647058824,
+          "fiber_100g": 0.941176470588235,
+          "proteins_100g": 12.0588235294118,
+          "salt_100g": 1.60294117647059
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:eggs",
+          "en:gluten",
+          "en:milk",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e14xx",
+          "en:e160c"
+        ],
+        "labels": [
+          "en:natural-flavors",
+          "en:with-sunflower-oil"
+        ],
+        "brands": "itsu",
+        "categories": ""
       },
       {
         "name": "Peaces | Brookies & Cream",
@@ -12246,7 +12418,28 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h59/h77/13317381881886.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Iced-tea/Iced-tea-non-petillants/Black-tea-Peach-rose-Zero/p/S2025082000889040099",
         "fetched_at": "2026-09-19T15:23:20.226535Z",
-        "ean": null
+        "ean": "5055953902586",
+        "nutriscore": "UNKNOWN",
+        "nova_group": 1,
+        "nutrition": {
+          "energy_kcal_100g": 4,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 0,
+          "sugars_100g": 0,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "Thé noir du Sri Lanka",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:ethical-tea-partnership",
+          "fr:triman"
+        ],
+        "brands": "twinings",
+        "categories": "Infusions, Thés noirs, Thés de ceylan, Thés noirs de Ceylan"
       },
       {
         "name": "Harissa | Epicee",
@@ -12276,7 +12469,17 @@
         "image_url": "",
         "source_url": "https://www.delhaize.be/fr/shop/Hygiene-et-soins/Soins-du-corps/Douche/Gel-douche-femmes/Douche-Coco-and-Huile-coco-2-1/p/S2025121600913620000",
         "fetched_at": "2026-09-19T15:23:20.226870Z",
-        "ean": null
+        "ean": "3760100203837",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:made-in-france"
+        ],
+        "brands": "",
+        "categories": ""
       },
       {
         "name": "Rasoir | 6 lames",
@@ -12396,7 +12599,34 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h1b/hc3/13948382281758.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Boissons-sportives/Fifa-Attack/p/S2026031900947340099",
         "fetched_at": "2026-09-19T15:23:21.365938Z",
-        "ean": null
+        "ean": "5449000345738",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 17,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 3.8,
+          "sugars_100g": 3.8,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.18
+        },
+        "ingredients": "Eau; glucose; acidifiant: acide citrique; fructose; correcteur d'acidité : citrates de sodium; chlorure de sodium; arômes naturels ; stabilisants: gomme d'acacia, esters glycériques de résine de bois; édulcorants: sucralose, acesulfame-K; colorants: E 129, E 110; acide pantothénique (vitamine B5). E 129 et E 110",
+        "allergens": [],
+        "additives": [
+          "en:e110",
+          "en:e129",
+          "en:e330",
+          "en:e331",
+          "en:e414",
+          "en:e445",
+          "en:e950",
+          "en:e955"
+        ],
+        "labels": [],
+        "brands": "Power",
+        "categories": "Boissons édulcorées, Boissons énergisantes"
       },
       {
         "name": "Fifa | Defend",
@@ -12426,7 +12656,35 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h30/h19/13634033909790.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Sauces/Autres/Sauce-douce-Aux-petits-oignons/p/S2023112200730740000",
         "fetched_at": "2026-09-19T15:23:21.366025Z",
-        "ean": null
+        "ean": "8722700139201",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 198,
+          "fat_100g": 16,
+          "saturated_fat_100g": 1.1,
+          "carbs_100g": 5.7,
+          "sugars_100g": 4.4,
+          "fiber_100g": 2.1,
+          "proteins_100g": 5.2,
+          "salt_100g": 4.4
+        },
+        "ingredients": "Eau, vinaigre d'alcool, graines de MOUTARDE, huile de colza, sel, sucre, stabilisant : gomme xanthane, farine de MOUTARDE, acidifiant : acide citrique, arômes naturels, conservateur : DISULFITE de potassium.",
+        "allergens": [
+          "en:mustard",
+          "en:sulphur-dioxide-and-sulphites"
+        ],
+        "additives": [
+          "en:e224",
+          "en:e330",
+          "en:e415"
+        ],
+        "labels": [
+          "en:green-dot",
+          "fr:triman"
+        ],
+        "brands": "Amora",
+        "categories": "en:Shelf-stable other sauces, Moutardes douces"
       },
       {
         "name": "Galette de riz | Herbes de Provence",
@@ -12441,7 +12699,31 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/ha3/hc8/13725147201566.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Galettes-de-riz-biscottes-et-pains-grilles/Galettes-soufflees/Galette-de-riz-Herbes-de-Provence/p/S2024021900753880000",
         "fetched_at": "2026-09-19T15:23:21.366068Z",
-        "ean": null
+        "ean": "3596710423927",
+        "nutriscore": "C",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 347,
+          "fat_100g": 0.5,
+          "saturated_fat_100g": 0.1,
+          "carbs_100g": 85,
+          "sugars_100g": 1.5,
+          "fiber_100g": 0.7,
+          "proteins_100g": 0.7,
+          "salt_100g": 0.54
+        },
+        "ingredients": "Riz 51%, amidon de tapioca, sel. Produit importé du Vietnam",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:green-dot",
+          "en:in-braille",
+          "en:nutriscore",
+          "en:nutriscore-grade-b",
+          "fr:triman"
+        ],
+        "brands": "Auchan",
+        "categories": "Assortiments d'herbes et épices, Galettes de riz pour rouleau de printemps"
       },
       {
         "name": "Cava | 10° Aniversario | Bio | Brut Nature",
@@ -12621,7 +12903,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h81/hba/13950072619038.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Entretien-et-menage/Lessives/Entretien-machine/Anti-calcaire/Gel-Hygiene-4en1-250ml-gratuit/p/S2026051500671840098",
         "fetched_at": "2026-09-19T15:23:21.366606Z",
-        "ean": null
+        "ean": "8031447231131",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Lifebuoy",
+        "categories": ""
       },
       {
         "name": "Light | PET",
@@ -12636,7 +12926,35 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h10/hc3/13895578812446.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Colas/Cola-light/Light-PET/p/S1991122300921770000",
         "fetched_at": "2026-09-19T15:23:21.366646Z",
-        "ean": null
+        "ean": "5449000017895",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 0.2,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 0,
+          "sugars_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.01
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [
+          "en:e150d",
+          "en:e290",
+          "en:e330",
+          "en:e338",
+          "en:e950",
+          "en:e951"
+        ],
+        "labels": [
+          "en:low-or-no-sugar",
+          "en:contains-a-source-of-phenylalanine",
+          "en:no-sugar"
+        ],
+        "brands": "Coca-Cola, EDEKA Hayunga Getränke  Coca-Cola",
+        "categories": "Kalorienarme Colas"
       },
       {
         "name": "Shampooing | Antipelliculaire",
@@ -12681,7 +12999,21 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h55/h21/13474423832606.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Preparations-desserts/Mix-desserts/Pate-a-pizza-Italienne-Preparation/p/S2006022800096660000",
         "fetched_at": "2026-09-19T15:23:21.366816Z",
-        "ean": null
+        "ean": "6194001710007",
+        "nutriscore": "UNKNOWN",
+        "nova_group": 4,
+        "nutrition": {},
+        "ingredients": "Farine de blé - Sucre - Dextrose Améliorant [emulsifiant E 472e (Esters mono acétyltartriques et diacetyltartriques des mono et diglycérides d'acides gras), E 170 (carbonate de calcium), Vitamine C, enzymes], levure chimique.",
+        "allergens": [
+          "en:gluten"
+        ],
+        "additives": [
+          "en:e170",
+          "en:e472e"
+        ],
+        "labels": [],
+        "brands": "impérial",
+        "categories": "Pâtes à pizza"
       },
       {
         "name": "Zero Sugar | PET",
@@ -12726,7 +13058,33 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h59/h0e/13868109889566.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Cuisine-du-monde/Asiatique/Inde/Pappadums-Nature/p/S2017112204192210000",
         "fetched_at": "2026-09-19T15:23:21.366930Z",
-        "ean": null
+        "ean": "0069276981017",
+        "nutriscore": "E",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 319,
+          "fat_100g": 1.5,
+          "saturated_fat_100g": 0.2,
+          "carbs_100g": 58.1,
+          "sugars_100g": 3.4,
+          "fiber_100g": 6.2,
+          "proteins_100g": 21.4,
+          "salt_100g": 4.6
+        },
+        "ingredients": "Farine de haricot urd, sel, farine de riz, huile de coco, poudre à lever (oxyde de calcium)",
+        "allergens": [],
+        "additives": [
+          "en:e529"
+        ],
+        "labels": [
+          "en:no-gluten",
+          "en:no-artificial-flavors",
+          "en:no-colorings",
+          "en:no-preservatives",
+          "en:green-dot"
+        ],
+        "brands": "Patak's",
+        "categories": "Pappadums"
       },
       {
         "name": "Pétillant | Lemon | PET",
@@ -12756,7 +13114,24 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hd6/h13/13777337122846.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Preparations-desserts/Ingredients-desserts/Topping-Cupcake-Chocolat/p/S2017112800011590000",
         "fetched_at": "2026-09-19T15:23:21.367007Z",
-        "ean": null
+        "ean": "7610089364899",
+        "nutriscore": "E",
+        "nutrition": {
+          "energy_kcal_100g": 353,
+          "fat_100g": 9.7,
+          "saturated_fat_100g": 3.9,
+          "carbs_100g": 61,
+          "sugars_100g": 56,
+          "fiber_100g": 0,
+          "proteins_100g": 3,
+          "salt_100g": 0.2
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Dr. Oetker",
+        "categories": "Aides à la pâtisserie"
       },
       {
         "name": "Cava | Ecológica | Bio | Brut",
@@ -12801,7 +13176,30 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h1d/h6b/13180452667422.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Iced-tea/Iced-tea-non-petillants/The-vert-Lime-Mint-PET/p/S2019040500236240099",
         "fetched_at": "2026-09-19T15:23:22.286973Z",
-        "ean": null
+        "ean": "2000000078464",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 19,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 4.8,
+          "sugars_100g": 4.7,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.05
+        },
+        "ingredients": "Eau, Sucre, Extrait de Thé Vert (0,12% ; 1,2g/L), arômes naturels de citron vert et de menthe, acidifiant, acide citrique.",
+        "allergens": [],
+        "additives": [
+          "en:e330"
+        ],
+        "labels": [
+          "en:rainforest-alliance",
+          "fr:Green Tea\n"
+        ],
+        "brands": "NESTEA",
+        "categories": "Infusions, Thés verts à la menthe, Boissons avec sucre ajouté, Extrait de thé vert"
       },
       {
         "name": "Crianza | Rioja",
@@ -12846,7 +13244,35 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h93/hb6/13678964703262.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Colas/Cola-zero/Zero-Sugar-et-sans-cafeine-PET/p/S2021041300535960099",
         "fetched_at": "2026-09-19T15:23:22.288060Z",
-        "ean": null
+        "ean": "5449000133328",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 0,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 0,
+          "sugars_100g": 0,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.02
+        },
+        "ingredients": "Eau gazéifiée, colorant E150d, acidifiants , acide phosphorique, citrate de sodium, édulcorants , aspartame, acésulfame-K, arômes naturels (extraits végétaux), dont caféine, Contient une source de phénylalanine,",
+        "allergens": [],
+        "additives": [
+          "en:e150d",
+          "en:e331",
+          "en:e338",
+          "en:e950",
+          "en:e951"
+        ],
+        "labels": [
+          "en:contains-a-source-of-phenylalanine",
+          "en:green-dot",
+          "en:made-in-swiss"
+        ],
+        "brands": "COCA-COLA SERVICES SA/NV, Coke ZERO",
+        "categories": "Boissons sans sucre ajouté, Sodas au cola light"
       },
       {
         "name": "Thé noir | Peach Elderflower | No Sugar",
@@ -12921,7 +13347,24 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hc9/h3c/13854401789982.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Pates-riz-et-autres-feculents/Solution-repas/Prets-a-manger/Pates-Formaggio/p/S2022010400220300000",
         "fetched_at": "2026-09-19T15:23:22.289318Z",
-        "ean": null
+        "ean": "5411100147635",
+        "nutriscore": "E",
+        "nutrition": {
+          "energy_kcal_100g": 406,
+          "fat_100g": 11,
+          "saturated_fat_100g": 6.3,
+          "carbs_100g": 60,
+          "sugars_100g": 3.3,
+          "fiber_100g": 3.1,
+          "proteins_100g": 14,
+          "salt_100g": 2.9
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Knorr",
+        "categories": "Plats à base de pâtes"
       },
       {
         "name": "Thé noir | Peach Hibiscus | PET",
@@ -12936,7 +13379,36 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h36/haa/13236065435678.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Iced-tea/Iced-tea-non-petillants/The-noir-Peach-Hibiscus-PET/p/S2022021800015490094",
         "fetched_at": "2026-09-19T15:23:22.289614Z",
-        "ean": null
+        "ean": "7615200002919",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 13,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 3.1,
+          "sugars_100g": 3,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.03
+        },
+        "ingredients": "Eau, sucres (sucre, fructose), acidifiants (acide citrique, acide malique), extrait de thé noir (1,2g/l), jus de pêche à base de concentré (0,1%), correcteur d'acidité (E331), arômes, antioxydant (acide ascorbique), édulcorant (glycosides de stéviol).",
+        "allergens": [],
+        "additives": [
+          "en:e296",
+          "en:e300",
+          "en:e330",
+          "en:e331",
+          "en:e960"
+        ],
+        "labels": [
+          "en:rainforest-alliance",
+          "en:made-in-swiss",
+          "en:rainforest-alliance-black-tea",
+          "fr:Low-in-calories"
+        ],
+        "brands": "Lipton",
+        "categories": "Boissons édulcorées, Thés, Thés glacés saveur pêche, Boissons avec sucre ajouté"
       },
       {
         "name": "Thé vert | Mango Chamomille | PET",
@@ -12996,7 +13468,20 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h3b/hde/13866100457502.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Exclusivites-online/Vins-rouges/France-Bordeaux/Saint-Emilion-Grand-Cru-Caisse-en-Bois-2019-Rouge/p/S2020101900007960000",
         "fetched_at": "2026-09-19T15:23:22.290731Z",
-        "ean": null
+        "ean": "20133177",
+        "nutriscore": "NOT-APPLICABLE",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:not-advised-for-specific-people",
+          "en:green-dot",
+          "en:not-advised-for-pregnant-women",
+          "en:AOC St emilion grand cru"
+        ],
+        "brands": "St emilion grand cru",
+        "categories": "saint-émilion grand cru, en:French red wine"
       },
       {
         "name": "Cava | Raventós | Bio | Brut",
@@ -13217,7 +13702,21 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hd6/h47/13765385912350.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Hygiene-et-soins/Soins-des-cheveux/Coloration-des-cheveux/Permanent/Chatain-22-Coloration-pour-cheveux/p/S1973040400856840000",
         "fetched_at": "2026-09-19T15:23:22.293960Z",
-        "ean": null
+        "ean": "4960759903808",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {
+          "energy_kcal_100g": 150,
+          "fat_100g": 2,
+          "carbs_100g": 30,
+          "fiber_100g": 6,
+          "proteins_100g": 2
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": ""
       },
       {
         "name": "Gel désincrustant | Pure | Anti point noirs",
@@ -13364,7 +13863,24 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h6d/hc9/13733769445406.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Viande-poisson-et-produits-vegetariens/Preparations/Saucisses/Chipolata-Porc-Ferme-D-Ardenne/p/F2005083000518800000",
         "fetched_at": "2026-09-19T15:23:23.215330Z",
-        "ean": null
+        "ean": "2251880004130",
+        "nutriscore": "D",
+        "nutrition": {
+          "energy_kcal_100g": 258,
+          "fat_100g": 21,
+          "saturated_fat_100g": 8,
+          "carbs_100g": 0.5,
+          "sugars_100g": 0.5,
+          "fiber_100g": 0,
+          "proteins_100g": 17,
+          "salt_100g": 1.3
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Delhaize",
+        "categories": "Chipolatas"
       },
       {
         "name": "Saucisses | Porc Ferme | D'Ardenne",
@@ -13379,7 +13895,22 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h9a/h7b/13903826780190.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Viande-poisson-et-produits-vegetariens/Preparations/Saucisses/Saucisses-Porc-Ferme-D-Ardenne/p/F2005083000519000000",
         "fetched_at": "2026-09-19T15:23:23.215485Z",
-        "ean": null
+        "ean": "2251900005925",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {
+          "energy_kcal_100g": 257.919621749409,
+          "fat_100g": 20.9929078014184,
+          "saturated_fat_100g": 7.99054373522459,
+          "carbs_100g": 0,
+          "proteins_100g": 16.9976359338061,
+          "salt_100g": 1.22931442080378
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Delhaize",
+        "categories": ""
       },
       {
         "name": "Graines de grenade",
@@ -13394,7 +13925,27 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h8f/h99/13784689967134.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Fruits-et-legumes-frais/Fruits-frais/Fruit-snacks/Graines-de-grenade/p/F2023080800124190000",
         "fetched_at": "2026-09-19T15:23:23.215634Z",
-        "ean": null
+        "ean": "5400113669012",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {
+          "energy_kcal_100g": 55,
+          "fat_100g": 0.5,
+          "saturated_fat_100g": 0.1,
+          "carbs_100g": 12,
+          "sugars_100g": 12,
+          "proteins_100g": 1.3,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:nutriscore",
+          "en:green-dot",
+          "en:nutriscore-grade-a"
+        ],
+        "brands": "Delhaize",
+        "categories": ""
       },
       {
         "name": "Moulis-en-Médoc | 2020",
@@ -13454,7 +14005,26 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h05/hc0/13834333552670.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Vins-blancs/Exclusivites-en-ligne/France-Bordeaux/Pessac-Leognan-Grand-Cru-Classe-de-Graves-2023/p/S2024091200789990000",
         "fetched_at": "2026-09-19T15:23:23.216261Z",
-        "ean": null
+        "ean": "3192371115043",
+        "nutriscore": "NOT-APPLICABLE",
+        "nutrition": {
+          "energy_kcal_100g": 10,
+          "fat_100g": 1,
+          "saturated_fat_100g": 1,
+          "carbs_100g": 1,
+          "sugars_100g": 1,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "Château Olivier GRAND CRU CLASSÉ DE GRAVES PESSAC-LÉOGNAN APPELLATION PÉSSAC-LÉOGNAN CONTRÔLÉE Château Olivier est un des plus anciens Châteaux du Bordelais. La Seigneurie d'Olivier remonte au XIIeme siècle l'on retrouve dès cette époque les origines du château authentique et plein de charme situé aux portes de Bordealll Ce Cru Classé se distingue par la qualité exceptionnelle de ses vins où l'élégance, l'équilibre et la finesse dominent année après année, caractéristiques des plus grands vins de Bordeaut Château Olivier is one of the Oldest wine châteaux in the Bordeaux region. The Olivier seigneury dates back to the 12th century, and the origins of this authentic and enchanting château, located just ouside the gates of Bordeaux city, can be traced back to this period. This classified growth is reputed for wines of outstanding quality, in which elegance, balance and finesse, the hallmark characteristics of the greatest Bordeau! wines, come to the fore in every vintage. Château Olivier sarl - Jean-Jacques de Bethmann Léognan - 33850 - Gironde - France mail@chateau-olivier.com - www.chateau-olivier.c0m MIS EN BOUTEILLE AU CHÂTEAU Produit de France",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:not-advised-for-specific-people",
+          "en:not-advised-for-pregnant-women"
+        ],
+        "brands": "Grand Cru Classe Pessac Leognan",
+        "categories": "Pessac-Léognan"
       },
       {
         "name": "Culottes de nuit | Garçon | Absorbant | 8-13 ans",
@@ -13819,7 +14389,33 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hb8/hfc/13971449249822.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Tablettes-de-chocolat/Chocolat-blanc/Tablette-Chocolat-Blanc-Biscuit-Crunch/p/S2025052700866600000",
         "fetched_at": "2026-09-19T15:23:24.162375Z",
-        "ean": null
+        "ean": "3033710002665",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 555,
+          "fat_100g": 32.5,
+          "saturated_fat_100g": 19.5,
+          "carbs_100g": 61.6,
+          "sugars_100g": 57.4,
+          "fiber_100g": 0.5,
+          "proteins_100g": 3.7,
+          "salt_100g": 0.17
+        },
+        "ingredients": "Sucre, beurre de cacao¹, LAIT écrémé en poudre (8,9%), PETIT-LAIT en poudre, matière grasse de LAIT anhydre, sirop de glucose, émulsifiant (lécithines), arôme naturel de vanille. Peut contenir: FRUITS À COQUE. ¹Bilan massique certifié Rainforest Alliance. www.ra.org/fr",
+        "allergens": [
+          "en:milk"
+        ],
+        "additives": [
+          "en:e322"
+        ],
+        "labels": [
+          "en:no-gluten",
+          "en:rainforest-alliance",
+          "fr:triman"
+        ],
+        "brands": "Nestlé, Galak",
+        "categories": "Confiseries chocolatées, Chocolats blancs"
       },
       {
         "name": "Tapas | Sauce bravas",
@@ -14532,7 +15128,35 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hf8/h43/13765789384734.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Tablettes-de-chocolat/Chocolat-noir/Chocolat-99-cacao-Noir-absolu-Tablette/p/S2001040300062560000",
         "fetched_at": "2026-09-19T15:23:25.863262Z",
-        "ean": null
+        "ean": "3760121219756",
+        "nutriscore": "D",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 590,
+          "fat_100g": 53,
+          "saturated_fat_100g": 34,
+          "carbs_100g": 7,
+          "sugars_100g": 0.9,
+          "fiber_100g": 24,
+          "proteins_100g": 12,
+          "salt_100g": 0.01
+        },
+        "ingredients": "Pâte de cacao* 100% (République Dominicaine), cacao: 99% minimum.Ingrédient issu de l'agriculture biologique",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:fair-trade",
+          "en:organic",
+          "en:eu-organic",
+          "en:fairtrade-international",
+          "en:fr-bio-01",
+          "en:made-in-france",
+          "en:max-havelaar",
+          "fr:ab-agriculture-biologique",
+          "fr:triman"
+        ],
+        "brands": "Biocoop",
+        "categories": "Chocolats noirs"
       },
       {
         "name": "Chocolat | 70% cacao | Noir intense |Tablette",
@@ -14547,7 +15171,30 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h56/hc4/13298296291358.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Tablettes-de-chocolat/Chocolat-noir/Chocolat-70-cacao-Noir-intense-Tablette/p/S2008051500062360000",
         "fetched_at": "2026-09-19T15:23:25.863543Z",
-        "ean": null
+        "ean": "3046920022651",
+        "nutriscore": "E",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 566,
+          "fat_100g": 41,
+          "saturated_fat_100g": 24,
+          "carbs_100g": 35,
+          "sugars_100g": 30,
+          "fiber_100g": 12.2,
+          "proteins_100g": 9.5,
+          "salt_100g": 0.02
+        },
+        "ingredients": "Pâte de cacao, sucre, beurre de cacao, vanille.\r\n\r\nPeut contenir des fruits à coque, du lait, du soja et des graines de sésame.",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:no-preservatives",
+          "en:made-in-france",
+          "fr:triman",
+          "fr:Lindt & Sprüngli Cacao Farming Program"
+        ],
+        "brands": "Lindt, LINDT SPRUNGLI SAS",
+        "categories": "Produits fermentés, Chocolats noirs en tablette, Chocolat noir en tablette extra dégustation à 70% de cacao minimum"
       },
       {
         "name": "Chocolat | Orange noir intense",
@@ -14562,7 +15209,35 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h43/h6b/13730221424670.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Tablettes-de-chocolat/Chocolat-noir/Chocolat-Orange-noir-intense/p/S2008051500062430000",
         "fetched_at": "2026-09-19T15:23:25.863759Z",
-        "ean": null
+        "ean": "3046920022705",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 535,
+          "fat_100g": 32,
+          "saturated_fat_100g": 17,
+          "carbs_100g": 51,
+          "sugars_100g": 46,
+          "proteins_100g": 7,
+          "salt_100g": 0.08
+        },
+        "ingredients": "sucre, pâte de cacao, amandes 7%, jus d'orange à base de concentré 3,9%, beurre de cacao, beurre laitier concentré, sucre inverti, jus de citron à base de concentré, émulsifiant (lécithine de soja), ananas, gélifiant (pectine), arôme naturel d'orange,",
+        "allergens": [
+          "en:milk",
+          "en:nuts",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i",
+          "en:e440"
+        ],
+        "labels": [
+          "fr:triman",
+          "fr:L8ndt & Sprüngli Cocoa Farming Program"
+        ],
+        "brands": "Lindt",
+        "categories": "Chocolats aux amandes, Chocolats noirs en tablette, Chocolats noirs à l'orange"
       },
       {
         "name": "Crackers | Toasts | Biscottes | Bacon",
@@ -14607,7 +15282,33 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h0d/h3f/13729251983390.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Tablettes-de-chocolat/Chocolat-au-lait/Chocolat-Lait/p/S2023080900718780000",
         "fetched_at": "2026-09-19T15:23:25.864362Z",
-        "ean": null
+        "ean": "3046920010283",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 569,
+          "fat_100g": 37,
+          "saturated_fat_100g": 23,
+          "carbs_100g": 51,
+          "sugars_100g": 50,
+          "proteins_100g": 6.4,
+          "salt_100g": 0.28
+        },
+        "ingredients": "Sucre, beurre de cacao, poudre de lait, pâte de cacao, beurre laitier concentré, lactose, poudre de lait écrémé, extrait de malt d'orge, émulsifiant (lécithine de soja), arôme.\n\nPeut contenir des graines de sésame et des fruits à coque.\nCacao: 30% minimum.",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i"
+        ],
+        "labels": [
+          "fr:triman"
+        ],
+        "brands": "Lindt",
+        "categories": "Chocolats noirs, Chocolats au lait extra fin"
       },
       {
         "name": "Chocolat noir | Tablette | 100%",
@@ -14637,7 +15338,39 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hce/hcf/13643891114014.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Sauces/Ketchup/Ketchup/p/S2015013000014520001",
         "fetched_at": "2026-09-19T15:23:25.864735Z",
-        "ean": null
+        "ean": "8715700407760",
+        "nutriscore": "D",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 112,
+          "fat_100g": 0.1,
+          "saturated_fat_100g": 0.1,
+          "carbs_100g": 25.3,
+          "sugars_100g": 24.8,
+          "fiber_100g": 0,
+          "proteins_100g": 1.4,
+          "salt_100g": 1.7
+        },
+        "ingredients": "Tomates (180 g pour 100 g de Ketchup), sucre, vinaigre, sel, épices (contient céleri), poudre d'oignon, poudre d'ail,",
+        "allergens": [
+          "en:celery"
+        ],
+        "additives": [],
+        "labels": [
+          "en:organic",
+          "en:eu-agriculture",
+          "en:eu-organic",
+          "en:non-eu-agriculture",
+          "de:eg-öko-verordnung",
+          "en:eu-non-eu-agriculture",
+          "en:green-dot",
+          "en:ht-bio-154",
+          "en:nl-bio-01",
+          "fr:ab-agriculture-biologique",
+          "fr:triman"
+        ],
+        "brands": "Heinz, H.J. Heinz B.V.",
+        "categories": "Ketchup"
       },
       {
         "name": "Curry ketchup",
@@ -14652,7 +15385,26 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/heb/h7b/13679981461534.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Sauces/Ketchup/Curry-ketchup/p/S2026020400931870000",
         "fetched_at": "2026-09-19T15:23:25.864817Z",
-        "ean": null
+        "ean": "8715700209241",
+        "nutriscore": "E",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 108,
+          "fat_100g": 0.2,
+          "saturated_fat_100g": 0.1,
+          "carbs_100g": 23.6,
+          "sugars_100g": 22.7,
+          "proteins_100g": 1.2,
+          "salt_100g": 3.6
+        },
+        "ingredients": "Tomates (148 g pour 100 g de Tomato Ketchup), vinaigre, sucre, sel, épices, arôme (contient du céleri).",
+        "allergens": [
+          "en:celery"
+        ],
+        "additives": [],
+        "labels": [],
+        "brands": "Heinz",
+        "categories": "Curryketchup, en:Groceries"
       },
       {
         "name": "Marmelade | Orange",
@@ -14667,7 +15419,31 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h5f/hc6/13765740593182.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Petit-dejeuner/Tartinables/Confitures/Marmelade-Orange/p/S2002070800121350000",
         "fetched_at": "2026-09-19T15:23:25.864919Z",
-        "ean": null
+        "ean": "0637793002500",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 269,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 67,
+          "sugars_100g": 66.7,
+          "fiber_100g": 0,
+          "proteins_100g": 0.3,
+          "salt_100g": 0
+        },
+        "ingredients": "Sucre, oranges de Séville, jus d'orange (à partir de concentré), jus de citron (à partir de concentré), agen gélifiant : pectine de fruit, régulateur d'acidité : acide citrique, huile d'orange.",
+        "allergens": [],
+        "additives": [
+          "en:e330",
+          "en:e440"
+        ],
+        "labels": [
+          "en:no-gmos",
+          "en:non-gmo-project"
+        ],
+        "brands": "Mackays, Mackdays",
+        "categories": "Bigarade orange marmelades, Orange jams"
       },
       {
         "name": "Sauce | Tomates | Piment",
@@ -14697,7 +15473,25 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h60/had/12706286796830.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Preparations-desserts/Mix-desserts/Mix-Biscuits-muffins-ou-moelleux/p/S2024070500778090000",
         "fetched_at": "2026-09-19T15:23:25.865099Z",
-        "ean": null
+        "ean": "0072486002205",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [
+          "en:gluten"
+        ],
+        "additives": [
+          "en:e341",
+          "en:e341i",
+          "en:e450",
+          "en:e450i",
+          "en:e500",
+          "en:e500ii"
+        ],
+        "labels": [],
+        "brands": "Jiffy",
+        "categories": "Cakes, Muffins mix"
       },
       {
         "name": "Pâte tandoori",
@@ -14712,7 +15506,31 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hb8/h64/13555178012702.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Cuisine-du-monde/Asiatique/Inde/Pate-tandoori/p/S2012121900110240000",
         "fetched_at": "2026-09-19T15:23:25.865197Z",
-        "ean": null
+        "ean": "5011308700351",
+        "nutriscore": "E",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 99,
+          "fat_100g": 2.6,
+          "saturated_fat_100g": 0.3,
+          "carbs_100g": 10.1,
+          "sugars_100g": 4.2,
+          "proteins_100g": 3.5,
+          "salt_100g": 6
+        },
+        "ingredients": "eau, purée de gingembre (19%), épices moulues [coriandre (3.5%, paprika, épices], tamarin, sel, ail en poudre (3.5%), acide acétique, acide lactique.",
+        "allergens": [],
+        "additives": [
+          "en:e260",
+          "en:e270"
+        ],
+        "labels": [
+          "en:no-gluten",
+          "en:no-colorings",
+          "en:green-dot"
+        ],
+        "brands": "Patak's",
+        "categories": "en:Meal sauces, Curry pastas, en:groceries"
       },
       {
         "name": "Café | Monoarabica Guatemala | Grains",
@@ -14742,7 +15560,28 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hae/h54/13718446931998.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Tablettes-de-chocolat/Chocolat-au-lait/Tablette-Chocolat-au-Lait-coeur-fondant/p/S2024041100762470000",
         "fetched_at": "2026-09-19T15:23:25.865580Z",
-        "ean": null
+        "ean": "3046920029759",
+        "nutriscore": "E",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 592,
+          "fat_100g": 55,
+          "saturated_fat_100g": 30,
+          "carbs_100g": 14,
+          "sugars_100g": 7,
+          "fiber_100g": 0,
+          "proteins_100g": 10,
+          "salt_100g": 0.03
+        },
+        "ingredients": "Pâte de cacao, beurre de cacao, cacao maigre, sucre, vanille.",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:green-dot",
+          "fr:triman"
+        ],
+        "brands": "Lindt, Lindt & Sprüngli",
+        "categories": "Chocolats noirs en tablette, Chocolats noirs extra fin, en:Botanas, en:Cacao y sus productos, en:Chocolates negros, en:Chocolates negros extra finos, en:Snacks dulces"
       },
       {
         "name": "Culotte | Creme | Plus | Large | 8st",
@@ -14832,7 +15671,23 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hb3/h0d/13971455475742.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Biscuits/Biscuits-secs/Chocolat/Biscuits-Enrobe-Gout-chocolat-blanc/p/S2015021900053980000",
         "fetched_at": "2026-09-19T15:23:25.866139Z",
-        "ean": null
+        "ean": "7622210707130",
+        "nutriscore": "E",
+        "nutrition": {
+          "energy_kcal_100g": 510,
+          "fat_100g": 26,
+          "saturated_fat_100g": 14.5,
+          "carbs_100g": 66,
+          "sugars_100g": 49,
+          "proteins_100g": 4.5,
+          "salt_100g": 0.57
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Oreo",
+        "categories": "Biscuits cacaotés fourrés goût vanille"
       },
       {
         "name": "Snickers | Creamy Peanut Butter | 5 Pieces",
@@ -14847,7 +15702,37 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hd1/h37/13718408200222.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Snacks-chocolates/Snickers-Creamy-Peanut-Butter-5-Pieces/p/S2021101800582160000",
         "fetched_at": "2026-09-19T15:23:25.866233Z",
-        "ean": null
+        "ean": "5900951310591",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 536,
+          "fat_100g": 31,
+          "saturated_fat_100g": 11,
+          "carbs_100g": 53,
+          "sugars_100g": 45,
+          "fiber_100g": 4.38356164383562,
+          "proteins_100g": 11,
+          "salt_100g": 0.57
+        },
+        "ingredients": "Cacahuètes, sucre, sirop de glucose, lait 0.11 g (2%) écrémé en poudre, beurre de cacao, sucre inverti, pâte de cacao, dextrose, lactose (lait), huile de tournesol, perméat de lactosérum (lait), matière grasse de palme, matière grasse palmiste, humectants (glycérol, sorbitol), matière grasse du lait, matière grasse de soja hydrogénée, sel, émulsifiant (lécithine de soja), antioxydant (E306). Peut contenir: ceuf, fruits à coque).",
+        "allergens": [
+          "en:milk",
+          "en:peanuts",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e306",
+          "en:e322",
+          "en:e322i",
+          "en:e420",
+          "en:e422"
+        ],
+        "labels": [
+          "fr:triman"
+        ],
+        "brands": "Mars Incorporated, Snickers",
+        "categories": "Barres chocolatées"
       },
       {
         "name": "Cookies Sensations | Oreo",
@@ -14862,7 +15747,34 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h38/h6a/13886988156958.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Biscuits/Biscuits-secs/Chocolat/Cookies-Sensations-Oreo/p/S2023030200687030000",
         "fetched_at": "2026-09-19T15:23:25.866321Z",
-        "ean": null
+        "ean": "7622201401900",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 520,
+          "fat_100g": 29,
+          "saturated_fat_100g": 14,
+          "carbs_100g": 60,
+          "sugars_100g": 39,
+          "fiber_100g": 2,
+          "proteins_100g": 4.2,
+          "salt_100g": 0.55
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e450",
+          "en:e500",
+          "en:e503"
+        ],
+        "labels": [],
+        "brands": "Milka, Mondelez",
+        "categories": "Chocolate biscuits, Filled drop cookies"
       },
       {
         "name": "Culottes | Fuites Urinaires | Normal | M",
@@ -15102,7 +16014,32 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hb0/h60/13728867450910.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Chocolats/Pralines-et-chocolats-a-offrir/Chocolat-Pralines-Assortiment/p/S2025030300828020000",
         "fetched_at": "2026-09-19T15:23:26.809429Z",
-        "ean": null
+        "ean": "8003340098487",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 569,
+          "fat_100g": 38,
+          "saturated_fat_100g": 19,
+          "carbs_100g": 48,
+          "sugars_100g": 46,
+          "proteins_100g": 6.9,
+          "salt_100g": 0.16
+        },
+        "ingredients": "sucre, beurre de cacao, pâte de chocolat, matière grasse végétale (tournesol, carthame, noix de coco), poudre de lait, poudre de lait écrémé, noisettes, cacao maigre, lactose, beurre laitier concentré, huile végétale (tournesol, carthame, riz), émulsifiant (lécithine de soja), pâte d'amande, extrait de malt d'orge, arômes.\r\nPeut contenir d'autres fruits à coque.",
+        "allergens": [
+          "en:gluten",
+          "en:milk",
+          "en:nuts",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i"
+        ],
+        "labels": [],
+        "brands": "Lindt, Lindt & Sprüngli",
+        "categories": "Œufs de Pâques, Œufs en chocolat fourrés, Bonbons de chocolat au lait"
       },
       {
         "name": "Bonbons | Balls | Acidulé",
@@ -15117,7 +16054,29 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h42/h28/13852744482846.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Confiserie/Bonbons/Bonbons-acidules/Bonbons-Balls-Acidule/p/S2026050800962680000",
         "fetched_at": "2026-09-19T15:23:26.809496Z",
-        "ean": null
+        "ean": "3116740034261",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 376,
+          "fat_100g": 0.1,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 96,
+          "sugars_100g": 60,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.01
+        },
+        "ingredients": "Sirop de glucose, Sucre, Agent de charge (Erythritol), Dextrose, Acidifiant (Acide citrique), Arôme, Colorant (E100).",
+        "allergens": [],
+        "additives": [
+          "en:e100",
+          "en:e330",
+          "en:e968"
+        ],
+        "labels": [],
+        "brands": "Lutti",
+        "categories": "Bonbons, Bonbons acidulés"
       },
       {
         "name": "Biscuits | Pocket | Vanille | 10 Sachets",
@@ -15147,7 +16106,36 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h1d/h9a/13959938146334.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-sucree/Confiserie/Saisonnier/Bonbons-Vampire-Halloween/p/S2026012300926780000",
         "fetched_at": "2026-09-19T15:23:26.809636Z",
-        "ean": null
+        "ean": "3116740035046",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 347,
+          "fat_100g": 0.3,
+          "saturated_fat_100g": 0.2,
+          "carbs_100g": 86,
+          "sugars_100g": 58,
+          "proteins_100g": 0.1,
+          "salt_100g": 0.22
+        },
+        "ingredients": "Sucre, sirop de glucose, amidon de _blé_, eau, amidons modifiés (mais, pomme de terre), acidifiants (acide lactique, acide malique), correcteur d’acidité (carbonate acide de sodium), arôme, colorant (carmin).",
+        "allergens": [
+          "en:gluten"
+        ],
+        "additives": [
+          "en:e120",
+          "en:e14xx",
+          "en:e270",
+          "en:e296",
+          "en:e500",
+          "en:e500ii"
+        ],
+        "labels": [
+          "en:green-dot",
+          "en:limited-edition"
+        ],
+        "brands": "Lutti",
+        "categories": "Bonbons gélifiés, Aliments et boissons d'Halloween"
       },
       {
         "name": "Curry ketchup hot",
@@ -15252,7 +16240,44 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/heb/h2b/12944688185374.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Soupes/Soupes-en-conserve-grand-format/Liebig/Soupe-Minestrone/p/S2007071700146120000",
         "fetched_at": "2026-09-19T15:23:26.810143Z",
-        "ean": null
+        "ean": "3036815425070",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 47,
+          "fat_100g": 2,
+          "saturated_fat_100g": 0.2,
+          "carbs_100g": 5.5,
+          "sugars_100g": 1.5,
+          "fiber_100g": 1.3,
+          "proteins_100g": 1.1,
+          "salt_100g": 0.67
+        },
+        "ingredients": "Eau, carotte 10%, purée de tomates à base de concentré 7,6%, oignon, oignon réhydraté, navet, haricot rouge 3,1%, haricot vert 3,1%, petit pois 2,6%, pâtes cuites 2,5% (semoule de blé (gluten), blanc d'œuf), amidons de maïs, céleri-rave, poivron rouge 1,1%, huile de colza, huile d'olive vierge extra, sel, basilic, arômes naturels, ail, arômes naturels de poivre et de fenouil,",
+        "allergens": [
+          "en:celery",
+          "en:eggs",
+          "en:gluten"
+        ],
+        "additives": [],
+        "labels": [
+          "en:no-preservatives",
+          "en:non-eu-agriculture",
+          "en:source-of-fibre",
+          "en:100-natural",
+          "en:cooked-in-france",
+          "en:eu-agriculture",
+          "en:eu-non-eu-agriculture",
+          "en:fsc",
+          "en:fsc-mix",
+          "en:made-in-france",
+          "en:no-colorings",
+          "en:no-dyes-or-preservatives",
+          "en:no-flavour-enhancer",
+          "fr:triman"
+        ],
+        "brands": "Liebig",
+        "categories": "Aliments et boissons à base de légumes, Plats préparés d'origine végétale, Soupe minestrone à réchauffer, Soupe aux légumes variés à réchauffer"
       },
       {
         "name": "Soupe | Cerfeuil",
@@ -15428,7 +16453,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hea/hb7/13781632745502.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Bulles/Autres-effervescents/Rose/Mediterraneo-Rose-Brut/p/S2020110900470520000",
         "fetched_at": "2026-09-19T15:23:27.750599Z",
-        "ean": null
+        "ean": "8437023708491",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": "Getränke"
       },
       {
         "name": "Bloc WC | Gel | Ocean Artic",
@@ -15473,7 +16506,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hcf/h0d/13856077217822.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Vins-roses/Espagne/Rosado/p/S2022020300471140096",
         "fetched_at": "2026-09-19T15:23:27.750974Z",
-        "ean": null
+        "ean": "8421293021008",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Viñas",
+        "categories": ""
       },
       {
         "name": "Pink | It | Up | Rtd | 5%Alc",
@@ -15488,7 +16529,25 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h39/hf3/13153026736158.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Bieres-Alcools-and-Non-Alcoolises/Aperitifs-and-Spiritueux/Aperitifs/Pink-It-Up-Rtd-5-Alc/p/S2022042800625080000",
         "fetched_at": "2026-09-19T15:23:27.751063Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "UNKNOWN",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 58
+        },
+        "ingredients": "Eau, Vodka 12,7% (Distillat de grain, Eau), Sucre, Dioxyde de carbone, Acide : Acide citrique (E330), Arôme naturel de fraise, de citron et de citron vert, Régulateur d'acidité : Citrate de sodium (E331), Conservateurs : Sorbate de potassium (E202), Benzoate de sodium (E211), Colorants: Rouge carmoisine (E122)",
+        "allergens": [],
+        "additives": [
+          "en:e122",
+          "en:e202",
+          "en:e211",
+          "en:e290",
+          "en:e330",
+          "en:e331"
+        ],
+        "labels": [],
+        "brands": "ERISTOFF",
+        "categories": "Boissons, nl:Aperitief"
       },
       {
         "name": "Rioja | Graciano",
@@ -15683,7 +16742,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hf8/he1/13617458511902.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Entretien-et-menage/Lessives/Lavage/Dosettes/Pods-Lenor-Fraicheur-de-coton/p/S2026011900925100000",
         "fetched_at": "2026-09-19T15:23:27.752872Z",
-        "ean": null
+        "ean": "8006540926352",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Lenor",
+        "categories": ""
       },
       {
         "name": "All In One | Caps. lave-vais.| Citron",
@@ -15698,7 +16765,18 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/hc6/h63/13617389568030.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Entretien-et-menage/Cuisine/Lave-vaisselle/All-In-One-Caps-lave-vais-Citron/p/S2026011500924470000",
         "fetched_at": "2026-09-19T15:23:27.753060Z",
-        "ean": null
+        "ean": "8809416470016",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:fsc",
+          "en:fsc-mix"
+        ],
+        "brands": "CosRx",
+        "categories": ""
       },
       {
         "name": "Pods | + Lenor | Ambre & Orchidee",
@@ -15728,7 +16806,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h5b/hbc/13620855504926.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Entretien-et-menage/Lessives/Lavage/Dosettes/Pods-Lenor-Envolee-d-air/p/S2026011900925140000",
         "fetched_at": "2026-09-19T15:23:27.753466Z",
-        "ean": null
+        "ean": "8006540926352",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Lenor",
+        "categories": ""
       },
       {
         "name": "Châtain foncé - 24 | Coloration pour cheveux",
@@ -15788,7 +16874,15 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h9c/h51/13765925371934.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Bieres-Alcools-and-Non-Alcoolises/Aperitifs-and-Spiritueux/Aperitifs/Eristoff-Red-Flash-5-alc-/p/S2004051200259490000",
         "fetched_at": "2026-09-19T15:23:28.613594Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Eristoff",
+        "categories": ""
       },
       {
         "name": "Cava | Nature | Bio | Brut Nature",
@@ -15803,7 +16897,23 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h5b/h92/13767372996638.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Bulles/Cava/Blanc/Cava-Nature-Bio-Brut-Nature/p/S2011092100240540000",
         "fetched_at": "2026-09-19T15:23:28.613767Z",
-        "ean": null
+        "ean": "8411277063049",
+        "nutriscore": "NOT-APPLICABLE",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [
+          "en:sulphur-dioxide-and-sulphites"
+        ],
+        "additives": [],
+        "labels": [
+          "en:not-advised-for-specific-people",
+          "en:with-sulfites",
+          "en:contains-alcohol",
+          "en:green-dot",
+          "en:not-advised-for-pregnant-women"
+        ],
+        "brands": "Jaume Serra",
+        "categories": "Vinos espumosos, Cava"
       },
       {
         "name": "Cola | Zero | Lemon | Soft drink | Pet",
@@ -15818,7 +16928,32 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h29/h73/12799805849630.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Boissons-froides-et-chaudes/Sodas/Colas/Cola-zero/Cola-Zero-Lemon-Soft-drink-Pet/p/S2020071500447570099",
         "fetched_at": "2026-09-19T15:23:28.614086Z",
-        "ean": null
+        "ean": "4062139025398",
+        "nutriscore": "C",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 0.5,
+          "fat_100g": 0,
+          "carbs_100g": 0,
+          "sugars_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0.04
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [
+          "en:e150d",
+          "en:e211",
+          "en:e290",
+          "en:e330",
+          "en:e331",
+          "en:e338",
+          "en:e950",
+          "en:e951"
+        ],
+        "labels": [],
+        "brands": "Pepsi",
+        "categories": "Kalorienarme Colas, Gezuckerte Getränke"
       },
       {
         "name": "Hola | Bio",
@@ -15833,7 +16968,32 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/ha3/hfc/13462942351390.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Vins-roses/Espagne/Hola-Bio/p/S2021032200529120000",
         "fetched_at": "2026-09-19T15:23:28.614219Z",
-        "ean": null
+        "ean": "3800232984423",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {
+          "energy_kcal_100g": 358,
+          "fat_100g": 10.1,
+          "saturated_fat_100g": 3.6,
+          "carbs_100g": 64.7,
+          "sugars_100g": 38.5,
+          "proteins_100g": 7.9,
+          "salt_100g": 0.02
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:vegetarian",
+          "en:no-gluten",
+          "en:organic",
+          "en:eu-agriculture",
+          "en:non-eu-agriculture",
+          "en:vegan",
+          "en:eu-non-eu-agriculture",
+          "en:the-vegan-society"
+        ],
+        "brands": "Leya",
+        "categories": ""
       },
       {
         "name": "Croustis | Carotte | 10M | Bio",
@@ -15893,7 +17053,23 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h33/ha9/13785000738846.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Vins-and-bulles/Bulles/Autres-effervescents/Blanc/Mediterraneo-Gran-Cuvee-Bio-Brut/p/S2024041600763380000",
         "fetched_at": "2026-09-19T15:23:28.614859Z",
-        "ean": null
+        "ean": "8032615270945",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {
+          "energy_kcal_100g": 59,
+          "fat_100g": 1.8,
+          "saturated_fat_100g": 0.2,
+          "carbs_100g": 7.1,
+          "sugars_100g": 6.6,
+          "proteins_100g": 2,
+          "salt_100g": 3.4
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "Gran Cucina",
+        "categories": ""
       },
       {
         "name": "Etoiles au Fromage | 7M | Bio",
@@ -15908,7 +17084,39 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/ha2/h1a/13735959494686.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Bebe/Nourriture-pour-bebes/En-cas/Biscuits-pour-bebes/Etoiles-au-Fromage-7M-Bio/p/S2024040500761440000",
         "fetched_at": "2026-09-19T15:23:28.615014Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "C",
+        "nova_group": 3,
+        "nutrition": {
+          "energy_kcal_100g": 416,
+          "fat_100g": 12,
+          "saturated_fat_100g": 2.5,
+          "carbs_100g": 65,
+          "sugars_100g": 18,
+          "fiber_100g": 5.6,
+          "proteins_100g": 9.2,
+          "salt_100g": 0.2
+        },
+        "ingredients": "• Flocons d'avoine complète 39,2% Riz soufflé 13,8% (farine de riz-) Sucre de canne non raffiné Céréales extrudées 10% (farine de ble complet 3,4%, farine d'avoine complète 2,4%, farine de mais, Sucre de canne non raffiné, miel-) Huile de tournesol oléique Flocons de ble complet grillés 5% Pépites de chocolat au lait 4% (sucre de canne non raffiné*, beurre de cacao*, poudre de lait entier, pâte de cacao) Farine d'avoine Sirop de riz , Poudre de cacao maigre Antioxydant extrait riche en tocophérols",
+        "allergens": [
+          "en:gluten",
+          "en:milk"
+        ],
+        "additives": [],
+        "labels": [
+          "en:organic",
+          "en:eu-organic",
+          "en:no-palm-oil",
+          "en:source-of-fibre",
+          "en:certified-b-corporation",
+          "en:high-fibres",
+          "en:made-in-germany",
+          "en:no-flavors",
+          "fr:ab-agriculture-biologique",
+          "fr:Aux céréales complètes"
+        ],
+        "brands": "Bjorg",
+        "categories": "Céréales au chocolat, Céréales extrudées"
       },
       {
         "name": "Tawny | Porto | 20% vol.alc.",
@@ -15968,7 +17176,28 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h96/h55/12795556790302.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Soupes/Soupes-instantanees/Royco/Soupe-Tomate/p/S2012032600143980001",
         "fetched_at": "2026-09-19T15:23:28.615777Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "UNKNOWN",
+        "nutrition": {
+          "energy_kcal_100g": 62,
+          "fat_100g": 2.9,
+          "saturated_fat_100g": 1.3,
+          "carbs_100g": 8.1,
+          "sugars_100g": 1.5,
+          "fiber_100g": 0.4,
+          "proteins_100g": 0.7,
+          "salt_100g": 0.61
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:no-preservatives",
+          "en:made-in-france",
+          "en:no-colorings"
+        ],
+        "brands": "Royco",
+        "categories": "Soupes de légumes, Soupes déshydratées"
       },
       {
         "name": "Soupe | Tomates-Légumes-Vermicelli",
@@ -16013,7 +17242,34 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h7a/h16/13727569313822.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Soupes/Soupes-instantanees/Royco/Soupe-Tomates-Croutons-Supreme/p/S2012032700143990001",
         "fetched_at": "2026-09-19T15:23:28.616736Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "UNKNOWN",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 454.106280193237,
+          "fat_100g": 20.2898550724638,
+          "saturated_fat_100g": 13.0434782608696,
+          "carbs_100g": 57.9710144927536,
+          "sugars_100g": 30.4347826086957,
+          "proteins_100g": 7.2463768115942,
+          "salt_100g": 9.5048309178744
+        },
+        "ingredients": "du potage après préparation avec 200 ml decau: eau, tomate 440,6, croûtons (farine de blé, graisse de palme. sel. levure. antioxydant: extrait de romarin), dextrose, amidon de pomme de terre, sel, sirop de glucose, graisse de palme, graisse de coco totalement hydrogénée, persil, légumes (betterave rouge, poivron), exhausteurs de goùt: E621, E627et E631, arômes (contient du céleri), extrait de viande de bœuf, protéines de lait, stabilisant: E340, émulsifiant: E471, colorant: carotènes. Peut contenir des traces de soja.",
+        "allergens": [
+          "en:celery",
+          "en:gluten",
+          "en:milk"
+        ],
+        "additives": [
+          "en:e160",
+          "en:e340",
+          "en:e392",
+          "en:e471",
+          "en:e621"
+        ],
+        "labels": [],
+        "brands": "Royco",
+        "categories": "Soupe à la tomate déshydratée"
       },
       {
         "name": "Soupe | Suprême de légumes | Crunchy",
@@ -16028,7 +17284,37 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h45/h88/13767760216094.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Soupes/Soupes-instantanees/Royco/Soupe-Supreme-de-legumes-Crunchy/p/S2012032700144020001",
         "fetched_at": "2026-09-19T15:23:28.617027Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "UNKNOWN",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 57,
+          "fat_100g": 2.8,
+          "saturated_fat_100g": 1.5,
+          "carbs_100g": 7.6,
+          "sugars_100g": 2.1,
+          "fiber_100g": 0,
+          "proteins_100g": 0.4,
+          "salt_100g": 0.7
+        },
+        "ingredients": "Amidon de pomme de terre, sirop de glucose, croûtons 15% (farine de blé (gluten), huile de palme, sel, levure, antioxydant: extrait de romarin), huile de palme, sucre, sel, beurre en poudre, arômes (contient lait), potiron 2,2%, carotte, oignon, substitut de sel: chlorure de potassium, poireau, tomate, émulsifiant: E472e, acidifiants: acide citrique et tartrique, stabilisants: E340 et E451, betterave rouge, épice, ail, dextrose, persil, extrait de levure, protéine de lait, céleri, Contient 8,0% de légumes,",
+        "allergens": [
+          "en:celery",
+          "en:gluten",
+          "en:milk"
+        ],
+        "additives": [
+          "en:e330",
+          "en:e340",
+          "en:e392",
+          "en:e451",
+          "en:e472e"
+        ],
+        "labels": [
+          "en:green-dot"
+        ],
+        "brands": "Royco",
+        "categories": "Soupes de légumes, Soupes déshydratées"
       },
       {
         "name": "Soupe | St Germain | Croutons",
@@ -16058,7 +17344,36 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h9a/hc8/13767767621662.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Soupes/Soupes-instantanees/Royco/Soupe-Volaille-Crunchy/p/S2012032700144890001",
         "fetched_at": "2026-09-19T15:23:28.617797Z",
-        "ean": null
+        "ean": null,
+        "nutriscore": "UNKNOWN",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 51,
+          "fat_100g": 2.5,
+          "saturated_fat_100g": 1.2,
+          "carbs_100g": 6.7,
+          "sugars_100g": 0.7,
+          "proteins_100g": 0.5,
+          "salt_100g": 0.87
+        },
+        "ingredients": "Sirop de glucose, amidon de pomme de terre, huile de palme, croûtons 8,5% (farine de blé (gluten), huile de palme, sel, levure, antioxydant: extrait de romarin), arômes (contient lait, céleri et orge (gluten)), sel, poireau 2,0%, protéine de lait, graisse de poulet 1,1% (antioxydant: extrait de romarin), substitut de sel: chlorure de potassium, épaississant: gomme de xanthane, stabilisants: E340 et E451, extrait de levure, persil, épice, extrait de viande de poulet 0,04%. Contient 2,0% de légumes.",
+        "allergens": [
+          "en:celery",
+          "en:gluten",
+          "en:milk"
+        ],
+        "additives": [
+          "en:e340",
+          "en:e392",
+          "en:e415",
+          "en:e451"
+        ],
+        "labels": [
+          "en:no-additives",
+          "en:no-flavour-enhancer"
+        ],
+        "brands": "Royco",
+        "categories": "Soupes déshydratées, Soupes à la volaille"
       },
       {
         "name": "Soupe | Suprême Tomates",
@@ -16073,7 +17388,29 @@
         "image_url": "https://www.delhaize.be/medias/sys_master/products/h7e/h3a/13936449224734.jpg",
         "source_url": "https://www.delhaize.be/fr/shop/Epicerie-salee/Soupes/Soupes-en-conserve-grand-format/Liebig/Soupe-Supreme-Tomates/p/S2014090100146150000",
         "fetched_at": "2026-09-19T15:23:28.618225Z",
-        "ean": null
+        "ean": "5414972110172",
+        "nutriscore": "B",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 34,
+          "fat_100g": 1.2,
+          "saturated_fat_100g": 0.7,
+          "carbs_100g": 4.5,
+          "sugars_100g": 2.2,
+          "proteins_100g": 0.9,
+          "salt_100g": 0.79
+        },
+        "ingredients": "Légumes 54% (tomate 45%, oignon, carotte, céleri-rave), eau, crème fraîche 3,6%, amidon modifié, pomme de terre, sel, arômes (contient du lait), sucre, piment de Cayenne, Peut contenir des traces de blé et d'oeuf,",
+        "allergens": [
+          "en:celery",
+          "en:milk"
+        ],
+        "additives": [
+          "en:e14xx"
+        ],
+        "labels": [],
+        "brands": "liebig",
+        "categories": "soupes de tomate"
       },
       {
         "name": "Genièvre | Grain | 30% ALC.",
@@ -23895,7 +25232,15 @@
         "image_url": "https://img.offers-cdn.net/assets/uploads/offers/be/67445556/action-mini-matters-houten-tekenezel-aanbieding-thumbWebP.webp",
         "source_url": "https://www.promotiez.be/winkels/action/promoties/mini-matters-houten-tekenezel-promotie-67445556/",
         "fetched_at": "2026-09-19T15:23:44.585794Z",
-        "ean": null
+        "ean": "8718964097920",
+        "nutriscore": "UNKNOWN",
+        "nutrition": {},
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [],
+        "brands": "",
+        "categories": ""
       },
       {
         "name": "Palazzo café",
@@ -23910,7 +25255,26 @@
         "image_url": "https://img.offers-cdn.net/assets/uploads/offers/be/67444895/action-palazzo-koffie-aanbieding-thumbWebP.webp",
         "source_url": "https://www.promotiez.be/winkels/action/promoties/palazzo-koffie-promotie-67444895/",
         "fetched_at": "2026-09-19T15:23:45.596324Z",
-        "ean": null
+        "ean": "8710435137432",
+        "nutriscore": "B",
+        "nutrition": {
+          "energy_kcal_100g": 1,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 0.3,
+          "sugars_100g": 0,
+          "proteins_100g": 0.2,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [],
+        "additives": [],
+        "labels": [
+          "en:sustainable-farming",
+          "en:utz-certified"
+        ],
+        "brands": "Palazzo",
+        "categories": "Grains de café"
       },
       {
         "name": "Werckmann jeu de cliquets et douilles",
@@ -23940,7 +25304,43 @@
         "image_url": "https://img.offers-cdn.net/assets/uploads/offers/be/67445529/action-max-more-driekleurige-contourpoeder-aanbieding-thumbWebP.webp",
         "source_url": "https://www.promotiez.be/winkels/action/promoties/max-more-driekleurige-contourpoeder-promotie-67445529/",
         "fetched_at": "2026-09-19T15:23:47.615432Z",
-        "ean": null
+        "ean": "20177201",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 552,
+          "fat_100g": 39.3,
+          "saturated_fat_100g": 23.6,
+          "carbs_100g": 36.2,
+          "sugars_100g": 29,
+          "proteins_100g": 8,
+          "salt_100g": 0.03
+        },
+        "ingredients": "Pâte de cacao, sucre, beurre de cacao, sirop de glucose-fructose, farine de riz 0,5%, purée de framboise concentrée, émulsifiant : lécithines (soja), graisse de palme, arôme naturel, amidon de riz, épaississant : pectines, acidifiant : acide citrique, extrait de vanille, jus concentré de carotte noire à propriété colorante. Traces éventuelles de fruits à coque et de lait",
+        "allergens": [
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i",
+          "en:e330",
+          "en:e440"
+        ],
+        "labels": [
+          "en:fair-trade",
+          "en:vegetarian",
+          "en:fairtrade-international",
+          "en:fsc",
+          "en:max-havelaar",
+          "en:nutriscore",
+          "en:vegan",
+          "en:fairtrade-cocoa",
+          "en:fsc-mix",
+          "en:green-dot",
+          "fr:triman"
+        ],
+        "brands": "J. D. GROSS",
+        "categories": "en:Dark chocolate bar with more than 70% cocoa, en:Dark chocolates with raspberries"
       },
       {
         "name": "Home vision matte Peinture murale",
@@ -24285,7 +25685,33 @@
         "image_url": "https://img.offers-cdn.net/assets/uploads/offers/be/67445025/action-furry-friends-hondenkauwsticks-aanbieding-thumbWebP.webp",
         "source_url": "https://www.promotiez.be/winkels/action/promoties/furry-friends-hondenkauwsticks-promotie-67445025/",
         "fetched_at": "2026-09-19T15:24:12.991575Z",
-        "ean": null
+        "ean": "93685740",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 535,
+          "fat_100g": 30.4,
+          "saturated_fat_100g": 18.5,
+          "carbs_100g": 57.3,
+          "sugars_100g": 55.9,
+          "proteins_100g": 7.6,
+          "salt_100g": 0.205
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:milk",
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i",
+          "en:e476"
+        ],
+        "labels": [
+          "en:australian-made"
+        ],
+        "brands": "Cadbury",
+        "categories": "Milk chocolates"
       },
       {
         "name": "So slime diy shaker slime",
@@ -24330,7 +25756,38 @@
         "image_url": "https://img.offers-cdn.net/assets/uploads/offers/be/67445128/action-cokoc-peelable-gummies-aanbieding-thumbWebP.webp",
         "source_url": "https://www.promotiez.be/winkels/action/promoties/cokoc-peelable-gummies-mixed-soda-promotie-67445128/",
         "fetched_at": "2026-09-19T15:24:16.034997Z",
-        "ean": null
+        "ean": "6972007903056",
+        "nutriscore": "D",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 347,
+          "fat_100g": 0,
+          "saturated_fat_100g": 0,
+          "carbs_100g": 0,
+          "sugars_100g": 50,
+          "fiber_100g": 0,
+          "proteins_100g": 0,
+          "salt_100g": 0
+        },
+        "ingredients": "",
+        "allergens": [
+          "en:apple",
+          "en:beef",
+          "en:gelatin"
+        ],
+        "additives": [
+          "en:e102",
+          "en:e133",
+          "en:e296",
+          "en:e330",
+          "en:e406",
+          "en:e407",
+          "en:e420",
+          "en:e428"
+        ],
+        "labels": [],
+        "brands": "Cokoc",
+        "categories": "Gummi candies"
       },
       {
         "name": "Peluche halloween",
@@ -24630,7 +26087,43 @@
         "image_url": "https://img.offers-cdn.net/assets/uploads/offers/be/67445127/action-max-more-creamy-oogschaduw-aanbieding-thumbWebP.webp",
         "source_url": "https://www.promotiez.be/winkels/action/promoties/max-more-creamy-oogschaduw-promotie-67445127/",
         "fetched_at": "2026-09-19T15:24:37.275560Z",
-        "ean": null
+        "ean": "20177201",
+        "nutriscore": "E",
+        "nova_group": 4,
+        "nutrition": {
+          "energy_kcal_100g": 552,
+          "fat_100g": 39.3,
+          "saturated_fat_100g": 23.6,
+          "carbs_100g": 36.2,
+          "sugars_100g": 29,
+          "proteins_100g": 8,
+          "salt_100g": 0.03
+        },
+        "ingredients": "Pâte de cacao, sucre, beurre de cacao, sirop de glucose-fructose, farine de riz 0,5%, purée de framboise concentrée, émulsifiant : lécithines (soja), graisse de palme, arôme naturel, amidon de riz, épaississant : pectines, acidifiant : acide citrique, extrait de vanille, jus concentré de carotte noire à propriété colorante. Traces éventuelles de fruits à coque et de lait",
+        "allergens": [
+          "en:soybeans"
+        ],
+        "additives": [
+          "en:e322",
+          "en:e322i",
+          "en:e330",
+          "en:e440"
+        ],
+        "labels": [
+          "en:fair-trade",
+          "en:vegetarian",
+          "en:fairtrade-international",
+          "en:fsc",
+          "en:max-havelaar",
+          "en:nutriscore",
+          "en:vegan",
+          "en:fairtrade-cocoa",
+          "en:fsc-mix",
+          "en:green-dot",
+          "fr:triman"
+        ],
+        "brands": "J. D. GROSS",
+        "categories": "en:Dark chocolate bar with more than 70% cocoa, en:Dark chocolates with raspberries"
       },
       {
         "name": "Dumil sacs poubelle met à cordon",
