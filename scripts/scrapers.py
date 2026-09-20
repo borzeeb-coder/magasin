@@ -30,6 +30,142 @@ def parse_price(price_text: str) -> Optional[float]:
     return None
 
 
+def parse_unit_price(unit_text: str) -> tuple[Optional[float], Optional[str]]:
+    """
+    Parse unit price text like '2,50 €/kg', '1,20 €/L', '0,50 €/100g', '3,00 €/pièce'
+    Returns (price_per_kg_or_l, unit) where unit is 'kg', 'l', '100g', 'piece', etc.
+    Normalizes everything to price per kg (for solids) or per L (for liquids).
+    """
+    if not unit_text:
+        return None, None
+    
+    text = unit_text.lower().replace('€', '').replace('eur', '').strip()
+    text = text.replace(',', '.')
+    
+    # Patterns: "2.50 /kg", "2.50/kg", "2.50 €/kg", "1.20 €/l", "0.50 €/100g", "3.00 /pièce"
+    patterns = [
+        (r'([\d.]+)\s*/\s*kg', 'kg'),
+        (r'([\d.]+)\s*/\s*l', 'l'),
+        (r'([\d.]+)\s*/\s*100g', '100g'),
+        (r'([\d.]+)\s*/\s*g', 'g'),
+        (r'([\d.]+)\s*/\s*ml', 'ml'),
+        (r'([\d.]+)\s*/\s*pièce', 'piece'),
+        (r'([\d.]+)\s*/\s*pc', 'piece'),
+        (r'([\d.]+)\s*/\s*st', 'piece'),
+        (r'([\d.]+)\s*/\s*stuks?', 'piece'),
+    ]
+    
+    for pattern, unit in patterns:
+        match = re.search(pattern, text)
+        if match:
+            try:
+                price = float(match.group(1))
+                return price, unit
+            except:
+                pass
+    
+    return None, None
+
+
+def normalize_price_per_kg_l(price: float, unit: str, quantity: float = None, quantity_unit: str = None) -> tuple[Optional[float], Optional[float]]:
+    """
+    Normalize price to price_per_kg and price_per_l.
+    Returns (price_per_kg, price_per_l)
+    
+    Args:
+        price: Total price
+        unit: Unit from unit price ('kg', 'l', '100g', 'g', 'ml', 'piece')
+        quantity: Product quantity (e.g., 500 for 500g)
+        quantity_unit: Unit of quantity ('g', 'kg', 'ml', 'l', 'piece')
+    """
+    price_per_kg = None
+    price_per_l = None
+    
+    # If we have unit price directly
+    if unit == 'kg' and price:
+        price_per_kg = price
+    elif unit == 'l' and price:
+        price_per_l = price
+    elif unit == '100g' and price:
+        price_per_kg = price * 10
+    elif unit == 'g' and price:
+        price_per_kg = price * 1000
+    elif unit == 'ml' and price:
+        price_per_l = price * 1000
+    elif unit == 'piece' and price and quantity and quantity_unit:
+        # Convert piece to weight/volume if we know quantity
+        if quantity_unit in ['g', 'kg']:
+            total_kg = quantity / 1000 if quantity_unit == 'g' else quantity
+            if total_kg > 0:
+                price_per_kg = price / total_kg
+        elif quantity_unit in ['ml', 'l']:
+            total_l = quantity / 1000 if quantity_unit == 'ml' else quantity
+            if total_l > 0:
+                price_per_l = price / total_l
+    
+    # If we have product quantity but no unit price, calculate from total price
+    if quantity and quantity_unit and price:
+        if not price_per_kg and quantity_unit in ['g', 'kg']:
+            total_kg = quantity / 1000 if quantity_unit == 'g' else quantity
+            if total_kg > 0:
+                price_per_kg = price / total_kg
+        if not price_per_l and quantity_unit in ['ml', 'l']:
+            total_l = quantity / 1000 if quantity_unit == 'ml' else quantity
+            if total_l > 0:
+                price_per_l = price / total_l
+    
+    return price_per_kg, price_per_l
+
+
+def extract_quantity_from_name(name: str) -> tuple[Optional[float], Optional[str]]:
+    """
+    Extract quantity and unit from product name.
+    Examples: '500g', '1.5kg', '1.5 kg', '500 g', '1L', '1.5 L', '50cl', '50 cl', '6 x 100g', '6x100g'
+    Returns (quantity, unit) where unit is 'g', 'kg', 'ml', 'l', 'cl', 'piece'
+    """
+    if not name:
+        return None, None
+    
+    name_lower = name.lower()
+    
+    # Patterns for quantity in name
+    patterns = [
+        # 6 x 100g, 6x100g, 6 x 100 g
+        (r'(\d+)\s*x\s*(\d+(?:[.,]\d+)?)\s*(g|kg|ml|l|cl)', 'multi'),
+        # 500g, 500 g, 1.5kg, 1.5 kg, 1kg
+        (r'(\d+(?:[.,]\d+)?)\s*(g|kg|ml|l|cl)\b', 'simple'),
+        # 1L, 1.5L, 50cl, 50 cl
+        (r'(\d+(?:[.,]\d+)?)\s*(l|cl)\b', 'simple'),
+    ]
+    
+    for pattern, ptype in patterns:
+        match = re.search(pattern, name_lower)
+        if match:
+            if ptype == 'multi':
+                # 6 x 100g -> total 600g
+                count = float(match.group(1))
+                qty = float(match.group(2).replace(',', '.'))
+                unit = match.group(3)
+                total_qty = count * qty
+                if unit in ['kg', 'l']:
+                    return total_qty, unit
+                elif unit in ['g', 'ml', 'cl']:
+                    if unit == 'cl':
+                        return total_qty / 100, 'l'
+                    return total_qty, unit
+            else:
+                qty = float(match.group(1).replace(',', '.'))
+                unit = match.group(2)
+                if unit in ['kg', 'l']:
+                    return qty, unit
+                elif unit in ['g', 'ml', 'cl']:
+                    if unit == 'cl':
+                        return qty / 100, 'l'
+                    return qty, unit
+    
+    return None, None
+
+
 def should_skip_nutriscore(name: str) -> bool:
     """Check if product should not have Nutri-Score"""
     name_lower = name.lower()
@@ -199,6 +335,11 @@ def _parse_aldi_offers(algolia_map: Dict) -> List[Dict]:
             brand = offer_data.get('brandName', '')
             
             # Build offer
+            unit_text = offer_data.get('salesUnit', '')
+            unit_price, unit_price_unit = parse_unit_price(unit_text)
+            quantity, quantity_unit = extract_quantity_from_name(name)
+            price_per_kg, price_per_l = normalize_price_per_kg_l(price_val, unit_price_unit, quantity, quantity_unit)
+            
             offer = {
                 'name': name,
                 'brand': brand,
@@ -208,7 +349,11 @@ def _parse_aldi_offers(algolia_map: Dict) -> List[Dict]:
                 'old_price': old_price,
                 'discount_pct': discount_pct,
                 'promo_text': f"-{discount_pct}%" if discount_pct else '',
-                'unit': offer_data.get('salesUnit', ''),
+'unit': unit_text,
+                'unit_price': unit_price,
+                'unit_price_unit': unit_price_unit,
+                'price_per_kg': price_per_kg,
+                'price_per_l': price_per_l,
                 'image_url': img_url,
                 'source_url': f'https://www.aldi.be/fr/{offer_data.get("productSlug", "")}',
                 'fetched_at': datetime.utcnow().isoformat() + 'Z',
@@ -322,29 +467,30 @@ def _parse_carrefour_tile(p) -> Optional[Dict]:
     elif validity:
         promo_text = validity
     
-    # Brand
+# Brand
     brand_el = p.select_one('.brand-wrapper a')
     brand = brand_el.get_text(strip=True) if brand_el else ''
     
     # Unit price
-    unit = ''
+    unit_price_text = ''
     unit_el = p.select_one('.price-per-unit-wrapper')
     if unit_el:
-        unit = unit_el.get_text(strip=True)
-    
+        unit_price_text = unit_el.get_text(strip=True)
+    unit_price, unit_price_unit = parse_unit_price(unit_price_text)
+
     # Product URL
     source_url = ''
     link = p.select_one('.pdp-link a')
     if link and link.get('href'):
         href = link['href']
         source_url = href if href.startswith('http') else 'https://www.carrefour.be' + href
-    
+
     # Category from GTM data attribute
     category = ''
     gtm = p.get('data-select-item-event-object')
     if gtm:
         try:
-            gtm_json = json.loads(gtm.replace('&quot;', '"'))
+            gtm_json = json.loads(gtm.replace('"', '"'))
             items = gtm_json.get('ecommerce', {}).get('items', [])
             if items and items[0].get('item_category'):
                 category = items[0]['item_category']
@@ -353,6 +499,14 @@ def _parse_carrefour_tile(p) -> Optional[Dict]:
     
     # EAN - Carrefour product IDs are 8-digit codes, not always EANs
     ean = pid if pid.isdigit() and len(pid) == 13 else None
+    
+    # Parse unit price and calculate price per kg/L
+    quantity, quantity_unit = extract_quantity_from_name(name)
+    price_per_kg, price_per_l = normalize_price_per_kg_l(new_price, unit_price_unit, quantity, quantity_unit)
+    if not price_per_kg and unit_price_text:
+        up, up_unit = parse_unit_price(unit_price_text)
+        if up:
+            price_per_kg, price_per_l = normalize_price_per_kg_l(new_price, up_unit)
     
     offer = {
         'name': name,
@@ -363,7 +517,11 @@ def _parse_carrefour_tile(p) -> Optional[Dict]:
         'old_price': None,
         'discount_pct': None,
         'promo_text': promo_text,
-        'unit': unit,
+'unit': unit_price_text,
+        'unit_price': unit_price,
+        'unit_price_unit': unit_price_unit,
+        'price_per_kg': price_per_kg,
+        'price_per_l': price_per_l,
         'image_url': img_url,
         'source_url': source_url,
         'fetched_at': datetime.utcnow().isoformat() + 'Z',
@@ -486,12 +644,17 @@ def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
                 category = fc.get('name') or fc.get('nameNonLocalized') or ''
 
                 # Unit - use supplementary label ("6 x 75 cl") or unit price
-                unit = ''
+                unit_text = ''
                 if price_data.get('supplementaryPriceLabel2'):
-                    unit = price_data['supplementaryPriceLabel2']
+                    unit_text = price_data['supplementaryPriceLabel2']
                 elif price_data.get('unitPriceFormatted'):
-                    unit = f"{price_data['unitPriceFormatted']}/{price_data.get('unitCode', '')}".strip('/')
-
+                    unit_text = f"{price_data['unitPriceFormatted']}/{price_data.get('unitCode', '')}".strip('/')
+                
+                # Parse unit price and calculate price per kg/L
+                unit_price, unit_price_unit = parse_unit_price(unit_text)
+                quantity, quantity_unit = extract_quantity_from_name(name)
+                price_per_kg, price_per_l = normalize_price_per_kg_l(new_price, unit_price_unit, quantity, quantity_unit)
+                
                 # URL
                 url = p.get('url') or ''
                 source_url = url if url.startswith('http') else 'https://www.delhaize.be' + url
@@ -505,7 +668,11 @@ def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
                     'old_price': old_price,
                     'discount_pct': discount_pct,
                     'promo_text': promo_text,
-                    'unit': unit,
+'unit': unit_text,
+                    'unit_price': unit_price,
+                    'unit_price_unit': unit_price_unit,
+                    'price_per_kg': price_per_kg,
+                    'price_per_l': price_per_l,
                     'image_url': img_url,
                     'source_url': source_url,
                     'fetched_at': datetime.utcnow().isoformat() + 'Z',
@@ -524,117 +691,114 @@ def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
     return offers
 
 
-# ============ LIDL SCRAPER ============
+# ============ LIDL SCRAPER (via promopromo.be) ============
 
-LIDL_PROMO_URL = 'https://www.lidl.be/c/fr-BE/offres-de-la-semaine/a10082242'
-
-
-def _html_unescape(s: str) -> str:
-    return (s.replace('&quot;', '"').replace('&amp;', '&')
-             .replace('&#39;', "'").replace('&lt;', '<').replace('&gt;', '>'))
+LIDL_PROMOPROMO_URL = 'https://www.promopromo.be/fr/lidl/folder-offres'
 
 
 def scrape_lidl() -> List[Dict]:
-    """Scrape Lidl promotions from the weekly offers page.
+    """Scrape Lidl promotions from promopromo.be
 
-    Products are server-rendered as tiles with a data-grid-data JSON attribute.
+    promopromo.be aggregates Lidl's weekly folder offers and is not Cloudflare-protected.
     """
     offers = []
     seen = set()
-    headers = {**UA, 'Accept-Language': 'fr-BE,fr;q=0.9'}
+    headers = {**UA, 'Accept-Language': 'fr-BE,fr;q=0.9,nl;q=0.8'}
 
-    for url in [LIDL_PROMO_URL]:
-        try:
-            r = requests.get(url, headers=headers, timeout=60)
-            r.raise_for_status()
-            html = r.text
-        except Exception as e:
-            print(f"Lidl fetch {url} error: {e}")
-            continue
+    try:
+        r = requests.get(LIDL_PROMOPROMO_URL, headers=headers, timeout=30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, 'html.parser')
 
-        tiles = re.findall(r'data-grid-data="(.*?)"\s+data-country="BE"', html, re.S)
-        print(f"Lidl {url}: {len(tiles)} product tiles")
+        # Find all offer tiles: links with "?offer=" in href
+        offer_tiles = soup.select('a[href*="?offer="]')
 
-        for raw in tiles:
+        for tile in offer_tiles:
             try:
-                d = json.loads(_html_unescape(raw))
-            except Exception:
+                text = " ".join(tile.stripped_strings)
+                if not text:
+                    continue
+
+                # Parse name and prices from text like "20% de remise Bottines Chelsea €24,99 €19,99"
+                # Extract prices
+                price_matches = re.findall(r'€\s*([\d.,]+)', text)
+                prices = [float(p.replace(',', '.')) for p in price_matches]
+                
+                if len(prices) >= 2:
+                    old_price, new_price = prices[0], prices[1]
+                elif len(prices) == 1:
+                    old_price, new_price = None, prices[0]
+                else:
+                    continue
+
+                # Extract name (text before first price)
+                name_match = re.split(r'€\s*[\d.,]+', text)[0]
+                name = re.sub(r'^\d+%\s*de\s*remise\s*', '', name_match, flags=re.IGNORECASE).strip()
+                
+                if not name or name in seen:
+                    continue
+                if should_skip_nutriscore(name):
+                    continue
+                seen.add(name)
+
+                # Discount percentage
+                discount_pct = None
+                if old_price and new_price and old_price > new_price:
+                    discount_pct = round((1 - new_price / old_price) * 100)
+
+                # Discount text
+                promo_text = ''
+                discount_match = re.search(r'(\d+)%\s*de\s*remise', text, re.IGNORECASE)
+                if discount_match:
+                    promo_text = f"{discount_match.group(1)}% de remise"
+
+                # Image
+                img_url = ''
+                img_el = tile.select_one('img')
+                if img_el:
+                    img_url = img_el.get('src') or img_el.get('data-src') or ''
+
+                # Product URL
+                source_url = ''
+                href = tile.get('href', '')
+                if href:
+                    source_url = href if href.startswith('http') else 'https://www.promopromo.be' + href
+
+                # Category
+                category = 'Non-food'
+                
+                # Extract quantity from name for price per kg/L
+                quantity, quantity_unit = extract_quantity_from_name(name)
+                price_per_kg, price_per_l = normalize_price_per_kg_l(new_price, None, quantity, quantity_unit)
+
+                offer = {
+                    'name': name,
+                    'brand': '',
+                    'category': category,
+                    'description': '',
+                    'new_price': new_price,
+                    'old_price': old_price,
+                    'discount_pct': discount_pct,
+                    'promo_text': promo_text,
+                    'unit': '',
+                    'price_per_kg': price_per_kg,
+                    'price_per_l': price_per_l,
+                    'image_url': img_url,
+                    'source_url': source_url,
+                    'fetched_at': datetime.utcnow().isoformat() + 'Z',
+                    'ean': None,
+                }
+                offers.append(offer)
+                seen.add(name)
+
+            except Exception as e:
+                print(f"Error parsing Lidl tile: {e}")
                 continue
 
-            name = (d.get('title') or '').strip()
-            if not name or name in seen:
-                continue
-            if should_skip_nutriscore(name):
-                continue
+    except Exception as e:
+        print(f"Lidl scrape error: {e}")
 
-            price_data = d.get('price') or {}
-            price = price_data.get('price')
-            if price is None:
-                continue
-
-            old_price = price_data.get('oldPrice')
-            if old_price is None:
-                discount = price_data.get('discount') or {}
-                old_price = discount.get('deletedPrice')
-
-            discount_pct = None
-            if old_price and price and old_price > price:
-                discount_pct = round((1 - price / old_price) * 100)
-
-            discount = price_data.get('discount') or {}
-            promo_text = discount.get('discountText') or ''
-            if not promo_text and discount_pct:
-                promo_text = f"-{discount_pct}%"
-            bargain = discount.get('bargainHintText') or ''
-            if bargain and bargain not in promo_text:
-                promo_text = f"{bargain} {promo_text}".strip() if promo_text else bargain
-
-            # Unit: basePrice text if available
-            unit = ''
-            bp = price_data.get('basePrice')
-            if isinstance(bp, dict):
-                unit = bp.get('text') or ''
-            if not unit:
-                unit = price_data.get('basePriceText') or ''
-
-            # Image: first image
-            img_url = ''
-            img_list = d.get('imageList_V1') or []
-            if img_list and isinstance(img_list[0], dict):
-                img_url = img_list[0].get('image') or ''
-            if not img_url:
-                img_v1 = d.get('image_V1') or {}
-                img_url = img_v1.get('image') or ''
-
-            # Product URL
-            path = d.get('canonicalPath') or d.get('canonicalUrl') or f"/p/fr-BE/{name.lower().replace(' ','-')}/p{int(d.get('productId') or 0)}"
-            source_url = path if path.startswith('http') else 'https://www.lidl.be' + path
-
-            category = d.get('category') or ''
-            brand = ''
-            brand_data = d.get('brand') or {}
-            if isinstance(brand_data, dict) and brand_data.get('showBrand'):
-                brand = brand_data.get('name') or ''
-
-            offer = {
-                'name': name,
-                'brand': brand,
-                'category': category,
-                'description': '',
-                'new_price': float(price),
-                'old_price': float(old_price) if old_price else None,
-                'discount_pct': discount_pct,
-                'promo_text': promo_text,
-                'unit': unit,
-                'image_url': img_url,
-                'source_url': source_url,
-                'fetched_at': datetime.utcnow().isoformat() + 'Z',
-                'ean': None,
-            }
-            offers.append(offer)
-            seen.add(name)
-
-    print(f"Lidl: {len(offers)} valid food offers")
+    print(f"Lidl: {len(offers)} valid offers")
     return offers
 
 
@@ -748,6 +912,11 @@ def scrape_colruyt() -> List[Dict]:
 
                 ean = _colruyt_barcode(p.get('attributes'))
 
+                # Parse unit price and calculate price per kg/L
+                unit_price, unit_price_unit = parse_unit_price(unit)
+                quantity, quantity_unit = extract_quantity_from_name(name)
+                price_per_kg, price_per_l = normalize_price_per_kg_l(price, unit_price_unit, quantity, quantity_unit)
+
                 offer = {
                     'name': name,
                     'brand': p.get('owner') or '',
@@ -758,6 +927,10 @@ def scrape_colruyt() -> List[Dict]:
                     'discount_pct': discount_pct,
                     'promo_text': f"{promo_text} {end_date}".strip(),
                     'unit': unit,
+                    'unit_price': unit_price,
+                    'unit_price_unit': unit_price_unit,
+                    'price_per_kg': price_per_kg,
+                    'price_per_l': price_per_l,
                     'image_url': img_url,
                     'source_url': f'https://www.collectandgo.be/fr/assortiment/promos?p={uid}',
                     'fetched_at': datetime.utcnow().isoformat() + 'Z',
@@ -1067,6 +1240,12 @@ def scrape_action() -> List[Dict]:
                         'fetched_at': datetime.utcnow().isoformat() + 'Z',
                         'ean': detail.get('ean'),
                     }
+                    
+                    # Extract quantity and calculate price per kg/L
+                    qty, qty_unit = extract_quantity_from_name(offer['name'])
+                    ppg, ppl = normalize_price_per_kg_l(new_price, None, qty, qty_unit)
+                    offer['price_per_kg'] = ppg
+                    offer['price_per_l'] = ppl
                     offers.append(offer)
 
                 except Exception as e:

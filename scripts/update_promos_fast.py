@@ -5,6 +5,7 @@ Fast auto-update promos - basic data only (no Nutri-Score during daily update)
 
 import sys
 sys.path.insert(0, r'C:\magasin')
+from scripts.scrapers import extract_quantity_from_name, normalize_price_per_kg_l
 
 import json
 import requests
@@ -90,6 +91,10 @@ def fetch_intermarche():
         img_filename = f"intermarche-{len(offers):03d}.webp"
         img_url = config['image_cdn'] + p.get('images', '')
         
+        # Extract quantity and calculate price per kg/L
+        qty, qty_unit = extract_quantity_from_name(name)
+        price_per_kg, price_per_l = normalize_price_per_kg_l(new_price, None, qty, qty_unit)
+        
         offer = {
             'name': name,
             'brand': p.get('groupe filtre', ''),
@@ -100,6 +105,8 @@ def fetch_intermarche():
             'discount_pct': discount_pct,
             'promo_text': promo_text,
             'unit': p.get('Unite', ''),
+            'price_per_kg': price_per_kg,
+            'price_per_l': price_per_l,
             'image_url': f'data/images/{img_filename}',
             'image_filename': img_filename,
             'source_url': 'https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/',
