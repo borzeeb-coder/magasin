@@ -112,6 +112,10 @@ async function main() {
     const cmpBtn = await page.locator('#pdCompareBtn').count();
     check(cmpBtn === 1, 'bouton comparateur #pdCompareBtn présent');
 
+    // 5. Mode cuisson : parcours complet recette + étapes + minuteur
+    const { cookSheetChecks } = require('./cook_test.js');
+    await cookSheetChecks(page, check);
+
   } catch (err) {
     check(false, 'erreur du test : ' + err.message);
   } finally {
