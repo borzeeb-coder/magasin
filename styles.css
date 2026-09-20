@@ -1342,6 +1342,14 @@ html, body {
 .recipe-modal-emoji {
   font-size: 40px;
 }
+
+.recipe-modal-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
 .recipe-modal-header h2 {
   margin: 0;
   font-size: 18px;
