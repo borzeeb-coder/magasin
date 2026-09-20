@@ -62,26 +62,49 @@ async function main() {
 
     // Images locales
     const localImgs = await page.$$eval('.pcard-img img', els => els.map(e => e.src));
+    const imgsLocal = [];
+    const imgsCdn = [];
     const imgs404 = [];
     for (const src of localImgs) {
+      if (/^https?:\/\//.test(src) && !src.includes('127.0.0.1')) { imgsCdn.push(src); continue; }
+      imgsLocal.push(src);
       const r = await page.request.get(src);
       if (!r.ok()) imgs404.push(src);
     }
-    check(imgs404.length === 0, `${localImgs.length} images de carte OK${imgs404.length ? ' (échec: ' + imgs404.join(',') + ')' : ''}`);
+    check(imgs404.length === 0, `${imgsLocal.length} images de carte OK (locales)${imgs404.length ? ' — échec: ' + imgs404.join(',') : ''}`);
+    if (imgsCdn.length) console.log(`ℹ️ ${imgsCdn.length} images hébergées sur CDN (non testées, hors de portée du repo)`);
 
     check(errors.length === 0, 'aucune erreur JS console/page' + (errors.length ? ' — ' + errors.join(' | ') : ''));
 
     // --- NOUVELLES VALIDATIONS ---
-    
+
     // 1. Comparateur : la balise "🏆 le moins cher" doit être présente
+    //    après ouverture du comparateur depuis une fiche produit
+    await page.locator('.pcard .pcard-name').first().click();
+    await page.waitForTimeout(300);
+    await page.locator('#pdCompareBtn').click();
+    await page.waitForTimeout(400);
     const cmpBest = await page.locator('.cmp-best-tag').count();
     check(cmpBest > 0, 'balise "🏆 le moins cher" présente dans le comparateur');
+    await page.locator('#compareSheet .sheet-close').click();
+    await page.waitForTimeout(200);
+    await page.locator('#productSheet .sheet-close').click();
+    await page.waitForTimeout(200);
 
     // 2. Carte des magasins : la section #view-stores doit exister
     const mapSection = await page.locator('#view-stores').count();
     check(mapSection === 1, 'section carte des magasins #view-stores présente');
 
-    // 3. Favoris : la barre d\'alerte de seuil doit être présente dans le DOM
+    // 3. Favoris : la barre d'alerte de seuil doit être présente après
+    //    ajout d'un favori puis navigation vers la vue favoris
+    await page.locator('.pcard .pcard-name').first().click();
+    await page.waitForTimeout(300);
+    await page.locator('#pdFavBtn').click();
+    await page.waitForTimeout(200);
+    await page.locator('#productSheet .sheet-close').click();
+    await page.waitForTimeout(200);
+    await page.locator('.navbtn[data-view="favs"]').click();
+    await page.waitForTimeout(400);
     const alertBars = await page.locator('.fav-alert-bar').count();
     check(alertBars >= 1, 'barre d\'alerte favori présente (seuil configurable)');
     
