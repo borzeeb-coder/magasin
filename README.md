@@ -71,18 +71,17 @@ git push -u origin main
 ## 🛠️ Personnalisation
 
 ### Modifier les Produits ou les Magasins
-Ouvrez le fichier [`app.js`](./app.js) :
+Ouvrez [`index.html`](./index.html) (l'application est autonome, tout est dans ce fichier) :
 - Modifiez la constante `PRODUCTS` pour changer les noms, photos Unsplash, prix normaux et prix remisés.
 - Modifiez la constante `STORES` pour indiquer les coordonnées GPS de votre propre ville (Paris, Marseille, Lyon, Bruxelles, etc.).
+- Modifiez la constante `RECIPE_DB` pour les recettes basées sur les promos.
 
 ### Modifier les Couleurs de la Charte
-Ouvrez le fichier [`styles.css`](./styles.css) et adaptez les variables CSS :
+Ouvrez [`index.html`](./index.html) et adaptez les variables CSS dans le bloc `<style>` :
 ```css
-:root {
-  --accent: #ff5a3c;   /* Couleur principale */
-  --accent2: #ff8a3c;  /* Couleur secondaire (dégradés) */
-  --pill: #fef4f0;     /* Arrière-plan des badges */
-}
+--green: #2E6B4E;   /* Couleur principale (vert) */
+--red:   #DE3B24;   /* Couleur d'alerte / prix en hausse */
+--yellow:#F4B400;   /* Couleur secondaire (badges, boutons) */
 ```
 
 ---
@@ -91,10 +90,8 @@ Ouvrez le fichier [`styles.css`](./styles.css) et adaptez les variables CSS :
 
 ```
 promo-app-github/
-├── index.html        # Page principale (Simulateur + Grille 4 écrans)
-├── styles.css        # Design system moderne et responsive
-├── app.js            # Logique applicative, carte et gestion du panier
-└── README.md         # Guide d'utilisation et de déploiement
+├── index.html       # Page principale autonome (HTML + CSS + JS, promos, recettes, panier)
+└── README.md        # Guide d'utilisation et de déploiement
 ```
 
 ---
