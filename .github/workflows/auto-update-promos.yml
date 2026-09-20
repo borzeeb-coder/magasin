@@ -44,6 +44,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Sauvegarder la version committée précédente
+        run: |
+          git show HEAD:data/promos.json > /tmp/promos_prev.json 2>/dev/null || echo '{}' > /tmp/promos_prev.json
+          echo "Version précédente sauvegardée"
+
+      - name: Valider + anti-régression avant commit
+        # Bloque (exit≠0 => job arrêté, pas de commit/push) si les volumes
+        # s'effondrent vs la version committée ou si le schéma est cassé.
+        run: python tests/validate_promos.py --previous /tmp/promos_prev.json
+
       - name: Check for changes
         id: changes
         run: |

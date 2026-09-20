@@ -26,8 +26,15 @@ jobs:
       - name: Lancer le scraper
         run: python scrape_promos.py
 
-      - name: Valider le schéma de promos.json
-        run: python tests/validate_promos.py
+      - name: Sauvegarder la version committée précédente
+        run: |
+          git show HEAD:data/promos.json > /tmp/promos_prev.json 2>/dev/null || echo '{}' > /tmp/promos_prev.json
+          echo "Version précédente sauvegardée"
+
+      - name: Valider le schéma + anti-régression de promos.json
+        # Refuse de committer si les volumes s'effondrent vs la version committée
+        # (ex: scrape partiel réduisant 1109 offres à 55).
+        run: python tests/validate_promos.py --previous /tmp/promos_prev.json
 
       # Notifications push : demande au worker de comparer les favoris au
       # nouveau promos.json et d'envoyer une alerte quand un seuil est atteint.
