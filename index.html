@@ -1729,45 +1729,8 @@ function renderRecipes(){
   const el = document.getElementById('recipeGrid');
   if(!el) return;
   
-  // Recettes prédéfinies avec ingrédients
-  const RECIPES = [
-    {id:"pates-bolognaise", name:"Pâtes bolognaise", emoji:"🍝", image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&q=80", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
-    {id:"poulet-riz", name:"Poulet riz légumes", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
-    {id:"saumon-legumes", name:"Saumon légumes vapeur", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
-    {id:"quiche-lardons", name:"Quiche lardons fromage", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
-    {id:"chili-con-carne", name:"Chili con carne", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:45, ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
-    {id:"gratins-dauphinois", name:"Gratin dauphinois", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:60, ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
-    {id:"omelette-legumes", name:"Omelette légumes fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:15, ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
-    {id:"lasagnes", name:"Lasagnes maison", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:60, ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
-    {id:"wok-poulet", name:"Wok poulet nouilles", emoji:"🍜", image:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80", servings:4, time:25, ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]},
-    {id:"carbonara", name:"Pâtes carbonara", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","lardons","œufs","parmesan","poivre","crème fraîche"]},
-    {id:"poulet-coco", name:"Poulet au lait de coco", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","lait coco","curry","riz","poivrons","oignon","citron vert"]},
-    {id:"hachis-parmentier", name:"Hachis parmentier", emoji:"🥘", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:6, time:50, ingredients:["viande hachée","pommes de terre","carottes","oignon","fromage râpé","lait","beurre"]},
-    {id:"couscous-legumes", name:"Couscous légumes", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:40, ingredients:["semoule","pois chiches","carottes","courgettes","tomates","oignon","ras el hanout"]},
-    {id:"poisson-papillote", name:"Poisson en papillote", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:4, time:25, ingredients:["cabillaud","courgettes","tomates cerises","citron","herbes","huile olive"]},
-    {id:"risotto-champignons", name:"Risotto champignons", emoji:"🍚", image:"https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80", servings:4, time:35, ingredients:["riz arborio","champignons","oignon","vin blanc","parmesan","bouillon"]},
-    {id:"tacos-viande", name:"Tacos viande hachée", emoji:"🌮", image:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&q=80", servings:4, time:30, ingredients:["tortillas","viande hachée","haricots rouges","maïs","tomates","fromage râpé","épices tacos"]},
-    {id:"curry-legumes", name:"Curry légumes coco", emoji:"🍛", image:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=80", servings:4, time:30, ingredients:["lait coco","pois chiches","épinards","carottes","curry","riz","oignon"]},
-    {id:"boulettes-tomate", name:"Boulettes sauce tomate", emoji:"🍲", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:4, time:35, ingredients:["viande hachée","pain","œuf","sauce tomate","pâtes","fromage râpé","herbes"]},
-    {id:"salade-composee", name:"Grande salade composée", emoji:"🥗", image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80", servings:4, time:15, ingredients:["salade","tomates","concombre","œufs durs","thon","maïs","vinaigrette"]},
-    {id:"gratin-pates", name:"Gratin pâtes jambon fromage", emoji:"🍝", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["pâtes","jambon","crème fraîche","fromage râpé","emmental","muscade"]},
-    {id:"quiche-saumon", name:"Quiche saumon épinards", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","saumon fumé","épinards","œufs","crème fraîche","fromage râpé"]},
-    {id:"poulet-curry", name:"Poulet au curry", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","curry","lait coco","riz","oignon","poivrons"]},
-    {id:"saumon-pates", name:"Pâtes au saumon", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:25, ingredients:["pâtes","saumon fumé","crème fraîche","aneth","citron","épinards"]},
-    {id:"chili-vege", name:"Chili végétarien", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:40, ingredients:["haricots rouges","haricots noirs","tomates concassées","oignon","poivron","maïs","riz","cumin"]},
-    {id:"gratin-legumes", name:"Gratin de légumes", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:40, ingredients:["courgettes","aubergines","tomates","fromage râpé","herbes","huile olive"]},
-    {id:"omelette-jambon", name:"Omelette jambon fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:10, ingredients:["œufs","jambon","fromage râpé","herbes","beurre"]},
-    {id:"poulet-roti", name:"Poulet rôti pommes de terre", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:60, ingredients:["poulet entier","pommes de terre","carottes","oignon","herbes","beurre"]},
-    {id:"lasagnes-vege", name:"Lasagnes végétariennes", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:55, ingredients:["pâtes lasagnes","épinards","ricotta","fromage râpé","sauce tomate","courgettes"]},
-    {id:"wrap-poulet", name:"Wrap poulet crudités", emoji:"🌯", image:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80", servings:4, time:20, ingredients:["tortillas","poulet","salade","tomates","concombre","sauce yaourt","fromage râpé"]},
-    {id:"pates-pesto", name:"Pâtes au pesto poulet", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","pesto","poulet","tomates cerises","parmesan","pignons"]},
-    {id:"bourguignon", name:"Bœuf bourguignon", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:90, ingredients:["viande bourguignon","carottes","oignons","champignons","vin rouge","bouillon","lardons"]},
-    {id:"tataki-saumon", name:"Tataki saumon riz", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
-    {id:"gratin-poireaux", name:"Gratin poireaux jambon", emoji:"🥧", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]}
-  ];
-  
   // Pour chaque recette, trouver les promos correspondantes
-  const recipesWithPromos = RECIPES.map(r => {
+  const recipesWithPromos = Object.entries(RECIPE_DB).map(([id, r]) => {
     const matches = r.ingredients.map(ing => {
       const promos = PRODUCTS.filter(p => {
         const name = p.name.toLowerCase();
@@ -1775,7 +1738,7 @@ function renderRecipes(){
       }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
       return promos[0] || null;
     }).filter(Boolean);
-    return {...r, promoMatches: matches, promoCount: matches.length};
+    return {...r, id, promoMatches: matches, promoCount: matches.length};
   }).sort((a,b) => b.promoCount - a.promoCount);
   
   el.innerHTML = recipesWithPromos.map(r => `
@@ -1796,43 +1759,7 @@ function renderRecipes(){
 
 // Modal recette
 function openRecipeModal(recipeId){
-  const RECIPES = {
-    "pates-bolognaise": {name:"Pâtes bolognaise", emoji:"🍝", image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&q=80", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
-    "poulet-riz": {name:"Poulet riz légumes", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
-    "saumon-legumes": {name:"Saumon légumes vapeur", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
-    "quiche-lardons": {name:"Quiche lardons fromage", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
-    "chili-con-carne": {name:"Chili con carne", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:45, ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
-    "gratins-dauphinois": {name:"Gratin dauphinois", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:60, ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
-    "omelette-legumes": {name:"Omelette légumes fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:15, ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
-    "lasagnes": {name:"Lasagnes maison", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:60, ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
-    "wok-poulet": {name:"Wok poulet nouilles", emoji:"🍜", image:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80", servings:4, time:25, ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]},
-    "carbonara": {name:"Pâtes carbonara", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","lardons","œufs","parmesan","poivre","crème fraîche"]},
-    "poulet-coco": {name:"Poulet au lait de coco", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","lait coco","curry","riz","poivrons","oignon","citron vert"]},
-    "hachis-parmentier": {name:"Hachis parmentier", emoji:"🥘", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:6, time:50, ingredients:["viande hachée","pommes de terre","carottes","oignon","fromage râpé","lait","beurre"]},
-    "couscous-legumes": {name:"Couscous légumes", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:40, ingredients:["semoule","pois chiches","carottes","courgettes","tomates","oignon","ras el hanout"]},
-    "poisson-papillote": {name:"Poisson en papillote", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:4, time:25, ingredients:["cabillaud","courgettes","tomates cerises","citron","herbes","huile olive"]},
-    "risotto-champignons": {name:"Risotto champignons", emoji:"🍚", image:"https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80", servings:4, time:35, ingredients:["riz arborio","champignons","oignon","vin blanc","parmesan","bouillon"]},
-    "tacos-viande": {name:"Tacos viande hachée", emoji:"🌮", image:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&q=80", servings:4, time:30, ingredients:["tortillas","viande hachée","haricots rouges","maïs","tomates","fromage râpé","épices tacos"]},
-    "curry-legumes": {name:"Curry légumes coco", emoji:"🍛", image:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=80", servings:4, time:30, ingredients:["lait coco","pois chiches","épinards","carottes","curry","riz","oignon"]},
-    "boulettes-tomate": {name:"Boulettes sauce tomate", emoji:"🍲", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:4, time:35, ingredients:["viande hachée","pain","œuf","sauce tomate","pâtes","fromage râpé","herbes"]},
-    "salade-composee": {name:"Grande salade composée", emoji:"🥗", image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80", servings:4, time:15, ingredients:["salade","tomates","concombre","œufs durs","thon","maïs","vinaigrette"]},
-    "gratin-pates": {name:"Gratin pâtes jambon fromage", emoji:"🍝", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["pâtes","jambon","crème fraîche","fromage râpé","emmental","muscade"]},
-    "quiche-saumon": {name:"Quiche saumon épinards", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","saumon fumé","épinards","œufs","crème fraîche","fromage râpé"]},
-    "poulet-curry": {name:"Poulet au curry", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","curry","lait coco","riz","oignon","poivrons"]},
-    "saumon-pates": {name:"Pâtes au saumon", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:25, ingredients:["pâtes","saumon fumé","crème fraîche","aneth","citron","épinards"]},
-    "chili-vege": {name:"Chili végétarien", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:40, ingredients:["haricots rouges","haricots noirs","tomates concassées","oignon","poivron","maïs","riz","cumin"]},
-    "gratin-legumes": {name:"Gratin de légumes", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:40, ingredients:["courgettes","aubergines","tomates","fromage râpé","herbes","huile olive"]},
-    "omelette-jambon": {name:"Omelette jambon fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:10, ingredients:["œufs","jambon","fromage râpé","herbes","beurre"]},
-    "poulet-roti": {name:"Poulet rôti pommes de terre", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:60, ingredients:["poulet entier","pommes de terre","carottes","oignon","herbes","beurre"]},
-    "lasagnes-vege": {name:"Lasagnes végétariennes", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:55, ingredients:["pâtes lasagnes","épinards","ricotta","fromage râpé","sauce tomate","courgettes"]},
-    "wrap-poulet": {name:"Wrap poulet crudités", emoji:"🌯", image:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80", servings:4, time:20, ingredients:["tortillas","poulet","salade","tomates","concombre","sauce yaourt","fromage râpé"]},
-    "pates-pesto": {name:"Pâtes au pesto poulet", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","pesto","poulet","tomates cerises","parmesan","pignons"]},
-    "bourguignon": {name:"Bœuf bourguignon", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:90, ingredients:["viande bourguignon","carottes","oignons","champignons","vin rouge","bouillon","lardons"]},
-    "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
-    "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]}
-  };
-  
-  const r = RECIPES[recipeId];
+  const r = RECIPE_DB[recipeId];
   if(!r) return;
   
   const matches = r.ingredients.map(ing => {
@@ -1883,20 +1810,45 @@ function openRecipeModal(recipeId){
   `;
 }
 
+// RECETTES GLOBALES (utilisées par renderRecipes, openRecipeModal et addRecipeToCart)
+const RECIPE_DB = {
+  "pates-bolognaise": {name:"Pâtes bolognaise", emoji:"🍝", image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&q=80", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
+  "poulet-riz": {name:"Poulet riz légumes", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
+  "saumon-legumes": {name:"Saumon légumes vapeur", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
+  "quiche-lardons": {name:"Quiche lardons fromage", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
+  "chili-con-carne": {name:"Chili con carne", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:45, ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
+  "gratins-dauphinois": {name:"Gratin dauphinois", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:60, ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
+  "omelette-legumes": {name:"Omelette légumes fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:15, ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
+  "lasagnes": {name:"Lasagnes maison", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:60, ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
+  "wok-poulet": {name:"Wok poulet nouilles", emoji:"🍜", image:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80", servings:4, time:25, ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]},
+  "carbonara": {name:"Pâtes carbonara", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","lardons","œufs","parmesan","poivre","crème fraîche"]},
+  "poulet-coco": {name:"Poulet au lait de coco", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","lait coco","curry","riz","poivrons","oignon","citron vert"]},
+  "hachis-parmentier": {name:"Hachis parmentier", emoji:"🥘", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:6, time:50, ingredients:["viande hachée","pommes de terre","carottes","oignon","fromage râpé","lait","beurre"]},
+  "couscous-legumes": {name:"Couscous légumes", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:40, ingredients:["semoule","pois chiches","carottes","courgettes","tomates","oignon","ras el hanout"]},
+  "poisson-papillote": {name:"Poisson en papillote", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:4, time:25, ingredients:["cabillaud","courgettes","tomates cerises","citron","herbes","huile olive"]},
+  "risotto-champignons": {name:"Risotto champignons", emoji:"🍚", image:"https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80", servings:4, time:35, ingredients:["riz arborio","champignons","oignon","vin blanc","parmesan","bouillon"]},
+  "tacos-viande": {name:"Tacos viande hachée", emoji:"🌮", image:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&q=80", servings:4, time:30, ingredients:["tortillas","viande hachée","haricots rouges","maïs","tomates","fromage râpé","épices tacos"]},
+  "curry-legumes": {name:"Curry légumes coco", emoji:"🍛", image:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=80", servings:4, time:30, ingredients:["lait coco","pois chiches","épinards","carottes","curry","riz","oignon"]},
+  "boulettes-tomate": {name:"Boulettes sauce tomate", emoji:"🍲", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:4, time:35, ingredients:["viande hachée","pain","œuf","sauce tomate","pâtes","fromage râpé","herbes"]},
+  "salade-composee": {name:"Grande salade composée", emoji:"🥗", image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80", servings:4, time:15, ingredients:["salade","tomates","concombre","œufs durs","thon","maïs","vinaigrette"]},
+  "gratin-pates": {name:"Gratin pâtes jambon fromage", emoji:"🍝", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["pâtes","jambon","crème fraîche","fromage râpé","emmental","muscade"]},
+  "quiche-saumon": {name:"Quiche saumon épinards", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","saumon fumé","épinards","œufs","crème fraîche","fromage râpé"]},
+  "poulet-curry": {name:"Poulet au curry", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","curry","lait coco","riz","oignon","poivrons"]},
+  "saumon-pates": {name:"Pâtes au saumon", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:25, ingredients:["pâtes","saumon fumé","crème fraîche","aneth","citron","épinards"]},
+  "chili-vege": {name:"Chili végétarien", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:40, ingredients:["haricots rouges","haricots noirs","tomates concassées","oignon","poivron","maïs","riz","cumin"]},
+  "gratin-legumes": {name:"Gratin de légumes", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:40, ingredients:["courgettes","aubergines","tomates","fromage râpé","herbes","huile olive"]},
+  "omelette-jambon": {name:"Omelette jambon fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:10, ingredients:["œufs","jambon","fromage râpé","herbes","beurre"]},
+  "poulet-roti": {name:"Poulet rôti pommes de terre", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:60, ingredients:["poulet entier","pommes de terre","carottes","oignon","herbes","beurre"]},
+  "lasagnes-vege": {name:"Lasagnes végétariennes", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:55, ingredients:["pâtes lasagnes","épinards","ricotta","fromage râpé","sauce tomate","courgettes"]},
+  "wrap-poulet": {name:"Wrap poulet crudités", emoji:"🌯", image:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80", servings:4, time:20, ingredients:["tortillas","poulet","salade","tomates","concombre","sauce yaourt","fromage râpé"]},
+  "pates-pesto": {name:"Pâtes au pesto poulet", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","pesto","poulet","tomates cerises","parmesan","pignons"]},
+  "bourguignon": {name:"Bœuf bourguignon", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:90, ingredients:["viande bourguignon","carottes","oignons","champignons","vin rouge","bouillon","lardons"]},
+  "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
+  "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]}
+};
+
 function addRecipeToCart(recipeId){
-  const RECIPES = {
-    "pates-bolognaise": {ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
-    "poulet-riz": {ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
-    "saumon-legumes": {ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
-    "quiche-lardons": {ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
-    "chili-con-carne": {ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
-    "gratins-dauphinois": {ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
-    "omelette-legumes": {ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
-    "lasagnes": {ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
-    "wok-poulet": {ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]}
-  };
-  
-  const r = RECIPES[recipeId];
+  const r = RECIPE_DB[recipeId];
   if(!r) return;
   
   r.ingredients.forEach(ing => {
