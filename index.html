@@ -584,16 +584,6 @@
   }
   .icon-btn:active{transform:scale(.92);}
   .icon-btn:hover{background:var(--card-hover); border-color:var(--ink-soft);}
-  .search-row{
-    margin-top:var(--space-2); display:flex; align-items:center; gap:var(--space-2);
-    background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:var(--space-2) var(--space-3);
-  }
-  .search-row input{
-    border:none; outline:none; background:transparent; color:var(--ink);
-    font-size:var(--font-md); flex:1; min-width:0; font-family:inherit;
-  }
-  .search-row input::placeholder{color:var(--ink-muted);}
-  .search-clear{cursor:pointer; color:var(--ink-muted); font-size:var(--font-md); display:none;}
 
   .chip-row{display:flex; gap:var(--space-2); overflow-x:auto; margin-top:var(--space-3); padding-bottom:var(--space-1); scrollbar-width:none;}
   .chip-row::-webkit-scrollbar{display:none;}
@@ -632,22 +622,7 @@
   .sort-chip.active{background:linear-gradient(135deg, var(--green), #1a5c35); border-color:var(--green); color:#fff; box-shadow:0 4px 12px var(--green-glow);}
   .sort-chip:not(.active):hover{background:var(--card-hover); border-color:var(--ink-muted); transform:translateY(-1px);}
 
-  /* Search Input */
-  .search-row{
-    margin-top:var(--space-2); display:flex; align-items:center; gap:var(--space-2);
-    background:var(--glass-strong); border:1px solid var(--glass-border); border-radius:var(--radius-md); padding:var(--space-2) var(--space-3);
-    transition:border-color var(--transition-fast), box-shadow var(--transition-fast);
-  }
-  .search-row:focus-within{border-color:var(--green); box-shadow:0 0 0 3px rgba(46,107,78,.15);}
-  .search-row input{
-    border:none; outline:none; background:transparent; color:var(--ink);
-    font-size:var(--font-md); flex:1; min-width:0; font-family:inherit;
-  }
-  .search-row input::placeholder{color:var(--ink-muted);}
-  .search-clear{cursor:pointer; color:var(--ink-muted); font-size:var(--font-md); display:none; transition:transform var(--transition-fast);}
-  .search-clear:hover{transform:rotate(90deg); color:var(--ink);}
-
-/* =========== Product Grid =========== */
+  /* =========== Product Grid =========== */
   .grid{
     display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-3);
   }
@@ -794,17 +769,6 @@
     animation:shimmer 1.3s infinite;
   }
   @keyframes shimmer{100%{transform:translateX(100%);}}
-
-  /* ---------- Pull-to-refresh ---------- */
-  #pullHint{
-    display:flex; align-items:center; justify-content:center; gap:8px;
-    height:0; overflow:hidden; font-size:12.5px; font-weight:700;
-    color:var(--ink-soft); transition:height .15s;
-  }
-  #pullHint .spin{width:14px; height:14px; border:2px solid var(--ink-soft); border-top-color:transparent; border-radius:50%;}
-  #pullHint.pulling .spin{animation:spin .7s linear infinite;}
-  #pullHint.active{height:44px;}
-  @keyframes spin{to{transform:rotate(360deg);}}
 
   /* ---------- Stores view ---------- */
   .store-row{
@@ -1546,10 +1510,6 @@
       <button class="icon-btn" id="pwaUpdateBtn" style="display:none;" title="Nouvelle version">🆕</button>
     </div>
   </div>
-  <div class="search-row">
-    🔍 <input id="searchInput" placeholder="Chercher un produit…">
-    <span class="search-clear" id="searchClear">✕</span>
-  </div>
   <div class="chip-row" id="storeChips"></div>
   <div class="chip-row" id="catChips" style="margin-top:8px;"></div>
 </div>
@@ -1567,7 +1527,6 @@
     </div>
     <div class="sort-row" id="sortChips"></div>
     <div class="sort-row" id="discChips" style="margin:0 0 16px;"></div>
-    <div id="pullHint"><span class="spin"></span><span id="pullHintText">Tirez pour actualiser</span></div>
     <div class="new-banner" id="newBanner" style="display:none;">
       <span id="newBannerTxt">🎉 <b>X</b> nouvelles promos depuis votre visite</span>
       <button onclick="toggleNewOnly()" id="newBannerBtn">Les voir 🆕</button>
@@ -2728,13 +2687,9 @@ function stopScanner(){
 function matchBarcode(code){
   const hit = PRODUCTS.find(p => p.code && String(p.code) === code);
   if(hit){ closeSheet('scanSheet'); addToCart(hit.id, 1); renderProducts(); renderCart(); showToast('✅ « ' + hit.name + ' » ajouté au panier'); return; }
-  // données sans EAN : on propose la recherche manuelle pré-remplie
   closeSheet('scanSheet');
-  const si = document.getElementById('searchInput');
-  if(si) si.value = code;
-  state.search = code;
   renderProducts();
-  showToast('Code non référencé dans les promos — essayez la recherche', 3000);
+  showToast('Code non référencé dans les promos', 3000);
 }
 function updateCartFmts(){
   const b = document.getElementById('cartCompareBtn');
@@ -3318,24 +3273,7 @@ async function handleAutoPush(){
   await subscribePush();
 }
 
-/* ---------------------------------------------------------
-   SEARCH
---------------------------------------------------------- */
-const searchInput = document.getElementById('searchInput');
-const debouncedSearch = debounce(()=>{
-  state.search = searchInput.value;
-  document.getElementById('searchClear').style.display = state.search ? 'block':'none';
-  renderProducts();
-}, 280);
-searchInput.addEventListener('input', ()=>{
-  state.search = searchInput.value;
-  document.getElementById('searchClear').style.display = state.search ? 'block':'none';
-  debouncedSearch();
-});
-document.getElementById('searchClear').addEventListener('click', ()=>{
-  searchInput.value=''; state.search=''; document.getElementById('searchClear').style.display='none';
-  renderProducts();
-});
+
 
 /* ---------------------------------------------------------
    TOAST
@@ -3376,35 +3314,6 @@ function showSkeleton(){
   }
   grid.innerHTML = html;
 }
-(function initPullToRefresh(){
-  let startY = 0, pulling = false;
-  const hint = document.getElementById('pullHint');
-  const text = document.getElementById('pullHintText');
-  document.addEventListener('touchstart', e=>{
-    if(window.scrollY <= 0){ startY = e.touches[0].clientY; pulling = true; }
-  }, {passive:true});
-  document.addEventListener('touchmove', e=>{
-    if(!pulling || window.scrollY > 0) return;
-    const dy = e.touches[0].clientY - startY;
-    if(dy > 8 && hint){
-      hint.classList.add('active');
-      hint.classList.toggle('pulling', dy > 80);
-      text.textContent = dy > 80 ? 'Relâchez pour actualiser' : 'Tirez pour actualiser';
-    }
-  }, {passive:true});
-  document.addEventListener('touchend', async ()=>{
-    if(!hint || !hint.classList.contains('active')) { pulling = false; return; }
-    const wasPulling = hint.classList.contains('pulling');
-    pulling = false;
-    hint.classList.remove('active','pulling');
-    if(wasPulling){
-      showSkeleton();
-      await loadPromoData();
-      rerenderAll();
-      showToast('Promos actualisées ✓', 2000, 'success');
-    }
-  });
-})();
 
 /* ---------------------------------------------------------
    COMPARATEUR : où acheter au meilleur prix
@@ -5114,7 +5023,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 /* =========== Onboarding First-Run =========== */
 function startOnboarding(){
   const steps = [
-    {target:'#searchInput', title:'🔍 Recherche', text:'Tapez un produit ou ingrédient pour voir les promos instantanément.', position:'bottom'},
     {target:'.chip-row:first-of-type', title:'🏷️ Filtres magasin', text:'Choisissez vos enseignes préférées pour n\'afficher que leurs promos.', position:'bottom'},
     {target:'#catChips', title:'🥦 Catégories', text:'Filtrez par rayon : fruits, viande, epicerie, etc.', position:'bottom'},
     {target:'#cartLabel', title:'🛒 Mon Panier', text:'Ajoutez des promos, gérez votre budget, imprimez votre liste courses.', position:'left'},
@@ -5128,7 +5036,7 @@ function startOnboarding(){
     if(i >= steps.length){ finishOnboarding(); return; }
     const s = steps[i];
     const target = document.querySelector(s.target);
-    if(!target){ nextStep(); return; }
+    if(!target){ window.nextOnboardingStep(); return; }
     const rect = target.getBoundingClientRect();
     const tooltip = document.createElement('div');
     tooltip.className = 'onboarding-tooltip animate-scale-in';
