@@ -607,9 +607,25 @@
     flex-shrink:0; border:1px solid var(--line); background:var(--card);
     border-radius:999px; padding:var(--space-1) var(--space-3); font-size:var(--font-sm); font-weight:600;
     color:var(--ink-soft); cursor:pointer; transition:all var(--transition-fast);
+    display:flex; align-items:center; gap:var(--space-1);
   }
-  .sort-chip.active{background:var(--green); border-color:var(--green); color:#fff;}
-  .sort-chip:not(.active):hover{background:var(--card-hover); border-color:var(--ink-muted);}
+  .sort-chip.active{background:linear-gradient(135deg, var(--green), #1a5c35); border-color:var(--green); color:#fff; box-shadow:0 4px 12px var(--green-glow);}
+  .sort-chip:not(.active):hover{background:var(--card-hover); border-color:var(--ink-muted); transform:translateY(-1px);}
+
+  /* Search Input */
+  .search-row{
+    margin-top:var(--space-2); display:flex; align-items:center; gap:var(--space-2);
+    background:var(--glass-strong); border:1px solid var(--glass-border); border-radius:var(--radius-md); padding:var(--space-2) var(--space-3);
+    transition:border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .search-row:focus-within{border-color:var(--green); box-shadow:0 0 0 3px rgba(46,107,78,.15);}
+  .search-row input{
+    border:none; outline:none; background:transparent; color:var(--ink);
+    font-size:var(--font-md); flex:1; min-width:0; font-family:inherit;
+  }
+  .search-row input::placeholder{color:var(--ink-muted);}
+  .search-clear{cursor:pointer; color:var(--ink-muted); font-size:var(--font-md); display:none; transition:transform var(--transition-fast);}
+  .search-clear:hover{transform:rotate(90deg); color:var(--ink);}
 
 /* =========== Product Grid =========== */
   .grid{
