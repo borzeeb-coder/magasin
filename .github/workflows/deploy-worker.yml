@@ -13,6 +13,10 @@ name: Déployer le Worker de notifications push
 # push-notifications/wrangler.toml via  `npx wrangler kv namespace create PUSH_KV`.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'push-notifications/**'
   workflow_dispatch:
 
 jobs:
