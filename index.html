@@ -399,10 +399,11 @@
   .cmp-price.best{color:var(--green);}
   .cmp-best-tag{font-size:10px; font-weight:800; color:var(--green); text-transform:uppercase; letter-spacing:.03em;}
   .cart-store-head{
-    display:flex; align-items:center; gap:8px; margin:16px 0 2px; padding-bottom:6px;
-    border-bottom:1px solid var(--line); font-size:13px; font-weight:800;
+    display:flex; align-items:center; gap:10px;
+    font-family:'Archivo Black',sans-serif; font-size:14px; font-weight:800; color:var(--ink);
+    padding:10px 0 6px; border-bottom:1px solid var(--line); margin-bottom:6px;
   }
-  .cart-store-head img{height:15px; width:auto; object-fit:contain;}
+  .cart-store-head img{height:18px; width:auto; object-fit:contain;}
   .cart-store-head .sub{margin-left:auto; font-weight:700; color:var(--ink-soft); font-size:11.5px;}
   .store-prospectus{
     display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:800;
@@ -677,17 +678,59 @@
   .geo-btn{display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin:6px 0 14px; cursor:pointer; width:100%; font-weight:700; font-size:14px; color:var(--green);}
 
   /* Cart sheet */
-  .cart-line{display:flex; gap:10px; align-items:center; padding:11px 0; border-bottom:1px solid var(--line);}
-  .cart-line-img{width:44px; height:44px; border-radius:10px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;}
+  .cart-line{display:flex; gap:10px; align-items:center; padding:12px 10px; border-bottom:1px solid var(--line); border-radius:12px; margin:4px 0; background:var(--card); transition:transform .1s, box-shadow .1s;}
+  .cart-line:active{transform:scale(.985); box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .cart-line-img{width:48px; height:48px; border-radius:12px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; overflow:hidden;}
+  .cart-line-img img{width:100%; height:100%; object-fit:contain; padding:2px;}
   .cart-line-info{flex:1; min-width:0;}
-  .cart-line-info .n{font-size:13.5px; font-weight:700;}
-  .cart-line-info .p{font-size:12px; color:var(--ink-soft);}
-  .cart-line-qty{display:flex; align-items:center; gap:8px;}
-  .cart-line-qty button{width:26px; height:26px; border-radius:7px; border:1px solid var(--line); background:var(--card); cursor:pointer; font-weight:700;}
+  .cart-line-info .n{font-size:14px; font-weight:800; color:var(--ink);}
+  .cart-line-info .p{font-size:12px; color:var(--ink-soft); margin-top:2px;}
+  .cart-line-qty{display:flex; align-items:center; gap:6px;}
+  .cart-line-qty button{width:28px; height:28px; border-radius:8px; border:1px solid var(--line); background:var(--card); cursor:pointer; font-weight:800; font-size:14px; color:var(--ink); transition:background .1s, border-color .1s;}
+  .cart-line-qty button:active{background:var(--green-soft); border-color:var(--green);}
+  .cart-line-qty span{min-width:22px; text-align:center; font-weight:700; font-size:14px; color:var(--ink);}
   .totals{margin-top:14px; border-top:1px dashed var(--line); padding-top:12px;}
   .trow{display:flex; justify-content:space-between; font-size:13.5px; padding:4px 0; color:var(--ink-soft);}
   .trow.save{color:var(--green); font-weight:700;}
   .trow.final{font-size:17px; font-weight:800; color:var(--ink); padding-top:8px; border-top:1px solid var(--line); margin-top:6px;}
+
+  /* Jauge budget */
+  .budget-gauge{margin:12px 0 16px; padding:14px; background:linear-gradient(135deg, var(--card), var(--paper)); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow-sm);}
+  .bg-label{display:flex; justify-content:space-between; font-size:12.5px; font-weight:700; margin-bottom:6px; color:var(--ink);}
+  .bg-bar{height:10px; background:var(--line); border-radius:999px; overflow:hidden;}
+  .bg-fill{height:100%; width:0%; border-radius:999px; transition:width .35s cubic-bezier(.2,.7,.3,1.15), background .2s;}
+  .bg-fill.ok{background:var(--green);}
+  .bg-fill.warn{background:var(--amber);}
+  .bg-fill.danger{background:var(--red);}
+  .bg-fill.over{background:linear-gradient(90deg, var(--red), #c00); animation:pulseRed 1s infinite;}
+  @keyframes pulseRed{0%,100%{opacity:1;}50%{opacity:.6;}}
+  .bg-meta{display:flex; justify-content:space-between; margin-top:6px; font-size:11.5px; color:var(--ink-soft);}
+  .bg-meta span:last-child{font-weight:700; color:var(--ink);}
+
+  /* Bouton liste courses */
+  #shoppingListBtn{width:100%; margin-top:8px;}
+
+  /* Liste de courses (sheet + impression) */
+  .sl-store{margin-bottom:16px;}
+  .sl-store-head{display:flex; align-items:center; gap:8px; font-family:'Archivo Black',sans-serif; font-size:15px; color:var(--ink); padding:6px 0; border-bottom:2px solid var(--green); margin-bottom:8px;}
+  .sl-aisle{margin-bottom:10px;}
+  .sl-aisle-title{font-size:12.5px; font-weight:800; color:var(--green); text-transform:uppercase; letter-spacing:.04em; margin:8px 0 4px;}
+  .sl-line{display:flex; align-items:center; gap:10px; padding:7px 8px; border-radius:10px; cursor:pointer; transition:background .15s;}
+  .sl-line:active{background:var(--green-soft);}
+  .sl-line input[type=checkbox]{width:20px; height:20px; accent-color:var(--green); cursor:pointer; flex-shrink:0;}
+  .sl-line input:checked ~ .sl-info{opacity:.55; text-decoration:line-through;}
+  .sl-info{flex:1; min-width:0;}
+  .sl-name{font-size:13.5px; font-weight:700;}
+  .sl-meta{font-size:11.5px; color:var(--ink-soft); margin-top:2px;}
+  @media print{
+    .navbar, .topbar, .prospectus-banner, .offline-banner, #skipLink{display:none !important;}
+    .sheet{position:static !important; transform:none !important; display:block !important; max-width:100% !important; box-shadow:none !important; max-height:none !important;}
+    .sheet:not(#shoppingListSheet){display:none !important;}
+    .sheet-close,.sheet-handle,#shoppingListSheet .icon-btn{display:none !important;}
+    #shoppingListSheet .sheet-inner{padding:12px;}
+    .sl-line input:checked ~ .sl-info{opacity:.4;}
+    body{background:#fff !important; color:#000;}
+  }
 
   .qr-wrap{display:flex; flex-direction:column; align-items:center; padding:10px 0 4px;}
   #qrcode{padding:14px; background:#fff; border-radius:14px; margin:10px 0;}
@@ -1042,10 +1085,24 @@
       </div>
       <button class="icon-btn" id="clearCartBtn" title="Vider">🗑️</button>
     </div>
+    <div class="budget-gauge" id="budgetGauge" style="display:none;">
+      <div class="bg-label">
+        <span>Budget semaine</span>
+        <span id="budgetGaugePct">0%</span>
+      </div>
+      <div class="bg-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="bg-fill" id="budgetGaugeFill"></div>
+      </div>
+      <div class="bg-meta">
+        <span id="budgetGaugeSpent">0,00 €</span>
+        <span id="budgetGaugeBudget">/ 40 €</span>
+      </div>
+    </div>
     <div id="cartList"></div>
     <div class="totals" id="cartTotals"></div>
     <button class="primary-btn" id="passBtn" style="margin-top:16px;">🎟️ Obtenir mon Pass Réduction QR Code</button>
     <button class="secondary-btn" id="whatsBtn">📤 Envoyer ma liste de courses sur WhatsApp</button>
+    <button class="secondary-btn" id="shoppingListBtn">📋 Liste de courses par rayon</button>
     <div class="cart-link-row">
       <button id="cartCompareBtn">🏪 Comparer les prix par magasin</button>
       <button id="cartShareLinkBtn">🔗 Copier le lien du panier</button>
@@ -1084,6 +1141,20 @@
     <h3 style="margin:6px 0 2px;">🏪 Comparateur de panier par magasin</h3>
     <p style="font-size:12.5px; color:var(--ink-soft); margin:0 0 12px;">Coût estimé de tout votre panier dans chaque enseigne.</p>
     <div class="cmp-grid" id="cartCompareList"></div>
+  </div>
+</div>
+
+<!-- Shopping list sheet -->
+<div class="sheet" id="shoppingListSheet">
+  <div class="sheet-handle"></div>
+  <button class="sheet-close" data-close>✕</button>
+  <div class="sheet-inner">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+      <h3 style="margin:0;">📋 Liste de courses</h3>
+      <button class="icon-btn" onclick="printShoppingList()" title="Imprimer / PDF">🖨️</button>
+    </div>
+    <p style="font-size:12.5px; color:var(--ink-soft); margin:0 0 12px;">Groupée par magasin puis par rayon. Cochez au fur et à mesure.</p>
+    <div id="shoppingListContent"></div>
   </div>
 </div>
 
@@ -1904,6 +1975,40 @@ function renderCart(){
     <div class="trow save"><span>Vos économies de prospectus</span><span>− ${t.save.toFixed(2)} €</span></div>
     <div class="trow final"><span>Total en magasin</span><span>${t.promo.toFixed(2)} €</span></div>`;
   updateCartFmts();
+  updateBudgetGauge();
+}
+function updateBudgetGauge(){
+  const gauge = document.getElementById('budgetGauge');
+  const budgetInput = document.getElementById('mealPlanBudget');
+  if(!gauge || !budgetInput) return;
+  const budget = Number(budgetInput.value) || 40;
+  const t = cartTotals();
+  const spent = t.promo;
+  const pct = Math.min(200, Math.round((spent / budget) * 100));
+  gauge.style.display = 'block';
+  document.getElementById('budgetGaugeFill').style.width = Math.min(100, pct) + '%';
+  document.getElementById('budgetGaugePct').textContent = pct + '%';
+  document.getElementById('budgetGaugeSpent').textContent = spent.toFixed(2).replace('.',',') + ' €';
+  document.getElementById('budgetGaugeBudget').textContent = '/ ' + budget + ' €';
+  const fill = document.getElementById('budgetGaugeFill');
+  fill.classList.remove('ok','warn','danger','over');
+  if(pct >= 100){ fill.classList.add('over'); if(!gauge.dataset.alerted100){ playAlert('over'); gauge.dataset.alerted100='1'; } }
+  else if(pct >= 90){ fill.classList.add('danger'); if(!gauge.dataset.alerted90){ playAlert('warn'); gauge.dataset.alerted90='1'; } }
+  else if(pct >= 70){ fill.classList.add('warn'); if(!gauge.dataset.alerted70){ playAlert('soft'); gauge.dataset.alerted70='1'; } }
+  else { fill.classList.add('ok'); gauge.dataset.alerted70=gauge.dataset.alerted90=gauge.dataset.alerted100=''; }
+}
+function playAlert(level){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    if(level==='over'){ osc.frequency.value=440; gain.gain.value=0.08; osc.type='square'; osc.start(); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.6); osc.stop(ctx.currentTime+0.6); }
+    else if(level==='warn'){ osc.frequency.value=523; gain.gain.value=0.05; osc.type='sine'; osc.start(); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.3); osc.stop(ctx.currentTime+0.3); }
+    else { osc.frequency.value=659; gain.gain.value=0.03; osc.type='sine'; osc.start(); gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.15); osc.stop(ctx.currentTime+0.15); }
+  }catch(e){ /* silencieux */ }
+  if(level==='over' && navigator.vibrate) navigator.vibrate([80,40,80]);
+  else if(level==='warn' && navigator.vibrate) navigator.vibrate([60]);
 }
 
 /* ---------------------------------------------------------
@@ -2093,9 +2198,91 @@ function whatsAppList(){
     virtuals.forEach(({p,qty})=> lines.push(`  ${p.name} x${qty} — ≈ ${p.price.toFixed(2)} €`));
   }
   lines.push('', 'De PromoApp 🔥');
-  window.open(`https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
+window.open(`https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
 }
-document.getElementById('whatsBtn').addEventListener('click', whatsAppList);
+
+/* Mapping catégorie → rayon pour la liste de courses */
+const AISLE_MAP = {
+  'fruits': '🥦 Fruits & Légumes',
+  'legumes': '🥦 Fruits & Légumes',
+  'viande': '🥩 Boucherie',
+  'poisson': '🐟 Poissonnerie',
+  'frais': '🧀 Crèmerie / Frais',
+  'laitage': '🧀 Crèmerie / Frais',
+  'epicerie': '📦 Épicerie salée',
+  'epicerie sucree': '🍯 Épicerie sucrée',
+  'boisson': '🥤 Boissons',
+  'alcool': '🍷 Vins & Spiritueux',
+  'boulangerie': '🍞 Boulangerie',
+  'surgeles': '❄️ Surgelés',
+  'hygiène': '🧴 Hygiène & Beauté',
+  'ménage': '🧽 Entretien maison',
+  'animal': '🐕 Animalerie',
+  'bébé': '👶 Bébé',
+  'autre': '📦 Divers'
+};
+function aisleOf(cat){
+  return AISLE_MAP[cat] || '📦 Divers';
+}
+function renderShoppingList(){
+  const el = document.getElementById('shoppingListContent');
+  if(!el) return;
+  const groups = new Map();
+  Object.entries(state.cart).forEach(([id,qty])=>{
+    const p = PRODUCTS.find(x=>x.id==id);
+    if(p){
+      const key = p.store;
+      if(!groups.has(key)) groups.set(key, new Map());
+      const aisle = aisleOf(p.cat);
+      if(!groups.get(key).has(aisle)) groups.get(key).set(aisle, []);
+      groups.get(key).get(aisle).push({p, qty, virtual:false});
+    }else{
+      const ve = ingEntry(id);
+      if(ve){
+        const key = '__recipes';
+        if(!groups.has(key)) groups.set(key, new Map());
+        const aisle = '🥘 Ingrédients recette';
+        if(!groups.get(key).has(aisle)) groups.get(key).set(aisle, []);
+        groups.get(key).get(aisle).push({p:ve, qty, virtual:true});
+      }
+    }
+  });
+  if(!groups.size){
+    el.innerHTML = '<div class="empty"><span class="e-icon">🛒</span>Panier vide — ajoutez des promos pour générer votre liste.</div>';
+    return;
+  }
+  let html = '';
+  groups.forEach((aisles, storeId)=>{
+    const isRecipes = storeId === '__recipes';
+    if(isRecipes){
+      html += `<div class="sl-store"><div class="sl-store-head">🥘 Ingrédients recette (hors promo)</div>`;
+    }else{
+      const st = storeOf(storeId);
+      html += `<div class="sl-store"><div class="sl-store-head"><img src="logos/${st.id}.logo.svg" alt="${st.name}" width="22" height="22" onerror="this.remove()"> ${st.name}</div>`;
+    }
+    aisles.forEach((items, aisle)=>{
+      html += `<div class="sl-aisle"><div class="sl-aisle-title">${aisle}</div>`;
+      items.forEach(({p, qty, virtual})=>{
+        const lineId = 'sl-' + (p.id || p.name.replace(/\s+/g,'-'));
+        html += `
+          <label class="sl-line">
+            <input type="checkbox" data-sl-item="${lineId}">
+            <div class="sl-info">
+              <div class="sl-name">${p.name}</div>
+              <div class="sl-meta">${qty}×${virtual?' (estimé)':''}${priceOf(p) ? ' · ' + priceOf(p).toFixed(2).replace('.',',') + ' €' : ''}</div>
+            </div>
+          </label>`;
+      });
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+  el.innerHTML = html;
+}
+function printShoppingList(){
+  renderShoppingList();
+  window.print();
+}
 document.getElementById('clearCartBtn').addEventListener('click', ()=>{
   if(!Object.keys(state.cart).length) return;
   state.cart = {};
@@ -2104,7 +2291,7 @@ document.getElementById('clearCartBtn').addEventListener('click', ()=>{
   renderCart();
   showToast('Panier vidé');
 });
-document.getElementById('cartCompareBtn').addEventListener('click', openCartCompare);
+document.getElementById('shoppingListBtn').addEventListener('click', ()=>{ openSheet('shoppingListSheet'); renderShoppingList(); });
 document.getElementById('cartShareLinkBtn').addEventListener('click', cartShareLink);
 document.getElementById('cartScanBtn').addEventListener('click', openScanner);
 document.addEventListener('click', e=>{

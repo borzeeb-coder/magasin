@@ -175,6 +175,21 @@ async function main() {
     check(await page.locator('#cartIdeasResult .ci-row').count() >= 1,
       'idées recettes proposées à partir du panier (pâtes)');
 
+    // 8bis. Budget gauge + shopping list
+    await page.locator('.navbtn[data-view="cart"]').click();
+    await page.waitForTimeout(600);
+    check(await page.locator('#budgetGauge').isVisible(), 'jauge budget visible dans le panier');
+    check(await page.evaluate(() => {
+      const fill = document.getElementById('budgetGaugeFill');
+      return fill && getComputedStyle(fill).width !== '0px';
+    }), 'barre budget remplie proportionnellement');
+    await page.click('#shoppingListBtn');
+    await page.waitForTimeout(400);
+    check(await page.locator('#shoppingListSheet.show').count() === 1, 'sheet liste de courses s\'ouvre');
+    check(await page.locator('#shoppingListContent .sl-store').count() >= 1, 'liste groupée par magasin/rayon rendue');
+    await page.click('#shoppingListSheet .sheet-close');
+    await page.waitForTimeout(200);
+
     // 7. Features recettes v2 : recherche, filtres, favoris, portions,
     //    économies, partage, TTS, temps restant, recette aléatoire
     const { recipeFeaturesChecks } = require('./features_test.js');
