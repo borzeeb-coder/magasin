@@ -479,35 +479,35 @@
   /* ---------- Bottom nav ---------- */
   /* =========== Bottom Navigation =========== */
   .navbar{
-    position:fixed; bottom:0; left:0; right:0; z_index:40;
-    background:var(--card); border_top:1px solid var(--line);
-    display:flex; padding_bottom:var(--safe_bottom);
-    box_shadow:0 -4px 20px rgba(0,0,0,.08);
+    position:fixed; bottom:0; left:0; right:0; z-index:40;
+    background:var(--card); border-top:1px solid var(--line);
+    display:flex; padding-bottom:var(--safe-bottom);
+    box-shadow:0 -4px 20px rgba(0,0,0,.08);
   }
   .navbtn{
     flex:1; border:none; background:transparent; padding:var(--space-2) 0 var(--space-1);
-    display:flex; flex_direction:column; align_items:center; gap:var(--space-1);
-    font_size:var(--font_xs); font_weight:700; color:var(--ink-soft); cursor:pointer; position:relative;
-    transition:color var(--transition_fast);
+    display:flex; flex-direction:column; align-items:center; gap:var(--space-1);
+    font-size:var(--font-xs); font-weight:700; color:var(--ink-soft); cursor:pointer; position:relative;
+    transition:color var(--transition-fast);
   }
-  .navbtn .ni{font_size:22px; line_height:1; transition:transform var(--transition_fast);}
+  .navbtn .ni{font-size:22px; line-height:1; transition:transform var(--transition-fast);}
   .navbtn.active{
     color:var(--green);
   }
   .navbtn.active .ni{transform:scale(1.15);}
   .navbtn:active .ni{transform:scale(.9);}
-  .navbtn:focus_visible{outline:none;}
-  .navbtn:focus_visible::after{
+  .navbtn:focus-visible{outline:none;}
+  .navbtn:focus-visible::after{
     content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
-    width:60%; height:3px; background:var(--green); border_radius:2px 2px 0 0;
+    width:60%; height:3px; background:var(--green); border-radius:2px 2px 0 0;
   }
   .cart-count{
     position:absolute; top:calc(50% - 20px); right:calc(50% - 22px); background:var(--red); color:#fff;
-    font_size:var(--font_xs); font_weight:800; min_width:16px; height:16px; border_radius:8px;
-    display:flex; align_items:center; justify_content:center; padding:0 3px;
-    box_shadow:0 2px 6px rgba(200,45,28,.3);
+    font-size:var(--font-xs); font-weight:800; min-width:16px; height:16px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center; padding:0 3px;
+    box-shadow:0 2px 6px rgba(200,45,28,.3);
   }
-  .nav_label{display:block; white_space:nowrap;}
+  .nav-label{display:block; white-space:nowrap;}
 
 /* =========== Sheets / Modals =========== */
   .overlay{
@@ -627,42 +627,42 @@
   /* =========== Buttons =========== */
   .primary-btn{
     width:100%; border:none; background:var(--ink); color:var(--paper);
-    border_radius:var(--radius); padding:var(--space-3) 0; font_size:var(--font_md); font_weight:800; cursor:pointer;
-    transition:background var(--transition_fast), transform var(--transition_fast), box_shadow var(--transition_fast);
-    box_shadow:var(--shadow);
+    border-radius:var(--radius); padding:var(--space-3) 0; font-size:var(--font-md); font-weight:800; cursor:pointer;
+    transition:background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow:var(--shadow);
   }
-  .primary-btn:hover{background:var(--ink-muted); box_shadow:var(--shadow-lg);}
+  .primary-btn:hover{background:var(--ink-muted); box-shadow:var(--shadow-lg);}
   .primary-btn:active{transform:scale(.985);}
   .primary-btn:disabled{opacity:.4; cursor:default; transform:none;}
-  .primary-btn:focus_visible{outline:3px solid var(--blue); outline_offset:2px;}
+  .primary-btn:focus-visible{outline:3px solid var(--blue); outline-offset:2px;}
 
   .secondary-btn{
-    width:100%; border:1px solid var(--line); background:var(--card); color:var(--ink); border_radius:var(--radius);
-    padding:var(--space-2) 0; font_size:var(--font_md); font_weight:700; cursor:pointer; margin_top:var(--space-2);
-    transition:all var(--transition_fast);
+    width:100%; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:var(--radius);
+    padding:var(--space-2) 0; font-size:var(--font-md); font-weight:700; cursor:pointer; margin-top:var(--space-2);
+    transition:all var(--transition-fast);
   }
-  .secondary-btn:hover{background:var(--card-hover); border_color:var(--ink-muted);}
+  .secondary-btn:hover{background:var(--card-hover); border-color:var(--ink-muted);}
   .secondary-btn:active{transform:scale(.985);}
-  .secondary-btn:focus_visible{outline:3px solid var(--blue); outline_offset:2px;}
+  .secondary-btn:focus-visible{outline:3px solid var(--blue); outline-offset:2px;}
 
   /* Recipe modal actions */
-  .recipe_actions{display:flex; gap:var(--space-3); padding_top:var(--space-3); margin_top:var(--space-2); border_top:1px solid var(--line);}
-  .recipe_actions .btn_primary,
-  .recipe_actions .btn_secondary{
-    flex:1; padding:var(--space-3) var(--space-4); border_radius:var(--radius); font_weight:800; font_size:var(--font-lg); cursor:pointer;
-    box_shadow:0 2px 8px rgba(0,0,0,.1); transition:transform var(--transition_fast), box_shadow var(--transition_fast);
+  .recipe-actions{display:flex; gap:var(--space-3); padding-top:var(--space-3); margin-top:var(--space-2); border-top:1px solid var(--line);}
+  .recipe-actions .btn-primary,
+  .recipe-actions .btn-secondary{
+    flex:1; padding:var(--space-3) var(--space-4); border-radius:var(--radius); font-weight:800; font-size:var(--font-lg); cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.1); transition:transform var(--transition-fast), box-shadow var(--transition-fast);
   }
-  .recipe_actions .btn_primary:active,
-  .recipe_actions .btn_secondary:active{transform:scale(.97);}
-  .recipe_actions .btn_primary{
-    background:linear_gradient(135deg, #2f86ff 0%, #1253d6 100%); color:#fff; border:none;
-    box_shadow:0 3px 12px rgba(47,134,255,.4);
+  .recipe-actions .btn-primary:active,
+  .recipe-actions .btn-secondary:active{transform:scale(.97);}
+  .recipe-actions .btn-primary{
+    background:linear-gradient(135deg, #2f86ff 0%, #1253d6 100%); color:#fff; border:none;
+    box-shadow:0 3px 12px rgba(47,134,255,.4);
   }
-  .recipe_actions .btn_secondary{
-    background:linear_gradient(135deg, var(--yellow) 0%, #e8a400 100%); color:#fff; border:none;
-    box_shadow:0 2px 8px rgba(244,180,0,.3);
+  .recipe-actions .btn-secondary{
+    background:linear-gradient(135deg, var(--yellow) 0%, #e8a400 100%); color:#fff; border:none;
+    box-shadow:0 2px 8px rgba(244,180,0,.3);
   }
-  .cook_launch{font_size:var(--font_md); padding:var(--space-3) var(--space-4);}
+  .cook-launch{font-size:var(--font-md); padding:var(--space-3) var(--space-4);}
 
   /* Recipe cards */
   .recipe-grid{
