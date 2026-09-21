@@ -19,7 +19,7 @@
  *                      favori atteint son seuil de remise (appelé chaque nuit).
  */
 import { setVapidDetails, sendNotification } from 'web-push';
-import { bestOfferFor } from './matching.mjs';
+import { bestOfferFor, weekOfOffers } from './matching.mjs';
 
 const APP_URL = 'https://borzeeb-coder.github.io/magasin/';
 const REFRESH_MIN = 24 * 60; // en minutes : on ne renvoie pas pour un même favori avant ce délai
@@ -43,11 +43,12 @@ function favsFromBody(body) {
   return favs.filter((f) => f.name);
 }
 
-async function storeSubscription(env, endpoint, subscription, favs) {
+async function storeSubscription(env, endpoint, subscription, favs, notifyNewProspectus) {
   const existing = await env.PUSH_KV.get(subKey(endpoint), 'json');
   const record = {
     subscription,
     favs,
+    notifyNewProspectus: !!notifyNewProspectus,
     notified: (existing && existing.notified) || {},
   };
   await env.PUSH_KV.put(subKey(endpoint), JSON.stringify(record));
@@ -74,7 +75,7 @@ export default {
           return json({ error: 'subscription manquante' }, 400);
         }
         const favs = favsFromBody(body);
-        await storeSubscription(env, subscription.endpoint, subscription, favs);
+        await storeSubscription(env, subscription.endpoint, subscription, favs, body.newProspectus);
         return json({ ok: true, favs: favs.length });
       }
 
@@ -91,7 +92,8 @@ export default {
         const existing = await env.PUSH_KV.get(subKey(endpoint), 'json');
         if (!existing) return json({ ok: false, reason: 'inconnu' }, 404);
         const favs = favsFromBody(body);
-        await storeSubscription(env, endpoint, existing.subscription, favs);
+        const keepNotify = body.newProspectus !== undefined ? !!body.newProspectus : existing.notifyNewProspectus;
+        await storeSubscription(env, endpoint, existing.subscription, favs, keepNotify);
         return json({ ok: true, favs: favs.length });
       }
 
@@ -130,6 +132,27 @@ async function runCheck(env, promosText) {
   let checked = 0;
   const now = Date.now();
 
+  // Nouveau prospectus ? (semaine différente de la dernière vue) → un push
+  // générique à tous les abonnés qui l'ont demandé, même sans favori déclencheur.
+  let weekChanged = false;
+  let weeks = null;
+  try {
+    weeks = weekOfOffers(promos.offers);
+    if (weeks) {
+      const prevWeek = await env.PUSH_KV.get('meta:week');
+      if (prevWeek !== weeks.key) {
+        weekChanged = true;
+        await env.PUSH_KV.put('meta:week', weeks.key);
+      }
+    }
+  } catch (e) { /* la détection de semaine ne doit jamais bloquer le /check */ }
+
+  const prospectusPayload = weekChanged ? JSON.stringify({
+    title: `📢 Nouveau prospectus PromoApp — ${weeks.label} !`,
+    body: 'Les promos de la semaine ont changé. Ouvrez l\'app pour voir les nouvelles offres.',
+    url: APP_URL,
+  }) : null;
+
   for (const rec of all) {
     for (const fav of rec.favs || []) {
       if (!fav.threshold) continue;
@@ -155,6 +178,18 @@ async function runCheck(env, promosText) {
         checked++;
       } catch (err) {
         // Abonnement mort ? On le retire pour ne pas encombrer le KV.
+        if (/410|404|expire/i.test(String(err && err.message || err))) {
+          await env.PUSH_KV.delete(rec.key);
+        }
+      }
+    }
+
+    if (prospectusPayload && rec.notifyNewProspectus) {
+      try {
+        await sendNotification(rec.subscription, prospectusPayload, { TTL: 86400 });
+        sent++;
+        checked++;
+      } catch (err) {
         if (/410|404|expire/i.test(String(err && err.message || err))) {
           await env.PUSH_KV.delete(rec.key);
         }

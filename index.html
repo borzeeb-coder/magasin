@@ -103,6 +103,22 @@
     background:var(--ink); color:var(--paper); text-align:center;
     font-size:12px; font-weight:700; padding:7px 14px;
   }
+  .prospectus-banner{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    margin:10px 0 0; padding:10px 12px; border-radius:14px;
+    background:linear-gradient(135deg, var(--green-soft), var(--card));
+    border:1px solid var(--green); color:var(--ink);
+    font-size:12.5px; font-weight:600;
+    animation:bannerIn .45s cubic-bezier(.2,.7,.3,1.15) both;
+  }
+  .prospectus-banner b{color:var(--green); font-size:13px;}
+  .pb-actions{display:flex; gap:6px; flex-shrink:0;}
+  .pb-btn{
+    border:1px solid var(--green); background:#fff; color:var(--green);
+    font-weight:800; font-size:11.5px; padding:6px 10px; border-radius:999px; cursor:pointer;
+  }
+  .pb-btn.see{background:var(--green); color:#fff;}
+  .pb-btn:active{transform:scale(.94);}
   .loc-btn{
     display:flex; align-items:center; gap:8px;
     background:var(--card); border:1px solid var(--line); border-radius:999px;
@@ -907,6 +923,13 @@
 <body>
 
 <div class="offline-banner" id="offlineBanner" style="display:none;">📡 Mode hors-ligne — les promos affichées sont celles de votre dernière visite</div>
+<div class="prospectus-banner" id="prospectusBanner" style="display:none;" role="status">
+  <span>📢 <b id="prospectusWeekText"></b> est en ligne — les promos ont changé !</span>
+  <span class="pb-actions">
+    <button class="pb-btn see" id="prospectusSeeNew" onclick="seeNewProspectus()">Voir les nouveautés 🆕</button>
+    <button class="pb-btn" id="prospectusDismiss" onclick="dismissNewProspectus()">J'ai vu</button>
+  </span>
+</div>
 
 <div class="topbar">
   <div class="loc-row">
@@ -1396,12 +1419,17 @@ function fuzzyOk(query, text){
   if(t.length < 5) return q[0] === t[0] && i >= q.length - 1;
   return false;
 }
+function isoWeekOf(d){
+  const start = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil((((d - start) / 86400000) + d.getDay() + 1) / 7);
+}
 function folderPeriod(){
   let d = null;
   for(const p of PRODUCTS){
     const m = (p.source_url || '').match(/du-(\d{2})-(\d{2})-(\d{2})/);
     if(m){
-      const dt = new Date(2000 + Number(m[3]), Number(m[1]) - 1, Number(m[2]));
+      // format folder : du-DD-MM-YY
+      const dt = new Date(2000 + Number(m[3]), Number(m[2]) - 1, Number(m[1]));
       if(!isNaN(dt)){ d = dt; break; }
     }
   }
@@ -1409,8 +1437,57 @@ function folderPeriod(){
   const start = new Date(d.getFullYear(), d.getMonth(), d.getDate());
   const end = new Date(start.getTime() + 6 * 86400000);
   const fmt = x => x.toLocaleDateString('fr-BE', {day:'numeric', month:'short'});
-  const week = Math.ceil((((start - new Date(start.getFullYear(), 0, 1)) / 86400000) + start.getDay() + 1) / 7);
+  const week = isoWeekOf(start);
   return `Prospectus du ${fmt(start)} au ${fmt(end)} · semaine ${week}`;
+}
+const WEEK_SEEN_KEY = 'pa_week_seen';
+function currentWeekInfo(){
+  const label = folderPeriod();
+  if(!label) return null;
+  const m = label.match(/semaine (\d+)$/);
+  return m ? { week: Number(m[1]), label } : null;
+}
+function announceNewProspectus(info){
+  const banner = document.getElementById('prospectusBanner');
+  if(banner){
+    document.getElementById('prospectusWeekText').textContent = 'La ' + info.label.replace('semaine', 'semaine');
+    banner.style.display = 'flex';
+  }
+  showToast('📢 ' + info.label + ' en ligne — les promos ont changé !', 4000);
+  if('Notification' in window && Notification.permission === 'granted'){
+    try{
+      new Notification('📢 Nouveau prospectus PromoApp', {
+        body: info.label + ' en ligne — les promos ont changé, venez voir !',
+        tag: 'promoapp-prospectus',
+        icon: './icons/icon-192.png',
+        badge: './icons/icon-192.png',
+      });
+    }catch(e){ /* silencieux */ }
+  }
+}
+function checkNewProspectus(){
+  const info = currentWeekInfo();
+  if(!info) return;
+  const last = localStorage.getItem(WEEK_SEEN_KEY);
+  const dismissed = localStorage.getItem('pa_prospectus_dismissed_' + info.week);
+  localStorage.setItem(WEEK_SEEN_KEY, String(info.week));
+  if(last && last !== String(info.week) && dismissed !== '1' && info.week !== 0){
+    announceNewProspectus(info);
+  }
+}
+function dismissNewProspectus(){
+  const banner = document.getElementById('prospectusBanner');
+  if(banner) banner.style.display = 'none';
+  const info = currentWeekInfo();
+  if(info) localStorage.setItem('pa_prospectus_dismissed_' + info.week, '1');
+}
+function seeNewProspectus(){
+  const banner = document.getElementById('prospectusBanner');
+  if(banner) banner.style.display = 'none';
+  const info = currentWeekInfo();
+  if(info) localStorage.setItem('pa_prospectus_dismissed_' + info.week, '1');
+  if(state.currentView !== 'promos') switchView('promos');
+  toggleNewOnly();
 }
 
 /* ---------------------------------------------------------
@@ -2397,7 +2474,7 @@ function updatePushUI(){
       if(sub){
         btn.style.display = 'none';
         note.style.display = 'block';
-        note.textContent = '🔔 Alertes actives : vous serez prévenu quand un favori atteindra son seuil de remise.';
+        note.textContent = '🔔 Alertes actives : favoris à -X% + nouveau prospectus dès sa mise en ligne.';
       } else {
         btn.style.display = 'block';
         btn.textContent = '🔔 Activer les alertes';
@@ -2437,9 +2514,10 @@ async function subscribePush(){
     await pushPost('/subscribe', {
       subscription: sub.toJSON(),
       favs: pushFavsPayload(),
+      newProspectus: true,
     });
     updatePushUI();
-    showToast('Alertes activées ✓ Vous serez prévenu dès qu\'un favori fait -X%');
+    showToast('Alertes activées ✓ favoris dès -X% + rappel nouveau prospectus');
     renderFavs();
   }catch(err){
     console.warn('push subscribe failed', err);
@@ -4209,6 +4287,7 @@ async function init(){
   rerenderAll();
   navOnly(state.currentView || 'promos');
   updateCartBadge();
+  checkNewProspectus();
   initPWA();
   setTimeout(checkFavAlerts, 1200);
   const pb = document.getElementById('pushBtn');
@@ -4232,11 +4311,21 @@ function initPWA(){
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('./sw.js').catch(()=>{});
   }
+  if(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches){
+    const b = document.getElementById('installBtn');
+    if(b) b.style.display = 'none';
+  }
   window.addEventListener('beforeinstallprompt', (e)=>{
     e.preventDefault();
     deferredPrompt = e;
     const btn = document.getElementById('installBtn');
-    if(btn) btn.style.display = 'inline-flex';
+    if(btn && !(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)) btn.style.display = 'inline-flex';
+  });
+  window.addEventListener('appinstalled', ()=>{
+    deferredPrompt = null;
+    const btn = document.getElementById('installBtn');
+    if(btn) btn.style.display = 'none';
+    showToast("✅ PromoApp installée — lancez-la depuis votre écran d'accueil !", 4000);
   });
 }
 document.addEventListener('DOMContentLoaded', ()=>{

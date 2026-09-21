@@ -41,3 +41,23 @@ export function bestOfferFor(favName, offers) {
   }
   return best;
 }
+
+/* Semaine du prospectus déduite des URLs de folder (ex. ".../folder-du-15-09-26/"),
+ * même règle que l'app. Retourne { key: "2026-W38", label: "semaine 38" } ou null. */
+export function weekOfOffers(offers) {
+  const src = (offers && typeof offers === 'object') ? Object.values(offers).flat() : [];
+  let d = null;
+  for (const o of src) {
+    const m = String(o && o.source_url || '').match(/du-(\d{2})-(\d{2})-(\d{2})/);
+    if (m) {
+      // format folder : du-DD-MM-YY
+      const dt = new Date(2000 + Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+      if (!Number.isNaN(dt.getTime())) { d = dt; break; }
+    }
+  }
+  if (!d) return null;
+  const y = d.getFullYear();
+  const startJan = new Date(y, 0, 1);
+  const week = Math.ceil((((d - startJan) / 86400000) + d.getDay() + 1) / 7);
+  return { key: `${y}-W${String(week).padStart(2, '0')}`, label: `semaine ${week}` };
+}

@@ -1,4 +1,4 @@
-import { normalize, effectiveDiscount, bestOfferFor } from '../src/matching.mjs';
+import { normalize, effectiveDiscount, bestOfferFor, weekOfOffers } from '../src/matching.mjs';
 
 let ok = 0;
 let bad = 0;
@@ -27,6 +27,21 @@ let hit = bestOfferFor('Coca-Cola', offers);
 t(hit !== null && hit.discount === 22 && hit.store === 'delhaize', 'meilleure remise retenue (22% delhaize > 20% carrefour)');
 t(hit.offer.new_price === 2.5, 'prix de la bonne offre');
 t(bestOfferFor('Bananes', offers) === null, 'pas de correspondance');
+
+console.log('weekOfOffers');
+t(weekOfOffers(null) === null, 'null -> null');
+t(weekOfOffers({}) === null, 'sans offres -> null');
+const weeks = {
+  colruyt: [
+    { name: 'Poulet', source_url: 'https://www.colruyt.be/folders/du-15-09-26-une-semaine-de-bonnes-affaires/' },
+    { name: 'Lait', source_url: 'https://www.colruyt.be/folders/du-15-09-26-un-autre-folder/' },
+  ],
+  lidl: [{ name: 'Fromage', source_url: 'https://www.lidl.be/fr/folder-du-22-09-26-contenu/' }],
+};
+const wk = weekOfOffers(weeks);
+t(wk !== null && wk.key === '2026-W38', 'premiere date du folder (15-09-2026) -> 2026-W38, got ' + (wk && wk.key));
+t(wk && wk.label === 'semaine 38', 'label "semaine 38"');
+t(weekOfOffers({ colruyt: [{ name: 'X', source_url: 'https://example.com/sans-date/' }] }) === null, 'aucune date -> null');
 
 function summary() {
   console.log(`\n${ok} ok, ${bad} échec${bad ? ' — IMPACT' : ''}`);

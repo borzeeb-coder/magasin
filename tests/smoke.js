@@ -132,6 +132,25 @@ async function main() {
     await page.waitForTimeout(500);
     check(await page.locator('.pcard').count() === 2, 'filtre nouveautés → uniquement les 2 nouvelles cartes');
 
+    // 4bis. PWA "installable + rappel prospectus"
+    check(await page.locator('#installBtn').count() === 1, 'bouton installer présent (masqué par défaut)');
+    check(await page.evaluate(() => {
+      const el = document.getElementById('installBtn');
+      return el && getComputedStyle(el).display === 'none';
+    }), 'installBtn masqué par défaut');
+    check(await page.evaluate(() => initPWA.toString().includes('appinstalled')), 'gestion appinstalled (toast install)');
+    check(await page.evaluate(() => subscribePush.toString().includes('newProspectus')), 'opt-in « rappel nouveau prospectus » dans subscribePush');
+    await page.evaluate(() => localStorage.setItem('pa_week_seen', '0'));
+    await page.reload();
+    await page.waitForTimeout(1600);
+    check(await page.locator('#prospectusBanner').isVisible(), 'bannière « nouveau prospectus » visible après changement de semaine');
+    await page.evaluate(() => document.getElementById('prospectusDismiss').click());
+    await page.waitForTimeout(200);
+    check(await page.evaluate(() => {
+      const el = document.getElementById('prospectusBanner');
+      return el.style.display === 'none' && Object.keys(localStorage).some(k => k.indexOf('pa_prospectus_dismissed_') === 0 && localStorage.getItem(k) === '1');
+    }), '« J\'ai vu » masque la bannière et la mémorise');
+
     // 5. Mode cuisson : parcours complet recette + étapes + minuteur
     const { cookSheetChecks } = require('./cook_test.js');
     await cookSheetChecks(page, check);
