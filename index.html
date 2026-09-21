@@ -487,6 +487,26 @@
     content:''; width:6px; height:6px; border-radius:50%; background:currentColor; flex-shrink:0
   }
 
+  /* =========== Onboarding =========== */
+  .onboarding-overlay{
+    position:fixed; inset:0; background:rgba(20,18,12,.4); backdrop-filter:blur(4px);
+    z-index:var(--z-tooltip); pointer-events:none;
+    animation:fadeIn var(--transition-fast) ease-out;
+  }
+  .onboarding-tooltip{
+    position:fixed; z-index:calc(var(--z-tooltip) + 1); pointer-events:auto;
+    max-width:280px; padding:var(--space-4); background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius-lg); box-shadow:var(--shadow-xl), var(--shadow-glow);
+    font-size:var(--font-sm); color:var(--ink);
+  }
+  .onboarding-tooltip .ob-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-2);}
+  .onboarding-tooltip .ob-step{font-size:var(--font-xs); font-weight:700; color:var(--green); background:var(--green-soft); padding:2px 8px; border-radius:999px;}
+  .onboarding-tooltip .ob-skip{background:none; border:none; color:var(--ink-muted); font-size:var(--font-lg); cursor:pointer; padding:var(--space-0); line-height:1;}
+  .onboarding-tooltip .ob-skip:hover{color:var(--ink);}
+  .onboarding-tooltip .ob-title{font-size:var(--font-md); font-weight:800; color:var(--ink); margin-bottom:var(--space-1);}
+  .onboarding-tooltip .ob-text{font-size:var(--font-sm); color:var(--ink-soft); line-height:var(--line-relaxed); margin-bottom:var(--space-3);}
+  .onboarding-tooltip .ob-actions{display:flex; justify-content:flex-end;}
+
   /* =========== Theme Toggle Icon =========== */
   #themeBtn{position:relative; overflow:hidden;}
   #themeBtn::before{
@@ -3329,16 +3349,30 @@ function showToast(msg, dur){
   toastTimer = setTimeout(()=>t.classList.remove('show'), dur || 1800);
 }
 
-/* ---------------------------------------------------------
-   SKELETON + PULL-TO-REFRESH
--------------------------------------------------------- */
+/* =========== Toast Modernisé =========== */
+function showToast(msg, dur, type){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  const icons = {success:'✅', error:'❌', warning:'⚠️', info:'ℹ️', loading:'⏳'};
+  const colors = {success:'var(--green)', error:'var(--red)', warning:'var(--amber)', info:'var(--blue)', loading:'var(--ink)'};
+  const icon = icons[type] || '';
+  const color = colors[type] || 'var(--ink)';
+  t.innerHTML = `<span style="display:flex;align-items:center;gap:8px;">${icon}${msg}</span>`;
+  t.style.background = `linear-gradient(135deg, ${color}, ${color}dd)`;
+  t.style.color = '#fff';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), dur || 2500);
+}
+
+/* =========== Skeleton + Pull-to-Refresh =========== */
 function showSkeleton(){
   const grid = document.getElementById('productGrid');
   if(!grid) return;
   grid.style.display='grid';
   let html = '';
   for(let i=0;i<6;i++){
-    html += `<div class="sk-card shimmer"><div class="sk-img"></div><div class="sk-line w90"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div>`;
+    html += `<div class="sk-card shimmer animate-slide-up" style="animation-delay:${i*60}ms"><div class="sk-img"></div><div class="sk-line w90"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div>`;
   }
   grid.innerHTML = html;
 }
@@ -3367,7 +3401,7 @@ function showSkeleton(){
       showSkeleton();
       await loadPromoData();
       rerenderAll();
-      showToast('Promos actualisées ✓');
+      showToast('Promos actualisées ✓', 2000, 'success');
     }
   });
 })();
@@ -5033,6 +5067,10 @@ async function init(){
   }
   window.addEventListener('offline', ()=>{ const b=document.getElementById('offlineBanner'); if(b) b.style.display='block'; });
   window.addEventListener('online', ()=>{ const b=document.getElementById('offlineBanner'); if(b) b.style.display='none'; loadPromoData().then(rerenderAll); });
+  // Onboarding first-run
+  if(!localStorage.getItem('pa_onboarded')){
+    setTimeout(startOnboarding, 800);
+  }
 }
 init();
 
@@ -5072,6 +5110,63 @@ document.addEventListener('DOMContentLoaded', ()=>{
     installBtn.style.display = 'none';
   });
 });
+
+/* =========== Onboarding First-Run =========== */
+function startOnboarding(){
+  const steps = [
+    {target:'#searchInput', title:'🔍 Recherche', text:'Tapez un produit ou ingrédient pour voir les promos instantanément.', position:'bottom'},
+    {target:'.chip-row:first-of-type', title:'🏷️ Filtres magasin', text:'Choisissez vos enseignes préférées pour n\'afficher que leurs promos.', position:'bottom'},
+    {target:'#catChips', title:'🥦 Catégories', text:'Filtrez par rayon : fruits, viande, epicerie, etc.', position:'bottom'},
+    {target:'#cartLabel', title:'🛒 Mon Panier', text:'Ajoutez des promos, gérez votre budget, imprimez votre liste courses.', position:'left'},
+    {target:'.navbtn[data-view="recettes"]', title:'🍳 Recettes', text:'45 recettes basées sur les promos de la semaine, mode cuisson pas-à-pas.', position:'left'},
+  ];
+  let step = 0;
+  const overlay = document.createElement('div');
+  overlay.className = 'onboarding-overlay animate-fade-in';
+  document.body.appendChild(overlay);
+  function showStep(i){
+    if(i >= steps.length){ finishOnboarding(); return; }
+    const s = steps[i];
+    const target = document.querySelector(s.target);
+    if(!target){ nextStep(); return; }
+    const rect = target.getBoundingClientRect();
+    const tooltip = document.createElement('div');
+    tooltip.className = 'onboarding-tooltip animate-scale-in';
+    tooltip.innerHTML = `
+      <div class="ob-header"><span class="ob-step">${i+1}/5</span><button class="ob-skip" onclick="finishOnboarding()">✕</button></div>
+      <div class="ob-title">${s.title}</div>
+      <div class="ob-text">${s.text}</div>
+      <div class="ob-actions"><button class="btn btn-primary btn-sm" onclick="nextOnboardingStep()">Suivant</button></div>
+    `;
+    document.body.appendChild(tooltip);
+    positionTooltip(tooltip, target, s.position);
+    window.currentOnboardingTooltip = tooltip;
+  }
+  window.nextOnboardingStep = ()=>{
+    if(window.currentOnboardingTooltip) window.currentOnboardingTooltip.remove();
+    step++;
+    showStep(step);
+  };
+  window.finishOnboarding = ()=>{
+    if(window.currentOnboardingTooltip) window.currentOnboardingTooltip.remove();
+    localStorage.setItem('pa_onboarded', '1');
+    showToast('Bienvenue dans PromoApp ! 🎉', 3000, 'success');
+  };
+  function positionTooltip(el, target, position){
+    const rect = target.getBoundingClientRect();
+    const gap = 12;
+    if(position === 'bottom'){
+      el.style.left = (rect.left + rect.width/2) + 'px';
+      el.style.top = (rect.bottom + 12) + 'px';
+      el.style.transform = 'translateX(-50%)';
+    }else{
+      el.style.left = (rect.left - 12) + 'px';
+      el.style.top = (rect.top + rect.height/2) + 'px';
+      el.style.transform = 'translateY(-50%)';
+    }
+  }
+  showStep(0);
+}
   /* Fonctions mode cuisson additionnelles */
   window.toggleCookChecklist = function(){ const e=document.getElementById('cookChecklist'); if(e) e.style.display=e.style.display!=='block'?'block':'none'; const t=document.getElementById('cookChecklistToggle'); if(t)t.textContent=e&&e.style.display=='block'?'Masquer checklist':'🥕 Ingrédients à préparer (checklist)'; }
   window.updateChecklistBtn = function(){
