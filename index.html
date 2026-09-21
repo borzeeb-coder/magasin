@@ -767,6 +767,102 @@
 
   .grid-load-more{grid-column:1/-1; text-align:center; padding:14px;}
   .grid-sentinel{grid-column:1/-1; height:1px;}
+
+  /* ============================================================
+     REFONTE VISUELLE v4 : couleur par enseigne, prix "étiquette",
+     timbre prospectus, nav animée, micro-interactions.
+  ============================================================ */
+
+  /* Couleur signature de chaque enseigne, portée par la carte */
+  .store-colruyt{--st:#DE3B24; --st-a:rgba(222,59,36,.12); --st-b:rgba(222,59,36,.30);}
+  .store-delhaize{--st:#C8102E; --st-a:rgba(200,16,46,.12); --st-b:rgba(200,16,46,.30);}
+  .store-carrefour{--st:#0057B8; --st-a:rgba(0,87,184,.12); --st-b:rgba(0,87,184,.32);}
+  .store-lidl{--st:#E6A700; --st-a:rgba(230,167,0,.18); --st-b:rgba(230,167,0,.45);}
+  .store-aldi{--st:#1B6FB5; --st-a:rgba(27,111,181,.12); --st-b:rgba(27,111,181,.32);}
+  .store-spar{--st:#00843D; --st-a:rgba(0,132,61,.12); --st-b:rgba(0,132,61,.30);}
+  .store-intermarche{--st:#E8590C; --st-a:rgba(232,89,12,.12); --st-b:rgba(232,89,12,.30);}
+  .store-action{--st:#e85a0e; --st-a:rgba(232,90,14,.12); --st-b:rgba(232,90,14,.30);}
+
+  /* Carte : liseré haut couleur enseigne + image teintée + ombre colorée */
+  .pcard::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:3px; z-index:5;
+    background:linear-gradient(90deg, var(--st,var(--red)), transparent 72%);
+    opacity:.9;
+  }
+  .pcard .pcard-img{
+    background:
+      radial-gradient(120% 120% at 18% 8%, var(--st-a,transparent), transparent 62%),
+      var(--paper-2);
+  }
+  .pcard-img > img{transition:transform .4s cubic-bezier(.2,.7,.3,1.08);}
+  .pcard:hover{box-shadow:0 10px 26px var(--st-b,rgba(34,31,22,.14));}
+  .pcard:hover .pcard-img img{transform:scale(1.07);}
+  .pcard{animation:cardIn .42s cubic-bezier(.2,.6,.3,1) both;}
+  @keyframes cardIn{from{opacity:0; transform:translateY(10px) scale(.985);} to{opacity:1; transform:none;}}
+
+  /* Étiquette de prix : chiffres alignés, centimes en exposant, surlignage */
+  .pcard-price .new-price{font-size:19px; letter-spacing:-.4px; position:relative;}
+  .new-price .cents{font-size:.72em; vertical-align:.5em; margin-left:1px; letter-spacing:0;}
+  .new-price::after{
+    content:''; position:absolute; left:-2px; right:-2px; bottom:4px; height:7px;
+    background:var(--red); opacity:.14; border-radius:2px; transform:rotate(-1.4deg);
+  }
+  .old-price{color:var(--red); opacity:.78; text-decoration-color:var(--red); text-decoration-thickness:1.5px;}
+
+  /* Badge -% : étiquette "autocollant" avec coin entaillé + ombre */
+  .badge-discount{
+    box-shadow:0 2px 7px rgba(0,0,0,.22);
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%);
+    border-radius:5px 5px 8px 8px;
+  }
+
+  /* Timbre prospectus : le compteur de résultats en tampon bleu */
+  #resultCount.section-sub{
+    display:inline-flex; align-items:center; gap:5px;
+    border:1.7px dashed var(--blue); background:var(--blue-soft); color:var(--blue);
+    border-radius:7px; padding:3px 9px; margin-top:2px; width:fit-content;
+    font-family:'Archivo Black',sans-serif; font-size:10.5px; font-weight:400;
+    text-transform:uppercase; letter-spacing:.4px; transform:rotate(-1deg);
+  }
+  #freshnessNote{
+    display:inline-flex; align-items:center; gap:6px; width:fit-content;
+    background:var(--paper-2); border:1px solid var(--line);
+    padding:3px 10px; border-radius:999px; margin-top:7px;
+    font-size:11.5px; font-weight:700; color:var(--ink-soft);
+  }
+
+  /* Recherche : halo bleu au focus */
+  .search-row{transition:box-shadow .2s, border-color .2s;}
+  .search-row:focus-within{border-color:var(--blue); box-shadow:0 0 0 4px var(--blue-soft);}
+  .search-clear{display:none; width:20px; height:20px; line-height:20px; text-align:center;
+    border-radius:50%; background:var(--paper-2); font-size:11px; font-weight:800;}
+
+  /* Navbar : pilule active + retour élastique sur le panier */
+  .navbar{justify-content:space-around; padding:6px 6px var(--safe-bottom);}
+  .navbtn{border-radius:15px; min-height:52px; justify-content:center;
+    transition:background .18s, color .18s, transform .18s;}
+  .navbtn .ni{transition:transform .18s;}
+  .navbtn.active{background:var(--paper-2); color:var(--red);}
+  .navbtn.active .ni{transform:scale(1.18);}
+  .navbtn.active::after{
+    content:''; width:16px; height:3px; border-radius:2px; background:var(--red); margin-top:1px;
+  }
+  .navbtn:active{transform:scale(.9);}
+  .cart-count{transition:transform .15s;}
+  @keyframes popbounce{0%{transform:scale(.5);} 55%{transform:scale(1.4);} 100%{transform:scale(1);}}
+  .cart-count.pop{animation:popbounce .45s cubic-bezier(.3,1.3,.5,1); animation-fill-mode:both;}
+
+  /* Focus clavier bien visible */
+  :focus-visible{outline:3px solid var(--blue); outline-offset:2px; border-radius:5px;}
+  .pcard{outline-offset:0;}
+  .pcard:focus-visible{outline:3px solid var(--blue); outline-offset:1px;}
+
+  /* Range -% au compteur : légère découpe, plus lisible */
+  .discChips .sort-chip{font-size:12.5px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .pcard, .cart-count, .navbtn, .pcard-img > img{animation:none; transition:none;}
+  }
 </style>
 </head>
 <body>
@@ -1377,7 +1473,7 @@ function trendBadge(p){
 }
 
 /* Rendu incrémental de la grille (1ère page rapide, le reste au scroll) */
-let pendingProducts = null, pendingIdx = 0, gridObserver = null;
+let pendingProducts = null, pendingIdx = 0, gridObserver = null, _cardSeq = 0;
 const BATCH = 64;
 
 function makeCard(p){
@@ -1386,10 +1482,20 @@ function makeCard(p){
   const inCart = !!state.cart[p.id];
   const isFav = state.favs.includes(p.id);
   const isNew = state.newIds && state.newIds.has(p.id);
+  const money = np != null ? np.toFixed(2).replace('.', ',') : '';
+  const [mEu, mCe] = money ? money.split(',') : ['', ''];
+  const priceHtml = np != null
+    ? `<span class="new-price">${mEu}<span class="cents">,${mCe}</span> €</span>`
+    : `<span class="new-price no-price">Prix en magasin</span>`;
   const card = document.createElement('div');
-  card.className = 'pcard';
+  card.className = 'pcard store-' + p.store;
+  card.style.animationDelay = ((_cardSeq++) % 14) * .028 + 's';
+  card.setAttribute('tabindex', 0);
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', p.name + (np != null ? ' — ' + np.toFixed(2).replace('.', ',') + ' €' : ''));
+  card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openProduct(p.id); } });
   card.innerHTML = `
-    <div class="pcard-img" style="background:${st.color}22;">
+    <div class="pcard-img">
       ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
       <span class="pcard-emoji-fallback" style="${p.image ? 'display:none;' : ''}">${p.emoji}</span>
       ${discountPct(p) > 0 ? `<span class="badge-discount">-${discountPct(p)}%</span>` : ''}
@@ -1403,8 +1509,8 @@ function makeCard(p){
       <div class="pcard-name">${p.name}</div>
       <div class="pcard-dist">📍 ${st.addr} · ${st.dist} km</div>
       <div class="pcard-price">
-        ${np ? `<span class="new-price">${np.toFixed(2)} €</span>` : `<span class="new-price no-price">Prix en magasin</span>`}
-        ${discountPct(p)>0 && p.old != null && p.new != null ? `<span class="old-price">${p.old.toFixed(2)} €</span>` : ''}
+        ${priceHtml}
+        ${discountPct(p)>0 && p.old != null && p.new != null ? `<span class="old-price">${p.old.toFixed(2).replace('.', ',')} €</span>` : ''}
       </div>
       ${np ? `<div class="pcard-spark">${sparkline(p)}</div>` : ''}
       ${np ? `<button class="pcard-add ${inCart?'in-cart':''}" data-id="${p.id}">${inCart ? `✓ Dans le panier (${state.cart[p.id]})` : '+ Ajouter'}</button>` : `<div class="pcard-ghost">Sur le prospectus ${st.name}</div>`}
@@ -1515,6 +1621,7 @@ function addToCart(id, delta){
   else state.cart[id] = qty;
   save('pa_cart', state.cart);
   updateCartBadge();
+  if(delta > 0) confettiOnAdd(PRODUCTS.find(x=>x.id===id));
 }
 function cartCount(){ return Object.values(state.cart).reduce((a,b)=>a+b,0); }
 function updateCartBadge(){
@@ -1522,6 +1629,16 @@ function updateCartBadge(){
   const badge = document.getElementById('cartCount');
   badge.style.display = n>0 ? 'flex' : 'none';
   badge.textContent = n;
+  badge.classList.remove('pop');
+  void badge.offsetWidth;
+  badge.classList.add('pop');
+}
+let _lastConfetti = 0;
+function confettiOnAdd(ply){
+  const now = Date.now();
+  if(now - _lastConfetti < 350) return;
+  _lastConfetti = now;
+  try{ confettiBurst(ply && ply.emoji ? ply.emoji : '🛒'); }catch(e){}
 }
 function ingEntry(id){
   if(id.startsWith('ing:')){
