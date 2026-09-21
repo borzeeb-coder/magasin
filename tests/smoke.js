@@ -117,6 +117,21 @@ async function main() {
     const cmpBtn = await page.locator('#pdCompareBtn').count();
     check(cmpBtn === 1, 'bouton comparateur #pdCompareBtn présent');
 
+    // 7. Nouveautés : chip + bannière + filtre
+    await page.locator('.navbtn[data-view="promos"]').click();
+    await page.waitForTimeout(400);
+    check(await page.locator('#newChip').count() === 1, 'chip Nouveautés présent');
+    await page.evaluate(() => {
+      state.newIds = new Set([PRODUCTS[0].id, PRODUCTS[1].id]);
+    });
+    await page.locator('.navbtn[data-view="favs"]').click();
+    await page.locator('.navbtn[data-view="promos"]').click();
+    await page.waitForTimeout(500);
+    check(await page.locator('#newBanner').isVisible(), 'bannière nouveautés visible avec compteur');
+    await page.click('#newBannerBtn');
+    await page.waitForTimeout(500);
+    check(await page.locator('.pcard').count() === 2, 'filtre nouveautés → uniquement les 2 nouvelles cartes');
+
     // 5. Mode cuisson : parcours complet recette + étapes + minuteur
     const { cookSheetChecks } = require('./cook_test.js');
     await cookSheetChecks(page, check);

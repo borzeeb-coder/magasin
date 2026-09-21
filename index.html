@@ -860,8 +860,36 @@
   /* Range -% au compteur : légère découpe, plus lisible */
   .discChips .sort-chip{font-size:12.5px;}
 
+  /* ----- Bouton / bannière NOUVEAUTÉS ----- */
+  .new-chip{position:relative;}
+  .new-chip .new-count{
+    display:inline-flex; align-items:center; justify-content:center; min-width:17px; height:17px;
+    background:var(--green); color:#fff; border-radius:999px; font-size:10.5px; font-weight:800;
+    padding:0 5px; margin-left:3px;
+  }
+  .new-chip.active{background:var(--green); border-color:var(--green); color:#fff;}
+  .new-chip.active .new-count{background:#fff; color:var(--green);}
+  .new-chip:not(.active) .new-count{animation:newPulse 1.7s ease infinite;}
+  @keyframes newPulse{0%,100%{box-shadow:0 0 0 0 rgba(46,107,78,.5);}50%{box-shadow:0 0 0 6px rgba(46,107,78,0);}}
+
+  .new-banner{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    margin:10px 0 4px; padding:10px 12px; border-radius:14px;
+    background:linear-gradient(135deg, var(--green-soft), var(--card));
+    border:1px solid var(--green); color:var(--ink);
+    font-size:12.5px; font-weight:600;
+    animation:bannerIn .45s cubic-bezier(.2,.7,.3,1.15) both;
+  }
+  .new-banner b{color:var(--green); font-size:14px;}
+  .new-banner button{
+    flex-shrink:0; border:none; background:var(--green); color:#fff;
+    font-weight:800; font-size:12px; padding:7px 12px; border-radius:999px; cursor:pointer;
+  }
+  .new-banner button:active{transform:scale(.94);}
+  @keyframes bannerIn{from{opacity:0; transform:translateY(-8px);} to{opacity:1; transform:none;}}
+
   @media (prefers-reduced-motion: reduce){
-    .pcard, .cart-count, .navbtn, .pcard-img > img{animation:none; transition:none;}
+    .pcard, .cart-count, .navbtn, .pcard-img > img, .new-banner, .new-chip .new-count{animation:none; transition:none;}
   }
 </style>
 </head>
@@ -902,6 +930,10 @@
     <div class="sort-row" id="sortChips"></div>
     <div class="sort-row" id="discChips" style="margin:0 0 16px;"></div>
     <div id="pullHint"><span class="spin"></span><span id="pullHintText">Tirez pour actualiser</span></div>
+    <div class="new-banner" id="newBanner" style="display:none;">
+      <span id="newBannerTxt">🎉 <b>X</b> nouvelles promos depuis votre visite</span>
+      <button onclick="toggleNewOnly()" id="newBannerBtn">Les voir 🆕</button>
+    </div>
     <div class="grid" id="productGrid"></div>
     <div class="grid-sentinel" id="gridSentinel"></div>
   </section>
@@ -1298,6 +1330,7 @@ const state = {
   search: '',
   sort: 'proximity',
   minDisc: 0,                    // % de réduction minimum (filtre)
+  newOnly: false,                // afficher uniquement les nouveautés
   cart: safeParse('pa_cart') || {}, // {productId: qty}
   favs: safeParse('pa_favs') || [], // [] ids favoris
   favThresh: safeParse('pa_fav_thresh') || {}, // {id: seuil%} alertes
@@ -1416,6 +1449,19 @@ function renderCatChips(){
     chip.onclick = ()=>{ state.activeCat = c.id; rerenderAll(); };
     el.appendChild(chip);
   });
+  const n = state.newIds ? state.newIds.size : 0;
+  const nChip = document.createElement('div');
+  nChip.id = 'newChip';
+  nChip.className = 'chip new-chip' + (state.newOnly ? ' active' : '');
+  nChip.innerHTML = `🆕 Nouveautés${n>0 ? ` <span class="new-count">${n}</span>` : ''}`;
+  nChip.onclick = ()=>{ state.newOnly = !state.newOnly; rerenderAll(); showToast(state.newOnly ? (n>0 ? `🆕 ${n} nouvelle${n>1?'s':''} promo${n>1?'s':''} depuis votre visite !` : '🆕 Aucune nouveauté depuis votre visite 😴') : 'Filtre nouveautés désactivé'); };
+  el.appendChild(nChip);
+}
+function toggleNewOnly(){
+  state.newOnly = true;
+  renderProducts();
+  const n = state.newIds ? state.newIds.size : 0;
+  showToast(n>0 ? `🆕 ${n} nouvelle${n>1?'s':''} promo${n>1?'s':''} depuis votre visite !` : '🆕 Aucune nouveauté depuis votre visite 😴');
 }
 
 const SORTS = [
@@ -1454,6 +1500,7 @@ function getFilteredProducts(){
   let list = PRODUCTS.filter(p=>{
     if(state.activeStores.size && !state.activeStores.has(p.store)) return false;
     if(state.activeCat!=='all' && p.cat!==state.activeCat) return false;
+    if(state.newOnly && !(state.newIds && state.newIds.has(p.id))) return false;
     if(state.search && !fuzzyOk(state.search, p.name)) return false;
     if(state.minDisc>0 && discountPct(p) < state.minDisc) return false;
     return true;
@@ -1555,6 +1602,15 @@ function ensureGridObserver(){
 function renderProducts(){
   renderSortChips();
   const list = getFilteredProducts();
+  const banner = document.getElementById('newBanner');
+  if(banner){
+    const nNew = state.newIds ? state.newIds.size : 0;
+    if(!state.newOnly && nNew>0){
+      banner.style.display = 'flex';
+      const tbl = document.getElementById('newBannerTxt');
+      if(tbl) tbl.innerHTML = `🎉 <b>${nNew}</b> nouvelle${nNew>1?'s':''} promo${nNew>1?'s':''} depuis votre visite`;
+    } else banner.style.display = 'none';
+  }
   const per = folderPeriod();
   document.getElementById('resultCount').textContent = `${list.length} offre${list.length>1?'s':''} trouvée${list.length>1?'s':''} à ${state.city.name}${per ? ' · ' + per : ''}`;
   const grid = document.getElementById('productGrid');
@@ -1563,7 +1619,9 @@ function renderProducts(){
   pendingIdx = 0;
   if(!list.length){
     grid.style.display='block';
-    grid.innerHTML = `<div class="empty"><span class="e-icon">🔍</span>Aucune promo ne correspond à votre recherche.<br>Essayez d'autres filtres.</div>`;
+    grid.innerHTML = state.newOnly
+      ? `<div class="empty"><span class="e-icon">🎉</span>Aucune nouveauté depuis votre dernière visite.<br>Les prospectus changent chaque nuit — revenez demain !</div>`
+      : `<div class="empty"><span class="e-icon">🔍</span>Aucune promo ne correspond à votre recherche.<br>Essayez d'autres filtres.</div>`;
     const sentinel = document.getElementById('gridSentinel');
     if(sentinel) sentinel.style.display = 'none';
     return;
