@@ -116,6 +116,11 @@ async function main() {
     const { cookSheetChecks } = require('./cook_test.js');
     await cookSheetChecks(page, check);
 
+    // 6. Features recettes v2 : recherche, filtres, favoris, portions,
+    //    économies, partage, TTS, temps restant, recette aléatoire
+    const { recipeFeaturesChecks } = require('./features_test.js');
+    await recipeFeaturesChecks(page, check);
+
   } catch (err) {
     check(false, 'erreur du test : ' + err.message);
   } finally {

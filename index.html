@@ -482,6 +482,63 @@
     box-shadow:0 2px 6px rgba(46,107,78,.3);
   }
   .cost-total{color:var(--ink-soft); font-size:11.5px; font-weight:600;}
+  .cost-save{display:block; font-size:11px; font-weight:800; color:var(--green); margin-top:6px;}
+  .recipe-fav{
+    position:absolute; top:10px; left:10px; z-index:3; width:34px; height:34px; border-radius:999px;
+    border:none; cursor:pointer; font-size:19px; line-height:1; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.92); box-shadow:0 1px 5px rgba(0,0,0,.25); color:#b9b3a3; transition:transform .15s, color .15s;
+  }
+  .recipe-fav.on{color:#ffb300;}
+  .recipe-fav:active{transform:scale(.85);}
+  .recipe-fav-inline{
+    border:none; background:none; cursor:pointer; font-size:16px; line-height:1; vertical-align:middle;
+    color:#b9b3a3; padding:0 0 0 6px;
+  }
+  .recipe-fav-inline.on{color:#ffb300;}
+
+  .recipe-filters{display:flex; flex-direction:column; gap:8px; padding:2px 0 4px;}
+  .recipe-filters input{
+    width:100%; padding:12px 14px; border-radius:999px; border:1px solid var(--line); background:var(--card);
+    font-size:14px; color:var(--ink); box-shadow:0 1px 4px rgba(34,31,22,.06); outline:none;
+  }
+  .recipe-filters input:focus{border-color:var(--green); box-shadow:0 0 0 3px rgba(46,107,78,.15);}
+  .chips{display:flex; gap:7px; flex-wrap:wrap;}
+  .rchip{
+    font-size:12px; font-weight:700; padding:7px 13px; border-radius:999px; cursor:pointer;
+    background:var(--card); color:var(--ink-soft); border:1px solid var(--line); transition:all .15s;
+  }
+  .rchip:hover{border-color:var(--green); color:var(--green);}
+  .rchip.active{background:var(--green); color:#fff; border-color:var(--green); box-shadow:0 2px 6px rgba(46,107,78,.35);}
+
+  .serv-stepper{display:inline-flex; align-items:center; gap:10px; margin:6px 0 2px;}
+  .serv-stepper button{
+    width:34px; height:34px; border-radius:999px; border:1px solid var(--line); background:var(--card);
+    font-size:18px; font-weight:800; color:var(--green); cursor:pointer; line-height:1;
+  }
+  .serv-stepper button:active{transform:scale(.9);}
+  .serv-val{font-weight:800; font-size:15px; color:var(--ink); min-width:70px; text-align:center;}
+  .serv-label{font-size:12px; color:var(--ink-soft); font-weight:600; margin-right:auto;}
+
+  .recipe-share{
+    display:inline-flex; align-items:center; gap:6px; margin-top:8px; padding:9px 14px; border-radius:999px;
+    border:1px solid var(--line); background:var(--card); color:var(--blue); font-weight:800; font-size:12.5px; cursor:pointer;
+  }
+  .recipe-share:active{transform:scale(.96);}
+
+  .cook-auto{
+    display:inline-flex; align-items:center; gap:8px; margin:6px 0 10px; font-size:12.5px; font-weight:700;
+    color:var(--ink-soft); cursor:pointer; user-select:none;
+  }
+  .cook-auto input{accent-color:var(--green); width:18px; height:18px; cursor:pointer;}
+
+  .confetti-piece{
+    position:fixed; z-index:9999; width:10px; height:14px; pointer-events:none; border-radius:2px;
+    animation:confettiFall 2.6s ease-out forwards;
+  }
+  @keyframes confettiFall{
+    0%{transform:translateY(0) rotate(0); opacity:1;}
+    100%{transform:translateY(105vh) rotate(760deg); opacity:0;}
+  }
 
   .difficulty{
     display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.03em; padding:3px 9px; border-radius:999px;
@@ -675,6 +732,17 @@
         <h2 class="section-title">🍳 Recettes avec promos</h2>
         <p class="section-sub" id="recettesSub">Idées repas basées sur les promotions de cette semaine</p>
       </div>
+      <button class="icon-btn" onclick="randomRecipe()" title="Recette surprise">🎲</button>
+    </div>
+    <div class="recipe-filters">
+      <input type="search" id="recipeSearch" placeholder="🔍 Rechercher une recette ou un ingrédient…" autocomplete="off">
+      <div class="chips" id="recipeChips">
+        <button class="rchip active" data-f="all">Tout</button>
+        <button class="rchip" data-f="rapide">⚡ Rapide -25'</button>
+        <button class="rchip" data-f="budget">💰 ≤2,5 €/pers.</button>
+        <button class="rchip" data-f="vege">🥦 Végétarien</button>
+        <button class="rchip" data-f="favs">⭐ Favoris</button>
+      </div>
     </div>
     <div class="grid" id="recipeGrid"></div>
   </section>
@@ -807,6 +875,7 @@
     <div class="cook-checklist" id="cookChecklist" style="display:none;">
       <ul class="cook-checklist-list" id="cookChecklistList"></ul>
     </div>
+    <label class="cook-auto"><input type="checkbox" id="cookAutoSpeak" onchange="cookAutoSpeak=this.checked; if(this.checked) speakStep((cookSteps[cookIdx]||[])[0]||('Étape '+(cookIdx+1)));">🔊 Lire les étapes à voix haute</label>
     <div class="cook-progress">
       <div class="cook-progress-bar" id="cookProgressBar"></div>
     </div>
@@ -2019,11 +2088,53 @@ function sparkline(p, w=64, h=22){
 /* ---------------------------------------------------------
    RECETTES BASÉES SUR LES PROMOS
    --------------------------------------------------------- */
+const R_FAV_KEY = 'promoapp_recipe_favs';
+let recipeQuery = '';
+let recipeFilter = new Set();
+let curRecipeServings = 0;
+
+function getRecipeFavs(){
+  try{ return JSON.parse(localStorage.getItem(R_FAV_KEY)) || []; }catch(e){ return []; }
+}
+function saveRecipeFavs(f){ try{ localStorage.setItem(R_FAV_KEY, JSON.stringify(f)); }catch(e){} }
+function toggleRecipeFav(id){
+  const f = getRecipeFavs();
+  const i = f.indexOf(id);
+  if(i>=0) f.splice(i,1); else f.push(id);
+  saveRecipeFavs(f);
+  renderRecipes();
+}
+function isVegRecipe(ingredients){
+  const NO = ['viande','poulet','saumon','cabillaud','thon','lardons','jambon','bœuf','boeuf','bourguignon','boulettes','poisson','escalope','filet','steak','anchois','crevette'];
+  return !ingredients.some(ing => NO.some(k => ing.includes(k)));
+}
+function normalPrice(m){ return (m && m.old != null && m.old > 0) ? m.old : (m ? (priceOf(m)||0) : 0); }
+function scaleQty(qty, factor){
+  if(!qty || factor === 1) return qty;
+  const m = qty.match(/^(\d+(?:[.,]\d+)?|\d+\/\d+|\d+[½¼¾]?)\s*(.*)$/);
+  if(!m) return qty;
+  let n = 0;
+  const tok = m[1];
+  if(tok.includes('/')){ const [a,b] = tok.split('/'); n = parseFloat(a)/parseFloat(b); }
+  else if(/[½¼¾]/.test(tok)){ const frac = {'½':0.5,'¼':0.25,'¾':0.75}; n = parseFloat(tok) + (frac[tok.slice(-1)]||0); }
+  else n = parseFloat(tok.replace(',', '.'));
+  if(!isFinite(n)) return qty;
+  const val = Math.round(n * factor * 4) / 4;
+  const str = Number.isInteger(val) ? String(val) : String(val);
+  return str + (m[2] ? ' ' + m[2] : '');
+}
+function randomRecipe(){
+  const ids = Object.keys(RECIPE_DB);
+  const id = ids[Math.floor(Math.random()*ids.length)];
+  openRecipeModal(id);
+}
+
 function renderRecipes(){
   const el = document.getElementById('recipeGrid');
   if(!el) return;
+  const favs = getRecipeFavs();
+  const q = recipeQuery.toLowerCase().trim();
   
-  // Pour chaque recette, trouver les promos correspondantes
   const recipesWithPromos = Object.entries(RECIPE_DB).map(([id, r]) => {
     const matches = r.ingredients.map(ing => {
       const promos = PRODUCTS.filter(p => {
@@ -2032,22 +2143,47 @@ function renderRecipes(){
       }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
       return promos[0] || null;
     }).filter(Boolean);
-    return {...r, id, promoMatches: matches, promoCount: matches.length};
-  }).sort((a,b) => b.promoCount - a.promoCount);
-  
+    const total = matches.reduce((s,m)=>s+(priceOf(m)||0),0);
+    const full = matches.reduce((s,m)=>s+normalPrice(m),0);
+    return {...r, id, promoMatches: matches, promoCount: matches.length, total, full, pp: total/(r.servings||1)};
+  }).filter(r => {
+    if(q && !(r.name.toLowerCase().includes(q) || r.ingredients.some(i=>i.toLowerCase().includes(q)))) return false;
+    if(recipeFilter.has('fast') && ((RECIPE_INFO[r.id] ? RECIPE_INFO[r.id].prep + RECIPE_INFO[r.id].cook : r.time) >= 25)) return false;
+    if(recipeFilter.has('budget') && r.pp > 2.5) return false;
+    if(recipeFilter.has('vege') && !isVegRecipe(r.ingredients)) return false;
+    if(recipeFilter.has('favs') && favs.indexOf(r.id) < 0) return false;
+    return true;
+  }).sort((a,b) => {
+    const fa = favs.indexOf(a.id) >= 0 ? 0 : 1;
+    const fb = favs.indexOf(b.id) >= 0 ? 0 : 1;
+    if(fa!==fb) return fa-fb;
+    return b.promoCount - a.promoCount;
+  });
+
+  const sub = document.getElementById('recettesSub');
+  if(sub) sub.textContent = recipesWithPromos.length + ' recette' + (recipesWithPromos.length > 1 ? 's' : '') + (q ? ` pour « ${q} »` : '') + ' · basées sur les promos de la semaine';
+
+  if(!recipesWithPromos.length){
+    el.innerHTML = '<div class="empty-state">🤷 Aucune recette ne correspond.<br>Essaie un autre filtre ou une autre recherche.</div>';
+    return;
+  }
+
   el.innerHTML = recipesWithPromos.map(r => {
     const info = RECIPE_INFO[r.id] || null;
-    const total = r.promoMatches.reduce((s,m)=>s+(priceOf(m)||0),0);
-    const pp = (total / (r.servings||1)).toFixed(2).replace('.',',');
+    const pp = r.pp.toFixed(2).replace('.',',');
     const pct = Math.round(r.promoCount / r.ingredients.length * 100);
     const minTime = info ? (info.prep + info.cook) : r.time;
     const diffLvl = minTime < 25 ? 1 : minTime < 45 ? 2 : 3;
     const diffLabel = diffLvl === 1 ? 'FACILE' : diffLvl === 2 ? 'MOYEN' : 'DIFFICILE';
     const promoClass = pct >= 60 ? '' : pct >= 30 ? ' low' : ' zero';
+    const saveNum = Math.round((r.full - r.total) * 100) / 100;
+    const save = saveNum.toFixed(2).replace('.',',');
+    const isFav = favs.indexOf(r.id) >= 0;
     return `
     <article class="recipe-card" onclick="openRecipeModal('${r.id}')">
       <div class="recipe-thumb">
         <img src="${r.image}" alt="${r.name}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('img-failed');">
+        <button class="recipe-fav ${isFav?'on':''}" onclick="event.stopPropagation(); toggleRecipeFav('${r.id}')" title="${isFav?'Retirer des favoris':'Ajouter aux favoris'}">${isFav?'★':'☆'}</button>
         <div class="recipe-emoji">${r.emoji}</div>
         <span class="difficulty diff${diffLvl}">${diffLabel}</span>
       </div>
@@ -2062,50 +2198,127 @@ function renderRecipes(){
         <div class="promo-track" title="${pct}% des ingrédients en promo"><div class="promo-track-fill" style="width:${pct}%"></div></div>
         <div class="recipe-cost-line">
           <span class="cost-perperson">~${pp} €/pers.</span>
-          <span class="cost-total">${total.toFixed(2).replace('.',',')} € les ${r.servings} pers.</span>
+          <span class="cost-total">${r.total.toFixed(2).replace('.',',')} € les ${r.servings} pers.</span>
         </div>
+        ${saveNum > 0 ? `<span class="cost-save">💸 −${save} € vs prix plein</span>` : ''}
       </div>
     </article>`;
   }).join("");
 }
 
+/* Filtres recettes */
+function bindRecipeFilters(){
+  const input = document.getElementById('recipeSearch');
+  if(input){
+    input.addEventListener('input', ()=>{ recipeQuery = input.value; renderRecipes(); });
+  }
+  const chips = document.getElementById('recipeChips');
+  if(chips){
+    chips.addEventListener('click', e=>{
+      const b = e.target.closest('.rchip');
+      if(!b) return;
+      const f = b.dataset.f;
+      document.querySelectorAll('#recipeChips .rchip').forEach(c=>c.classList.remove('active'));
+      if(f === 'all'){ recipeFilter = new Set(); document.querySelector('#recipeChips .rchip[data-f="all"]').classList.add('active'); }
+      else{
+        recipeFilter = new Set([f]);
+        b.classList.add('active');
+      }
+      renderRecipes();
+    });
+  }
+}
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindRecipeFilters);
+else bindRecipeFilters();
+
 // Modal recette
+let currentRecipeId = '';
 function openRecipeModal(recipeId){
   const r = RECIPE_DB[recipeId];
   if(!r) return;
-  
+  currentRecipeId = recipeId;
+  curRecipeServings = r.servings || 1;
+  openSheet('recipeSheet');
+  renderRecipeSheet();
+}
+
+function setRecipeServings(delta){
+  const r = RECIPE_DB[currentRecipeId];
+  if(!r) return;
+  curRecipeServings = Math.max(1, Math.min(8, curRecipeServings + delta));
+  renderRecipeSheet();
+}
+
+function shareRecipeList(recipeId){
+  const r = RECIPE_DB[recipeId];
+  if(!r) return;
+  const rQty = RECIPE_QTY[recipeId] || null;
+  const factor = curRecipeServings / (r.servings||1);
+  const lines = r.ingredients.map((ing, ix) => {
+    const qty = rQty && rQty[ix] ? scaleQty(rQty[ix], factor) + ' ' : '';
+    const promo = bestPromo(ing);
+    const where = promo ? storeOf(promo.store).name : 'magasin';
+    return '• ' + qty + ing + ' — ' + where;
+  });
+  const text = '🛒 ' + r.name + ' (' + curRecipeServings + ' pers.)\n\n' + lines.join('\n');
+  if(navigator.share){
+    navigator.share({ title: r.name, text: text }).catch(()=>{});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>showToast('📋 Liste copiée dans le presse-papier')).catch(()=>showToast('📋 ' + text.substring(0, 40) + '…'));
+  } else {
+    showToast('📋 ' + text.substring(0, 40) + '…');
+  }
+}
+
+function renderRecipeSheet(){
+  const recipeId = currentRecipeId;
+  const r = RECIPE_DB[recipeId];
+  if(!r || !document.getElementById('recipeSheetBody')) return;
+  const base = r.servings || 1;
+  const factor = curRecipeServings / base;
+
   const rInfo = RECIPE_INFO[recipeId] || null;
   const rTools = rInfo && rInfo.tools && rInfo.tools.length ? rInfo.tools.join(' · ') : '';
   const rQty = RECIPE_QTY[recipeId] || null;
 
   const matches = r.ingredients.map(ing => bestPromo(ing)).filter(Boolean);
-  const total = matches.reduce((s,m)=>s+(priceOf(m)||0),0);
+  const total = matches.reduce((s,m)=>s+(priceOf(m)||0),0) * factor;
+  const full = matches.reduce((s,m)=>s+normalPrice(m),0) * factor;
   const estMissing = r.ingredients.reduce((s,ing)=>{
     if(matches.some(m => m.name.toLowerCase().includes(ing.toLowerCase()) || ing.toLowerCase().includes(m.name.toLowerCase().split(' ')[0]))) return s;
-    const e = ingrEstimate(ing);
-    return s + (e||0);
+    return s + ((ingrEstimate(ing)||0) * factor);
   }, 0);
   const allTotal = (total + estMissing).toFixed(2);
-  const ppModal = ((total + estMissing) / (r.servings||1)).toFixed(2).replace('.', ',');
+  const remainingEst = estMissing.toFixed(2).replace('.', ',');
+  const ppModal = ((total + estMissing) / Math.max(1, curRecipeServings)).toFixed(2).replace('.', ',');
+  const saveNum = Math.round((full - total) * 100) / 100;
+  const save = saveNum.toFixed(2).replace('.', ',');
   const minTime = rInfo ? (rInfo.prep + rInfo.cook) : r.time;
   const diffLvl = minTime < 25 ? 1 : minTime < 45 ? 2 : 3;
   const diffLabel = diffLvl === 1 ? 'FACILE' : diffLvl === 2 ? 'MOYEN' : 'DIFFICILE';
+  const isFav = getRecipeFavs().indexOf(recipeId) >= 0;
 
-  openSheet('recipeSheet');
   document.getElementById('recipeSheetBody').innerHTML = `
     <div class="recipe-modal-header">
       <img src="${r.image}" alt="${r.name}" class="recipe-modal-img" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'">
       <div>
-        <span class="recipe-tag">🍽️ RECETTE <span class="difficulty diff${diffLvl} recipe-modal-difficulty">${diffLabel}</span></span>
+        <span class="recipe-tag">🍽️ RECETTE <span class="difficulty diff${diffLvl} recipe-modal-difficulty">${diffLabel}</span> <button class="recipe-fav-inline ${isFav?'on':''}" onclick="toggleRecipeFav('${recipeId}'); renderRecipeSheet();" title="${isFav?'Retirer des favoris':'Ajouter aux favoris'}">${isFav?'★':'☆'}</button></span>
         <h2>${r.name}</h2>
-        <p>👥 ${r.servings} personnes • ⏱️ ${r.time} min</p>
+        <p>👥 ${curRecipeServings} personnes • ⏱️ ${r.time} min</p>
         <p class="recipe-cost-perperson">💶 ${ppModal} €/pers.</p>
         ${rInfo ? `<p class="recipe-times">🔪 Prép. ${rInfo.prep} min • 🔥 Cuisson ${rInfo.cook} min</p>` : ''}
+        <div class="serv-stepper">
+          <span class="serv-label">🍽️ Portions</span>
+          <button onclick="setRecipeServings(-1)" aria-label="Moins de portions">−</button>
+          <span class="serv-val">${curRecipeServings} pers.</span>
+          <button onclick="setRecipeServings(1)" aria-label="Plus de portions">+</button>
+        </div>
       </div>
     </div>
     <div class="recipe-modal-cost">
       <strong>Coût complet estimé : ~${allTotal} €</strong>
-      <span>${matches.length}/${r.ingredients.length} ingrédients en promo${estMissing>0 ? ` • ${estMissing.toFixed(2).replace('.', ',')} € hors promo (estimé)` : ''}</span>
+      <span>${matches.length}/${r.ingredients.length} ingrédients en promo${estMissing>0 ? ` • ${remainingEst} € hors promo (estimé)` : ''}</span>
+      ${saveNum > 0 ? `<span class="cost-save">💸 Économie : −${save} € vs prix plein (${(full / Math.max(1,curRecipeServings)).toFixed(2).replace('.', ',')} €/pers. au prix normal)</span>` : ''}
     </div>
     ${rTools ? `<div class="recipe-tools"><span class="recipe-tools-label">🛠️ Ustensiles :</span><span>${rTools}</span></div>` : ''}
     <h3 class="recipe-section-title">🧾 La recette</h3>
@@ -2117,7 +2330,7 @@ function openRecipeModal(recipeId){
         });
         const tip = promo ? getPrepTip(ing, promo.name) : null;
         const est = ingrEstimate(ing);
-        const qty = rQty ? rQty[ix] : '';
+        const qty = rQty && rQty[ix] ? scaleQty(rQty[ix], factor) : '';
         const nameLine = qty ? `<strong class="ing-qty">${qty}</strong> ${ing}` : ing;
         if(promo){
           return `<li class="has-promo">
@@ -2125,11 +2338,11 @@ function openRecipeModal(recipeId){
               <span class="ing-name">${nameLine}</span>
               <span class="ing-badge promo">EN PROMO ✓</span>
             </div>
-            <div class="ing-sub">🏷️ ${promo.name} · <strong>${priceOf(promo).toFixed(2)} €</strong> · ${storeOf(promo.store).name}</div>
+            <div class="ing-sub">🏷️ ${promo.name} · <strong>${(priceOf(promo) * factor).toFixed(2).replace('.', ',')} €</strong> · ${storeOf(promo.store).name}</div>
             ${tip ? `<div class="ing-tip">💡 ${tip}</div>` : ''}
           </li>`;
         }
-        const estLine = est ? `<div class="ing-sub">≈ ${est.toFixed(2).replace('.', ',')} € · à acheter au prix normal</div>` : '';
+        const estLine = est ? `<div class="ing-sub">≈ ${(est * factor).toFixed(2).replace('.', ',')} € · à acheter au prix normal</div>` : '';
         return `<li>
         <div class="ing-row">
           <span class="ing-name">${nameLine}</span>
@@ -2140,7 +2353,8 @@ function openRecipeModal(recipeId){
       }).join("")}
     </ul>
     <div class="recipe-actions">
-      <button class="btn-primary cook-launch" onclick="addRecipeToCart('${recipeId}', true); closeSheet('recipeSheet');">🛒 Tout ajouter</button>
+      <button class="btn-primary cook-launch" onclick="addRecipeToCart('${recipeId}', true); closeSheet('recipeSheet');">🛒 Tout ajouter (${curRecipeServings} pers.)</button>
+      <button class="btn-secondary cook-launch" onclick="shareRecipeList('${recipeId}')">📤 Partager la liste</button>
     </div>
     <div class="recipe-actions" style="margin-top:10px;">
       <button class="btn-primary cook-launch" onclick="closeSheet('recipeSheet'); startCooking('${recipeId}');">🍳 Mode cuisson</button>
@@ -2190,39 +2404,39 @@ function ingId(ing){ return 'ing:' + ing.toLowerCase().trim().replace(/\s+/g,'-'
 
 // RECETTES GLOBALES (utilisées par renderRecipes, openRecipeModal et addRecipeToCart)
 const RECIPE_DB = {
-  "pates-bolognaise": {name:"Pâtes bolognaise", emoji:"🍝", image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&q=80", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
-  "poulet-riz": {name:"Poulet riz légumes", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
-  "saumon-legumes": {name:"Saumon légumes vapeur", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
-  "quiche-lardons": {name:"Quiche lardons fromage", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
-  "chili-con-carne": {name:"Chili con carne", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:45, ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
-  "gratins-dauphinois": {name:"Gratin dauphinois", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:60, ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
-  "omelette-legumes": {name:"Omelette légumes fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:15, ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
-  "lasagnes": {name:"Lasagnes maison", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:60, ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
-  "wok-poulet": {name:"Wok poulet nouilles", emoji:"🍜", image:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80", servings:4, time:25, ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]},
-  "carbonara": {name:"Pâtes carbonara", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","lardons","œufs","parmesan","poivre","crème fraîche"]},
-  "poulet-coco": {name:"Poulet au lait de coco", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","lait coco","curry","riz","poivrons","oignon","citron vert"]},
-  "hachis-parmentier": {name:"Hachis parmentier", emoji:"🥘", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:6, time:50, ingredients:["viande hachée","pommes de terre","carottes","oignon","fromage râpé","lait","beurre"]},
-  "couscous-legumes": {name:"Couscous légumes", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:40, ingredients:["semoule","pois chiches","carottes","courgettes","tomates","oignon","ras el hanout"]},
-  "poisson-papillote": {name:"Poisson en papillote", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:4, time:25, ingredients:["cabillaud","courgettes","tomates cerises","citron","herbes","huile olive"]},
-  "risotto-champignons": {name:"Risotto champignons", emoji:"🍚", image:"https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80", servings:4, time:35, ingredients:["riz arborio","champignons","oignon","vin blanc","parmesan","bouillon"]},
-  "tacos-viande": {name:"Tacos viande hachée", emoji:"🌮", image:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&q=80", servings:4, time:30, ingredients:["tortillas","viande hachée","haricots rouges","maïs","tomates","fromage râpé","épices tacos"]},
-  "curry-legumes": {name:"Curry légumes coco", emoji:"🍛", image:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&q=80", servings:4, time:30, ingredients:["lait coco","pois chiches","épinards","carottes","curry","riz","oignon"]},
-  "boulettes-tomate": {name:"Boulettes sauce tomate", emoji:"🍲", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:4, time:35, ingredients:["viande hachée","pain","œuf","sauce tomate","pâtes","fromage râpé","herbes"]},
-  "salade-composee": {name:"Grande salade composée", emoji:"🥗", image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80", servings:4, time:15, ingredients:["salade","tomates","concombre","œufs durs","thon","maïs","vinaigrette"]},
-  "gratin-pates": {name:"Gratin pâtes jambon fromage", emoji:"🍝", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["pâtes","jambon","crème fraîche","fromage râpé","emmental","muscade"]},
-  "quiche-saumon": {name:"Quiche saumon épinards", emoji:"🥧", image:"https://images.unsplash.com/photo-1822203911238-3c4e5c5b5b8e?w=400&q=80", servings:4, time:40, ingredients:["pâte brisée","saumon fumé","épinards","œufs","crème fraîche","fromage râpé"]},
-  "poulet-curry": {name:"Poulet au curry", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:30, ingredients:["poulet","curry","lait coco","riz","oignon","poivrons"]},
-  "saumon-pates": {name:"Pâtes au saumon", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:25, ingredients:["pâtes","saumon fumé","crème fraîche","aneth","citron","épinards"]},
-  "chili-vege": {name:"Chili végétarien", emoji:"🌶️", image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", servings:6, time:40, ingredients:["haricots rouges","haricots noirs","tomates concassées","oignon","poivron","maïs","riz","cumin"]},
-  "gratin-legumes": {name:"Gratin de légumes", emoji:"🥔", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:40, ingredients:["courgettes","aubergines","tomates","fromage râpé","herbes","huile olive"]},
-  "omelette-jambon": {name:"Omelette jambon fromage", emoji:"🥚", image:"https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&q=80", servings:2, time:10, ingredients:["œufs","jambon","fromage râpé","herbes","beurre"]},
-  "poulet-roti": {name:"Poulet rôti pommes de terre", emoji:"🍗", image:"https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=400&q=80", servings:4, time:60, ingredients:["poulet entier","pommes de terre","carottes","oignon","herbes","beurre"]},
-  "lasagnes-vege": {name:"Lasagnes végétariennes", emoji:"🍝", image:"https://images.unsplash.com/photo-1574894709920-11b28e7723e3?w=400&q=80", servings:6, time:55, ingredients:["pâtes lasagnes","épinards","ricotta","fromage râpé","sauce tomate","courgettes"]},
-  "wrap-poulet": {name:"Wrap poulet crudités", emoji:"🌯", image:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80", servings:4, time:20, ingredients:["tortillas","poulet","salade","tomates","concombre","sauce yaourt","fromage râpé"]},
-  "pates-pesto": {name:"Pâtes au pesto poulet", emoji:"🍝", image:"https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80", servings:4, time:20, ingredients:["pâtes","pesto","poulet","tomates cerises","parmesan","pignons"]},
-  "bourguignon": {name:"Bœuf bourguignon", emoji:"🥘", image:"https://images.unsplash.com/photo-1547814439-7076be4f5a01?w=400&q=80", servings:6, time:90, ingredients:["viande bourguignon","carottes","oignons","champignons","vin rouge","bouillon","lardons"]},
-  "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
-  "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://images.unsplash.com/photo-1585109649139-36681517de3e?w=400&q=80", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]}
+  "pates-bolognaise": {name:"Pâtes bolognaise", emoji:"🍝", image:"https://upload.wikimedia.org/wikipedia/commons/8/83/Spaghetti_Bolognese.jpg", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
+  "poulet-riz": {name:"Poulet riz légumes", emoji:"🍗", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Chicken-a-la-King.jpg/960px-Chicken-a-la-King.jpg", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
+  "saumon-legumes": {name:"Saumon légumes vapeur", emoji:"🐟", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/-2018-12-16_Pan_fried_Samon_with_crushed_new_potato%27s_and_green_beans%2C_Cromer.JPG/960px--2018-12-16_Pan_fried_Samon_with_crushed_new_potato%27s_and_green_beans%2C_Cromer.JPG", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
+  "quiche-lardons": {name:"Quiche lardons fromage", emoji:"🥧", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Quiche_lorraine_01.JPG/960px-Quiche_lorraine_01.JPG", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
+  "chili-con-carne": {name:"Chili con carne", emoji:"🌶️", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Bowl_of_chili.jpg/960px-Bowl_of_chili.jpg", servings:6, time:45, ingredients:["viande hachée","haricots rouges","tomates concassées","oignon","poivron","riz"]},
+  "gratins-dauphinois": {name:"Gratin dauphinois", emoji:"🥔", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Gratin_dauphinois_p1040878.jpg/960px-Gratin_dauphinois_p1040878.jpg", servings:4, time:60, ingredients:["pommes de terre","crème fraîche","ail","fromage râpé","noix de muscade"]},
+  "omelette-legumes": {name:"Omelette légumes fromage", emoji:"🥚", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Cha-om_omelette.jpg/960px-Cha-om_omelette.jpg", servings:2, time:15, ingredients:["œufs","poivron","tomate","fromage râpé","herbes"]},
+  "lasagnes": {name:"Lasagnes maison", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Lasagne_-_stonesoup.jpg/960px-Lasagne_-_stonesoup.jpg", servings:6, time:60, ingredients:["pâtes lasagnes","viande hachée","sauce tomate","béchamel","fromage râpé"]},
+  "wok-poulet": {name:"Wok poulet nouilles", emoji:"🍜", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Chicken_chow_mein.jpg/960px-Chicken_chow_mein.jpg", servings:4, time:25, ingredients:["poulet","nouilles","poivrons","oignons","sauce soja","gingembre"]},
+  "carbonara": {name:"Pâtes carbonara", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Espaguetis_carbonara.jpg/960px-Espaguetis_carbonara.jpg", servings:4, time:20, ingredients:["pâtes","lardons","œufs","parmesan","poivre","crème fraîche"]},
+  "poulet-coco": {name:"Poulet au lait de coco", emoji:"🍗", image:"https://upload.wikimedia.org/wikipedia/commons/1/1f/Chilli_Coconut_Chicken_curry_1.jpg", servings:4, time:30, ingredients:["poulet","lait coco","curry","riz","poivrons","oignon","citron vert"]},
+  "hachis-parmentier": {name:"Hachis parmentier", emoji:"🥘", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Hachis_Parmentier.jpg/960px-Hachis_Parmentier.jpg", servings:6, time:50, ingredients:["viande hachée","pommes de terre","carottes","oignon","fromage râpé","lait","beurre"]},
+  "couscous-legumes": {name:"Couscous légumes", emoji:"🥘", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Couscous_with_vegetables_%D9%83%D8%B3%D9%83%D8%B3_%D8%A8%D8%A7%D9%84%D8%AE%D8%B6%D8%B1%D8%A9_TN.jpg/960px-Couscous_with_vegetables_%D9%83%D8%B3%D9%83%D8%B3_%D8%A8%D8%A7%D9%84%D8%AE%D8%B6%D8%B1%D8%A9_TN.jpg", servings:6, time:40, ingredients:["semoule","pois chiches","carottes","courgettes","tomates","oignon","ras el hanout"]},
+  "poisson-papillote": {name:"Poisson en papillote", emoji:"🐟", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Orata_al_Cartoccio.jpg/960px-Orata_al_Cartoccio.jpg", servings:4, time:25, ingredients:["cabillaud","courgettes","tomates cerises","citron","herbes","huile olive"]},
+  "risotto-champignons": {name:"Risotto champignons", emoji:"🍚", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Mushroom_Risotto_%284790048714%29.jpg/960px-Mushroom_Risotto_%284790048714%29.jpg", servings:4, time:35, ingredients:["riz arborio","champignons","oignon","vin blanc","parmesan","bouillon"]},
+  "tacos-viande": {name:"Tacos viande hachée", emoji:"🌮", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg/960px-001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg", servings:4, time:30, ingredients:["tortillas","viande hachée","haricots rouges","maïs","tomates","fromage râpé","épices tacos"]},
+  "curry-legumes": {name:"Curry légumes coco", emoji:"🍛", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Vegetable_Curry%2C_Dec_2013.jpg/960px-Vegetable_Curry%2C_Dec_2013.jpg", servings:4, time:30, ingredients:["lait coco","pois chiches","épinards","carottes","curry","riz","oignon"]},
+  "boulettes-tomate": {name:"Boulettes sauce tomate", emoji:"🍲", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Spaghetti_and_meatballs_1.jpg/960px-Spaghetti_and_meatballs_1.jpg", servings:4, time:35, ingredients:["viande hachée","pain","œuf","sauce tomate","pâtes","fromage râpé","herbes"]},
+  "salade-composee": {name:"Grande salade composée", emoji:"🥗", image:"https://upload.wikimedia.org/wikipedia/commons/7/7f/Salade_ni%C3%A7oise.jpg", servings:4, time:15, ingredients:["salade","tomates","concombre","œufs durs","thon","maïs","vinaigrette"]},
+  "gratin-pates": {name:"Gratin pâtes jambon fromage", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Macaronigratin.jpg/960px-Macaronigratin.jpg", servings:4, time:35, ingredients:["pâtes","jambon","crème fraîche","fromage râpé","emmental","muscade"]},
+  "quiche-saumon": {name:"Quiche saumon épinards", emoji:"🥧", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Quiche_au_saumon_et_aux_%C3%A9pinards.jpg/960px-Quiche_au_saumon_et_aux_%C3%A9pinards.jpg", servings:4, time:40, ingredients:["pâte brisée","saumon fumé","épinards","œufs","crème fraîche","fromage râpé"]},
+  "poulet-curry": {name:"Poulet au curry", emoji:"🍗", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Hainanese_Curry_Rice_by_Banej.jpg/960px-Hainanese_Curry_Rice_by_Banej.jpg", servings:4, time:30, ingredients:["poulet","curry","lait coco","riz","oignon","poivrons"]},
+  "saumon-pates": {name:"Pâtes au saumon", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Mizuna_and_pasta_and_salmon.jpg/960px-Mizuna_and_pasta_and_salmon.jpg", servings:4, time:25, ingredients:["pâtes","saumon fumé","crème fraîche","aneth","citron","épinards"]},
+  "chili-vege": {name:"Chili végétarien", emoji:"🌶️", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Bowl_of_chili.jpg/960px-Bowl_of_chili.jpg", servings:6, time:40, ingredients:["haricots rouges","haricots noirs","tomates concassées","oignon","poivron","maïs","riz","cumin"]},
+  "gratin-legumes": {name:"Gratin de légumes", emoji:"🥔", image:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Pr%C3%A9paration_gratin_de_courgettes-tomates_%28001%29_-_courgettes.jpg", servings:4, time:40, ingredients:["courgettes","aubergines","tomates","fromage râpé","herbes","huile olive"]},
+  "omelette-jambon": {name:"Omelette jambon fromage", emoji:"🥚", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Ham_Omelette_with_Toast.jpg/960px-Ham_Omelette_with_Toast.jpg", servings:2, time:10, ingredients:["œufs","jambon","fromage râpé","herbes","beurre"]},
+  "poulet-roti": {name:"Poulet rôti pommes de terre", emoji:"🍗", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Roasted_chicken_and_potatoes.JPG/960px-Roasted_chicken_and_potatoes.JPG", servings:4, time:60, ingredients:["poulet entier","pommes de terre","carottes","oignon","herbes","beurre"]},
+  "lasagnes-vege": {name:"Lasagnes végétariennes", emoji:"🍝", image:"https://upload.wikimedia.org/wikipedia/commons/9/90/Vegan_lasagna_%287375884498%29.jpg", servings:6, time:55, ingredients:["pâtes lasagnes","épinards","ricotta","fromage râpé","sauce tomate","courgettes"]},
+  "wrap-poulet": {name:"Wrap poulet crudités", emoji:"🌯", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Smoked_chicken_and_avocado_wrap.jpg/960px-Smoked_chicken_and_avocado_wrap.jpg", servings:4, time:20, ingredients:["tortillas","poulet","salade","tomates","concombre","sauce yaourt","fromage râpé"]},
+  "pates-pesto": {name:"Pâtes au pesto poulet", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Pesto_Pasta_Salad.jpg/960px-Pesto_Pasta_Salad.jpg", servings:4, time:20, ingredients:["pâtes","pesto","poulet","tomates cerises","parmesan","pignons"]},
+  "bourguignon": {name:"Bœuf bourguignon", emoji:"🥘", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Beef_bourguignon-01.jpg/960px-Beef_bourguignon-01.jpg", servings:6, time:90, ingredients:["viande bourguignon","carottes","oignons","champignons","vin rouge","bouillon","lardons"]},
+  "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://upload.wikimedia.org/wikipedia/commons/9/95/Grilled_Teriyaki_Salmon_%2810900376705%29.jpg", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
+  "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://upload.wikimedia.org/wikipedia/commons/0/02/Cassolette_poireaux_Saint-Jacques.jpg", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]}
 };
 /* Quantités par ingrédient (alignées sur ingredients[] de RECIPE_DB) */
 const RECIPE_QTY = {
@@ -2578,7 +2792,35 @@ function generateSteps(recipe){
    MODE CUISSON
    Suivi pas-à-pas avec minuteur par étape, façon Marmiton.
    --------------------------------------------------------- */
-let cookSteps = [], cookIdx = 0, cookTimerId = null, cookRemain = 0, cookRunning = false, cookExpired = false, cookRecipeId = '';
+let cookSteps = [], cookIdx = 0, cookTimerId = null, cookRemain = 0, cookRunning = false, cookExpired = false, cookRecipeId = '', cookAutoSpeak = true;
+
+function speakStep(text){
+  if(!text || !('speechSynthesis' in window)) return;
+  try{
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR';
+    u.rate = 1;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+let _wakeLock = null;
+function requestWakeLock(){
+  if(_wakeLock || !('wakeLock' in navigator)) return;
+  navigator.wakeLock.request('screen').then(l=>{ _wakeLock = l; }).catch(()=>{});
+}
+function releaseWakeLock(){
+  if(_wakeLock){
+    try{ _wakeLock.release(); }catch(e){}
+    _wakeLock = null;
+  }
+}
+document.addEventListener('visibilitychange', ()=>{
+  const cs = document.getElementById('cookSheet');
+  if(document.visibilityState === 'visible' && cs && cs.classList.contains('open')) requestWakeLock();
+  else if(document.visibilityState === 'hidden') releaseWakeLock();
+});
 
 function startCooking(recipeId){
   const r = RECIPE_DB[recipeId];
@@ -2590,17 +2832,22 @@ function startCooking(recipeId){
   cookExpired = false;
   cookRemain = (cookSteps[0][1] * 60) || 0;
   cookRunning = false;
+  if(!curRecipeServings || curRecipeServings < 1) curRecipeServings = r.servings || 1;
+  const cookFactor = curRecipeServings / (r.servings||1);
   const inf = RECIPE_INFO[recipeId] || null;
+  const autoSpeak = document.getElementById('cookAutoSpeak');
+  if(autoSpeak) autoSpeak.checked = cookAutoSpeak;
   document.getElementById('cookTitle').textContent = r.emoji + ' ' + r.name;
-  let meta = '👨‍🍳 ' + r.servings + ' personnes';
+  let meta = '👨‍🍳 ' + curRecipeServings + ' personne' + (curRecipeServings > 1 ? 's' : '');
   if(inf) meta += ' • Prép. ' + inf.prep + ' min • Cuisson ' + inf.cook + ' min';
+  if(cookFactor !== 1) meta += ' • 📐 quantités ×' + (Math.round(cookFactor*100)/100);
   meta += ' • ⏳ ' + r.time + ' min • ' + cookSteps.length + ' étapes';
   document.getElementById('cookMeta').textContent = meta;
   const tools = (inf && inf.tools && inf.tools.length) ? inf.tools.join(' · ') : '';
   document.getElementById('cookTools').textContent = tools ? '🛠️ ' + tools : '';
   const rQty = RECIPE_QTY[recipeId] || null;
   document.getElementById('cookChecklistList').innerHTML = r.ingredients.map((ing, ix) => {
-    const qty = rQty && rQty[ix] ? rQty[ix] : '';
+    const qty = rQty && rQty[ix] ? scaleQty(rQty[ix], cookFactor) : '';
     return `<li onclick="this.classList.toggle('done'); this.querySelector('input').checked = !this.querySelector('input').checked; updateChecklistBtn();">
       <input type="checkbox" onclick="event.stopPropagation(); this.parentElement.classList.toggle('done'); updateChecklistBtn();">
       <span>${ing}</span>${qty ? `<span class="cq">${qty}</span>` : ''}
@@ -2609,6 +2856,7 @@ function startCooking(recipeId){
   document.getElementById('cookChecklist').style.display = 'none';
   updateChecklistBtn();
   openSheet('cookSheet');
+  requestWakeLock();
   cookRender();
 }
 
@@ -2617,10 +2865,15 @@ function cookRender(){
   const st = cookSteps[cookIdx];
   const pct = Math.round(((cookIdx) / total) * 100);
   document.getElementById('cookProgressBar').style.width = pct + '%';
-  document.getElementById('cookStepCount').textContent = 'Étape ' + (cookIdx+1) + ' / ' + total;
+  let leftMin = 0;
+  for(let i = cookIdx; i < total; i++) leftMin += cookSteps[i][1] || 0;
+  if(cookRunning && cookRemain > 0) leftMin -= Math.floor(cookRemain/60);
+  if(leftMin < 0) leftMin = 0;
+  document.getElementById('cookStepCount').textContent = 'Étape ' + (cookIdx+1) + ' / ' + total + (leftMin > 0 ? ' • ⏳ ~' + leftMin + ' min rest.' : '');
   const stage = document.getElementById('cookStage');
   const heat = st[2] || '';
   stage.innerHTML = `<div class="cook-stage-text">${cookIdx+1}. ${st[0]}</div>${heat ? `<span class="cook-heat">🔥 ${heat}</span>` : ''}`;
+  if(cookAutoSpeak && !cookExpired) speakStep((cookIdx+1) + '. ' + st[0]);
   const timerBox = document.getElementById('cookTimer');
   if(st[1] > 0){
     timerBox.style.display = 'block';
@@ -2662,8 +2915,9 @@ function cookToggle(){
       clearInterval(cookTimerId); cookTimerId = null; cookRunning = false; cookExpired = true;
       document.getElementById('cookTimer').classList.add('warn');
       document.getElementById('cookTimerHint').textContent = '⏰ Temps écoulé !';
-      beep();
-      if(navigator.vibrate) navigator.vibrate([300,150,300]);
+      beep(3);
+      if(navigator.vibrate) navigator.vibrate([400,150,400,150,400]);
+      if(cookAutoSpeak) speakStep('Temps écoulé pour cette étape !');
       showToast('⏰ Temps écoulé pour cette étape !');
       document.getElementById('cookPlayBtn').textContent = (cookIdx >= cookSteps.length-1) ? '▶ Terminer' : '▶ Suivant';
       return;
@@ -2686,8 +2940,10 @@ function cookNext(){
     cookRemain = (cookSteps[cookIdx][1]||0) * 60;
     cookRender();
   } else {
+    const r = RECIPE_DB[cookRecipeId] || null;
     stopCooking();
     showToast('🎉 Recette terminée, bon appétit !');
+    if(r) confettiBurst(r.emoji);
   }
 }
 
@@ -2704,20 +2960,53 @@ function cookPrev(){
 function stopCooking(silent){
   if(cookTimerId){ clearInterval(cookTimerId); cookTimerId = null; }
   cookRunning = false;
+  if(!silent && 'speechSynthesis' in window) try{ speechSynthesis.cancel(); }catch(e){}
+  releaseWakeLock();
   closeSheet('cookSheet');
 }
 
 let _beepCtx = null;
-function beep(){
+function beep(repeat){
+  repeat = repeat || 1;
   try{
-    if(!_beepCtx) _beepCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return;
+    if(!_beepCtx) _beepCtx = new Ctx();
     if(_beepCtx.state === 'suspended') _beepCtx.resume();
-    const o = _beepCtx.createOscillator(), g = _beepCtx.createGain();
-    o.type = 'sine'; o.frequency.value = 880;
-    o.connect(g); g.connect(_beepCtx.destination);
-    o.start(); g.gain.setValueAtTime(0.3, _beepCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, _beepCtx.currentTime + 1.2);
-    o.stop(_beepCtx.currentTime + 1.2);
+    let first = Date.now();
+    for(let k = 0; k < repeat; k++){
+      const t0 = _beepCtx.currentTime + k * 0.36;
+      const o = _beepCtx.createOscillator();
+      const g = _beepCtx.createGain();
+      o.type = 'sine';
+      o.frequency.value = 860;
+      g.gain.setValueAtTime(0.001, t0);
+      g.gain.exponentialRampToValueAtTime(0.3, t0 + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.24);
+      o.connect(g); g.connect(_beepCtx.destination);
+      o.start(t0); o.stop(t0 + 0.26);
+    }
+    void first;
+  }catch(e){}
+}
+
+function confettiBurst(emoji){
+  try{
+    const colors = ['#e9d6a3','#46a05e','#2e6b4e','#ffb300','#8c6d2f','#b04a3a'];
+    for(let i = 0; i < 70; i++){
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = (Math.random() * 100) + 'vw';
+      p.style.top = '-20px';
+      p.style.background = colors[i % colors.length];
+      p.style.fontSize = (8 + Math.random() * 10) + 'px';
+      p.textContent = (i % 9 === 0 && emoji) ? emoji : '';
+      p.style.animationDelay = (Math.random() * 0.6) + 's';
+      p.style.width = p.textContent ? 'auto' : (7 + Math.random() * 6) + 'px';
+      p.style.height = p.textContent ? 'auto' : (9 + Math.random() * 8) + 'px';
+      document.body.appendChild(p);
+      setTimeout(()=>{ try{ p.remove(); }catch(e){} }, 3400);
+    }
   }catch(e){}
 }
 
@@ -2725,15 +3014,16 @@ function addRecipeToCart(recipeId, includeAll){
   const r = RECIPE_DB[recipeId];
   if(!r) return;
   
+  const unit = Math.max(1, Math.round(curRecipeServings / (r.servings||1)));
   let added=0, est=0;
   r.ingredients.forEach(ing => {
     const promo = bestPromo(ing);
     if(promo){
-      addToCart(promo.id, 1);
+      addToCart(promo.id, unit);
       added++;
     } else if(includeAll){
       const e = ingrEstimate(ing);
-      if(e){ addToCart(ingId(ing), 1); est += e; added++; }
+      if(e){ addToCart(ingId(ing), unit); est += e * unit; added++; }
     }
   });
   renderCart();
