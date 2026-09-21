@@ -33,6 +33,11 @@ async function main() {
     await page.goto('http://127.0.0.1:8123/', { waitUntil: 'networkidle' });
     await page.waitForTimeout(800);
 
+    // Le rendu est incrémental (64 cartes puis remplissage au scroll) :
+    // on charge la grille complète avant de compter les cartes/logos/offres.
+    await page.evaluate(() => { for (let i = 0; i < 64; i++) renderMore(); });
+    await page.waitForTimeout(300);
+
     const cards = await page.locator('.pcard').count();
     const resultCount = await page.textContent('#resultCount');
     const logos = await page.$$eval('.badge-store img', els => els.map(e => e.getAttribute('src')));

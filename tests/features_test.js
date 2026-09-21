@@ -24,10 +24,10 @@ async function recipeFeaturesChecks(page, check) {
 
   // Recherche sans résultat → empty state
   await page.fill('#recipeSearch', 'zzzzzz');
-  await page.waitForTimeout(400);
+  await page.waitForTimeout(700);
   check((await page.locator('#recipeGrid .empty-state').count()) === 1, 'empty-state quand aucun résultat');
   await page.fill('#recipeSearch', '');
-  await page.waitForTimeout(400);
+  await page.waitForTimeout(600);
 
   // Étoile favori : cliquer sur la 1re carte → on devient on + persistance localStorage
   await page.evaluate(() => localStorage.removeItem('promoapp_recipe_favs'));
@@ -100,8 +100,30 @@ async function recipeFeaturesChecks(page, check) {
   await page.evaluate(() => randomRecipe());
   await page.waitForTimeout(500);
   check(await page.locator('#recipeSheet.show').count() === 1, 'recette aléatoire ouvre une fiche');
+  check(await page.locator('#recipeSheet .nutri-row .nkv').count() >= 2, 'valeurs nutritionnelles affichées dans la fiche');
   await page.evaluate(() => closeSheet('recipeSheet'));
   await page.waitForTimeout(300);
+
+  // Historique des recettes consultées → bande "récemment consultées"
+  await page.locator('.navbtn[data-view="recettes"]').click();
+  await page.waitForTimeout(500);
+  check(await page.locator('#recentRecipes .recent-chip').count() >= 1, 'bande recettes récemment consultées rendue');
+
+  // Menu de la semaine : 7 repas sous budget générés
+  check(await page.locator('#mealPlanBudget').count() === 1, 'champ budget du menu de la semaine présent');
+  await page.evaluate(() => generateMealPlan());
+  await page.waitForTimeout(400);
+  check(await page.locator('#mealPlanResult .mp-day').count() === 7, 'menu de 7 repas généré (7 jours)');
+  check((await page.locator('#mealPlanResult .mp-total').textContent()).includes('€'), 'total du menu affiché');
+  await page.evaluate(() => document.getElementById('mealPlanResult').innerHTML = '');
+
+  // Panier : boutons comparateur / lien / scan présents
+  await page.locator('.navbtn[data-view="cart"]').click();
+  await page.waitForTimeout(400);
+  check(await page.locator('#cartCompareBtn').count() === 1, 'bouton comparer le panier par magasin présent');
+  check(await page.locator('#cartShareLinkBtn').count() === 1, 'bouton copier le lien du panier présent');
+  check(await page.locator('#cartScanBtn').count() === 1, 'bouton scanner un code-barres présent');
+
   await page.locator('.navbtn[data-view="promos"]').click();
   await page.waitForTimeout(400);
 }

@@ -1,5 +1,5 @@
 /* PromoApp - Service Worker : mise en cache des fichiers pour usage hors-ligne */
-const VERSION = 'promoapp-v2';
+const VERSION = 'promoapp-v3';
 const CORE_ASSETS = [
   './index.html',
   './manifest.webmanifest',
@@ -82,10 +82,32 @@ self.addEventListener('notificationclick', (event) => {
   );
 });
 
-/* Stratégie réseau d'abord, cache en secours (hors-ligne) */
+/* Stratégie : images CDN → cache-first avec rafraîchissement en arrière-plan ;
+   autres → réseau d'abord, cache en secours (hors-ligne). */
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
+
+  const url = new URL(req.url);
+  const isImage = req.destination === 'image'
+    || /\.(png|jpe?g|webp|gif|svg|avif)(\?|$)/i.test(url.pathname)
+    || /wikimedia\.org|imgix|cloudinary|vistaflip|supermarkt/.test(url.hostname);
+
+  if (isImage) {
+    event.respondWith(
+      caches.match(req).then((cached) => {
+        const network = fetch(req).then((res) => {
+          if (res && (res.status === 200 || res.type === 'opaque')) {
+            const copy = res.clone();
+            caches.open(VERSION).then((cache) => cache.put(req, copy));
+          }
+          return res;
+        }).catch(() => cached);
+        return cached || network;
+      })
+    );
+    return;
+  }
 
   event.respondWith(
     fetch(req)
