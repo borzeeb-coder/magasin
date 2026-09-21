@@ -136,7 +136,27 @@ async function main() {
     const { cookSheetChecks } = require('./cook_test.js');
     await cookSheetChecks(page, check);
 
-    // 6. Features recettes v2 : recherche, filtres, favoris, portions,
+    // 6. Trio impact recettes v5 : 12 recettes originales + idées panier
+    await page.locator('.navbtn[data-view="recettes"]').click();
+    await page.waitForTimeout(600);
+    check(await page.locator('#recipeGrid .recipe-card').count() === 45, 'grille recettes : 45 recettes (v5 + 12 originales)');
+    check(await page.locator('#cartIdeasBtn').count() === 1, 'bouton idées recettes avec panier présent');
+    await page.click('#cartIdeasBtn');
+    await page.waitForTimeout(400);
+    check((await page.locator('#cartIdeasResult').innerText()).includes('panier est vide'), 'message panier vide affiché');
+    await page.evaluate(() => {
+      const p = JSON.parse(localStorage.getItem('pa_cart') || '{}');
+      p['ing:pâtes'] = 1; localStorage.setItem('pa_cart', JSON.stringify(p));
+    });
+    await page.reload();
+    await page.locator('.navbtn[data-view="recettes"]').click();
+    await page.waitForTimeout(600);
+    await page.click('#cartIdeasBtn');
+    await page.waitForTimeout(400);
+    check(await page.locator('#cartIdeasResult .ci-row').count() >= 1,
+      'idées recettes proposées à partir du panier (pâtes)');
+
+    // 7. Features recettes v2 : recherche, filtres, favoris, portions,
     //    économies, partage, TTS, temps restant, recette aléatoire
     const { recipeFeaturesChecks } = require('./features_test.js');
     await recipeFeaturesChecks(page, check);

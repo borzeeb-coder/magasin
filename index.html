@@ -502,6 +502,17 @@
     font-size:14px; color:var(--ink); box-shadow:0 1px 4px rgba(34,31,22,.06); outline:none;
   }
   .recipe-filters input:focus{border-color:var(--green); box-shadow:0 0 0 3px rgba(46,107,78,.15);}
+  .cart-ideas{display:flex; flex-direction:column; gap:8px; padding:2px 0 4px;}
+  .cart-ideas .primary-btn{width:100%;}
+  .ci-row{display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 12px; margin-bottom:8px; cursor:pointer;}
+  .ci-row:active{transform:scale(.99);}
+  .ci-emoji{font-size:24px;}
+  .ci-body{flex:1; min-width:0;}
+  .ci-name{font-weight:800; font-size:13.5px;}
+  .ci-sub{font-size:11.5px; color:var(--ink-soft); margin-top:2px;}
+  .ci-sub b{color:var(--green);}
+  .ci-arrow{font-size:20px; color:var(--ink-soft);}
+  .recipe-hint{font-size:12.5px; color:var(--ink-soft); background:var(--paper-2); border:1px dashed var(--line); border-radius:12px; padding:10px 12px; margin-bottom:8px;}
   .chips{display:flex; gap:7px; flex-wrap:wrap;}
   .rchip{
     font-size:12px; font-weight:700; padding:7px 13px; border-radius:999px; cursor:pointer;
@@ -958,6 +969,10 @@
       </div>
     </div>
     <div class="recent-strip" id="recentRecipes" style="display:none;"></div>
+    <div class="cart-ideas">
+      <button class="primary-btn" id="cartIdeasBtn" onclick="renderCartIdeas()">🛒 Idées recettes avec mon panier</button>
+      <div id="cartIdeasResult"></div>
+    </div>
     <div class="menu-plan-box" id="mealPlanBox">
       <div class="mpl-label">🧾 Menu de la semaine (7 repas)</div>
       <div class="mpl-row">
@@ -2704,7 +2719,7 @@ function toggleRecipeFav(id){
   renderRecipes();
 }
 function isVegRecipe(ingredients){
-  const NO = ['viande','poulet','saumon','cabillaud','thon','lardons','jambon','bœuf','boeuf','bourguignon','boulettes','poisson','escalope','filet','steak','anchois','crevette'];
+  const NO = ['viande','poulet','saumon','cabillaud','thon','lardons','jambon','bœuf','boeuf','bourguignon','boulettes','poisson','escalope','filet','steak','anchois','crevette','moule'];
   return !ingredients.some(ing => NO.some(k => ing.includes(k)));
 }
 function normalPrice(m){ return (m && m.old != null && m.old > 0) ? m.old : (m ? (priceOf(m)||0) : 0); }
@@ -2803,6 +2818,37 @@ function addRecipesToCart(ids){
   showToast('🍽️ Menu de ' + ids.length + ' repas ajouté au panier (' + n + ' articles)');
 }
 
+function renderCartIdeas(){
+  const result = document.getElementById('cartIdeasResult');
+  if(!result) return;
+  const names = Object.entries(state.cart).map(([id]) => {
+    const p = PRODUCTS.find(x => x.id === id);
+    if(p) return p.name;
+    const ve = ingEntry(id);
+    return ve ? ve.name : '';
+  }).filter(Boolean);
+  if(!names.length){
+    result.innerHTML = '<div class="recipe-hint">🛒 Votre panier est vide — ajoutez des promos pour recevoir des idées de recettes à cuisiner !</div>';
+    return;
+  }
+  const scored = Object.entries(RECIPE_DB).map(([id, r]) => {
+    const hits = r.ingredients.filter(ing => names.some(nm => matchesIng(ing, nm)));
+    return {id, r, hits};
+  }).filter(x => x.hits.length).sort((a,b) => b.hits.length - a.hits.length).slice(0,3);
+  result.innerHTML = scored.length ? scored.map(s => {
+    const pct = Math.min(100, Math.round(s.hits.length / s.r.ingredients.length * 100));
+    return `
+    <div class="ci-row" onclick="openRecipeModal('${s.id}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')openRecipeModal('${s.id}')">
+      <span class="ci-emoji">${s.r.emoji}</span>
+      <div class="ci-body">
+        <div class="ci-name">${s.r.name}</div>
+        <div class="ci-sub">${s.hits.length}/${s.r.ingredients.length} ingrédients déjà dans votre panier · <b>${pct}%</b> d'économie d'achat</div>
+      </div>
+      <span class="ci-arrow">›</span>
+    </div>`;
+  }).join('') : '<div class="recipe-hint">😅 Aucune recette ne colle à votre panier — ajoutez pâtes, poulet, œufs, riz, tomates ou légumes.</div>';
+}
+
 function renderRecipes(){
   const el = document.getElementById('recipeGrid');
   if(!el) return;
@@ -2812,10 +2858,7 @@ function renderRecipes(){
   
   const recipesWithPromos = Object.entries(RECIPE_DB).map(([id, r]) => {
     const matches = r.ingredients.map(ing => {
-      const promos = PRODUCTS.filter(p => {
-        const name = p.name.toLowerCase();
-        return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
-      }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
+      const promos = PRODUCTS.filter(p => matchesIng(ing, p.name)).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
       return promos[0] || null;
     }).filter(Boolean);
     const total = matches.reduce((s,m)=>s+(priceOf(m)||0),0);
@@ -3079,11 +3122,49 @@ function ingrEstimate(name){
   }
   return null;
 }
+/* Synonymes d'ingrédients pour mieux matcher les promos réelles
+   (clé = ingrédient canonique → mots-clés à chercher dans les magasins) */
+const ING_ALIASES = {
+  "pâtes": ["spaghetti", "penne", "fusilli", "macaroni", "linguine", "tagliatelle", "ravioli"],
+  "viande hachée": ["steak haché", "steak hache", "bœuf haché", "boeuf hache", "viande hachée", "viande hachee"],
+  "sauce tomate": ["coulis", "passata", "tomate concassée", "tomate concassee", "tomates pelées"],
+  "fromage râpé": ["emmental", "gouda", "fromage rapé", "fromage râpe", "râpé", "youpi"],
+  "crème fraîche": ["crème fraiche", "creme", "crème entière"],
+  "herbes": ["persil", "coriandre", "basilic", "menthe", "ciboulette", "aneth"],
+  "bouillon": ["bouillon", "cube de bouillon", "fond de veau"],
+  "vin blanc": ["sauvignon", "chardonnay", "muscadet"],
+  "ravioli": ["tortellini", "raviole"],
+  "saumon fumé": ["saumon"],
+  "œufs": ["œuf", "oeuf", "œufs frais"],
+  "huile olive": ["huile d'olive", "huile dolive"],
+  "riz": ["riz basmati", "riz thaï", "riz long grain", "riz rond"],
+  "poulet": ["blanc de poulet", "filet de poulet", "cuisse de poulet", "poulet fermier"],
+  "tomates cerises": ["tomate cerise"],
+  "haricots rouges": ["haricot rouge", "kidney"],
+  "lait coco": ["coco", "lait de coco"],
+  "épinards": ["épinard", "epinard"],
+  "courgettes": ["courgette"],
+  "poivron": ["poivron", "poivrons"],
+  "oignon": ["oignon", "oignons"],
+  "carottes": ["carotte"],
+  "pommes de terre": ["patate", "pomme de terre"],
+  "moules": ["moule"]
+};
+function ingKeywords(ing){
+  const arr = [ing];
+  const al = ING_ALIASES[ing.toLowerCase().trim()];
+  if(al) arr.push(...al);
+  return arr;
+}
+function matchesIng(ing, rawName){
+  const name = (rawName || '').toLowerCase();
+  return ingKeywords(ing).some(kw => {
+    const k = kw.toLowerCase();
+    return name.includes(k) || k.includes(name.split(' ')[0]);
+  });
+}
 function bestPromo(ing){
-  const promos = PRODUCTS.filter(p => {
-    const name = p.name.toLowerCase();
-    return name.includes(ing.toLowerCase()) || ing.toLowerCase().includes(name.split(' ')[0]);
-  }).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
+  const promos = PRODUCTS.filter(p => matchesIng(ing, p.name)).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
   return promos[0] || null;
 }
 /* Clé d'entrée virtuelle pour un ingrédient hors promo */
@@ -3123,7 +3204,19 @@ const RECIPE_DB = {
   "pates-pesto": {name:"Pâtes au pesto poulet", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Pesto_Pasta_Salad.jpg/960px-Pesto_Pasta_Salad.jpg", servings:4, time:20, ingredients:["pâtes","pesto","poulet","tomates cerises","parmesan","pignons"]},
   "bourguignon": {name:"Bœuf bourguignon", emoji:"🥘", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Beef_bourguignon-01.jpg/960px-Beef_bourguignon-01.jpg", servings:6, time:90, ingredients:["viande bourguignon","carottes","oignons","champignons","vin rouge","bouillon","lardons"]},
   "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://upload.wikimedia.org/wikipedia/commons/9/95/Grilled_Teriyaki_Salmon_%2810900376705%29.jpg", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
-  "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://upload.wikimedia.org/wikipedia/commons/0/02/Cassolette_poireaux_Saint-Jacques.jpg", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]}
+  "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://upload.wikimedia.org/wikipedia/commons/0/02/Cassolette_poireaux_Saint-Jacques.jpg", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]},
+  "waterzooi": {name:"Waterzooi de poulet", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Waterzooi%20P1180919%20cropped.jpg?width=960", servings:4, time:45, ingredients:["poulet","poireaux","carottes","céleri","crème fraîche","beurre","jaune d'œuf"]},
+  "carbonnade": {name:"Carbonnade flamande", emoji:"🍖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Carbonade%20flamande.jpg?width=960", servings:6, time:120, ingredients:["bœuf bourguignon","oignons","bière brune","lardons","pain d'épices","moutarde","bouillon"]},
+  "moules-frites": {name:"Moules marinières frites", emoji:"🦪", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Moules%20frites.jpg?width=960", servings:2, time:30, ingredients:["moules","pommes de terre","oignon","ail","céleri","vin blanc","persil"]},
+  "soupe-oignon": {name:"Soupe à l'oignon gratinée", emoji:"🧅", image:"https://commons.wikimedia.org/wiki/Special:FilePath/French%20onion%20soup.jpg?width=960", servings:4, time:50, ingredients:["oignons","beurre","bouillon","pain","fromage râpé","vin blanc"]},
+  "tajine-poulet": {name:"Tajine poulet citron confit", emoji:"🍋", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tajine%20de%20poulet%20au%20citron%20confit%20%28mars%202022%29.JPG?width=960", servings:4, time:60, ingredients:["poulet","citron confit","olives vertes","oignon","ail","miel","épices"]},
+  "poke-saumon": {name:"Poke bowl saumon avocat", emoji:"🥗", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Salmon%20Poke%20Bowl%20%28S%29%20with%20Spicy%20mayo%20sauce%20-%20Kitokito.jpg?width=960", servings:2, time:20, ingredients:["saumon frais","riz","avocat","concombre","edamame","sauce soja","sésame"]},
+  "galette-sarrasin": {name:"Galette complète bretonne", emoji:"🥞", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Galette%20de%20sarrasin.jpg?width=960", servings:2, time:25, ingredients:["farine de sarrasin","jambon","œufs","fromage râpé","crème fraîche","beurre"]},
+  "tarte-tatin": {name:"Tarte Tatin aux pommes", emoji:"🍎", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tarte%20tatin.jpg?width=960", servings:6, time:55, ingredients:["pommes","pâte brisée","beurre","sucre"]},
+  "tiramisu": {name:"Tiramisu café", emoji:"☕", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tiramisu.jpg?width=960", servings:6, time:30, ingredients:["mascarpone","œufs","sucre","biscuits","café","cacao"]},
+  "soupe-pistou": {name:"Soupe au pistou", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/La%20soupe%20au%20pistou.jpg?width=960", servings:6, time:45, ingredients:["haricots blancs","courgettes","tomates","carottes","haricots verts","basilic","ail"]},
+  "pad-thai": {name:"Pad thai poulet crémeux", emoji:"🍜", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Pad%20thai.jpg?width=960", servings:4, time:30, ingredients:["nouilles de riz","poulet","œufs","cacahuètes","sauce soja","pousses de soja","citron vert"]},
+  "buddha-bowl": {name:"Buddha bowl houmous", emoji:"🥙", image:"https://commons.wikimedia.org/wiki/Special:FilePath/BuddhaBowlLot.jpg?width=960", servings:2, time:25, ingredients:["pois chiches","quinoa","épinards","avocat","betterave","houmous"]}
 };
 /* Quantités par ingrédient (alignées sur ingredients[] de RECIPE_DB) */
 const RECIPE_QTY = {
@@ -3159,7 +3252,19 @@ const RECIPE_QTY = {
   "pates-pesto": ["400 g", "1 pot", "300 g", "200 g", "50 g", "30 g"],
   "bourguignon": ["1 kg", "4", "2", "300 g", "75 cl", "30 cl", "100 g"],
   "tataki-saumon": ["2 pavés (~250 g)", "150 g", "1 cas", "5 cl", "1", "quelques brins"],
-  "gratin-poireaux": ["4", "4 tranches", "20 cl", "100 g", "1 rouleau", "1 pincée"]
+  "gratin-poireaux": ["4", "4 tranches", "20 cl", "100 g", "1 rouleau", "1 pincée"],
+  "waterzooi": ["1 poulet (~1,5 kg)", "4", "3", "1 branche", "20 cl", "50 g", "2 jaunes"],
+  "carbonnade": ["1 kg", "4", "66 cl", "150 g", "3 tranches", "2 cas", "50 cl"],
+  "moules-frites": ["2 kg", "800 g", "2", "2 gousses", "1 branche", "25 cl", "quelques brins"],
+  "soupe-oignon": ["6", "50 g", "1 L", "4 tranches", "150 g", "15 cl"],
+  "tajine-poulet": ["1 poulet (~1,2 kg)", "2", "200 g", "2", "3 gousses", "1 cas", "1 cas"],
+  "poke-saumon": ["250 g", "200 g", "1", "1", "100 g", "4 cas", "1 cas"],
+  "galette-sarrasin": ["250 g", "4 tranches", "4", "150 g", "20 cl", "50 g"],
+  "tarte-tatin": ["1 kg", "1 rouleau", "80 g", "120 g"],
+  "tiramisu": ["500 g", "3", "100 g", "24", "25 cl", "2 cas"],
+  "soupe-pistou": ["400 g", "2", "4", "3", "300 g", "1 bouquet", "2 gousses"],
+  "pad-thai": ["300 g", "400 g", "2", "80 g", "5 cl", "100 g", "1"],
+  "buddha-bowl": ["400 g", "200 g", "100 g", "1", "1", "150 g"]
 };
 
 /* Valeurs nutritionnelles APPROXIMATIVES par portion (kcal, protéines g). */
@@ -3180,7 +3285,13 @@ const RECIPE_NUTRITION = {
   "poulet-roti": {kcal:610, protein:44}, "lasagnes-vege": {kcal:520, protein:22},
   "wrap-poulet": {kcal:450, protein:28}, "pates-pesto": {kcal:610, protein:30},
   "bourguignon": {kcal:540, protein:34}, "tataki-saumon": {kcal:480, protein:32},
-  "gratin-poireaux": {kcal:430, protein:16}
+  "gratin-poireaux": {kcal:430, protein:16},
+  "waterzooi": {kcal:430, protein:34}, "carbonnade": {kcal:520, protein:32},
+  "moules-frites": {kcal:470, protein:38}, "soupe-oignon": {kcal:260, protein:11},
+  "tajine-poulet": {kcal:480, protein:36}, "poke-saumon": {kcal:540, protein:30},
+  "galette-sarrasin": {kcal:520, protein:24}, "tarte-tatin": {kcal:390, protein:3},
+  "tiramisu": {kcal:380, protein:8}, "soupe-pistou": {kcal:260, protein:12},
+  "pad-thai": {kcal:560, protein:30}, "buddha-bowl": {kcal:430, protein:16}
 };
 function recipeNutritionRow(recipeId, factor){
   const n = RECIPE_NUTRITION[recipeId];
@@ -3245,7 +3356,19 @@ const RECIPE_INFO = {
   "pates-pesto": {prep:10, cook:15, tools:["Casserole (pâtes)", "Poêle", "Écumoire"]},
   "bourguignon": {prep:20, cook:90, tools:["Cocotte", "Couvercle", "Couteau"]},
   "tataki-saumon": {prep:15, cook:12, tools:["Poêle très chaude", "Casserole (riz)", "Couteau"]},
-  "gratin-poireaux": {prep:15, cook:30, tools:["Cocotte-vapeur", "Plat", "Saladier"]}
+  "gratin-poireaux": {prep:15, cook:30, tools:["Cocotte-vapeur", "Plat", "Saladier"]},
+  "waterzooi": {prep:15, cook:30, tools:["Cocotte", "Couteau", "Spatule"]},
+  "carbonnade": {prep:25, cook:95, tools:["Cocotte", "Couteau", "Spatule"]},
+  "moules-frites": {prep:15, cook:20, tools:["Marmite", "Casserole (frites)", "Couteau"]},
+  "soupe-oignon": {prep:15, cook:35, tools:["Grande casserole", "Plat à gratin", "Couteau"]},
+  "tajine-poulet": {prep:20, cook:45, tools:["Tajine ou cocotte", "Couteau", "Spatule"]},
+  "poke-saumon": {prep:20, cook:8, tools:["Casserole (riz)", "Couteau", "Bol"]},
+  "galette-sarrasin": {prep:10, cook:22, tools:["Poêle à crêpes", "Saladier", "Fouet", "Spatule"]},
+  "tarte-tatin": {prep:20, cook:35, tools:["Moule à tatin", "Poêle", "Couteau"]},
+  "tiramisu": {prep:25, cook:0, tools:["Saladier", "Fouet", "Plat"]},
+  "soupe-pistou": {prep:20, cook:30, tools:["Grande casserole", "Mixeur", "Couteau"]},
+  "pad-thai": {prep:15, cook:10, tools:["Wok", "Couteau", "Spatule"]},
+  "buddha-bowl": {prep:20, cook:12, tools:["Casserole (quinoa)", "Casserole (pois chiches)", "Couteau"]}
 };
 
 
@@ -3501,6 +3624,99 @@ const RECIPE_STEPS = {
     ["Verser le mélange crème-fromage par-dessus et recouvrir de pâte brisée.",0],
     ["Enfourner à 180°C jusqu'à ce que le dessus soit doré.",18,"180 °C"],
     ["Laisser tiédir 5 minutes puis servir.",0]
+  ],
+  "waterzooi":[
+    ["Couper le poulet en morceaux et le faire dorer dans le beurre.",10,"Feu moyen"],
+    ["Ajouter poireaux, carottes et céleri taillés, mouiller à hauteur d'eau.",15,"Feu moyen"],
+    ["Poursuivre la cuisson à feu doux jusqu'à ce que le poulet soit tendre.",20,"Feu doux"],
+    ["Prélever 2 louches de bouillon, lier avec la crème et les jaunes d'œuf.",3],
+    ["Remettre hors du feu, mélanger délicatement et servir chaud.",0]
+  ],
+  "carbonnade":[
+    ["Dorer les morceaux de bœuf dans la cocotte avec un peu de matière grasse.",12,"Feu vif"],
+    ["Ajouter les oignons émincés et laisser fondre sans colorer.",6,"Feu moyen"],
+    ["Saupoudrer de farine, mélanger puis déglacer avec la bière.",3],
+    ["Ajouter le bouillon, le pain d'épices tartiné de moutarde et le thym.",0],
+    ["Couvrir et mijoter à feu très doux.",75,"Feu doux"],
+    ["Rectifier l'assaisonnement ; les lardons grillés s'ajoutent à part.",0]
+  ],
+  "moules-frites":[
+    ["Brosser et rincer les moules à grande eau, retirer les cassées.",0],
+    ["Éplucher et tailler les pommes de terre en frites, les essuyer.",0],
+    ["Faire les frites dans l'huile chaude en deux cuissons.",14,"Feu moyen"],
+    ["Fondre oignon, ail et céleri ciselés dans la marmite.",4,"Feu moyen"],
+    ["Verser le vin blanc puis les moules ; couvrir et secouer.",8,"Feu vif"],
+    ["Servir dès l'ouverture des moules, parsemer de persil.",0]
+  ],
+  "soupe-oignon":[
+    ["Émincer finement les oignons et les faire fondre dans le beurre.",15,"Feu doux"],
+    ["Saupoudrer de farine, mélanger puis mouiller au vin blanc.",3,"Feu moyen"],
+    ["Verser le bouillon et laisser mijoter.",15,"Feu doux"],
+    ["Répartir la soupe dans des bols, déposer une tranche de pain et le fromage.",0],
+    ["Gratiner sous le grill jusqu'à ce que le fromage soit doré.",4,"Grill"],
+    ["Servir immédiatement, très chaud.",0]
+  ],
+  "tajine-poulet":[
+    ["Faire revenir les morceaux de poulet dans l'huile, les réserver.",8,"Feu vif"],
+    ["Faire suer oignon et ail émincés, ajouter les épices.",4,"Feu moyen"],
+    ["Remettre le poulet, ajouter le miel, les citrons confits en quartiers et l'eau.",0],
+    ["Couvrir et mijoter doucement.",40,"Feu doux"],
+    ["Ajouter les olives en fin de cuisson et réchauffer 3 minutes.",3],
+    ["Parsemer de coriandre et servir avec de la semoule.",0]
+  ],
+  "poke-saumon":[
+    ["Cuire le riz puis le laisser tiédir, l'aciduler légèrement.",8,"Feu moyen"],
+    ["Couper le saumon et l'avocat en dés réguliers.",0],
+    ["Tailler le concombre en rondelles, égoutter les edamame.",0],
+    ["Assembler les bols : riz, saumon, avocat, concombre, edamame.",0],
+    ["Arroser de sauce soja, parsemer de graines de sésame.",0]
+  ],
+  "galette-sarrasin":[
+    ["Mélanger la farine de sarrasin avec 50 cl d'eau et le sel, laisser reposer.",10],
+    ["Beurrer une poêle chaude et étaler une fine couche de pâte.",2,"Feu moyen"],
+    ["Casser un œuf au centre de la galette, répartir le fromage et le jambon.",2,"Feu moyen"],
+    ["Replier les bords et poursuivre la cuisson jusqu'à ce que le fromage fonde.",3,"Feu moyen"],
+    ["Servir aussitôt, la galette brûlante à la poêle.",0]
+  ],
+  "tarte-tatin":[
+    ["Préchauffer le four à 200°C.",0,"200 °C"],
+    ["Faire fondre le beurre et le sucre dans le moule jusqu'à caramélisation.",8,"Feu moyen"],
+    ["Ranger les quartiers de pommes serrés, face arrondie en dessous.",0],
+    ["Couvrir de pâte piquée et enfourner.",25,"200 °C"],
+    ["Démouler à chaud en retournant le moule sur le plat.",0],
+    ["Laisser tiédir quelques minutes avant de servir.",0]
+  ],
+  "tiramisu":[
+    ["Séparer les blancs des jaunes, fouetter les jaunes avec le sucre.",4],
+    ["Incorporer le mascarpone aux jaunes jusqu'à un mélange lisse.",2],
+    ["Monter les blancs en neige ferme et les incorporer délicatement.",5],
+    ["Tremper brièvement les biscuits dans le café.",0],
+    ["Alterner couches de biscuits et de crème, terminer par la crème.",0],
+    ["Tasser légèrement, saupoudrer de cacao et réfrigérer au moins 3 heures.",0],
+    ["Déguster bien frais.",0]
+  ],
+  "soupe-pistou":[
+    ["Tailler tous les légumes en petits dés.",0],
+    ["Les faire revenir quelques minutes dans l'huile d'olive.",5,"Feu moyen"],
+    ["Ajouter les haricots blancs et les tomates, couvrir d'eau.",30,"Feu moyen"],
+    ["Mixer le basilic avec l'ail et l'huile d'olive pour le pistou.",0],
+    ["Incorporer le pistou hors du feu et servir chaud.",0]
+  ],
+  "pad-thai":[
+    ["Tremper les nouilles de riz dans l'eau chaude 10 minutes puis égoutter.",0],
+    ["Saisir le poulet en morceaux dans le wok chaud.",6,"Feu vif"],
+    ["Pousser sur le côté, casser les œufs et les brouiller.",2,"Feu vif"],
+    ["Ajouter les nouilles, la sauce soja et un filet d'eau.",3,"Feu vif"],
+    ["Ajouter pousses de soja et cacahuètes concassées, mélanger.",2,"Feu vif"],
+    ["Servir avec un quartier de citron vert.",0]
+  ],
+  "buddha-bowl":[
+    ["Cuire le quinoa dans deux fois son volume d'eau.",12,"Feu moyen"],
+    ["Réchauffer les pois chiches avec une pincée d'épices.",6,"Feu moyen"],
+    ["Tailler l'avocat et la betterave, rincer les épinards.",0],
+    ["Répartir tous les éléments dans deux grands bols.",0],
+    ["Ajouter une bonne cuillère de houmous et un filet d'huile d'olive.",0],
+    ["Mélanger au moment de déguster.",0]
   ]
 };
 
