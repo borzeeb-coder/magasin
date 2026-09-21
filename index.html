@@ -444,42 +444,56 @@
   }
   .recipe-card{
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-    padding:18px 16px; cursor:pointer; transition:transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s cubic-bezier(.4,0,.2,1);
-    display:flex; flex-direction:column; gap:10px; position:relative; overflow:hidden;
+    cursor:pointer; transition:transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s cubic-bezier(.4,0,.2,1);
+    display:flex; flex-direction:column; position:relative; overflow:hidden;
     box-shadow:0 2px 8px rgba(34,31,22,.08);
   }
   .recipe-card:active{transform:scale(.97);}
-  .recipe-card:hover{box-shadow:0 8px 24px rgba(34,31,22,.14); transform:translateY(-2px);}
+  .recipe-card:hover{box-shadow:0 10px 28px rgba(34,31,22,.16); transform:translateY(-3px);}
   .recipe-card:focus-visible{outline:2px solid var(--green); outline-offset:2px;}
 
-  .recipe-emoji{font-size:34px; text-align:center; margin-bottom:8px; filter:drop-shadow(0 2px 4px rgba(0,0,0,.15));}
-  .recipe-info h3{margin:0; font-size:15px; font-weight:700; line-height:1.3; min-height:38px; color:var(--ink);}
-  .recipe-info p{margin:2px 0 0; font-size:12px; color:var(--ink-soft); line-height:1.4;}
-  .recipe-badges{
-    position:absolute; top:12px; right:12px; display:flex; gap:3px; z-index:3; flex-wrap:wrap;
+  .recipe-thumb{position:relative; height:132px; background:var(--paper-2); overflow:hidden; flex-shrink:0;}
+  .recipe-thumb img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease;}
+  .recipe-card:hover .recipe-thumb img{transform:scale(1.06);}
+  .recipe-thumb::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,18,12,0) 50%, rgba(20,18,12,.38));}
+  .recipe-thumb.img-failed{background:linear-gradient(135deg, var(--green-soft), var(--blue-soft)); display:flex; align-items:center; justify-content:center;}
+  .recipe-thumb.img-failed::after{display:none;}
+  .recipe-thumb.img-failed .recipe-emoji{position:static; font-size:46px; filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));}
+  .recipe-emoji{
+    position:absolute; left:12px; bottom:10px; z-index:2; font-size:30px; line-height:1;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));
   }
-  .rbadge{
-    font-size:8.5px; font-weight:700; letter-spacing:.03em; padding:2px 5px; border-radius:6px;
-    white-space:nowrap; background:var(--ing-qty, #e0e0e0)0 0/200% no-repeat; color:var(--ink);
-    border:1px solid var(--line); cursor:pointer; transition:.15s;
+  .recipe-info{padding:12px 14px 13px; display:flex; flex-direction:column; gap:5px; flex:1;}
+  .recipe-info h3{margin:0; font-size:15px; font-weight:700; line-height:1.3; color:var(--ink);}
+  .recipe-info p{margin:0; font-size:12px; color:var(--ink-soft); line-height:1.4;}
+  .recipe-meta{display:flex; flex-wrap:wrap; gap:2px 10px; font-size:11.5px; color:var(--ink-soft); line-height:1.4;}
+  .promo-badge{
+    align-self:flex-start; display:inline-block; font-size:10.5px; font-weight:800; padding:2px 9px; border-radius:999px;
+    background:var(--green-soft); color:var(--green); border:1px solid var(--green);
   }
-  .rbadge::after{content:'';position:absolute;inset:0;background:currentColor;border-radius:inherit;opacity:0;transition:.15s;pointer-events:none;}
-  .rbadge:hover::after{opacity:.12;}
-  .rbadge-cat{color:var(--ink-soft);background:rgba(255,255,255,.6);}
-  .rbadge-fast{color:#ef6c00;background:#fff3e0;border-color:#ef6c00;}
-  .rbadge-veg{color:#2e7d32;background:#e8f5e9;border-color:#2e7d32;}
-  .rbadge-vegan{color:#558b2f;background:#dcedc8;border-color:#558b2f;}
-  .rbadge-fav{color:#e0245e;background:rgba(224,36,94,.08);border-color:#e0245e;}
-  .diff{display:inline-block; font-size:8.5px; font-weight:700; padding:2px 5px; border-radius:6px; margin-left:3px; min-width:24px; text-align:center;}
-  .diff1{background:#e3f2fd; color:#1565c0;}
-  .diff2{background:#e8eaf6; color:#3949ab;}
-  .diff3{background:#fce4ec; color:#c2185b;}
+  .promo-badge.low{background:#fff3e0; color:#ef6c00; border-color:#ef6c00;}
+  .promo-badge.zero{background:var(--paper-2); color:var(--ink-soft); border-color:var(--line);}
+  .promo-track{height:6px; border-radius:999px; background:var(--paper-2); overflow:hidden; margin:4px 0 2px; box-shadow:inset 0 1px 2px rgba(0,0,0,.08);}
+  .promo-track-fill{height:100%; border-radius:999px; background:linear-gradient(90deg, var(--green), #57c08a 60%, var(--blue)); transition:width .4s ease;}
+  .recipe-cost-line{display:flex; align-items:center; justify-content:space-between; margin-top:2px; color:var(--ink-soft);}
+  .cost-perperson{
+    display:inline-block; font-weight:800; color:#fff; font-size:12.5px;
+    background:linear-gradient(135deg, var(--green), #57c08a); border-radius:999px; padding:3px 10px;
+    box-shadow:0 2px 6px rgba(46,107,78,.3);
+  }
+  .cost-total{color:var(--ink-soft); font-size:11.5px; font-weight:600;}
 
-  .promo-bar{height:5px; border-radius:3px; background:linear-gradient(90deg, var(--green), var(--blue)); margin:8px 0; min-width:35px; overflow:hidden;}
-  .promo-bar-fill{height:100%; background:linear-gradient(90deg, var(--green), var(--blue)); transition:.3s;width:0%;}
-  .recipe-cost-line{display:flex; align-items:center; justify-content:space-between; margin-top:auto; font-size:12px; color:var(--ink-soft);}
-  .cost-perperson{font-weight:700; color:var(--green); font-size:14px;}
-  .cost-total{color:var(--ink-soft); font-size:12px;}
+  .difficulty{
+    display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.03em; padding:3px 9px; border-radius:999px;
+    min-width:auto; text-align:center;
+  }
+  .recipe-thumb .difficulty{
+    position:absolute; top:10px; right:10px; z-index:2;
+    box-shadow:0 1px 4px rgba(0,0,0,.2); backdrop-filter:blur(2px);
+  }
+  .diff1{background:#e3f2fd; color:#1565c0;}
+  .diff2{background:#fff3e0; color:#ef6c00;}
+  .diff3{background:#fce4ec; color:#c2185b;}
 
   .recipe-grid .empty-state{
     grid-column:1/-1; text-align:center; padding:50px 20px; color:var(--ink-soft); font-size:15px;
@@ -488,6 +502,7 @@
   /* Recipe modal */
   .recipe-modal{max-height:90vh;}
   .recipe-modal-header{display:flex; gap:12px; align-items:flex-start; margin-bottom:12px;}
+  .recipe-modal-difficulty{display:inline-flex; align-items:center; gap:5px; margin-left:6px; vertical-align:middle;}
   .recipe-modal-img{width:84px; height:84px; border-radius:10px; object-fit:cover; flex-shrink:0;}
   .recipe-tag{display:inline-block; font-size:10px; font-weight:800; letter-spacing:.05em; color:var(--green); background:var(--green-soft); padding:2px 8px; border-radius:999px; margin-bottom:4px;}
   .recipe-modal-header h2{margin:0; font-size:18px;}
@@ -553,6 +568,22 @@
   .cook-steps li.done .n{background:var(--green); color:#fff;}
   .cook-steps small{display:block; font-size:10.5px; color:var(--ink-soft); margin-top:2px; font-weight:600;}
   .cook-steps small.heat{color:var(--blue);}
+  .cook-checklist-toggle{
+    width:100%; padding:12px; border-radius:var(--radius); border:1px dashed var(--green); color:var(--green);
+    background:var(--green-soft); font-weight:800; font-size:13px; cursor:pointer; margin-bottom:10px;
+    transition:background .15s, color .15s;
+  }
+  .cook-checklist-toggle:hover{background:#d8ead9; color:var(--green);}
+  .cook-checklist{border:1px solid var(--line); border-radius:var(--radius); background:var(--card); margin-bottom:14px; overflow:hidden;}
+  .cook-checklist-list{list-style:none; margin:0; padding:6px 0;}
+  .cook-checklist-list li{
+    display:flex; align-items:center; gap:10px; padding:8px 14px; font-size:13px; color:var(--ink);
+    border-bottom:1px solid var(--line); cursor:pointer; user-select:none;
+  }
+  .cook-checklist-list li:last-child{border-bottom:none;}
+  .cook-checklist-list li.done{color:var(--ink-soft); text-decoration:line-through;}
+  .cook-checklist-list input{accent-color:var(--green); width:17px; height:17px; flex-shrink:0; cursor:pointer;}
+  .cook-checklist-list .cq{font-size:11.5px; color:var(--ink-soft); font-weight:600; margin-right:auto;}
 
   /* City sheet */
   .city-item{display:flex; align-items:center; justify-content:space-between; padding:13px 4px; border-bottom:1px solid var(--line); cursor:pointer;}
@@ -771,6 +802,10 @@
         <p id="cookTools" style="margin:4px 0 0; font-size:11.5px; color:var(--ink-soft);"></p>
       </div>
       <button class="cook-quit" onclick="stopCooking()">✕ Quitter</button>
+    </div>
+    <button class="cook-checklist-toggle" id="cookChecklistToggle" onclick="toggleCookChecklist()">🥕 Ingrédients à préparer (checklist)</button>
+    <div class="cook-checklist" id="cookChecklist" style="display:none;">
+      <ul class="cook-checklist-list" id="cookChecklistList"></ul>
     </div>
     <div class="cook-progress">
       <div class="cook-progress-bar" id="cookProgressBar"></div>
@@ -2000,20 +2035,38 @@ function renderRecipes(){
     return {...r, id, promoMatches: matches, promoCount: matches.length};
   }).sort((a,b) => b.promoCount - a.promoCount);
   
-  el.innerHTML = recipesWithPromos.map(r => `
+  el.innerHTML = recipesWithPromos.map(r => {
+    const info = RECIPE_INFO[r.id] || null;
+    const total = r.promoMatches.reduce((s,m)=>s+(priceOf(m)||0),0);
+    const pp = (total / (r.servings||1)).toFixed(2).replace('.',',');
+    const pct = Math.round(r.promoCount / r.ingredients.length * 100);
+    const minTime = info ? (info.prep + info.cook) : r.time;
+    const diffLvl = minTime < 25 ? 1 : minTime < 45 ? 2 : 3;
+    const diffLabel = diffLvl === 1 ? 'FACILE' : diffLvl === 2 ? 'MOYEN' : 'DIFFICILE';
+    const promoClass = pct >= 60 ? '' : pct >= 30 ? ' low' : ' zero';
+    return `
     <article class="recipe-card" onclick="openRecipeModal('${r.id}')">
-      <div class="recipe-emoji">${r.emoji}</div>
+      <div class="recipe-thumb">
+        <img src="${r.image}" alt="${r.name}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('img-failed');">
+        <div class="recipe-emoji">${r.emoji}</div>
+        <span class="difficulty diff${diffLvl}">${diffLabel}</span>
+      </div>
       <div class="recipe-info">
         <h3>${r.name}</h3>
         <div class="recipe-meta">
           <span>👥 ${r.servings} pers.</span>
           <span>⏱️ ${r.time} min</span>
-          <span class="promo-badge">${r.promoCount}/${r.ingredients.length} ingrédients en promo</span>
+          ${info ? `<span>🔪 ${info.prep}' · 🔥 ${info.cook}'</span>` : ''}
         </div>
-        <div class="recipe-cost">~${r.promoMatches.reduce((s,m)=>s+(priceOf(m)||0),0).toFixed(2)} € avec promos</div>
+        <span class="promo-badge${promoClass}">🏷️ ${r.promoCount}/${r.ingredients.length} en promo</span>
+        <div class="promo-track" title="${pct}% des ingrédients en promo"><div class="promo-track-fill" style="width:${pct}%"></div></div>
+        <div class="recipe-cost-line">
+          <span class="cost-perperson">~${pp} €/pers.</span>
+          <span class="cost-total">${total.toFixed(2).replace('.',',')} € les ${r.servings} pers.</span>
+        </div>
       </div>
-    </article>
-  `).join("");
+    </article>`;
+  }).join("");
 }
 
 // Modal recette
@@ -2033,16 +2086,20 @@ function openRecipeModal(recipeId){
     return s + (e||0);
   }, 0);
   const allTotal = (total + estMissing).toFixed(2);
-  
+  const ppModal = ((total + estMissing) / (r.servings||1)).toFixed(2).replace('.', ',');
+  const minTime = rInfo ? (rInfo.prep + rInfo.cook) : r.time;
+  const diffLvl = minTime < 25 ? 1 : minTime < 45 ? 2 : 3;
+  const diffLabel = diffLvl === 1 ? 'FACILE' : diffLvl === 2 ? 'MOYEN' : 'DIFFICILE';
+
   openSheet('recipeSheet');
   document.getElementById('recipeSheetBody').innerHTML = `
     <div class="recipe-modal-header">
       <img src="${r.image}" alt="${r.name}" class="recipe-modal-img" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'">
       <div>
-        <span class="recipe-tag">🍽️ RECETTE</span>
+        <span class="recipe-tag">🍽️ RECETTE <span class="difficulty diff${diffLvl} recipe-modal-difficulty">${diffLabel}</span></span>
         <h2>${r.name}</h2>
         <p>👥 ${r.servings} personnes • ⏱️ ${r.time} min</p>
-        <p class="recipe-cost-perperson">💶 ${(total + estMissing) / (r.servings||1).toFixed(2).replace('.',',')} €/pers.</p>
+        <p class="recipe-cost-perperson">💶 ${ppModal} €/pers.</p>
         ${rInfo ? `<p class="recipe-times">🔪 Prép. ${rInfo.prep} min • 🔥 Cuisson ${rInfo.cook} min</p>` : ''}
       </div>
     </div>
@@ -2541,6 +2598,16 @@ function startCooking(recipeId){
   document.getElementById('cookMeta').textContent = meta;
   const tools = (inf && inf.tools && inf.tools.length) ? inf.tools.join(' · ') : '';
   document.getElementById('cookTools').textContent = tools ? '🛠️ ' + tools : '';
+  const rQty = RECIPE_QTY[recipeId] || null;
+  document.getElementById('cookChecklistList').innerHTML = r.ingredients.map((ing, ix) => {
+    const qty = rQty && rQty[ix] ? rQty[ix] : '';
+    return `<li onclick="this.classList.toggle('done'); this.querySelector('input').checked = !this.querySelector('input').checked; updateChecklistBtn();">
+      <input type="checkbox" onclick="event.stopPropagation(); this.parentElement.classList.toggle('done'); updateChecklistBtn();">
+      <span>${ing}</span>${qty ? `<span class="cq">${qty}</span>` : ''}
+    </li>`;
+  }).join('');
+  document.getElementById('cookChecklist').style.display = 'none';
+  updateChecklistBtn();
   openSheet('cookSheet');
   cookRender();
 }
@@ -2917,7 +2984,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
   });
 });
   /* Fonctions mode cuisson additionnelles */
-  window.toggleCookChecklist = function(){ const e=document.getElementById('cookChecklist'); e.style.display=e.style.display!=='block'?'block':'none'; const t=document.getElementById('cookChecklistToggle'); if(t)t.textContent=e.style.display=='block'?'Masquer checklist':'🥕 Ingrédients à préparer (checklist)'; }
+  window.toggleCookChecklist = function(){ const e=document.getElementById('cookChecklist'); if(e) e.style.display=e.style.display!=='block'?'block':'none'; const t=document.getElementById('cookChecklistToggle'); if(t)t.textContent=e&&e.style.display=='block'?'Masquer checklist':'🥕 Ingrédients à préparer (checklist)'; }
+  window.updateChecklistBtn = function(){
+    const t = document.getElementById('cookChecklistToggle');
+    if(!t) return;
+    const items = document.querySelectorAll('#cookChecklistList li');
+    const done = document.querySelectorAll('#cookChecklistList li.done').length;
+    t.textContent = (document.getElementById('cookChecklist').style.display == 'block' ? 'Masquer checklist' : '🥕 Ingrédients à préparer (checklist)') + ` (${done}/${items.length})`;
+  }
   /* Fin fonctions additionnelles */
 </script>
 </body>
