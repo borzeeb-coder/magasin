@@ -2220,6 +2220,9 @@ function shareProduct(p){
 /* ---------------------------------------------------------
    NAV / VIEWS
 -------------------------------------------------------- */
+function navOnly(name){
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+}
 function switchView(name){
   state.currentView = name;
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
@@ -3930,6 +3933,7 @@ async function init(){
   showSkeleton();
   await loadPromoData();
   rerenderAll();
+  navOnly(state.currentView || 'promos');
   updateCartBadge();
   initPWA();
   setTimeout(checkFavAlerts, 1200);
