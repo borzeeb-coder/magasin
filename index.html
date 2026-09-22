@@ -4234,7 +4234,12 @@ function menuHebdoAddToCart(){
     return;
   }
   addRecipesToCart(ids);
-  showToast('🛒 ' + ids.length + ' recettes ajoutées au panier');
+  showToast('🛒 ' + ids.length + ' recettes ajoutées (' + MENU_STATE.selected.filter(x=>x).length + ' ingrédients au panier)');
+  // Scroll cart to bottom to show newly added items
+  setTimeout(()=>{
+    const cartList = document.getElementById('cartList');
+    if(cartList) cartList.scrollTop = cartList.scrollHeight;
+  }, 100);
 }
 
 function menuHebdoOpenFirstCook(){
