@@ -1551,28 +1551,27 @@
   @keyframes popIn{from{opacity:0; transform:scale(.9);} to{opacity:1; transform:none;}}
 
   /* Responsive */
-  @media (max-width: 480px){
+@media (max-width: 480px){
     .menu-week{grid-template-columns:repeat(2,1fr); gap:8px;}
-    .menu-day{min-height:120px; height:140px; padding:10px; display:flex; flex-direction:column;}
-    .menu-day-thumb{width:72px; height:72px;}
-    .menu-day-label{font-size:11px;}
-    .menu-day-name{font-size:11px;}
-    .menu-day-cost{font-size:11px;}
-    .menu-day-store{font-size:10px;}
-    .menu-day-actions{gap:4px;}
-    .menu-day-btn{font-size:10px; padding:4px 0;}
+    .menu-day{min-height:140px; height:140px; padding:8px; display:flex; flex-direction:column; overflow:hidden;}
+    .menu-day-thumb{width:60px; height:60px;}
+    .menu-day-label{font-size:10px;}
+    .menu-day-name{font-size:10.5px; line-height:1.2;}
+    .menu-day-cost{font-size:10.5px;}
+    .menu-day-store{font-size:9px;}
+    .menu-day-actions{gap:3px; margin-top:auto; padding-top:4px;}
+    .menu-day-btn{font-size:9px; padding:3px 0;}
     .gallery-filters input{min-width:100%;}
     .menu-gallery-section h3{font-size:1rem;}
     .grid{grid-template-columns:1fr;}
     .menu-gallery{grid-template-columns:repeat(2,1fr);}
     .promo-grid{grid-template-columns:repeat(2,1fr);}
-    .recipe-grid{grid-template-columns:repeat(2,1fr);}
-    .pcard{padding:12px;}
+    .pcard{padding:10px;}
     .pcard-img{aspect-ratio:1/1; border-radius:var(--radius-sm);}
     .pcard-img img{width:100%; height:100%; object-fit:cover;}
-    .pcard-name{font-size:14px; line-height:1.3;}
-    .pcard-price{font-size:14px;}
-    .pcard-add{padding:10px; font-size:13px;}
+    .pcard-name{font-size:13px; line-height:1.3;}
+    .pcard-price{font-size:13px;}
+    .pcard-add{padding:8px; font-size:12px;}
 
     /* Recipe view (fiche recette) */
     .pd-img{height:120px; margin:8px 0 10px;}
