@@ -1566,6 +1566,7 @@
     .grid{grid-template-columns:1fr;}
     .menu-gallery{grid-template-columns:repeat(2,1fr);}
     .promo-grid{grid-template-columns:repeat(2,1fr);}
+    .recipe-grid{grid-template-columns:repeat(2,1fr);}
     .pcard{padding:12px;}
     .pcard-img{aspect-ratio:1/1; border-radius:var(--radius-sm);}
     .pcard-img img{width:100%; height:100%; object-fit:cover;}
@@ -1641,6 +1642,9 @@
     </div>
     <div class="sort-row" id="sortChips"></div>
     <div class="sort-row" id="discChips" style="margin:0 0 16px;"></div>
+    <div class="promo-search" style="margin:0 0 12px;">
+      <input type="search" id="promoSearch" placeholder="🔍 Rechercher un produit, marque ou magasin…" autocomplete="off" style="width:100%; padding:10px 12px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--card); font-size:14px;">
+    </div>
     <div class="new-banner" id="newBanner" style="display:none;">
       <span id="newBannerTxt">🎉 <b>X</b> nouvelles promos depuis votre visite</span>
       <button onclick="toggleNewOnly()" id="newBannerBtn">Les voir 🆕</button>
@@ -1714,7 +1718,7 @@
         <button class="secondary-btn" id="menuClearBtn" onclick="menuHebdoClear()">🗑️ Réinitialiser</button>
       </div>
     </div>
-    <div class="grid" id="recipeGrid"></div>
+    <div class="grid recipe-grid" id="recipeGrid"></div>
   </section>
 
   <!-- STORES VIEW -->
@@ -2250,6 +2254,7 @@ const state = {
   activeStores: new Set(),
   activeCat: 'all',
   search: '',
+  promoSearch: '',
   sort: 'proximity',
   minDisc: 0,                    // % de réduction minimum (filtre)
   newOnly: false,                // afficher uniquement les nouveautés
@@ -2476,6 +2481,7 @@ function getFilteredProducts(){
     if(state.activeCat!=='all' && p.cat!==state.activeCat) return false;
     if(state.newOnly && !(state.newIds && state.newIds.has(p.id))) return false;
     if(state.search && !fuzzyOk(state.search, p.name)) return false;
+    if(state.promoSearch && !fuzzyOk(state.promoSearch, p.name)) return false;
     if(state.minDisc>0 && discountPct(p) < state.minDisc) return false;
     return true;
   });
@@ -4421,6 +4427,15 @@ function bindRecipeFilters(){
 }
 if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindRecipeFilters);
 else bindRecipeFilters();
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindPromoSearch);
+else bindPromoSearch();
+
+function bindPromoSearch(){
+  const input = document.getElementById('promoSearch');
+  if(input){
+    input.addEventListener('input', debounce(()=>{ state.promoSearch = input.value.trim(); renderProducts(); }, 250));
+  }
+}
 
 // Modal recette
 let currentRecipeId = '';
