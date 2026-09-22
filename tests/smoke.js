@@ -130,6 +130,29 @@ async function main() {
     await page.waitForTimeout(700);
     check((await page.textContent('#cityLabel')) === 'Bruxelles', 'repli haversine : plus proche ville connue si le géocodeur échoue');
 
+    // 2ter. Annuaire des magasins : adresse réelle + distance dynamiques
+    //       selon la ville sélectionnée (succursale la plus proche).
+    await page.locator('.navbtn[data-view="stores"]').click();
+    await page.waitForTimeout(500);
+    check((await page.textContent('#storesCityLabel')) === 'Bruxelles', 'carte magasins attachée à la ville courante (Bruxelles)');
+    const saddrBxl = await page.locator('#storeList .store-row').first().locator('.saddr').textContent();
+    check(saddrBxl.includes('Albert De Meyer') && saddrBxl.includes('1020'),
+      'annuaire : adresse réelle Colruyt Bruxelles (Albert De Meyer 1, 1020) — « ' + saddrBxl + ' »');
+    const kmBxl = await page.locator('#storeList .store-row').first().locator('.store-km').textContent();
+    check(/km|m/.test(kmBxl.trim()), 'distance Colruyt côté Bruxelles affichée (' + kmBxl.trim() + ')');
+    // Ville changée via le sélecteur → succursale Marche-en-Famenne
+    await page.click('#cityBtn');
+    await page.waitForTimeout(300);
+    await page.evaluate(() => {
+      [...document.querySelectorAll('#cityListEl .city-item')].find(r => r.textContent.includes('Marche-en-Famenne')).click();
+    });
+    await page.waitForTimeout(400);
+    check((await page.textContent('#storesCityLabel')) === 'Marche-en-Famenne', 'sélecteur de ville → Marche-en-Famenne appliqué');
+    const saddrMarche = await page.locator('#storeList .store-row').first().locator('.saddr').textContent();
+    check(saddrMarche.includes('Vieille Route de Liège'), 'annuaire : succursale Colruyt Marche utilisée (« ' + saddrMarche + ' »)');
+    await page.locator('.navbtn[data-view="promos"]').click();
+    await page.waitForTimeout(400);
+
     // 3. Favoris : la barre d'alerte de seuil doit être présente après
     //    ajout d'un favori puis navigation vers la vue favoris
     await page.locator('.pcard .pcard-name').first().click();

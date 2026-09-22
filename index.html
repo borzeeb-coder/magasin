@@ -1795,6 +1795,97 @@ const STORES = [
   {id:'action', name:'Action', emoji:'🟤', color:'#e85a0e', addr:'Rue du Parc Industriel, Marche', dist:1.2},
 ];
 
+// Annuaire des succursales réelles (OpenStreetMap ✕ Nominatim, <nom>/<addresse> par ville).
+// Pour chaque enseigne, la succursale affichée = la plus proche de la ville sélectionnée.
+const STORES_DIR = {
+  'colruyt': [
+    {addr:'Vieille Route de Liège 10', cp:'6900', city:'Marche-en-Famenne', lat:50.23214, lng:5.34347},
+    {addr:'Rue de Dinant 4', cp:'5580', city:'Rochefort', lat:50.16518, lng:5.21122},
+    {addr:'Saint-Gilles 17', cp:'5590', city:'Ciney', lat:50.30727, lng:5.11755},
+    {addr:'Chaussée de Dinant 1320', cp:'5100', city:'Namur', lat:50.40335, lng:4.87803},
+    {addr:'Rue Grétry 235', cp:'4020', city:'Liège', lat:50.63100, lng:5.58744},
+    {addr:'Rue Albert De Meyer 1', cp:'1020', city:'Bruxelles', lat:50.87285, lng:4.34082},
+  ],
+  'delhaize': [
+    {addr:'Avenue de France 39', cp:'6900', city:'Marche-en-Famenne', lat:50.22698, lng:5.33827},
+    {addr:'Avenue de Ninove', cp:'5580', city:'Jemelle', lat:50.15790, lng:5.24209},
+    {addr:'Chemin de Crahiat', cp:'5590', city:'Ciney', lat:50.28882, lng:5.09078},
+    {addr:'Avenue Prince de Liège 41', cp:'5100', city:'Namur', lat:50.46219, lng:4.87890},
+    {addr:'Rue de Herve 280', cp:'4030', city:'Liège', lat:50.62958, lng:5.62331},
+    {addr:'Rue de Heembeek 125', cp:'1120', city:'Bruxelles', lat:50.89064, lng:4.37937},
+  ],
+  'lidl': [
+    {addr:'Avenue de France', cp:'6900', city:'Marche-en-Famenne', lat:50.22085, lng:5.33128},
+    {addr:'Rue de Dinant', cp:'5580', city:'Rochefort', lat:50.16670, lng:5.21073},
+    {addr:'Chemin du Tersoit 18', cp:'5590', city:'Ciney', lat:50.29204, lng:5.11068},
+    {addr:'Rue Hébar 2', cp:'5004', city:'Namur', lat:50.48701, lng:4.89354},
+    {addr:'Chaussée de Tongres', cp:'4000', city:'Liège', lat:50.66735, lng:5.55820},
+    {addr:'Rue de l\'Égalité des Droits', cp:'1020', city:'Bruxelles', lat:50.87970, lng:4.34015},
+  ],
+  'aldi': [
+    {addr:'Chaussée de Liège', cp:'6900', city:'Marche-en-Famenne', lat:50.23331, lng:5.34389},
+    {addr:'Rue de la Libération 61', cp:'5580', city:'Rochefort', lat:50.16410, lng:5.21362},
+    {addr:'Avenue Schlogel 119', cp:'5590', city:'Ciney', lat:50.30158, lng:5.11170},
+    {addr:'Rue de Jausse 79', cp:'5100', city:'Namur', lat:50.41961, lng:4.93810},
+    {addr:'Rue de Visé 553', cp:'4020', city:'Liège', lat:50.66590, lng:5.65746},
+    {addr:'Avenue des Magnolias 755', cp:'1020', city:'Bruxelles', lat:50.89703, lng:4.32868},
+  ],
+  'carrefour': [
+    {addr:'Chaussée de Liège 45', cp:'6900', city:'Marche-en-Famenne', lat:50.23472, lng:5.34633},
+    {addr:'Rue de Rochefort 37', cp:'5570', city:'Beauraing', lat:50.11084, lng:4.96021},
+    {addr:'Rue de Clavia', cp:'5590', city:'Ciney', lat:50.29898, lng:5.03272},
+    {addr:'Chaussée de Dinant 1137', cp:'5100', city:'Namur', lat:50.41203, lng:4.88169},
+    {addr:'Rue de Belle-Île 1', cp:'4020', city:'Liège', lat:50.61543, lng:5.59353},
+    {addr:'Rue du Luxembourg', cp:'1000', city:'Bruxelles', lat:50.84032, lng:4.36675},
+  ],
+  'spar': [
+    {addr:'Rue des Jolis Bois', cp:'6900', city:'Marche-en-Famenne', lat:50.22294, lng:5.29202},
+    {addr:'Rue des Tanneries 17', cp:'5580', city:'Rochefort', lat:50.16082, lng:5.21826},
+    {addr:'Route de Hannut 258', cp:'5021', city:'Namur', lat:50.49616, lng:4.93461},
+    {addr:'Rue Vaudrée 218', cp:'4031', city:'Liège', lat:50.61361, lng:5.58849},
+    {addr:'Rue des Sablons', cp:'1000', city:'Bruxelles', lat:50.83984, lng:4.35564},
+  ],
+  'intermarche': [
+    {addr:'Rue du Parc Industriel', cp:'6900', city:'Marche-en-Famenne', lat:50.22305, lng:5.33078},
+    {addr:'Rue du Commerce 79', cp:'5590', city:'Ciney', lat:50.29199, lng:5.09768},
+    {addr:'Chaussée de Louvain 257', cp:'5004', city:'Namur', lat:50.47653, lng:4.87416},
+    {addr:'Avenue Blonden 26', cp:'4000', city:'Liège', lat:50.62896, lng:5.56905},
+    {addr:'The Mint', cp:'1000', city:'Bruxelles', lat:50.85012, lng:4.35274},
+  ],
+  'action': [
+    {addr:'Rue du Parc Industriel', cp:'6900', city:'Marche-en-Famenne', lat:50.22280, lng:5.32936},
+    {addr:'Avenue Schlogel 115', cp:'5590', city:'Ciney', lat:50.30088, lng:5.11093},
+    {addr:'Rue de la Poudrière 14', cp:'5100', city:'Namur', lat:50.44205, lng:4.86798},
+    {addr:'Rue Joseph Demoulin 15', cp:'4000', city:'Liège', lat:50.64436, lng:5.55317},
+    {addr:'Chaussée de Gand', cp:'1080', city:'Molenbeek-Saint-Jean', lat:50.85768, lng:4.32226},
+  ],
+};
+
+// Succursale d'une enseigne : la plus proche de la ville/GPS sélectionné·e.
+function storeBranch(storeId){
+  const list = STORES_DIR[storeId];
+  if(!list || !list.length || state.city.lat == null || state.city.lng == null) return null;
+  let best = null, bestD = Infinity;
+  list.forEach(b=>{
+    const d = haversineKm(state.city.lat, state.city.lng, b.lat, b.lng);
+    if(d < bestD){ bestD = d; best = b; }
+  });
+  return Object.assign({}, best, {km: bestD});
+}
+function branchAddr(b){
+  if(!b) return null;
+  return [b.addr, b.cp, b.city].filter(Boolean).join(', ');
+}
+function fmtKm(d){
+  if(d == null) return '';
+  if(d < 0.95) return Math.round(d*1000) + ' m';
+  return d.toLocaleString('fr-BE',{maximumFractionDigits:1}) + ' km';
+}
+function storeBranchKm(storeId){
+  const b = storeBranch(storeId);
+  return b ? b.km : (storeOf(storeId).dist || 0);
+}
+
 const CATS = [
   {id:'all',      name:'Tout',                emoji:''},
   {id:'boucherie',name:'Boucherie',            emoji:'🥩'},
@@ -2243,7 +2334,7 @@ function getFilteredProducts(){
     if(state.minDisc>0 && discountPct(p) < state.minDisc) return false;
     return true;
   });
-  if(state.sort==='proximity') list.sort((a,b)=> storeOf(a.store).dist - storeOf(b.store).dist);
+  if(state.sort==='proximity') list.sort((a,b)=> storeBranchKm(a.store) - storeBranchKm(b.store));
   else if(state.sort==='discount') list.sort((a,b)=> discountPct(b) - discountPct(a));
   else if(state.sort==='price') list.sort((a,b)=> (priceOf(a)??Infinity) - (priceOf(b)??Infinity));
   return list;
@@ -2263,6 +2354,7 @@ const BATCH = 64;
 
 function makeCard(p){
   const st = storeOf(p.store);
+  const br = storeBranch(p.store);
   const np = priceOf(p);
   const inCart = !!state.cart[p.id];
   const isFav = state.favs.includes(p.id);
@@ -2292,7 +2384,7 @@ function makeCard(p){
     </div>
     <div class="pcard-body">
       <div class="pcard-name">${p.name}</div>
-      <div class="pcard-dist">📍 ${st.addr} · ${st.dist} km</div>
+      <div class="pcard-dist">📍 ${branchAddr(br) || st.addr} · ${fmtKm(br ? br.km : st.dist)}</div>
       <div class="pcard-price">
         ${priceHtml}
         ${discountPct(p)>0 && p.old != null && p.new != null ? `<span class="old-price">${p.old.toFixed(2).replace('.', ',')} €</span>` : ''}
@@ -2386,11 +2478,11 @@ function renderStores(){
       <div class="store-dot"><img src="logos/${s.id}.logo.svg" alt="${s.name}" loading="lazy" onerror="this.parentElement.textContent='${s.emoji}';"></div>
       <div class="store-info">
         <div class="sname">${s.name}</div>
-        <div class="saddr">${s.addr}</div>
+        <div class="saddr">${branchAddr(storeBranch(s.id)) || s.addr}</div>
         <div class="scount">${count} promo${count>1?'s':''} en cours</div>
       </div>
       <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end; flex-shrink:0;">
-        <div class="store-km">${s.dist} km</div>
+        <div class="store-km">${fmtKm(storeBranchKm(s.id))}</div>
         <a class="store-prospectus" href="https://www.promopromo.be/fr/${s.id}/folder-offres" target="_blank" rel="noopener">📖 Prospectus</a>
       </div>`;
     row.addEventListener('click', ()=>{
@@ -2632,7 +2724,7 @@ function openCartCompare(){
     <div class="cmp-store-row" onclick="closeSheet('cartCompareSheet'); setCityFilter('${r.store.id}')">
       <img src="logos/${r.store.id}.logo.svg" alt="${r.store.name}" width="26" height="26" onerror="this.remove()">
       <div>
-        <div style="font-weight:800; font-size:14px;">${r.store.name} <span style="font-weight:700; color:var(--ink-soft); font-size:11.5px;">· ${r.store.dist} km</span></div>
+        <div style="font-weight:800; font-size:14px;">${r.store.name} <span style="font-weight:700; color:var(--ink-soft); font-size:11.5px;">· ${fmtKm(storeBranchKm(r.store.id))}</span></div>
         <div style="font-size:11.5px; color:var(--ink-soft);">${r.matched}/${entries.filter(e=>!e.virtual).length} articles trouvés</div>
         ${r.unmatched.length ? `<div class="cmp-store-unmatched">Non trouvé : ${r.unmatched.slice(0,3).join(', ')}${r.unmatched.length>3?'…':''}</div>` : ''}
       </div>
@@ -2877,6 +2969,7 @@ function openProduct(id){
   const p = PRODUCTS.find(x=>x.id===id);
   if(!p) return;
   const st = storeOf(p.store);
+  const br = storeBranch(p.store);
   const np = priceOf(p);
   state.openProduct = id;
   const qty = state.cart[id]||0;
@@ -2896,7 +2989,7 @@ function openProduct(id){
     ${np ? `<div class="pcard-spark pd-spark">Historique : ${sparkline(p, 110, 28)}</div>` : ''}
     ${np ? `<div class="pd-hist">🕰️ ${priceHistoryLine(p)}</div>` : ''}
     <button class="pd-compare" id="pdCompareBtn">💰 Comparer chez les autres magasins</button>
-    <div class="pd-store"><img src="logos/${st.id}.logo.svg" alt="" style="height:18px;width:auto;vertical-align:-4px;margin-right:6px;" onerror="this.remove()"> ${st.name} · ${st.addr} · 📍 ${st.dist*1000|0} m</div>
+    <div class="pd-store"><img src="logos/${st.id}.logo.svg" alt="" style="height:18px;width:auto;vertical-align:-4px;margin-right:6px;" onerror="this.remove()"> ${st.name} · ${branchAddr(br) || st.addr} · 📍 ${fmtKm(br ? br.km : st.dist*1000)}</div>
     <h2 class="pd-name">${p.name}</h2>
     <div class="pd-price-row">
       ${discountPct(p)>0 && p.old != null && p.new != null ? `<span class="pd-old">${p.old.toFixed(2)} €</span>` : ''}
@@ -4070,7 +4163,7 @@ function ingId(ing){ return 'ing:' + ing.toLowerCase().trim().replace(/\s+/g,'-'
 
 // RECETTES GLOBALES (utilisées par renderRecipes, openRecipeModal et addRecipeToCart)
 const RECIPE_DB = {
-  "pates-bolognaise": {name:"Pâtes bolognaise", emoji:"🍝", image:"https://upload.wikimedia.org/wikipedia/commons/8/83/Spaghetti_Bolognese.jpg", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
+  "pates-bolognaise": {name:"Pâtes bolognaise", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Spaghetti_bolognese.jpg/960px-Spaghetti_bolognese.jpg", servings:4, time:30, ingredients:["pâtes","viande hachée","sauce tomate","oignon","ail","fromage râpé"]},
   "poulet-riz": {name:"Poulet riz légumes", emoji:"🍗", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Chicken-a-la-King.jpg/960px-Chicken-a-la-King.jpg", servings:4, time:35, ingredients:["poulet","riz","brocoli","carottes","crème fraîche"]},
   "saumon-legumes": {name:"Saumon légumes vapeur", emoji:"🐟", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/-2018-12-16_Pan_fried_Samon_with_crushed_new_potato%27s_and_green_beans%2C_Cromer.JPG/960px--2018-12-16_Pan_fried_Samon_with_crushed_new_potato%27s_and_green_beans%2C_Cromer.JPG", servings:2, time:20, ingredients:["saumon","haricots verts","pommes de terre","citron","aneth"]},
   "quiche-lardons": {name:"Quiche lardons fromage", emoji:"🥧", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Quiche_lorraine_01.JPG/960px-Quiche_lorraine_01.JPG", servings:4, time:40, ingredients:["pâte brisée","lardons","œufs","crème fraîche","fromage râpé","oignon"]},
@@ -4101,7 +4194,7 @@ const RECIPE_DB = {
   "wrap-poulet": {name:"Wrap poulet crudités", emoji:"🌯", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Smoked_chicken_and_avocado_wrap.jpg/960px-Smoked_chicken_and_avocado_wrap.jpg", servings:4, time:20, ingredients:["tortillas","poulet","salade","tomates","concombre","sauce yaourt","fromage râpé"]},
   "pates-pesto": {name:"Pâtes au pesto poulet", emoji:"🍝", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Pesto_Pasta_Salad.jpg/960px-Pesto_Pasta_Salad.jpg", servings:4, time:20, ingredients:["pâtes","pesto","poulet","tomates cerises","parmesan","pignons"]},
   "bourguignon": {name:"Bœuf bourguignon", emoji:"🥘", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Beef_bourguignon-01.jpg/960px-Beef_bourguignon-01.jpg", servings:6, time:90, ingredients:["viande bourguignon","carottes","oignons","champignons","vin rouge","bouillon","lardons"]},
-  "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://upload.wikimedia.org/wikipedia/commons/9/95/Grilled_Teriyaki_Salmon_%2810900376705%29.jpg", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
+  "tataki-saumon": {name:"Tataki saumon riz", emoji:"🐟", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Grilled_Teriyaki_Salmon_%2810900376705%29.jpg/960px-Grilled_Teriyaki_Salmon_%2810900376705%29.jpg", servings:2, time:20, ingredients:["saumon frais","riz","sésame","soja","citron","ciboulette"]},
   "gratin-poireaux": {name:"Gratin poireaux jambon", emoji:"🥧", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gratin%20dauphinois.jpg?width=960", servings:4, time:35, ingredients:["poireaux","jambon","crème fraîche","fromage râpé","pâte brisée","muscade"]},
   "waterzooi": {name:"Waterzooi de poulet", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Waterzooi%20P1180919%20cropped.jpg?width=960", servings:4, time:45, ingredients:["poulet","poireaux","carottes","céleri","crème fraîche","beurre","jaune d'œuf"]},
   "carbonnade": {name:"Carbonnade flamande", emoji:"🍖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Carbonade%20flamande.jpg?width=960", servings:6, time:120, ingredients:["bœuf bourguignon","oignons","bière brune","lardons","pain d'épices","moutarde","bouillon"]},
@@ -4136,7 +4229,7 @@ const RECIPE_DB = {
   "blanquette-veau": {name:"Blanquette de veau", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Blanquette%20de%20veau.jpg?width=960", servings:6, time:90, ingredients:["viande de veau","carottes","champignons","oignon","crème fraîche","beurre","farine","bouillon","citron"]},
   "pot-au-feu": {name:"Pot-au-feu", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Pot%20au%20feu.jpg?width=960", servings:6, time:150, ingredients:["bœuf à braiser","carottes","poireaux","oignon","navets","bouillon","ail"]},
   "poulet-basquaise": {name:"Poulet basquaise", emoji:"🍗", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Poulet%20basquaise.jpg?width=960", servings:4, time:60, ingredients:["poulet","poivrons","tomates","oignon","ail","riz"]},
-  "coq-au-vin": {name:"Coq au vin", emoji:"🍗", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Coq%20au%20vin.jpg?width=960", servings:6, time:110, ingredients:["poulet","lardons","champignons","oignon","ail","vin rouge","bouillon","beurre"]},
+  "coq-au-vin": {name:"Coq au vin", emoji:"🍗", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Coq_au_vin_1.jpg/960px-Coq_au_vin_1.jpg", servings:6, time:110, ingredients:["poulet","lardons","champignons","oignon","ail","vin rouge","bouillon","beurre"]},
   "cassoulet": {name:"Cassoulet maison", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cassoulet.jpg?width=960", servings:8, time:180, ingredients:["haricots blancs","saucisse","viande de porc","lardons","tomates","oignon","ail","chapelure"]},
   "ragout-agneau": {name:"Ragoût d'agneau", emoji:"🍖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Lamb%20stew.jpg?width=960", servings:4, time:100, ingredients:["agneau","carottes","pommes de terre","oignon","bouillon","thym"]},
   "gigot-agneau": {name:"Gigot d'agneau rôti", emoji:"🍖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Roast%20lamb.jpg?width=960", servings:6, time:80, ingredients:["gigot d'agneau","ail","romarin","pommes de terre","huile d'olive"]},
@@ -4144,34 +4237,34 @@ const RECIPE_DB = {
   "cannelloni": {name:"Cannelloni à la viande", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cannelloni.jpg?width=960", servings:6, time:70, ingredients:["pâtes cannelloni","viande hachée","sauce tomate","béchamel","fromage râpé","oignon"]},
   "gnocchi": {name:"Gnocchis sauce tomate", emoji:"🥟", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gnocchi.jpg?width=960", servings:4, time:20, ingredients:["gnocchis","sauce tomate","parmesan","basilic","beurre"]},
   "tajine-agneau": {name:"Tajine d'agneau aux pruneaux", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tajine%20marocain.jpg?width=960", servings:6, time:90, ingredients:["agneau","pruneaux","oignon","amandes","miel","cannelle","pois chiches","bouillon"]},
-  "frites-maison": {name:"Frites maison", emoji:"🍟", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Belgian%20fries.jpg?width=960", servings:4, time:40, ingredients:["pommes de terre","huile","sel"]},
+  "frites-maison": {name:"Frites maison", emoji:"🍟", image:"https://upload.wikimedia.org/wikipedia/commons/8/83/French_Fries.JPG", servings:4, time:40, ingredients:["pommes de terre","huile","sel"]},
   "croque-monsieur": {name:"Croque-monsieur", emoji:"🥪", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Croque%20monsieur.jpg?width=960", servings:2, time:20, ingredients:["pain","jambon","fromage râpé","beurre","lait","farine","muscade"]},
-  "boulets-liegeois": {name:"Boulets à la liégeoise", emoji:"🧆", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Boulets%20%C3%A0%20la%20li%C3%A9geoise.jpg?width=960", servings:4, time:50, ingredients:["viande hachée","oignon","chapelure","œufs","sirop de Liège","bouillon","moutarde"]},
-  "stoemp": {name:"Stoemp saucisse", emoji:"🥘", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Stoemp.jpg?width=960", servings:4, time:45, ingredients:["pommes de terre","carottes","oignon","beurre","lait","muscade","saucisse"]},
-  "welsh": {name:"Welsh rarebit", emoji:"🧀", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Welsh%20rarebit.jpg?width=960", servings:2, time:25, ingredients:["pain","fromage","bière brune","moutarde","beurre","œufs"]},
+  "boulets-liegeois": {name:"Boulets à la liégeoise", emoji:"🧆", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Boulets_%C3%A0_la_li%C3%A9geoise_1.jpg/960px-Boulets_%C3%A0_la_li%C3%A9geoise_1.jpg", servings:4, time:50, ingredients:["viande hachée","oignon","chapelure","œufs","sirop de Liège","bouillon","moutarde"]},
+  "stoemp": {name:"Stoemp saucisse", emoji:"🥘", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Carbonnade_flamande_accompagn%C3%A9e_de_stoemp.jpg/960px-Carbonnade_flamande_accompagn%C3%A9e_de_stoemp.jpg", servings:4, time:45, ingredients:["pommes de terre","carottes","oignon","beurre","lait","muscade","saucisse"]},
+  "welsh": {name:"Welsh rarebit", emoji:"🧀", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Jielbeaumadier_welsh_2010.jpg/960px-Jielbeaumadier_welsh_2010.jpg", servings:2, time:25, ingredients:["pain","fromage","bière brune","moutarde","beurre","œufs"]},
   "mitraillette": {name:"Mitraillette", emoji:"🥖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Mitraillette.jpg?width=960", servings:2, time:20, ingredients:["baguette","steak haché","frites","salade","tomates","mayonnaise"]},
-  "oeufs-mayo": {name:"Œufs mayonnaise", emoji:"🥚", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Oeufs%20mayonnaise.jpg?width=960", servings:4, time:20, ingredients:["œufs","mayonnaise","moutarde","ciboulette"]},
-  "soupe-champignons": {name:"Soupe de champignons", emoji:"🍄", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Soupe%20champignons.jpg?width=960", servings:4, time:30, ingredients:["champignons","oignon","bouillon","crème fraîche","beurre","farine"]},
+  "oeufs-mayo": {name:"Œufs mayonnaise", emoji:"🥚", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/%C5%92uf_mayonnaise.jpg/960px-%C5%92uf_mayonnaise.jpg", servings:4, time:20, ingredients:["œufs","mayonnaise","moutarde","ciboulette"]},
+  "soupe-champignons": {name:"Soupe de champignons", emoji:"🍄", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Bowl_of_Cream_of_Mushroom_Soup.JPG/960px-Bowl_of_Cream_of_Mushroom_Soup.JPG", servings:4, time:30, ingredients:["champignons","oignon","bouillon","crème fraîche","beurre","farine"]},
   "ratatouille": {name:"Ratatouille", emoji:"🍆", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Ratatouille.jpg?width=960", servings:6, time:55, ingredients:["aubergines","courgettes","poivrons","tomates","oignon","ail","huile d'olive","herbes"]},
-  "chicons-gratin": {name:"Chicons au gratin", emoji:"🥬", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Chicons%20au%20gratin.jpg?width=960", servings:4, time:45, ingredients:["chicons","jambon","béchamel","fromage râpé","beurre","muscade"]},
-  "cottage-pie": {name:"Cottage pie", emoji:"🥧", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cottage%20pie.jpg?width=960", servings:6, time:70, ingredients:["viande hachée","pommes de terre","carottes","oignon","maïs","beurre","lait"]},
+  "chicons-gratin": {name:"Chicons au gratin", emoji:"🥬", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Jielbeaumadier_chicon_au_jambon_maroilles_2010.jpg/960px-Jielbeaumadier_chicon_au_jambon_maroilles_2010.jpg", servings:4, time:45, ingredients:["chicons","jambon","béchamel","fromage râpé","beurre","muscade"]},
+  "cottage-pie": {name:"Cottage pie", emoji:"🥧", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Australian_cottage_pie.jpg/960px-Australian_cottage_pie.jpg", servings:6, time:70, ingredients:["viande hachée","pommes de terre","carottes","oignon","maïs","beurre","lait"]},
   "tikka-masala": {name:"Poulet tikka masala", emoji:"🍛", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Chicken%20tikka%20masala.jpg?width=960", servings:4, time:45, ingredients:["poulet","yaourt","tomates","ail","gingembre","curry","riz"]},
   "curry-vert": {name:"Curry vert thaï", emoji:"🍛", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Green%20curry.jpg?width=960", servings:4, time:40, ingredients:["poulet","lait coco","pâte de curry vert","aubergines","haricots verts","basilic","riz"]},
   "jambalaya": {name:"Jambalaya", emoji:"🥘", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Jambalaya.jpg?width=960", servings:6, time:55, ingredients:["riz","poulet","chorizo","crevettes","poivrons","tomates","oignon","céleri"]},
-  "shepherd-pie": {name:"Shepherd's pie", emoji:"🥧", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Shepherd%20pie.jpg?width=960", servings:6, time:80, ingredients:["agneau","pommes de terre","carottes","oignon","petits pois","beurre","lait","bouillon"]},
-  "salade-chicons": {name:"Salade de chicons", emoji:"🥗", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Salade%20de%20chicons.jpg?width=960", servings:4, time:15, ingredients:["chicons","pommes","noix","fromage bleu","vinaigre","moutarde","huile"]},
+  "shepherd-pie": {name:"Shepherd's pie", emoji:"🥧", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Cottage_pie_%28beef%29_and_shepherds_pie_%28lamb%29.jpg/960px-Cottage_pie_%28beef%29_and_shepherds_pie_%28lamb%29.jpg", servings:6, time:80, ingredients:["agneau","pommes de terre","carottes","oignon","petits pois","beurre","lait","bouillon"]},
+  "salade-chicons": {name:"Salade de chicons", emoji:"🥗", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Endive_%26_Watercress_Salad_%285026734694%29.jpg/960px-Endive_%26_Watercress_Salad_%285026734694%29.jpg", servings:4, time:15, ingredients:["chicons","pommes","noix","fromage bleu","vinaigre","moutarde","huile"]},
   "gumbo": {name:"Gumbo cajun", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gumbo.jpg?width=960", servings:6, time:70, ingredients:["poulet","saucisse","crevettes","poivrons","oignon","céleri","haricots verts","riz","bouillon"]},
-  "etouffee": {name:"Étouffée de crevettes", emoji:"🦐", image:"https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89touff%C3%A9e.jpg?width=960", servings:4, time:45, ingredients:["crevettes","beurre","oignon","poivrons","céleri","riz","bouillon","crème fraîche"]},
-  "poivrons-farcis": {name:"Poivrons farcis", emoji:"🫑", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Poivrons%20farcis.jpg?width=960", servings:4, time:60, ingredients:["poivrons","viande hachée","riz","oignon","tomates","fromage râpé","herbes"]},
-  "soupe-poisson": {name:"Soupe de poisson", emoji:"🥣", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Soupe%20de%20poisson.jpg?width=960", servings:6, time:50, ingredients:["poisson","tomates","oignon","ail","fenouil","bouillon","croûtons"]},
+  "etouffee": {name:"Étouffée de crevettes", emoji:"🦐", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Crawfish_etouffee.jpg/960px-Crawfish_etouffee.jpg", servings:4, time:45, ingredients:["crevettes","beurre","oignon","poivrons","céleri","riz","bouillon","crème fraîche"]},
+  "poivrons-farcis": {name:"Poivrons farcis", emoji:"🫑", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/2025.09.02_Stuffed_Peppers_Paprika_in_Belarus_by_Dina_Panayotis.jpg/960px-2025.09.02_Stuffed_Peppers_Paprika_in_Belarus_by_Dina_Panayotis.jpg", servings:4, time:60, ingredients:["poivrons","viande hachée","riz","oignon","tomates","fromage râpé","herbes"]},
+  "soupe-poisson": {name:"Soupe de poisson", emoji:"🥣", image:"https://upload.wikimedia.org/wikipedia/commons/4/44/Soupe_de_poisson_Rouille.JPG", servings:6, time:50, ingredients:["poisson","tomates","oignon","ail","fenouil","bouillon","croûtons"]},
   "bouillabaisse": {name:"Bouillabaisse", emoji:"🐟", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Bouillabaisse.jpg?width=960", servings:6, time:70, ingredients:["poisson","moules","crevettes","tomates","oignon","ail","fenouil","safran","bouillon"]},
-  "gratin-courgettes": {name:"Gratin de courgettes", emoji:"🥒", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gratin%20de%20courgettes.jpg?width=960", servings:4, time:40, ingredients:["courgettes","œufs","crème fraîche","fromage râpé","ail","herbes"]},
+  "gratin-courgettes": {name:"Gratin de courgettes", emoji:"🥒", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Pr%C3%A9paration_gratin_de_courgettes-tomates_%28017%29_-_sortie_du_four.jpg/960px-Pr%C3%A9paration_gratin_de_courgettes-tomates_%28017%29_-_sortie_du_four.jpg", servings:4, time:40, ingredients:["courgettes","œufs","crème fraîche","fromage râpé","ail","herbes"]},
   "soupe-tomate": {name:"Soupe de tomates", emoji:"🍅", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tomato%20soup.jpg?width=960", servings:4, time:35, ingredients:["tomates","oignon","ail","bouillon","crème fraîche","basilic"]},
-  "gaufres-liege": {name:"Gaufres de Liège", emoji:"🧇", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gaufres%20de%20Li%C3%A8ge.jpg?width=960", servings:8, time:50, ingredients:["farine","levure","lait","œufs","beurre","sucre","sucre perlé","vanille"]},
-  "riz-au-lait": {name:"Riz au lait", emoji:"🍚", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Riz%20au%20lait.jpg?width=960", servings:6, time:55, ingredients:["riz","lait","sucre","vanille","œufs","cannelle"]},
-  "creme-brulee": {name:"Crème brûlée", emoji:"🍮", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cr%C3%A8me%20br%C3%BBl%C3%A9e.jpg?width=960", servings:6, time:60, ingredients:["crème fraîche","lait","œufs","sucre","vanille"]},
+  "gaufres-liege": {name:"Gaufres de Liège", emoji:"🧇", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Gaufre_de_Li%C3%A8ge.001_-_Brussel.jpg/960px-Gaufre_de_Li%C3%A8ge.001_-_Brussel.jpg", servings:8, time:50, ingredients:["farine","levure","lait","œufs","beurre","sucre","sucre perlé","vanille"]},
+  "riz-au-lait": {name:"Riz au lait", emoji:"🍚", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/02023_1271_Rice_puddings.jpg/960px-02023_1271_Rice_puddings.jpg", servings:6, time:55, ingredients:["riz","lait","sucre","vanille","œufs","cannelle"]},
+  "creme-brulee": {name:"Crème brûlée", emoji:"🍮", image:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Creme_brulee.jpg/960px-Creme_brulee.jpg", servings:6, time:60, ingredients:["crème fraîche","lait","œufs","sucre","vanille"]},
   "tarte-pomme": {name:"Tarte aux pommes", emoji:"🍎", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tarte%20aux%20pommes.jpg?width=960", servings:6, time:60, ingredients:["pommes","pâte brisée","beurre","sucre","cannelle","œufs","crème fraîche"]},
-  "crepes": {name:"Crêpes", emoji:"🥞", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cr%C3%AAtes.jpg?width=960", servings:4, time:30, ingredients:["farine","lait","œufs","sucre","beurre","vanille","sel"]}
+  "crepes": {name:"Crêpes", emoji:"🥞", image:"https://upload.wikimedia.org/wikipedia/commons/6/69/Cr%C3%AApe.jpg", servings:4, time:30, ingredients:["farine","lait","œufs","sucre","beurre","vanille","sel"]}
 };
 /* Quantités par ingrédient (alignées sur ingredients[] de RECIPE_DB) */
 const RECIPE_QTY = {
