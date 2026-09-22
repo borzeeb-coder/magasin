@@ -158,7 +158,7 @@ async function main() {
     // 6. Trio impact recettes v5 : 12 recettes originales + idées panier
     await page.locator('.navbtn[data-view="recettes"]').click();
     await page.waitForTimeout(600);
-    check(await page.locator('#recipeGrid .recipe-card').count() === 72, 'grille recettes : 72 recettes (58 + 14 nouvelles)');
+    check(await page.locator('#recipeGrid .recipe-card').count() === 86, 'grille recettes : 86 recettes (72 + 14 nouvelles)');
     check(await page.locator('#cartIdeasBtn').count() === 1, 'bouton idées recettes avec panier présent');
     await page.click('#cartIdeasBtn');
     await page.waitForTimeout(400);

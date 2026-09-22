@@ -3999,7 +3999,21 @@ const RECIPE_DB = {
   "pates-fruits-mer": {name:"Pâtes aux fruits de mer", emoji:"🦐", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Seafood%20pasta.jpg?width=960", servings:4, time:30, ingredients:["spaghetti","crevettes","moules","tomates cerises","ail","vin blanc","persil"]},
   "cannelloni": {name:"Cannelloni à la viande", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cannelloni.jpg?width=960", servings:6, time:70, ingredients:["pâtes cannelloni","viande hachée","sauce tomate","béchamel","fromage râpé","oignon"]},
   "gnocchi": {name:"Gnocchis sauce tomate", emoji:"🥟", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gnocchi.jpg?width=960", servings:4, time:20, ingredients:["gnocchis","sauce tomate","parmesan","basilic","beurre"]},
-  "tajine-agneau": {name:"Tajine d'agneau aux pruneaux", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tajine%20marocain.jpg?width=960", servings:6, time:90, ingredients:["agneau","pruneaux","oignon","amandes","miel","cannelle","pois chiches","bouillon"]}
+  "tajine-agneau": {name:"Tajine d'agneau aux pruneaux", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tajine%20marocain.jpg?width=960", servings:6, time:90, ingredients:["agneau","pruneaux","oignon","amandes","miel","cannelle","pois chiches","bouillon"]},
+  "frites-maison": {name:"Frites maison", emoji:"🍟", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Belgian%20fries.jpg?width=960", servings:4, time:40, ingredients:["pommes de terre","huile","sel"]},
+  "croque-monsieur": {name:"Croque-monsieur", emoji:"🥪", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Croque%20monsieur.jpg?width=960", servings:2, time:20, ingredients:["pain","jambon","fromage râpé","beurre","lait","farine","muscade"]},
+  "boulets-liegeois": {name:"Boulets à la liégeoise", emoji:"🧆", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Boulets%20%C3%A0%20la%20li%C3%A9geoise.jpg?width=960", servings:4, time:50, ingredients:["viande hachée","oignon","chapelure","œufs","sirop de Liège","bouillon","moutarde"]},
+  "stoemp": {name:"Stoemp saucisse", emoji:"🥘", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Stoemp.jpg?width=960", servings:4, time:45, ingredients:["pommes de terre","carottes","oignon","beurre","lait","muscade","saucisse"]},
+  "welsh": {name:"Welsh rarebit", emoji:"🧀", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Welsh%20rarebit.jpg?width=960", servings:2, time:25, ingredients:["pain","fromage","bière brune","moutarde","beurre","œufs"]},
+  "mitraillette": {name:"Mitraillette", emoji:"🥖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Mitraillette.jpg?width=960", servings:2, time:20, ingredients:["baguette","steak haché","frites","salade","tomates","mayonnaise"]},
+  "oeufs-mayo": {name:"Œufs mayonnaise", emoji:"🥚", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Oeufs%20mayonnaise.jpg?width=960", servings:4, time:20, ingredients:["œufs","mayonnaise","moutarde","ciboulette"]},
+  "soupe-champignons": {name:"Soupe de champignons", emoji:"🍄", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Soupe%20champignons.jpg?width=960", servings:4, time:30, ingredients:["champignons","oignon","bouillon","crème fraîche","beurre","farine"]},
+  "ratatouille": {name:"Ratatouille", emoji:"🍆", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Ratatouille.jpg?width=960", servings:6, time:55, ingredients:["aubergines","courgettes","poivrons","tomates","oignon","ail","huile d'olive","herbes"]},
+  "chicons-gratin": {name:"Chicons au gratin", emoji:"🥬", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Chicons%20au%20gratin.jpg?width=960", servings:4, time:45, ingredients:["chicons","jambon","béchamel","fromage râpé","beurre","muscade"]},
+  "cottage-pie": {name:"Cottage pie", emoji:"🥧", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cottage%20pie.jpg?width=960", servings:6, time:70, ingredients:["viande hachée","pommes de terre","carottes","oignon","maïs","beurre","lait"]},
+  "tikka-masala": {name:"Poulet tikka masala", emoji:"🍛", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Chicken%20tikka%20masala.jpg?width=960", servings:4, time:45, ingredients:["poulet","yaourt","tomates","ail","gingembre","curry","riz"]},
+  "curry-vert": {name:"Curry vert thaï", emoji:"🍛", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Green%20curry.jpg?width=960", servings:4, time:40, ingredients:["poulet","lait coco","pâte de curry vert","aubergines","haricots verts","basilic","riz"]},
+  "jambalaya": {name:"Jambalaya", emoji:"🥘", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Jambalaya.jpg?width=960", servings:6, time:55, ingredients:["riz","poulet","chorizo","crevettes","poivrons","tomates","oignon","céleri"]}
 };
 /* Quantités par ingrédient (alignées sur ingredients[] de RECIPE_DB) */
 const RECIPE_QTY = {
@@ -4076,7 +4090,21 @@ const RECIPE_QTY = {
   "pates-fruits-mer": ["400 g", "400 g", "1 kg", "250 g", "3 gousses", "15 cl", "1 bouquet"],
   "cannelloni": ["250 g", "500 g", "400 g", "40 cl", "100 g", "1"],
   "gnocchi": ["500 g", "400 g", "50 g", "1 bouquet", "20 g"],
-  "tajine-agneau": ["1 kg", "300 g", "2", "80 g", "2 cas", "1 cas", "400 g", "50 cl"]
+  "tajine-agneau": ["1 kg", "300 g", "2", "80 g", "2 cas", "1 cas", "400 g", "50 cl"],
+  "frites-maison": ["1 kg", "50 cl", "1 cas"],
+  "croque-monsieur": ["8 tranches", "4 tranches", "150 g", "50 g", "20 cl", "30 g", "1 pincée"],
+  "boulets-liegeois": ["600 g", "2", "100 g", "2", "3 cas", "30 cl", "1 cas"],
+  "stoemp": ["800 g", "4", "2", "60 g", "15 cl", "1 pincée", "4"],
+  "welsh": ["4 tranches", "200 g", "25 cl", "2 cas", "30 g", "2"],
+  "mitraillette": ["2 baguettes", "2 steaks hachés", "400 g", "quelques feuilles", "2", "4 cas"],
+  "oeufs-mayo": ["6", "15 cl", "1 cas", "1 petit bouquet"],
+  "soupe-champignons": ["500 g", "1", "1 L", "15 cl", "30 g", "2 cas"],
+  "ratatouille": ["2", "2", "2", "4", "2", "3 gousses", "6 cas", "quelques brins"],
+  "chicons-gratin": ["600 g", "6 tranches", "40 cl", "100 g", "30 g", "1 pincée"],
+  "cottage-pie": ["500 g", "800 g", "3", "1", "200 g", "50 g", "20 cl"],
+  "tikka-masala": ["500 g", "150 g", "400 g", "2 gousses", "2 cm", "2 cas", "300 g"],
+  "curry-vert": ["400 g", "40 cl", "3 cas", "1", "200 g", "1 bouquet", "300 g"],
+  "jambalaya": ["400 g", "300 g", "200 g", "300 g", "2", "400 g", "1", "2 branches"]
 };
 
 /* Valeurs nutritionnelles APPROXIMATIVES par portion (kcal, protéines g). */
@@ -4118,7 +4146,14 @@ const RECIPE_NUTRITION = {
   "coq-au-vin": {kcal:560, protein:42}, "cassoulet": {kcal:540, protein:34},
   "ragout-agneau": {kcal:470, protein:34}, "gigot-agneau": {kcal:520, protein:46},
   "pates-fruits-mer": {kcal:490, protein:32}, "cannelloni": {kcal:590, protein:30},
-  "gnocchi": {kcal:480, protein:14}, "tajine-agneau": {kcal:520, protein:36}
+  "gnocchi": {kcal:480, protein:14}, "tajine-agneau": {kcal:520, protein:36},
+  "frites-maison": {kcal:450, protein:5}, "croque-monsieur": {kcal:520, protein:22},
+  "boulets-liegeois": {kcal:560, protein:28}, "stoemp": {kcal:460, protein:20},
+  "welsh": {kcal:480, protein:20}, "mitraillette": {kcal:780, protein:30},
+  "oeufs-mayo": {kcal:320, protein:14}, "soupe-champignons": {kcal:180, protein:6},
+  "ratatouille": {kcal:260, protein:6}, "chicons-gratin": {kcal:320, protein:16},
+  "cottage-pie": {kcal:520, protein:26}, "tikka-masala": {kcal:540, protein:36},
+  "curry-vert": {kcal:520, protein:32}, "jambalaya": {kcal:560, protein:36}
 };
 function recipeNutritionRow(recipeId, factor){
   const n = RECIPE_NUTRITION[recipeId];
@@ -4224,9 +4259,22 @@ const RECIPE_INFO = {
   "pates-fruits-mer": {prep:20, cook:15, tools:["Grande casserole", "Marmite (fruits de mer)", "Écumoire", "Couteau"]},
   "cannelloni": {prep:25, cook:35, tools:["Poêle", "Casserole (béchamel)", "Plat à gratin", "Couteau"]},
   "gnocchi": {prep:5, cook:10, tools:["Grande casserole", "Poêle", "Écumoire", "Couteau"]},
-  "tajine-agneau": {prep:20, cook:70, tools:["Tajine ou cocotte", "Casserole", "Couteau", "Spatule"]}
+  "tajine-agneau": {prep:20, cook:70, tools:["Tajine ou cocotte", "Casserole", "Couteau", "Spatule"]},
+  "frites-maison": {prep:20, cook:18, tools:["Économe", "Couteau", "Friteuse ou marmite", "Papier absorbant"]},
+  "croque-monsieur": {prep:10, cook:10, tools:["Poêle", "Casserole (béchamel)", "Spatule"]},
+  "boulets-liegeois": {prep:20, cook:30, tools:["Saladier", "Poêle", "Cocotte", "Couteau"]},
+  "stoemp": {prep:20, cook:25, tools:["Casserole", "Presse-purée", "Poêle (saucisses)"]},
+  "welsh": {prep:15, cook:10, tools:["Casserole", "Four", "Couteau", "Ramequins"]},
+  "mitraillette": {prep:15, cook:15, tools:["Poêle", "Friteuse", "Couteau"]},
+  "oeufs-mayo": {prep:15, cook:10, tools:["Casserole", "Fouet", "Saladier"]},
+  "soupe-champignons": {prep:10, cook:20, tools:["Grande casserole", "Mixeur plongeant", "Couteau"]},
+  "ratatouille": {prep:20, cook:35, tools:["Grande poêle", "Casseroles", "Couteau"]},
+  "chicons-gratin": {prep:20, cook:25, tools:["Casserole", "Plat à gratin", "Rouleau à béchamel", "Four"]},
+  "cottage-pie": {prep:25, cook:35, tools:["Poêle", "Casserole (purée)", "Presse-purée", "Plat à gratin"]},
+  "tikka-masala": {prep:20, cook:25, tools:["Casserole", "Poêle", "Casserole (riz)", "Couteau"]},
+  "curry-vert": {prep:20, cook:20, tools:["Casserole", "Casserole (riz)", "Couteau"]},
+  "jambalaya": {prep:20, cook:35, tools:["Grande casserole", "Cochen (ou faitout)", "Couteau"]}
 };
-
 
 /* Étapes de préparation écrites (option B) : chaque recette a sa vraie méthode.
    Format : [texte, durée_minutes] (0 = étape sans timer) */
@@ -4784,6 +4832,103 @@ const RECIPE_STEPS = {
     ["Ajouter pruneaux, amandes et pois chiches cuits.",2],
     ["Poursuivre la cuisson jusqu'à ce que la sauce soit onctueuse.",25,"Feu doux"],
     ["Servir avec de la semoule.",0]
+  ],
+  "frites-maison":[
+    ["Éplucher et découper les pommes de terre en frites.",10],
+    ["Rincer et sécher soigneusement les frites.",2],
+    ["Première cuisson à 150 °C pendant 8 min sans coloration.",8,"Friteuse 150 °C"],
+    ["Égoutter puis seconde cuisson à 180 °C jusqu'à dorure.",10,"Friteuse 180 °C"],
+    ["Saler aussitôt et servir.",0]
+  ],
+  "croque-monsieur":[
+    ["Préparer une béchamel épaisse avec beurre, farine et lait.",8,"Feu doux"],
+    ["Tartiner le pain de béchamel et monter les croques jambon-fromage.",4],
+    ["Faire dorer les croques au beurre dans la poêle ou au four.",10,"Feu moyen"],
+    ["Servir chaud, tranchés en diagonale.",0]
+  ],
+  "boulets-liegeois":[
+    ["Mélanger la viande hachée, l'oignon émincé, la chapelure et les œufs.",6],
+    ["Former des boulettes et les faire dorer à la poêle.",8,"Feu vif"],
+    ["Préparer la sauce lapin : sirop, bouillon et moutarde.",3],
+    ["Déposer les boulettes et laisser mijoter à feu doux.",30,"Feu doux"],
+    ["Servir avec des frites ou de la purée.",0]
+  ],
+  "stoemp":[
+    ["Éplucher les pommes de terre et les carottes, les couper en morceaux.",8],
+    ["Cuire à l'eau ou à la vapeur jusqu'à ce que ce soit tendre.",20,"Feu vif"],
+    ["Écraser avec le beurre, le lait, l'oignon revenu et la muscade.",4],
+    ["Poêler les saucisses et servir avec le stoemp.",5,"Feu moyen"]
+  ],
+  "welsh":[
+    ["Faire fondre le fromage avec la bière et la moutarde à feu doux.",8,"Feu doux"],
+    ["Toaster les tranches de pain.",3,"Grill-pain"],
+    ["Répartir la préparation fromagère sur le pain.",2],
+    ["Gratiner au four quelques minutes.",5,"Four vif"],
+    ["Casser un jaune d'œuf sur chaque welsh et servir.",0]
+  ],
+  "mitraillette":[
+    ["Couper les baguettes et les toaster légèrement.",3,"Grill-pain"],
+    ["Cuire les steaks hachés à la poêle.",6,"Feu moyen"],
+    ["Préparer les frites (cuisson double pour le croustillant).",12,"Friteuse"],
+    ["Monter : salade, tomates, steak, frites et mayonnaise.",2],
+    ["Serrer la baguette et servir dans la main.",0]
+  ],
+  "oeufs-mayo":[
+    ["Cuire les œufs 9 min à l'eau bouillante puis les refroidir.",9,"Feu vif"],
+    ["Écaler et couper les œufs en deux.",3],
+    ["Préparer la mayonnaise avec moutarde et ciboulette ciselée.",5],
+    ["Napper les œufs et servir frais.",0]
+  ],
+  "soupe-champignons":[
+    ["Émincer l'oignon et les champignons.",5],
+    ["Les faire revenir dans le beurre.",6,"Feu moyen"],
+    ["Saupoudrer de farine, mouiller avec le bouillon.",2],
+    ["Laisser mijoter 10 min puis mixer avec la crème.",12,"Feu doux"],
+    ["Rectifier l'assaisonnement et servir.",0]
+  ],
+  "ratatouille":[
+    ["Laver et couper les légumes en morceaux réguliers.",15],
+    ["Faire revenir les oignons, l'ail et les poivrons dans l'huile.",6,"Feu moyen"],
+    ["Ajouter aubergines, courgettes et tomates.",3],
+    ["Laisser mijoter à feu doux jusqu'à ce que les légumes soient fondants.",35,"Feu doux"],
+    ["Parsemer d'herbes et servir chaud ou tiède.",0]
+  ],
+  "chicons-gratin":[
+    ["Laver les chicons et les braiser dans le beurre 10 min.",10,"Feu moyen"],
+    ["Rouler chaque chicon dans une tranche de jambon.",3],
+    ["Disposer dans le plat et napper de béchamel.",2],
+    ["Parsemer de fromage râpé et de muscade.",1],
+    ["Gratiner au four jusqu'à ce que ce soit doré.",12,"Four 210 °C"]
+  ],
+  "cottage-pie":[
+    ["Faire revenir l'oignon et la viande hachée.",8,"Feu moyen"],
+    ["Ajouter carottes, maïs et un peu de bouillon, laisser réduire.",10,"Feu doux"],
+    ["Préparer la purée avec beurre et lait.",4],
+    ["Disposer la viande dans le plat, couvrir de purée.",3],
+    ["Enfourner jusqu'à ce que le dessus soit doré.",15,"Four 200 °C"]
+  ],
+  "tikka-masala":[
+    ["Cuire le riz.",12,"Feu vif"],
+    ["Mariner le poulet dans le yaourt et le curry.",5],
+    ["Faire dorer le poulet à la poêle.",6,"Feu vif"],
+    ["Ajouter ail, gingembre et tomates, mijoter.",12,"Feu doux"],
+    ["Servir le tikka masala sur le riz.",0]
+  ],
+  "curry-vert":[
+    ["Cuire le riz.",12,"Feu vif"],
+    ["Faire revenir la pâte de curry vert dans un peu de lait coco.",2,"Feu moyen"],
+    ["Ajouter le poulet en morceaux et faire dorer.",6,"Feu vif"],
+    ["Verser le reste de lait coco, aubergines et haricots verts.",2],
+    ["Laisser mijoter doucement puis parsemer de basilic.",15,"Feu doux"],
+    ["Servir avec le riz.",0]
+  ],
+  "jambalaya":[
+    ["Faire dorer le poulet et le chorizo en tranches.",8,"Feu vif"],
+    ["Ajouter oignon, céleri et poivrons.",5,"Feu moyen"],
+    ["Verser le riz, les tomates et le bouillon.",2],
+    ["Couvrir et laisser absorber à feu doux.",20,"Feu doux"],
+    ["Ajouter les crevettes en fin de cuisson.",3,"Feu doux"],
+    ["Servir bien chaud.",0]
   ]
 };
 
