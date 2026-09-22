@@ -5,7 +5,7 @@ Fast auto-update promos - basic data only (no Nutri-Score during daily update)
 
 import sys
 sys.path.insert(0, r'C:\magasin')
-from scripts.scrapers import extract_quantity_from_name, normalize_price_per_kg_l
+from scripts.scrapers import extract_quantity_from_name, normalize_price_per_kg_l, folder_period_from_url, parse_validity
 
 import json
 import requests
@@ -28,7 +28,9 @@ INTERMARCHE_CONFIG = {
 }
 
 def load_json(path):
-    with open(path, 'r', encoding='utf-8') as f:
+    # Les données committées peuvent avoir un BOM UTF-8 (produites par des
+    # outils Windows) : utf-8-sig les tolère.
+    with open(path, 'r', encoding='utf-8-sig') as f:
         return json.load(f)
 
 def save_json(path, data):
@@ -91,6 +93,9 @@ def fetch_intermarche():
         img_filename = f"intermarche-{len(offers):03d}.webp"
         img_url = config['image_cdn'] + p.get('images', '')
         
+        source_url = 'https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/'
+        valid_from, valid_until = folder_period_from_url(source_url)
+        
         # Extract quantity and calculate price per kg/L
         qty, qty_unit = extract_quantity_from_name(name)
         price_per_kg, price_per_l = normalize_price_per_kg_l(new_price, None, qty, qty_unit)
@@ -109,9 +114,13 @@ def fetch_intermarche():
             'price_per_l': price_per_l,
             'image_url': f'data/images/{img_filename}',
             'image_filename': img_filename,
-            'source_url': 'https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/',
+            'source_url': source_url,
             'fetched_at': datetime.utcnow().isoformat() + 'Z',
         }
+        if valid_until:
+            offer['valid_until'] = valid_until
+        if valid_from:
+            offer['valid_from'] = valid_from
         
         if p.get('images'):
             download_image(img_url, IMAGES_DIR / img_filename)
@@ -225,6 +234,25 @@ def main():
                 cached = nutri_cache.get(o.get('name', ''))
             if cached:
                 o.update(cached)
+    
+    # Purge des promos réellement expirées par date de validité (valid_until).
+    # Grâce de 2 jours : les folders hebdomadaires se terminent la veille du
+    # jour de rotation (ex. « du 15 au 21/09 » scruté le 22/09) — sans cette
+    # marge on viderait toute l'enseigne le jour où le nouveau folder tarde.
+    today = datetime.utcnow().strftime('%Y-%m-%d')
+    grace = (datetime.utcnow() - timedelta(days=2)).strftime('%Y-%m-%d')
+    expired_count = 0
+    for store, offers in all_offers.items():
+        kept = []
+        for o in offers:
+            vu = o.get('valid_until')
+            if vu and str(vu) < grace:
+                expired_count += 1
+                continue
+            kept.append(o)
+        all_offers[store] = kept
+    if expired_count > 0:
+        print(f"Removed {expired_count} promos expirées (valid_until < {grace})")
     
     # Update promos
     promos['generated_at'] = datetime.utcnow().isoformat() + 'Z'

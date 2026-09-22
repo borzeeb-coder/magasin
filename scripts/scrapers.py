@@ -8,11 +8,110 @@ import json
 import time
 import re
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List, Dict, Optional
 from urllib.parse import quote
 
 UA = {'User-Agent': 'PromoApp/1.0 (https://github.com/borzeeb-coder/magasin)'}
+
+# ============ VALIDITÉ DES PROMOS (dates réelles) ============
+# Les formats varient selon l'enseigne :
+#   - Carrefour  : "Offre valable jusqu'au 21/09/2026 inclus"
+#   - Delhaize   : champ API endDate "23/09/2026 ..." (ou ISO)
+#   - Colruyt    : "jusqu'au 22-SEP-26"
+#   - Action     : "Valable: 16 sep jusqu'au 22 sep" (traduit du néerlandais)
+
+_MONTH_KEYS = {
+    'jan': 1, 'janv': 1, 'feb': 2, 'fev': 2, 'fév': 2, 'mar': 3, 'mars': 3,
+    'apr': 4, 'avr': 4, 'mei': 5, 'mai': 5, 'may': 5, 'jun': 6, 'juin': 6,
+    'jui': 7, 'juil': 7, 'jul': 7, 'aug': 8, 'ao': 8, 'août': 8, 'aout': 8,
+    'sep': 9, 'sept': 9, 'oct': 10, 'okt': 10, 'nov': 11, 'dec': 12, 'déc': 12,
+}
+
+_DAY_MONTH_RE = re.compile(r'(\d{1,2})\s*(?:-|/|\s+)([A-Za-zéûÉÛ]{3,5})')
+_DMY_RE = re.compile(r'(\d{1,2})/(\d{1,2})/(\d{4})')
+_ISO_RE = re.compile(r'(?<!\d)(\d{4})-(\d{2})-(\d{2})(?!\d)')
+_FOLDER_URL_RE = re.compile(r'du[_-](\d{1,2})[_-](\d{1,2})[_-](\d{2})')
+
+
+def _month_num(word: str) -> Optional[int]:
+    key = (word or '').lower().replace('.', '').strip()[:4]
+    return _MONTH_KEYS.get(key)
+
+
+def _to_iso(year: int, month: int, day: int) -> Optional[str]:
+    try:
+        y, m, d = int(year), int(month), int(day)
+        if 1 <= m <= 12 and 1 <= d <= 31:
+            return f'{y:04d}-{m:02d}-{d:02d}'
+    except (TypeError, ValueError):
+        pass
+    return None
+
+
+def _resolve_year(month: int, day: int) -> int:
+    """Année la plus probable pour un couple (jour, mois) sans année."""
+    now = datetime.utcnow()
+    y = now.year
+    cand = _to_iso(y, month, day)
+    if cand is None:
+        return y
+    if cand < now.strftime('%Y-%m-%d'):
+        # Date déjà passée : si elle date de plus de 100 jours, c'est sans
+        # doute une promo de la fin d'année précédente → année suivante.
+        if (now - datetime.strptime(cand, '%Y-%m-%d')).days > 100:
+            return y + 1
+    return y
+
+
+def parse_validity(text) -> (Optional[str], Optional[str]):
+    """Extrait (valid_from, valid_until) en ISO (YYYY-MM-DD) depuis un texte
+    de validité. Renvoie (None, None) quand aucune date exploitable."""
+    if not text:
+        return None, None
+    t = str(text)
+    found = []
+    for m in _DMY_RE.finditer(t):
+        iso = _to_iso(m.group(3), m.group(2), m.group(1))
+        if iso:
+            found.append(iso)
+    for m in _ISO_RE.finditer(t):
+        found.append(m.group(0))
+    for m in _DAY_MONTH_RE.finditer(t):
+        mon = _month_num(m.group(2))
+        if not mon:
+            continue
+        day = int(m.group(1))
+        tail = t[m.end():m.end() + 8]
+        y = re.match(r'\s*(\d{4})', tail)
+        if y:
+            iso = _to_iso(int(y.group(1)), mon, day)
+        else:
+            yy = re.match(r'[-/]?\s*(\d{2})(?!\d)', tail)
+            iso = (_to_iso(2000 + int(yy.group(1)), mon, day) if yy else
+                   _to_iso(_resolve_year(mon, day), mon, day))
+        if iso:
+            found.append(iso)
+    if not found:
+        return None, None
+    cleaned = sorted(set(found))
+    return cleaned[0], cleaned[-1]
+
+
+def folder_period_from_url(url) -> (Optional[str], Optional[str]):
+    """Période d'un prospectus Intermarché (du-DD-MM-YY → lundi à dimanche)."""
+    if not url:
+        return None, None
+    m = _FOLDER_URL_RE.search(url)
+    if not m:
+        return None, None
+    day, month, yy = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    year = 2000 + yy if yy < 100 else yy
+    from_iso = _to_iso(year, month, day)
+    if from_iso is None:
+        return None, None
+    start = datetime.strptime(from_iso, '%Y-%m-%d')
+    return from_iso, (start + timedelta(days=6)).strftime('%Y-%m-%d')
 
 
 def parse_price(price_text: str) -> Optional[float]:
@@ -349,7 +448,7 @@ def _parse_aldi_offers(algolia_map: Dict) -> List[Dict]:
                 'old_price': old_price,
                 'discount_pct': discount_pct,
                 'promo_text': f"-{discount_pct}%" if discount_pct else '',
-'unit': unit_text,
+                'unit': unit_text,
                 'unit_price': unit_price,
                 'unit_price_unit': unit_price_unit,
                 'price_per_kg': price_per_kg,
@@ -466,8 +565,9 @@ def _parse_carrefour_tile(p) -> Optional[Dict]:
         promo_text = promo_text + ' - ' + validity
     elif validity:
         promo_text = validity
+    valid_from, valid_until = parse_validity(validity)
     
-# Brand
+    # Brand
     brand_el = p.select_one('.brand-wrapper a')
     brand = brand_el.get_text(strip=True) if brand_el else ''
     
@@ -517,7 +617,7 @@ def _parse_carrefour_tile(p) -> Optional[Dict]:
         'old_price': None,
         'discount_pct': None,
         'promo_text': promo_text,
-'unit': unit_price_text,
+        'unit': unit_price_text,
         'unit_price': unit_price,
         'unit_price_unit': unit_price_unit,
         'price_per_kg': price_per_kg,
@@ -527,6 +627,10 @@ def _parse_carrefour_tile(p) -> Optional[Dict]:
         'fetched_at': datetime.utcnow().isoformat() + 'Z',
         'ean': ean,
     }
+    if valid_until:
+        offer['valid_until'] = valid_until
+    if valid_from:
+        offer['valid_from'] = valid_from
     
     return offer
 
@@ -613,6 +717,7 @@ def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
 
                 # Promo text: take the first displayable promotion message
                 promo_text = ''
+                promo_from = promo_until = None
                 for prom in (p.get('potentialPromotions') or []):
                     if prom.get('toDisplay') and (prom.get('description') or prom.get('simplePromotionMessage') or prom.get('title')):
                         promo_text = prom.get('description') or prom.get('simplePromotionMessage') or prom.get('title')
@@ -620,6 +725,9 @@ def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
                         if end_date:
                             date_part = str(end_date).split(' ')[0]
                             promo_text = f"{promo_text} - jusqu'au {date_part}"
+                        promo_from, promo_until = parse_validity(str(end_date or ''))
+                        if promo_until is None:
+                            promo_from, promo_until = parse_validity(str(prom.get('startDate') or end_date or ''))
                         break
 
                 # Brand: manufacturer name or badgeBrand name
@@ -668,7 +776,7 @@ def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
                     'old_price': old_price,
                     'discount_pct': discount_pct,
                     'promo_text': promo_text,
-'unit': unit_text,
+                    'unit': unit_text,
                     'unit_price': unit_price,
                     'unit_price_unit': unit_price_unit,
                     'price_per_kg': price_per_kg,
@@ -678,6 +786,10 @@ def scrape_delhaize(max_pages: int = 12) -> List[Dict]:
                     'fetched_at': datetime.utcnow().isoformat() + 'Z',
                     'ean': None,
                 }
+                if promo_until:
+                    offer['valid_until'] = promo_until
+                if promo_from:
+                    offer['valid_from'] = promo_from
                 offers.append(offer)
                 seen.add(code)
 
@@ -887,6 +999,7 @@ def scrape_colruyt() -> List[Dict]:
                 promo_text = ''
                 discount_pct = None
                 end_date = ''
+                promo_until = None
                 proms = p.get('promotions') or []
                 if proms:
                     promo_text = (proms[0].get('strapLine') or '').strip()
@@ -899,6 +1012,7 @@ def scrape_colruyt() -> List[Dict]:
                     end = proms[0].get('endDate') or ''
                     if end:
                         end_date = f"jusqu'au {end}"
+                    _, promo_until = parse_validity(str(end))
 
                 old_price = None
                 if discount_pct and price:
@@ -936,6 +1050,8 @@ def scrape_colruyt() -> List[Dict]:
                     'fetched_at': datetime.utcnow().isoformat() + 'Z',
                     'ean': ean,
                 }
+                if promo_until:
+                    offer['valid_until'] = promo_until
                 offers.append(offer)
                 seen.add(uid)
 
@@ -1240,6 +1356,11 @@ def scrape_action() -> List[Dict]:
                         'fetched_at': datetime.utcnow().isoformat() + 'Z',
                         'ean': detail.get('ean'),
                     }
+                    promo_from, promo_until = parse_validity(offer['promo_text'])
+                    if promo_until:
+                        offer['valid_until'] = promo_until
+                    if promo_from:
+                        offer['valid_from'] = promo_from
                     
                     # Extract quantity and calculate price per kg/L
                     qty, qty_unit = extract_quantity_from_name(offer['name'])

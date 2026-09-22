@@ -16,7 +16,7 @@ from urllib.parse import urljoin, quote
 
 # Import scrapers
 sys.path.insert(0, str(Path(__file__).parent))
-from scrapers import STORE_SCRAPERS
+from scrapers import STORE_SCRAPERS, folder_period_from_url, parse_validity
 
 UA = {'User-Agent': 'PromoApp/1.0 (https://github.com/borzeeb-coder/magasin)'}
 DATA_DIR = Path('data')
@@ -42,7 +42,9 @@ NO_NUTRISCORE_KEYWORDS = [
 ]
 
 def load_json(path):
-    with open(path, 'r', encoding='utf-8') as f:
+    # Les données committées peuvent avoir un BOM UTF-8 (produites par des
+    # outils Windows) : utf-8-sig les tolère.
+    with open(path, 'r', encoding='utf-8-sig') as f:
         return json.load(f)
 
 def save_json(path, data):
@@ -173,6 +175,9 @@ def fetch_intermarche():
         img_filename = f"intermarche-{len(offers):03d}.webp"
         img_url = config['image_cdn'] + p.get('images', '')
         
+        source_url = 'https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/'
+        valid_from, valid_until = folder_period_from_url(source_url)
+        
         offer = {
             'name': name,
             'brand': p.get('groupe filtre', ''),
@@ -185,9 +190,13 @@ def fetch_intermarche():
             'unit': p.get('Unite', ''),
             'image_url': f'data/images/{img_filename}',
             'image_filename': img_filename,
-            'source_url': 'https://www.intermarche.be/folders/decouvrez-notre-folder-du-15-09-26/',
+            'source_url': source_url,
             'fetched_at': datetime.utcnow().isoformat() + 'Z',
         }
+        if valid_until:
+            offer['valid_until'] = valid_until
+        if valid_from:
+            offer['valid_from'] = valid_from
         
         # Download image
         if p.get('images'):
@@ -311,6 +320,25 @@ def main():
     
     # Update promos
     promos['generated_at'] = datetime.utcnow().isoformat() + 'Z'
+    
+    # Purge des promos réellement expirées par date de validité (valid_until).
+    # Grâce de 2 jours : les folders hebdomadaires se terminent la veille du
+    # jour de rotation (ex. « du 15 au 21/09 » scruté le 22/09) — sans cette
+    # marge on viderait toute l'enseigne le jour où le nouveau folder tarde.
+    grace = (datetime.utcnow() - timedelta(days=2)).strftime('%Y-%m-%d')
+    expired_count = 0
+    for store, offers in all_offers.items():
+        kept = []
+        for o in offers:
+            vu = o.get('valid_until')
+            if vu and str(vu) < grace:
+                expired_count += 1
+                continue
+            kept.append(o)
+        all_offers[store] = kept
+    if expired_count > 0:
+        print(f"Removed {expired_count} promos expirées (valid_until < {today})")
+    
     promos['offers'] = all_offers
     
     # Save

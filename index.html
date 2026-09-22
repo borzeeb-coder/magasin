@@ -984,6 +984,10 @@
     display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:20px; padding:16px 0;
     align-items:start;
   }
+  .recipe-section-divider{
+    grid-column:1 / -1; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.4px;
+    color:var(--ink-soft); border-top:1px dashed var(--line); padding-top:16px; margin-top:8px;
+  }
   .recipe-card{
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
     cursor:pointer; transition:transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s cubic-bezier(.4,0,.2,1);
@@ -1839,6 +1843,7 @@ const FALLBACK_PRODUCTS = [
 let PRODUCTS = FALLBACK_PRODUCTS;
 let dataSource = 'fallback';   // 'live' | 'fallback'
 let dataGeneratedAt = null;
+let autoRecipes = null;        // data/recipes.json généré chaque nuit (recettes actives)
 
 const CATEGORY_KEYWORDS = {
   boucherie: ['bœuf','boeuf','poulet','porc','agneau','viande','saucisse','jambon','entrecôte','côtelette','steak','cailles','lapin'],
@@ -1898,6 +1903,14 @@ const res = await fetch('./data/promos.json', {cache:'no-store'});
       const meta = (json.stores_meta && json.stores_meta[slug]) || STORES.find(s=>s.id===slug);
       if(!meta) return;
       items.forEach(o=>{
+        // Promo réellement expirée (date de validité passée) → on la retire,
+        // comme le fait le job nocturne dans promos.json (valid_until).
+        // Grâce de 2 jours : le folder hebdomadaire se termine la veille du
+        // jour de rotation (ex. « du 15 au 21/09 » affiché le 22/09 matin).
+        if(o.valid_until){
+          const vuEnd = new Date(o.valid_until.length > 10 ? o.valid_until : o.valid_until + 'T23:59:59');
+          if(isNaN(vuEnd.getTime()) || vuEnd.getTime() < Date.now() - 2*86400000) return;
+        }
         const newPrice = o.new_price && o.new_price > 0 ? o.new_price : null;
         const dPct = o.discount_pct || null;
         let oldP = null;
@@ -1917,7 +1930,7 @@ const res = await fetch('./data/promos.json', {cache:'no-store'});
           new: newPrice,
           dPct: dPct,
           offer: (dPct ? `-${dPct}% chez ${meta.name}` : `Promo ${meta.name}`),
-          valid: 'Voir conditions sur le prospectus',
+          valid: o.valid_until ? 'Jusqu\u2019au ' + new Date(o.valid_until).toLocaleDateString('fr-BE',{day:'numeric', month:'short'}) : 'Voir conditions sur le prospectus',
           avail: `En rayon à ${state.city ? state.city.name : 'Marche-en-Famenne'}`,
           nutri: o.nutriscore || '—',
           desc: `Offre relevée sur le prospectus ${meta.name}, via promopromo.be. ${o.source_url ? '' : ''}`.trim(),
@@ -1945,6 +1958,43 @@ const res = await fetch('./data/promos.json', {cache:'no-store'});
     console.warn('Chargement de data/promos.json impossible, utilisation des données de secours.', e);
     PRODUCTS = FALLBACK_PRODUCTS;
     dataSource = 'fallback';
+  }
+}
+
+/* ---------------------------------------------------------
+   RECETTES DE LA SEMAINE (data/recipes.json — généré chaque nuit)
+   Le job nocturne calcule, à partir des promos non expirées, quelles
+   recettes ont des ingrédients en promo. L'app relègue en bas de grille
+   celles qui n'y figurent plus (promos disparues de la semaine).
+--------------------------------------------------------- */
+const RECIPE_WEEK_KEY = 'pa_recipes_week_seen';
+async function loadRecipesData(){
+  try{
+    const res = await fetch('./data/recipes.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('recipes.json introuvable (HTTP '+res.status+')');
+    const json = await res.json();
+    if(!Array.isArray(json.active)) throw new Error('recipes.json : champ active absent');
+    autoRecipes = {
+      week: json.week || null,
+      active: json.active,
+      top: Array.isArray(json.top) ? json.top : json.active,
+      counts: json.counts || null,
+      generated_at: json.generated_at || null,
+    };
+    maybeAnnounceRecipeWeek(autoRecipes);
+  }catch(e){
+    console.warn('Chargement de data/recipes.json impossible — grille complète conservée.', e);
+    autoRecipes = null;
+  }
+  if(state.currentView === 'recettes') renderRecipes();
+}
+function maybeAnnounceRecipeWeek(ar){
+  if(!ar || ar.week == null || !ar.active) return;
+  const last = localStorage.getItem(RECIPE_WEEK_KEY);
+  localStorage.setItem(RECIPE_WEEK_KEY, String(ar.week));
+  if(last && String(ar.week) !== last && ar.active.length){
+    const n = ar.active.length;
+    showToast(`🍽️ Semaine ${ar.week} — ${n} recette${n>1?'s':''} en promo avec les nouvelles offres !`, 5000);
   }
 }
 
@@ -3617,7 +3667,8 @@ function renderRecipes(){
     }).filter(Boolean);
     const total = matches.reduce((s,m)=>s+(priceOf(m)||0),0);
     const full = matches.reduce((s,m)=>s+normalPrice(m),0);
-    return {...r, id, promoMatches: matches, promoCount: matches.length, total, full, pp: total/(r.servings||1)};
+    const autoActive = !autoRecipes || !Array.isArray(autoRecipes.active) || autoRecipes.active.indexOf(id) >= 0;
+    return {...r, id, autoActive, promoMatches: matches, promoCount: matches.length, total, full, pp: total/(r.servings||1)};
   }).filter(r => {
     if(q && !fuzzyOk(q, r.name) && !r.ingredients.some(i=>fuzzyOk(q, i))) return false;
     if(recipeFilter.has('rapide') && recipeMinTime(r) >= 20) return false;
@@ -3629,18 +3680,27 @@ function renderRecipes(){
     const fa = favs.indexOf(a.id) >= 0 ? 0 : 1;
     const fb = favs.indexOf(b.id) >= 0 ? 0 : 1;
     if(fa!==fb) return fa-fb;
+    if(a.autoActive !== b.autoActive) return a.autoActive ? -1 : 1;
     return b.promoCount - a.promoCount;
   });
 
   const sub = document.getElementById('recettesSub');
-  if(sub) sub.textContent = recipesWithPromos.length + ' recette' + (recipesWithPromos.length > 1 ? 's' : '') + (q ? ` pour « ${q} »` : '') + ' · basées sur les promos de la semaine';
+  if(sub){
+    const activeCount = recipesWithPromos.filter(r=>r.autoActive).length;
+    const head = activeCount === recipesWithPromos.length
+      ? recipesWithPromos.length + ' recette' + (recipesWithPromos.length > 1 ? 's' : '')
+      : activeCount + ' recette' + (activeCount > 1 ? 's' : '') + ' en promo · ' + recipesWithPromos.length + ' au total';
+    sub.textContent = head + (q ? ` pour « ${q} »` : '') + ' · basées sur les promos de la semaine';
+  }
 
   if(!recipesWithPromos.length){
     el.innerHTML = '<div class="empty-state">🤷 Aucune recette ne correspond.<br>Essaie un autre filtre ou une autre recherche.</div>';
     return;
   }
 
-  el.innerHTML = recipesWithPromos.map(r => {
+  let html = '';
+  let dividerShown = false;
+  recipesWithPromos.forEach(r => {
     const info = RECIPE_INFO[r.id] || null;
     const pp = r.pp.toFixed(2).replace('.',',');
     const pct = Math.round(r.promoCount / r.ingredients.length * 100);
@@ -3651,7 +3711,17 @@ function renderRecipes(){
     const saveNum = Math.round((r.full - r.total) * 100) / 100;
     const save = saveNum.toFixed(2).replace('.',',');
     const isFav = favs.indexOf(r.id) >= 0;
-    return `
+    if(!r.autoActive && !dividerShown){
+      dividerShown = true;
+      html += `<div class="recipe-section-divider">🕰️ Sans promo cette semaine — prix normal</div>`;
+    }
+    const badge = r.autoActive
+      ? `<span class="promo-badge${promoClass}">🏷️ ${r.promoCount}/${r.ingredients.length} en promo</span>`
+      : `<span class="promo-badge zero">🕰️ Plus en promo cette semaine</span>`;
+    const track = r.autoActive
+      ? `<div class="promo-track" title="${pct}% des ingrédients en promo"><div class="promo-track-fill" style="width:${pct}%"></div></div>`
+      : `<div class="promo-track"><div class="promo-track-fill" style="width:2%"></div></div>`;
+    html += `
     <article class="recipe-card" onclick="openRecipeModal('${r.id}')">
       <div class="recipe-thumb">
         <img src="${r.image}" alt="${r.name}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('img-failed');">
@@ -3666,8 +3736,8 @@ function renderRecipes(){
           <span>⏱️ ${r.time} min</span>
           ${info ? `<span>🔪 ${info.prep}' · 🔥 ${info.cook}'</span>` : ''}
         </div>
-        <span class="promo-badge${promoClass}">🏷️ ${r.promoCount}/${r.ingredients.length} en promo</span>
-        <div class="promo-track" title="${pct}% des ingrédients en promo"><div class="promo-track-fill" style="width:${pct}%"></div></div>
+        ${badge}
+        ${track}
         <div class="recipe-cost-line">
           <span class="cost-perperson">~${pp} €/pers.</span>
           <span class="cost-total">${r.total.toFixed(2).replace('.',',')} € les ${r.servings} pers.</span>
@@ -3675,7 +3745,8 @@ function renderRecipes(){
         ${saveNum > 0 ? `<span class="cost-save">💸 −${save} € vs prix plein</span>` : ''}
       </div>
     </article>`;
-  }).join("");
+  });
+  el.innerHTML = html;
 }
 
 /* Filtres recettes : multi-actifs (filtres croisés) */
@@ -5571,6 +5642,7 @@ async function init(){
   await applyCartLink();
   showSkeleton();
   await loadPromoData();
+  await loadRecipesData();
   rerenderAll();
   navOnly(state.currentView || 'promos');
   updateCartBadge();
@@ -5586,7 +5658,7 @@ async function init(){
     if(b) b.style.display = 'block';
   }
   window.addEventListener('offline', ()=>{ const b=document.getElementById('offlineBanner'); if(b) b.style.display='block'; });
-  window.addEventListener('online', ()=>{ const b=document.getElementById('offlineBanner'); if(b) b.style.display='none'; loadPromoData().then(rerenderAll); });
+  window.addEventListener('online', ()=>{ const b=document.getElementById('offlineBanner'); if(b) b.style.display='none'; loadPromoData().then(rerenderAll); loadRecipesData(); });
   // Onboarding first-run
   if(!localStorage.getItem('pa_onboarded')){
     setTimeout(startOnboarding, 800);

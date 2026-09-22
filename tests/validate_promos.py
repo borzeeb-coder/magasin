@@ -61,7 +61,12 @@ def fail(msg: str) -> None:
 def load_data(path: Path) -> dict:
     if not path.exists():
         fail(f"{path.name} absent")
-    return json.loads(path.read_text(encoding="utf-8"))
+    # Tolère UTF-8 (avec ou sans BOM) comme UTF-16 (fichiers produits par des
+    # outils Windows, ex. promos_check.json).
+    raw = path.read_bytes()
+    if raw.startswith(b"\xff\xfe") or raw.startswith(b"\xfe\xff"):
+        return json.loads(raw.decode("utf-16"))
+    return json.loads(raw.decode("utf-8-sig"))
 
 
 def check_volumes(offers: dict, label: str) -> int:
@@ -159,8 +164,34 @@ def main() -> int:
         previous = load_data(prev_arg)
         check_regression(data, previous)
 
+    check_recipes()
+
     print(f"✅ promos.json OK : {total} offres, {len(stores)} enseignes, {age_days:.1f} j d'âge")
     return 0
+
+
+def check_recipes() -> None:
+    """Valide data/recipes.json quand il existe (généré chaque nuit par
+    scripts/update_recipes.py). Soft : absent => rien à vérifier."""
+    rec_path = ROOT / "data" / "recipes.json"
+    if not rec_path.exists():
+        print("ℹ️  recipes.json absent — aucune recette de la semaine à valider")
+        return
+    try:
+        rc = json.loads(rec_path.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError as exc:
+        fail(f"recipes.json illisible : {exc}")
+    if not isinstance(rc, dict) or not rc.get("generated_at"):
+        fail("recipes.json : generated_at manquant")
+    active = rc.get("active")
+    if not isinstance(active, list) or not active:
+        fail("recipes.json : active vide ou absent — la sélection de recettes est cassée")
+    if not isinstance(rc.get("counts"), dict):
+        fail("recipes.json : counts absent")
+    for rid in active[:100]:
+        if not isinstance(rid, str) or not rid:
+            fail(f"recipes.json : id de recette invalide dans active : {rid!r}")
+    print(f"🍽️ recipes.json OK : {len(active)} recettes actives (semaine {rc.get('week')})")
 
 
 if __name__ == "__main__":

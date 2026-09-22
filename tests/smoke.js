@@ -60,6 +60,7 @@ async function main() {
       ['/manifest.webmanifest', 'manifest'],
       ['/sw.js', 'service worker'],
       ['/data/promos.json', 'promos'],
+      ['/data/recipes.json', 'recettes de la semaine'],
     ]) {
       const r = await page.request.get('http://127.0.0.1:8123' + u);
       check(r.ok(), `${label} servi (HTTP ${r.status()})`);
@@ -159,6 +160,19 @@ async function main() {
     await page.locator('.navbtn[data-view="recettes"]').click();
     await page.waitForTimeout(600);
     check(await page.locator('#recipeGrid .recipe-card').count() === 100, 'grille recettes : 100 recettes (86 + 14 dernières)');
+    // Recettes de la semaine (data/recipes.json) : badge + sous-titre + relégation auto
+    const subTxt = await page.textContent('#recettesSub');
+    check(/recette/.test(subTxt) && /promos de la semaine/.test(subTxt), 'sous-titre recettes avec statut promo (data/recipes.json)');
+    check(await page.locator('#recipeGrid .recipe-card .promo-badge').count() === 100, '100 badges promo sur les cartes recettes');
+    await page.evaluate(() => {
+      autoRecipes = { week: 38, active: ['pates-bolognaise', 'carbonara'], counts: {}, generated_at: '2026-09-22T00:00:00Z' };
+      renderRecipes();
+    });
+    await page.waitForTimeout(400);
+    check(await page.locator('#recipeGrid .recipe-section-divider').count() === 1, 'séparateur « Sans promo cette semaine » affiché');
+    check((await page.locator('#recipeGrid .promo-badge').allInnerTexts()).some(t => t.includes('Plus en promo')), 'recettes sans promo reléguées avec badge dédié');
+    check(await page.locator('#recipeGrid .recipe-card').count() === 100, 'les 100 recettes restent affichées (relégation, pas de masquage)');
+    check(await page.locator('#recipeGrid .recipe-card:first-child .recipe-info h3').count() === 1, 'la première carte reste une recette active');
     check(await page.locator('#cartIdeasBtn').count() === 1, 'bouton idées recettes avec panier présent');
     await page.click('#cartIdeasBtn');
     await page.waitForTimeout(400);
