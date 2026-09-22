@@ -1805,12 +1805,12 @@ const CATS = [
 ];
 
 const CITIES = [
-  {name:'Marche-en-Famenne', cp:'6900', region:'Province de Luxembourg'},
-  {name:'Rochefort', cp:'5580', region:'Province de Namur'},
-  {name:'Ciney', cp:'5590', region:'Province de Namur'},
-  {name:'Namur', cp:'5000', region:'Province de Namur'},
-  {name:'Liège', cp:'4000', region:'Province de Liège'},
-  {name:'Bruxelles', cp:'1000', region:'Région de Bruxelles-Capitale'},
+  {name:'Marche-en-Famenne', cp:'6900', region:'Province de Luxembourg', lat:50.2271, lng:5.3445},
+  {name:'Rochefort', cp:'5580', region:'Province de Namur', lat:50.1579, lng:5.2218},
+  {name:'Ciney', cp:'5590', region:'Province de Namur', lat:50.2947, lng:5.1006},
+  {name:'Namur', cp:'5000', region:'Province de Namur', lat:50.4647, lng:4.8656},
+  {name:'Liège', cp:'4000', region:'Province de Liège', lat:50.6326, lng:5.5797},
+  {name:'Bruxelles', cp:'1000', region:'Région de Bruxelles-Capitale', lat:50.8503, lng:4.3517},
 ];
 
 // Données de secours, utilisées uniquement si data/promos.json est introuvable
@@ -2951,6 +2951,20 @@ function openProduct(id){
 /* ---------------------------------------------------------
    CITY SHEET
 --------------------------------------------------------- */
+function updateCityLabels(){
+  const l = document.getElementById('cityLabel');
+  const c = document.getElementById('cityCP');
+  if(l) l.textContent = state.city.name;
+  if(c) c.textContent = `${state.city.cp || '—'} · ${state.city.region || 'Belgique'}`;
+}
+function setCity(city){
+  state.city = city;
+  save('pa_city', city);
+  updateCityLabels();
+  renderProducts();
+  renderStores();
+  updateCartBadge();
+}
 function renderCityList(){
   const el = document.getElementById('cityListEl');
   el.innerHTML = '';
@@ -2959,12 +2973,7 @@ function renderCityList(){
     row.className = 'city-item';
     row.innerHTML = `<span class="cn">${c.name}</span><span class="cp">${c.region} - ${c.cp}</span>`;
     row.onclick = ()=>{
-      state.city = c;
-      save('pa_city', c);
-      document.getElementById('cityLabel').textContent = c.name;
-      document.getElementById('cityCP').textContent = `${c.cp} · ${c.region}`;
-      renderProducts();
-      renderStores();
+      setCity(c);
       closeSheet('citySheet');
       showToast(`Ville changée : ${c.name}`);
     };
@@ -2972,23 +2981,87 @@ function renderCityList(){
   });
 }
 document.getElementById('cityBtn').addEventListener('click', ()=>{ renderCityList(); openSheet('citySheet'); });
-document.getElementById('geoBtn').addEventListener('click', ()=>{
+
+/* ---------- Géolocalisation (valable partout en Belgique) ----------
+   Le bouton GPS récupère la position exacte, la convertit en localité via
+   le géocodage inverse OpenStreetMap (Nominatim, gratuit sans clé), puis
+   applique automatiquement { nom, code postal, région } à toute l'app.
+   Si le service est injoignable, repli sur la ville prélistée la plus proche
+   (distance haversine). */
+const EARTH_R_KM = 6371;
+function haversineKm(lat1, lng1, lat2, lng2){
+  const rad = d => d * Math.PI / 180;
+  const dLat = rad(lat2 - lat1);
+  const dLng = rad(lng2 - lng1);
+  const a = Math.sin(dLat/2)*Math.sin(dLat/2)
+          + Math.cos(rad(lat1))*Math.cos(rad(lat2))*Math.sin(dLng/2)*Math.sin(dLng/2);
+  return 2 * EARTH_R_KM * Math.asin(Math.sqrt(a));
+}
+function nearestCity(lat, lng){
+  let best = CITIES[0], bestD = Infinity;
+  CITIES.forEach(c=>{
+    if(c.lat == null || c.lng == null) return;
+    const d = haversineKm(lat, lng, c.lat, c.lng);
+    if(d < bestD){ bestD = d; best = c; }
+  });
+  return { city: best, distKm: Math.round(bestD) };
+}
+function reverseGeocode(lat, lng){
+  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=jsonv2&zoom=14&accept-language=fr`;
+  return fetch(url, { headers:{'Accept-Language':'fr'} })
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(j=>{
+      const a = (j && j.address) ? j.address : {};
+      return {
+        name: a.city || a.town || a.village || a.municipality || (j.name || ''),
+        cp: String(a.postcode || ''),
+        region: a.state || a.region || a.county || '',
+        country_code: a.country_code || '',
+      };
+    })
+    .catch(()=> null);
+}
+function cityAcronym(name){
+  const sig = (name || '').split(/[\s-]+/)
+    .filter(w => /^[A-Za-zÀ-ÖØ-öø-ÿ]/.test(w))
+    .map(w => w[0].toUpperCase()).slice(0,3).join('');
+  return sig || 'BE';
+}
+function geoStart(){
   if(!navigator.geolocation){ showToast('Géolocalisation indisponible'); return; }
   const btn = document.getElementById('geoBtn');
   btn.textContent = '📡 Localisation en cours…';
   navigator.geolocation.getCurrentPosition(
-    ()=>{
-      btn.textContent = '🎯 Me géolocaliser automatiquement (GPS)';
-      showToast('Position détectée : ' + state.city.name);
-      closeSheet('citySheet');
+    (pos)=>{
+      const lat = pos.coords.latitude, lng = pos.coords.longitude;
+      const finishNearest = ()=>{
+        const n = nearestCity(lat, lng);
+        setCity(Object.assign({}, n.city, {lat, lng}));
+        closeSheet('citySheet');
+        btn.textContent = '🎯 Me géolocaliser automatiquement (GPS)';
+        showToast(`📍 ${state.city.name} approximé (rayon ${n.distKm} km)`, 4000);
+      };
+      reverseGeocode(lat, lng).then(g=>{
+        if(!g || !g.name.trim() || (g.country_code && g.country_code !== 'be')){
+          finishNearest();
+          return;
+        }
+        setCity({ name: g.name.trim(), cp: g.cp, region: g.region || 'Belgique', lat, lng });
+        closeSheet('citySheet');
+        btn.textContent = '🎯 Me géolocaliser automatiquement (GPS)';
+        showToast(`📍 ${g.name.trim()}${g.cp ? ' · ' + g.cp : ''}${g.region ? ' · ' + g.region : ''}`, 4500);
+      }).catch(finishNearest);
     },
-    ()=>{
+    (err)=>{
       btn.textContent = '🎯 Me géolocaliser automatiquement (GPS)';
-      showToast("Position non autorisée par le navigateur");
+      showToast(err && err.code === 1
+        ? 'Géolocalisation refusée — autorisez le partage de position'
+        : 'Position introuvable, réessayez');
     },
-    {timeout:6000}
+    { enableHighAccuracy:true, timeout:12000, maximumAge:300000 }
   );
-});
+}
+document.getElementById('geoBtn').addEventListener('click', geoStart);
 
 /* ---------------------------------------------------------
    PASS / QR
@@ -2996,7 +3069,7 @@ document.getElementById('geoBtn').addEventListener('click', ()=>{
 document.getElementById('passBtn').addEventListener('click', ()=>{
   if(!cartCount()) return;
   const t = cartTotals();
-  const passId = `MF-${state.city.cp}-${Math.floor(Math.random()*900+100)}`;
+  const passId = `${cityAcronym(state.city.name)}-${state.city.cp}-${Math.floor(Math.random()*900+100)}`;
   document.getElementById('passId').textContent = `PASS #${passId}`;
   document.getElementById('passTotals').innerHTML = `
     <div class="trow final"><span>Total en caisse</span><span>${t.promo.toFixed(2)} €</span></div>
@@ -5637,8 +5710,7 @@ function renderFreshnessNote(){
 }
 
 async function init(){
-  document.getElementById('cityLabel').textContent = state.city.name;
-  document.getElementById('cityCP').textContent = `${state.city.cp} · ${state.city.region}`;
+  updateCityLabels();
   await applyCartLink();
   showSkeleton();
   await loadPromoData();

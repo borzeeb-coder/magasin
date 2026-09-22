@@ -101,6 +101,35 @@ async function main() {
     const mapSection = await page.locator('#view-stores').count();
     check(mapSection === 1, 'section carte des magasins #view-stores présente');
 
+    // 2bis. Géolocalisation partout en Belgique (GPS stubbé + Nominatim)
+    await page.evaluate(() => {
+      const realFetch = window.fetch.bind(window);
+      window.fetch = (u, o) => (String(u).includes('nominatim')
+        ? Promise.resolve({ ok: true, json: () => Promise.resolve({ name: 'Gand', address: { postcode: '9000', state: 'Province de Flandre-Orientale', country_code: 'be' } }) })
+        : realFetch(u, o));
+      Object.defineProperty(navigator, 'geolocation', { configurable: true, value: { getCurrentPosition: (ok) => ok({ coords: { latitude: 51.0543, longitude: 3.7174 } }) } });
+    });
+    await page.click('#cityBtn');
+    await page.waitForTimeout(300);
+    await page.click('#geoBtn');
+    await page.waitForTimeout(700);
+    check((await page.textContent('#cityLabel')) === 'Gand', 'géolocalisation : ville détectée « Gand » appliquée automatiquement');
+    check((await page.textContent('#cityCP')).includes('9000'), 'géolocalisation : code postal + région mis à jour');
+    check((await page.textContent('#resultCount')).includes('à Gand'), 'compteur de résultats recalculé autour de la ville détectée');
+    // Repli haversine : géocodeur vide → ville connue la plus proche
+    await page.evaluate(() => {
+      const realFetch = window.fetch.bind(window);
+      window.fetch = (u, o) => (String(u).includes('nominatim')
+        ? Promise.resolve({ ok: true, json: () => Promise.resolve({}) })
+        : realFetch(u, o));
+      Object.defineProperty(navigator, 'geolocation', { configurable: true, value: { getCurrentPosition: (ok) => ok({ coords: { latitude: 50.8503, longitude: 4.3517 } }) } });
+    });
+    await page.click('#cityBtn');
+    await page.waitForTimeout(300);
+    await page.click('#geoBtn');
+    await page.waitForTimeout(700);
+    check((await page.textContent('#cityLabel')) === 'Bruxelles', 'repli haversine : plus proche ville connue si le géocodeur échoue');
+
     // 3. Favoris : la barre d'alerte de seuil doit être présente après
     //    ajout d'un favori puis navigation vers la vue favoris
     await page.locator('.pcard .pcard-name').first().click();
