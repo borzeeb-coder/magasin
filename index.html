@@ -3473,7 +3473,7 @@ function toggleRecipeFav(id){
   renderRecipes();
 }
 function isVegRecipe(ingredients){
-  const NO = ['viande','poulet','saumon','cabillaud','thon','lardons','jambon','bœuf','boeuf','bourguignon','boulettes','poisson','escalope','filet','steak','anchois','crevette','moule'];
+  const NO = ['viande','poulet','saumon','cabillaud','thon','lardons','jambon','bœuf','boeuf','bourguignon','boulettes','poisson','escalope','filet','steak','anchois','crevette','moule','veau','agneau','saucisse'];
   return !ingredients.some(ing => NO.some(k => ing.includes(k)));
 }
 function normalPrice(m){ return (m && m.old != null && m.old > 0) ? m.old : (m ? (priceOf(m)||0) : 0); }
@@ -3985,7 +3985,21 @@ const RECIPE_DB = {
   "pates-carbonara": {name:"Spaghetti carbonara", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Spaghetti%20carbonara.jpg?width=960", servings:4, time:20, ingredients:["spaghetti","lardons","œufs","parmesan","poivre","crème fraîche"]},
   "pates-bolognaise": {name:"Spaghetti bolognaise", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Spaghetti%20bolognese.jpg?width=960", servings:4, time:30, ingredients:["spaghetti","viande hachée","sauce tomate","oignon","ail","carotte","céleri","herbes","parmesan"]},
   "pates-pesto": {name:"Pâtes au pesto", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Pesto%20pasta.jpg?width=960", servings:4, time:15, ingredients:["pâtes","basilic","pignons","parmesan","ail","huile d'olive","crème fraîche"]},
-  "pates-puttanesca": {name:"Pâtes puttanesca", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Spaghetti%20puttanesca.jpg?width=960", servings:4, time:20, ingredients:["spaghetti","tomates","olives","câpres","ail","anchois","piment","huile d'olive","persil"]}
+  "pates-puttanesca": {name:"Pâtes puttanesca", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Spaghetti%20puttanesca.jpg?width=960", servings:4, time:20, ingredients:["spaghetti","tomates","olives","câpres","ail","anchois","piment","huile d'olive","persil"]},
+  "raclette": {name:"Raclette montagnarde", emoji:"🧀", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Raclette.jpg?width=960", servings:4, time:45, ingredients:["pommes de terre","fromage raclette","charcuterie","cornichons","oignon"]},
+  "fondue": {name:"Fondue savoyarde", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Fondue.jpg?width=960", servings:4, time:35, ingredients:["fromage","vin blanc","ail","pain","noix de muscade"]},
+  "tartiflette": {name:"Tartiflette savoyarde", emoji:"🥔", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tartiflette.jpg?width=960", servings:6, time:60, ingredients:["pommes de terre","reblochon","lardons","oignon","vin blanc","crème fraîche"]},
+  "blanquette-veau": {name:"Blanquette de veau", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Blanquette%20de%20veau.jpg?width=960", servings:6, time:90, ingredients:["viande de veau","carottes","champignons","oignon","crème fraîche","beurre","farine","bouillon","citron"]},
+  "pot-au-feu": {name:"Pot-au-feu", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Pot%20au%20feu.jpg?width=960", servings:6, time:150, ingredients:["bœuf à braiser","carottes","poireaux","oignon","navets","bouillon","ail"]},
+  "poulet-basquaise": {name:"Poulet basquaise", emoji:"🍗", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Poulet%20basquaise.jpg?width=960", servings:4, time:60, ingredients:["poulet","poivrons","tomates","oignon","ail","riz"]},
+  "coq-au-vin": {name:"Coq au vin", emoji:"🍗", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Coq%20au%20vin.jpg?width=960", servings:6, time:110, ingredients:["poulet","lardons","champignons","oignon","ail","vin rouge","bouillon","beurre"]},
+  "cassoulet": {name:"Cassoulet maison", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cassoulet.jpg?width=960", servings:8, time:180, ingredients:["haricots blancs","saucisse","viande de porc","lardons","tomates","oignon","ail","chapelure"]},
+  "ragout-agneau": {name:"Ragoût d'agneau", emoji:"🍖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Lamb%20stew.jpg?width=960", servings:4, time:100, ingredients:["agneau","carottes","pommes de terre","oignon","bouillon","thym"]},
+  "gigot-agneau": {name:"Gigot d'agneau rôti", emoji:"🍖", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Roast%20lamb.jpg?width=960", servings:6, time:80, ingredients:["gigot d'agneau","ail","romarin","pommes de terre","huile d'olive"]},
+  "pates-fruits-mer": {name:"Pâtes aux fruits de mer", emoji:"🦐", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Seafood%20pasta.jpg?width=960", servings:4, time:30, ingredients:["spaghetti","crevettes","moules","tomates cerises","ail","vin blanc","persil"]},
+  "cannelloni": {name:"Cannelloni à la viande", emoji:"🍝", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cannelloni.jpg?width=960", servings:6, time:70, ingredients:["pâtes cannelloni","viande hachée","sauce tomate","béchamel","fromage râpé","oignon"]},
+  "gnocchi": {name:"Gnocchis sauce tomate", emoji:"🥟", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gnocchi.jpg?width=960", servings:4, time:20, ingredients:["gnocchis","sauce tomate","parmesan","basilic","beurre"]},
+  "tajine-agneau": {name:"Tajine d'agneau aux pruneaux", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tajine%20marocain.jpg?width=960", servings:6, time:90, ingredients:["agneau","pruneaux","oignon","amandes","miel","cannelle","pois chiches","bouillon"]}
 };
 /* Quantités par ingrédient (alignées sur ingredients[] de RECIPE_DB) */
 const RECIPE_QTY = {
@@ -4048,7 +4062,21 @@ const RECIPE_QTY = {
   "pates-carbonara": ["400 g", "200 g", "3", "100 g", "poivre", "10 cl"],
   "pates-bolognaise": ["400 g", "400 g", "500 g", "1", "1 gousse", "80 g"],
   "pates-pesto": ["400 g", "1 bouquet", "50 g", "50 g", "1 gousse", "5 cl", "5 cl"],
-  "pates-puttanesca": ["400 g", "400 g", "100 g", "2 cas", "3 gousses", "4", "1 pincée", "2 cas", "1 bouquet"]
+  "pates-puttanesca": ["400 g", "400 g", "100 g", "2 cas", "3 gousses", "4", "1 pincée", "2 cas", "1 bouquet"],
+  "raclette": ["1,5 kg", "400 g", "500 g", "1 pot", "2"],
+  "fondue": ["500 g", "25 cl", "1 gousse", "1 baguette", "1 pincée"],
+  "tartiflette": ["1 kg", "1 (450 g)", "200 g", "2", "10 cl", "15 cl"],
+  "blanquette-veau": ["1 kg", "4", "300 g", "2", "20 cl", "50 g", "40 g", "50 cl", "1"],
+  "pot-au-feu": ["1 kg", "4", "2", "1 clouté", "2", "1,5 L", "2 gousses"],
+  "poulet-basquaise": ["1 poulet (~1,5 kg)", "3", "4", "2", "3 gousses", "300 g"],
+  "coq-au-vin": ["1 poulet (~1,5 kg)", "200 g", "300 g", "2", "3 gousses", "75 cl", "20 cl", "50 g"],
+  "cassoulet": ["500 g", "2", "200 g", "150 g", "400 g", "2", "3 gousses", "50 g"],
+  "ragout-agneau": ["700 g", "3", "600 g", "1", "50 cl", "quelques brins"],
+  "gigot-agneau": ["1 gigot (~1,8 kg)", "4 gousses", "quelques brins", "1 kg", "3 cas"],
+  "pates-fruits-mer": ["400 g", "400 g", "1 kg", "250 g", "3 gousses", "15 cl", "1 bouquet"],
+  "cannelloni": ["250 g", "500 g", "400 g", "40 cl", "100 g", "1"],
+  "gnocchi": ["500 g", "400 g", "50 g", "1 bouquet", "20 g"],
+  "tajine-agneau": ["1 kg", "300 g", "2", "80 g", "2 cas", "1 cas", "400 g", "50 cl"]
 };
 
 /* Valeurs nutritionnelles APPROXIMATIVES par portion (kcal, protéines g). */
@@ -4083,7 +4111,14 @@ const RECIPE_NUTRITION = {
   "potage-legumes": {kcal:180, protein:6}, "paella-belge": {kcal:520, protein:38},
   "lasagnes-classiques": {kcal:580, protein:32}, "pates-carbonara": {kcal:620, protein:28},
   "pates-bolognaise": {kcal:580, protein:30}, "pates-pesto": {kcal:520, protein:18},
-  "pates-puttanesca": {kcal:480, protein:20}
+  "pates-puttanesca": {kcal:480, protein:20},
+  "raclette": {kcal:620, protein:26}, "fondue": {kcal:580, protein:24},
+  "tartiflette": {kcal:640, protein:24}, "blanquette-veau": {kcal:480, protein:36},
+  "pot-au-feu": {kcal:380, protein:34}, "poulet-basquaise": {kcal:520, protein:40},
+  "coq-au-vin": {kcal:560, protein:42}, "cassoulet": {kcal:540, protein:34},
+  "ragout-agneau": {kcal:470, protein:34}, "gigot-agneau": {kcal:520, protein:46},
+  "pates-fruits-mer": {kcal:490, protein:32}, "cannelloni": {kcal:590, protein:30},
+  "gnocchi": {kcal:480, protein:14}, "tajine-agneau": {kcal:520, protein:36}
 };
 function recipeNutritionRow(recipeId, factor){
   const n = RECIPE_NUTRITION[recipeId];
@@ -4175,7 +4210,21 @@ const RECIPE_INFO = {
   "pates-carbonara": {prep:10, cook:10, tools:["Casserole", "Poêle", "Bol", "Fouet"]},
   "pates-bolognaise": {prep:15, cook:15, tools:["Casserole", "Poêle", "Couteau"]},
   "pates-pesto": {prep:5, cook:10, tools:["Casserole", "Mixeur", "Couteau"]},
-  "pates-puttanesca": {prep:10, cook:10, tools:["Casserole", "Poêle", "Couteau"]}
+  "pates-puttanesca": {prep:10, cook:10, tools:["Casserole", "Poêle", "Couteau"]},
+  "raclette": {prep:15, cook:30, tools:["Appareil à raclette", "Casserole", "Couteau"]},
+  "fondue": {prep:15, cook:20, tools:["Caquelon", "Réchaud", "Fourchette à fondue", "Casserole"]},
+  "tartiflette": {prep:20, cook:40, tools:["Plat à gratin", "Casserole", "Grande poêle", "Couteau"]},
+  "blanquette-veau": {prep:20, cook:70, tools:["Cocotte", "Casserole (sauce)", "Écumoire", "Couteau"]},
+  "pot-au-feu": {prep:20, cook:130, tools:["Marmite", "Grande casserole", "Écumoire", "Couteau"]},
+  "poulet-basquaise": {prep:20, cook:40, tools:["Cocotte", "Casserole (riz)", "Couteau", "Spatule"]},
+  "coq-au-vin": {prep:25, cook:85, tools:["Cocotte", "Casserole", "Couteau", "Spatule"]},
+  "cassoulet": {prep:25, cook:155, tools:["Grande cocotte", "Casserole (haricots)", "Plat à gratin", "Couteau"]},
+  "ragout-agneau": {prep:15, cook:85, tools:["Cocotte", "Couteau", "Spatule"]},
+  "gigot-agneau": {prep:15, cook:65, tools:["Plat à rôtir", "Fourchette", "Économe", "Couteau"]},
+  "pates-fruits-mer": {prep:20, cook:15, tools:["Grande casserole", "Marmite (fruits de mer)", "Écumoire", "Couteau"]},
+  "cannelloni": {prep:25, cook:35, tools:["Poêle", "Casserole (béchamel)", "Plat à gratin", "Couteau"]},
+  "gnocchi": {prep:5, cook:10, tools:["Grande casserole", "Poêle", "Écumoire", "Couteau"]},
+  "tajine-agneau": {prep:20, cook:70, tools:["Tajine ou cocotte", "Casserole", "Couteau", "Spatule"]}
 };
 
 
@@ -4634,6 +4683,107 @@ const RECIPE_STEPS = {
     ["Ajouter tomates, olives, câpres, mijoter 10 min.",10,"Feu doux"],
     ["Mélanger pâtes + sauce, parsemer persil.",2],
     ["Servir immédiatement.",0]
+  ],
+  "raclette":[
+    ["Laver et cuire les pommes de terre en robe des champs.",30,"Feu vif"],
+    ["Préchauffer l'appareil à raclette.",0],
+    ["Quand les pommes de terre sont cuites, couper chacune en deux sans la séparer.",3],
+    ["Faire fondre le fromage dans les caquelons et déguster avec la charcuterie et les cornichons.",0]
+  ],
+  "fondue":[
+    ["Frotter l'intérieur du caquelon avec une gousse d'ail.",0],
+    ["Râper le fromage et le faire fondre à feu doux en remuant.",10,"Feu doux"],
+    ["Verser le vin blanc chaud petit à petit en fouettant.",6,"Feu doux"],
+    ["Ajouter une pincée de muscade et maintenir frémissant sur le réchaud.",0]
+  ],
+  "tartiflette":[
+    ["Cuire les pommes de terre en robe des champs.",25,"Feu vif"],
+    ["Faire revenir les lardons et l'oignon émincé.",5,"Feu moyen"],
+    ["Couper les pommes de terre en rondelles et les disposer dans le plat.",4],
+    ["Répartir lardons, oignon, vin blanc et crème.",2],
+    ["Couper le reblochon en deux et le poser, croûte vers le haut.",1],
+    ["Enfourner jusqu'à ce que le fromage soit gratiné.",20,"Four 200 °C"]
+  ],
+  "blanquette-veau":[
+    ["Couper la viande en morceaux et la plonger dans l'eau froide, porter à ébullition puis rincer.",5,"Feu vif"],
+    ["Faire revenir les oignons dans le beurre sans colorer.",4,"Feu doux"],
+    ["Ajouter la viande, saupoudrer de farine et remuer.",3,"Feu moyen"],
+    ["Mouiller avec le bouillon, ajouter carottes et champignons.",2],
+    ["Couvrir et laisser mijoter à feu doux jusqu'à ce que la viande soit tendre.",70,"Feu doux"],
+    ["Hors du feu, incorporer la crème et un filet de citron.",2],
+    ["Servir avec du riz ou des pommes vapeur.",0]
+  ],
+  "pot-au-feu":[
+    ["Placer la viande dans la marmite et couvrir d'eau froide.",0],
+    ["Porter à ébullition puis écumer.",10,"Feu vif"],
+    ["Ajouter les légumes, l'oignon clouté et l'ail.",3],
+    ["Couvrir et laisser mijoter doucement.",90,"Feu doux"],
+    ["Servir le bouillon puis la viande et les légumes arrosés de sel et moutarde.",0]
+  ],
+  "poulet-basquaise":[
+    ["Découper le poulet et le faire dorer dans la cocotte.",10,"Feu vif"],
+    ["Ajouter l'oignon et l'ail émincés.",3,"Feu moyen"],
+    ["Verser les poivrons en lanières et les tomates concassées.",3],
+    ["Saler, poivrer, couvrir et laisser mijoter.",30,"Feu doux"],
+    ["Cuire le riz et servir le poulet basquaise dessus.",0]
+  ],
+  "coq-au-vin":[
+    ["Faire dorer le poulet découpé dans le beurre.",8,"Feu vif"],
+    ["Ajouter lardons, oignons et champignons.",5,"Feu moyen"],
+    ["Flamber avec un peu de vin rouge puis ajouter le reste.",2,"Feu vif"],
+    ["Verser le bouillon, l'ail et le bouquet garni, couvrir.",2],
+    ["Laisser mijoter à feu doux jusqu'à ce que la viande soit fondante.",85,"Feu doux"],
+    ["Rectifier l'assaisonnement et servir.",0]
+  ],
+  "cassoulet":[
+    ["Faire tremper les haricots blancs la veille puis les cuire 45 min.",45,"Feu moyen"],
+    ["Faire dorer les saucisses et la viande de porc dans la cocotte.",8,"Feu vif"],
+    ["Ajouter oignon, ail, tomates et les haricots égouttés.",5,"Feu moyen"],
+    ["Couvrir d'eau et laisser mijoter à feu doux.",80,"Feu doux"],
+    ["Transférer dans un plat, parsemer de chapelure et gratiner.",25,"Four 190 °C"]
+  ],
+  "ragout-agneau":[
+    ["Faire dorer les morceaux d'agneau.",8,"Feu vif"],
+    ["Ajouter l'oignon émincé et les carottes.",4,"Feu moyen"],
+    ["Verser le bouillon et le thym, couvrir et mijoter.",60,"Feu doux"],
+    ["Ajouter les pommes de terre coupées en morceaux.",0],
+    ["Poursuivre la cuisson jusqu'à ce que tout soit bien tendre.",25,"Feu doux"],
+    ["Servir bien chaud.",0]
+  ],
+  "gigot-agneau":[
+    ["Préchauffer le four à 200 °C.",0],
+    ["Piquer le gigot d'ail et de romarin.",4],
+    ["Déposer le gigot dans le plat avec les pommes de terre et l'huile.",2],
+    ["Rôtir au four selon le poids.",65,"Four 200 °C"],
+    ["Laisser reposer 10 min avant de trancher.",10,"Four 200 °C"]
+  ],
+  "pates-fruits-mer":[
+    ["Cuire les spaghetti al dente.",9,"Feu vif"],
+    ["Faire revenir l'ail et les crevettes puis ajouter les moules et le vin blanc.",7,"Feu vif"],
+    ["Couvrir quelques minutes pour ouvrir les moules.",5,"Feu vif"],
+    ["Ajouter les tomates cerises et le persil, mélanger aux pâtes.",2,"Feu moyen"],
+    ["Servir immédiatement.",0]
+  ],
+  "cannelloni":[
+    ["Faire revenir l'oignon et la viande hachée.",7,"Feu moyen"],
+    ["Ajouter la sauce tomate et laisser réduire.",5,"Feu doux"],
+    ["Garnir les cannellonis et les disposer dans le plat.",10],
+    ["Napper de béchamel et parsemer de fromage râpé.",3],
+    ["Enfourner jusqu'à ce que ce soit doré.",25,"Four 200 °C"]
+  ],
+  "gnocchi":[
+    ["Cuire les gnocchis dans l'eau bouillante jusqu'à ce qu'ils remontent.",3,"Feu vif"],
+    ["Chauffer la sauce tomate dans une poêle avec le beurre.",5,"Feu moyen"],
+    ["Ajouter les gnocchis égouttés et mélanger.",3,"Feu moyen"],
+    ["Servir avec le parmesan et le basilic.",0]
+  ],
+  "tajine-agneau":[
+    ["Faire dorer l'agneau avec l'oignon.",8,"Feu vif"],
+    ["Ajouter cannelle, miel et bouillon, couvrir.",2],
+    ["Laisser mijoter à feu doux.",45,"Feu doux"],
+    ["Ajouter pruneaux, amandes et pois chiches cuits.",2],
+    ["Poursuivre la cuisson jusqu'à ce que la sauce soit onctueuse.",25,"Feu doux"],
+    ["Servir avec de la semoule.",0]
   ]
 };
 
