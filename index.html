@@ -1490,6 +1490,85 @@
   @media (prefers-reduced-motion: reduce){
     .pcard, .cart-count, .navbtn, .pcard-img > img, .new-banner, .new-chip .new-count{animation:none; transition:none;}
   }
+
+  /* =========== MENU HEBDO =========== */
+  .menu-week{
+    display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:12px 0;
+  }
+  .menu-day{
+    position:relative;
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:8px; min-height:140px; display:flex; flex-direction:column;
+    transition:box-shadow var(--transition), border-color var(--transition);
+  }
+  .menu-day:hover{box-shadow:var(--shadow-md); border-color:var(--line-strong);}
+  .menu-day.has-recipe{border-color:var(--green); box-shadow:0 0 0 2px var(--green-soft);}
+  .menu-day-label{
+    font-size:11px; font-weight:800; color:var(--ink-soft); text-align:center; margin-bottom:6px;
+    text-transform:uppercase; letter-spacing:0.5px;
+  }
+  .menu-day-slot{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; min-height:80px; cursor:pointer;
+    background:var(--paper-2); border-radius:var(--radius-sm);
+    transition:background var(--transition-fast);
+  }
+  .menu-day-slot:hover{background:var(--paper-3);}
+  .menu-day-slot.empty::after{
+    content:'+ Ajouter'; font-size:12px; font-weight:700; color:var(--ink-muted);
+  }
+  .menu-day-slot.has-recipe{cursor:default;}
+  .menu-day-thumb{
+    width:64px; height:64px; border-radius:var(--radius-sm); object-fit:cover; box-shadow:var(--shadow-sm);
+  }
+  .menu-day-name{
+    font-size:11.5px; font-weight:700; color:var(--ink); text-align:center; max-width:100%;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .menu-day-cost{
+    font-size:11px; font-weight:600; color:var(--green);
+  }
+  .menu-day-store{
+    font-size:10px; color:var(--ink-muted); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;
+  }
+  .menu-day-actions{
+    display:flex; gap:4px; margin-top:auto; padding-top:4px;
+  }
+  .menu-day-btn{
+    flex:1; font-size:10px; padding:4px 0; border-radius:var(--radius-xs); border:none; cursor:pointer;
+    font-weight:700; transition:transform var(--transition-instant);
+  }
+  .menu-day-btn:active{transform:scale(.95);}
+  .menu-day-btn.cook{background:var(--red); color:#fff;}
+  .menu-day-btn.swap{background:var(--paper-3); color:var(--ink); border:1px solid var(--line);}
+  .menu-day-btn.clear{background:var(--red-soft); color:var(--red);}
+
+  .gallery-filters{display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap;}
+  .gallery-filters input{flex:1; min-width:160px; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--card); font-size:13px;}
+  .gallery-filters select{padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--card); font-size:13px;}
+
+  .menu-summary{animation:fadeIn .3s ease;}
+  .mp-list{display:flex; flex-direction:column; gap:6px;}
+  .mp-day{display:flex; align-items:center; gap:10px; padding:8px 10px; background:var(--paper-2); border-radius:var(--radius-sm); border:1px solid var(--line);}
+  .mpd-name{font-weight:800; font-size:12px; color:var(--ink); min-width:60px;}
+  .mp-recipe{flex:1; font-size:12px; color:var(--ink-soft);}
+  .mpd-cost{font-weight:700; color:var(--green); font-size:12px;}
+  .mp-total{display:flex; justify-content:space-between; margin-top:10px; padding-top:8px; border-top:1px solid var(--line); font-weight:800; font-size:13px; color:var(--ink);}
+  .mp-total span:last-child{color:var(--green);}
+
+  .menu-gallery-section{margin-top:20px;}
+  .menu-gallery-section h3{font-size:1rem; font-weight:700; color:var(--ink);}
+
+  /* Animations */
+  @keyframes fadeIn{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
+  @keyframes popIn{from{opacity:0; transform:scale(.9);} to{opacity:1; transform:none;}}
+
+  /* Responsive */
+  @media (max-width: 480px){
+    .menu-week{grid-template-columns:repeat(7,1fr); gap:6px;}
+    .menu-day{min-height:130px; padding:6px;}
+    .menu-day-thumb{width:56px; height:56px;}
+  }
 </style>
 </head>
 <body>
@@ -1575,6 +1654,53 @@
     <div class="grid" id="recipeGrid"></div>
   </section>
 
+  <!-- MENU HEBDO VIEW -->
+  <section class="view" id="view-menuhebdo">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">📅 Menu Hebdo</h2>
+        <p class="section-sub" id="menuHebdoSub">Composez votre semaine : budget, photos, prix, magasins</p>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <span style="font-size:12px; color:var(--ink-soft);">Budget semaine</span>
+        <input type="range" id="menuBudgetRange" min="20" max="150" step="5" value="50" aria-label="Budget semaine en euros">
+        <output id="menuBudgetValue" style="font-weight:700; color:var(--red); min-width:48px; text-align:right;">50 €</output>
+      </div>
+    </div>
+
+    <!-- Semaine sélectionnée -->
+    <div class="menu-week" id="menuWeek" role="list" aria-label="Menu de la semaine">
+      <!-- Les 7 jours seront injectés ici -->
+    </div>
+
+    <!-- Galerie recettes filtrée par budget -->
+    <div class="menu-gallery-section">
+      <h3 style="margin:16px 0 8px; font-size:1rem; color:var(--ink);">📸 Recettes disponibles (budget ≤ <span id="galleryBudgetLabel">50</span> € / semaine)</h3>
+      <div class="gallery-filters">
+        <input type="search" id="menuSearch" placeholder="🔍 Rechercher recette ou ingrédient…" autocomplete="off" style="flex:1;">
+        <select id="menuFilterCat" style="width:auto; padding:6px 10px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--card);">
+          <option value="all">Toutes</option>
+          <option value="rapide">⚡ Rapide ≤20 min</option>
+          <option value="vege">🥦 Végétarien</option>
+          <option value="budget">💰 Économique</option>
+        </select>
+      </div>
+      <div class="grid" id="menuGallery" role="list" aria-label="Recettes disponibles"></div>
+    </div>
+
+    <!-- Récap & actions -->
+    <div class="menu-summary" id="menuSummary" style="display:none; margin-top:16px; padding:16px; background:var(--card); border-radius:var(--radius); border:1px solid var(--line);">
+      <h3 style="margin:0 0 12px;">🧾 Récapitulatif de la semaine</h3>
+      <div class="mp-list" id="menuSummaryList"></div>
+      <div class="mp-total" id="menuSummaryTotal"></div>
+      <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+        <button class="primary-btn" id="menuAddToCartBtn" onclick="menuHebdoAddToCart()">🛒 Ajouter tous les ingrédients au panier</button>
+        <button class="secondary-btn" id="menuCookBtn" onclick="menuHebdoOpenFirstCook()">🍳 Lancer le mode cuisson (Jour 1)</button>
+        <button class="secondary-btn" id="menuClearBtn" onclick="menuHebdoClear()">🗑️ Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
   <!-- STORES VIEW -->
   <section class="view" id="view-stores">
     <div class="section-head">
@@ -1638,12 +1764,16 @@
 <div class="navbar">
   <button class="navbtn" data-view="promos"><span class="ni">🏷️</span><span class="nav-label">Promos</span></button>
   <button class="navbtn" data-view="recettes"><span class="ni">🍳</span><span class="nav-label">Recettes</span></button>
+  <button class="navbtn" data-view="menuhebdo"><span class="ni">📅</span><span class="nav-label">Menu Hebdo</span></button>
   <button class="navbtn" data-view="favs" style="position:relative;"><span class="ni">♥</span><span class="nav-label">Favoris</span>
     <span class="cart-count" id="favCount" style="display:none;">0</span>
   </button>
   <button class="navbtn" data-view="stores"><span class="ni">🗺️</span><span class="nav-label">Magasins</span></button>
   <button class="navbtn" data-view="cart" style="position:relative;"><span class="ni">🛒</span><span class="nav-label"><span id="cartLabel">Panier</span></span>
     <span class="cart-count" id="cartCount" style="display:none;">0</span>
+  </button>
+  <button class="navbtn" id="themeBtn" aria-label="Thème jour/nuit">
+    <span class="ni" id="themeIcon">🌙</span>
   </button>
 </div>
 
@@ -2990,6 +3120,7 @@ function openProduct(id){
     ${np ? `<div class="pd-hist">🕰️ ${priceHistoryLine(p)}</div>` : ''}
     <button class="pd-compare" id="pdCompareBtn">💰 Comparer chez les autres magasins</button>
     <div class="pd-store"><img src="logos/${st.id}.logo.svg" alt="" style="height:18px;width:auto;vertical-align:-4px;margin-right:6px;" onerror="this.remove()"> ${st.name} · ${branchAddr(br) || st.addr} · 📍 ${fmtKm(br ? br.km : st.dist*1000)}</div>
+    <a href="https://www.google.com/maps/search/?api=1&query=${br.lat},${br.lng}" target="_blank" class="pd-map-link">Itinéraire</a>
     <h2 class="pd-name">${p.name}</h2>
     <div class="pd-price-row">
       ${discountPct(p)>0 && p.old != null && p.new != null ? `<span class="pd-old">${p.old.toFixed(2)} €</span>` : ''}
@@ -3064,7 +3195,7 @@ function renderCityList(){
   CITIES.forEach(c=>{
     const row = document.createElement('div');
     row.className = 'city-item';
-    row.innerHTML = `<span class="cn">${c.name}</span><span class="cp">${c.region} - ${c.cp}</span>`;
+    row.innerHTML = `<span class="cn">${c.name}</span> <span class="cp">${c.cp}</span>`;
     row.onclick = ()=>{
       setCity(c);
       closeSheet('citySheet');
@@ -3307,6 +3438,7 @@ function switchView(name){
   if(name==='cart') renderCart();
   if(name==='favs') renderFavs();
   if(name==='recettes') renderRecipes();
+  if(name==='menuhebdo') initMenuHebdo();
 }
 document.querySelectorAll('.navbtn').forEach(b=>{
   b.addEventListener('click', ()=>switchView(b.dataset.view));
@@ -3787,6 +3919,258 @@ function addRecipesToCart(ids){
   updateCartBadge();
   showToast('🍽️ Menu de ' + ids.length + ' repas ajouté au panier (' + n + ' articles)');
 }
+
+/* =========== MENU HEBDO =========== */
+const MENU_STATE = {
+  budget: 50,
+  selected: Array(7).fill(null), // recipe id per day
+  search: '',
+  filterCat: 'all',
+};
+
+function initMenuHebdo(){
+  // Budget range
+  const range = document.getElementById('menuBudgetRange');
+  const out = document.getElementById('menuBudgetValue');
+  range.value = MENU_STATE.budget;
+  out.textContent = MENU_STATE.budget + ' €';
+  range.oninput = ()=>{
+    MENU_STATE.budget = Number(range.value);
+    out.textContent = MENU_STATE.budget + ' €';
+    document.getElementById('galleryBudgetLabel').textContent = MENU_STATE.budget;
+    renderMenuGallery();
+    updateMenuWeekCosts();
+  };
+
+  // Search
+  document.getElementById('menuSearch').oninput = (e)=>{
+    MENU_STATE.search = e.target.value.trim().toLowerCase();
+    renderMenuGallery();
+  };
+  document.getElementById('menuFilterCat').onchange = (e)=>{
+    MENU_STATE.filterCat = e.target.value;
+    renderMenuGallery();
+  };
+
+  // Initial render
+  renderMenuWeek();
+  renderMenuGallery();
+}
+
+function getRecipeCostPerServing(id){
+  const r = RECIPE_DB[id];
+  if(!r) return 0;
+  return recipeFullCost(id);
+}
+
+function recipeFullCost(id){
+  const r = RECIPE_DB[id];
+  if(!r) return 0;
+  let total = 0;
+  r.ingredients.forEach(ing=>{
+    const promo = bestPromo(ing);
+    if(promo && promo.new){ total += promo.new; }
+    else { const e = ingrEstimate(ing); if(e) total += e.price; }
+  });
+  return total;
+}
+
+function getRecipeStoreSuggestion(id){
+  const r = RECIPE_DB[id];
+  if(!r) return {name:'—', addr:'—', cost:0};
+  let best = {name:'—', addr:'—', cost:0, storeId:null};
+  r.ingredients.forEach(ing=>{
+    const promo = bestPromo(ing);
+    if(promo){
+      const s = storeOf(promo.store);
+      if(s){
+        const br = storeBranch(promo.store);
+        const cost = promo.new;
+        if(!best.storeId || cost < best.cost){
+          best = {name:s.name, addr: br ? branchAddr(br) : s.addr, cost, storeId:promo.store};
+        }
+      }
+    }
+  });
+  return best;
+}
+
+function filterRecipesForGallery(){
+  const budget = MENU_STATE.budget;
+  const target = budget / 7;
+  const q = MENU_STATE.search;
+  const cat = MENU_STATE.filterCat;
+  return Object.entries(RECIPE_DB).map(([id, r])=>{
+    const cost = recipeFullCost(id);
+    const store = getRecipeStoreSuggestion(id);
+    const info = RECIPE_INFO[id] || null;
+    const time = info ? (info.prep + info.cook) : r.time;
+    const isRapide = time <= 20;
+    const isVege = isVegRecipe(r.ingredients);
+    const matchesQ = !q || r.name.toLowerCase().includes(q) || r.ingredients.some(i=>i.toLowerCase().includes(q));
+    const matchesCat = cat === 'all' || (cat === 'rapide' && isRapide) || (cat === 'vege' && isVege) || (cat === 'budget' && cost <= target * 1.2);
+    const matchesBudget = cost <= MENU_STATE.budget; // total recipe cost within weekly budget
+    return {id, r, cost, store, time, isRapide, isVege, matchesQ, matchesCat, matchesBudget, visible: matchesQ && matchesCat && matchesBudget};
+  }).filter(x=>x.visible);
+}
+
+function renderMenuGallery(){
+  const gallery = document.getElementById('menuGallery');
+  const recipes = filterRecipesForGallery();
+  if(!gallery) return;
+  gallery.innerHTML = recipes.map(s=>{
+    const r = s.r;
+    const store = s.store;
+    const cost = s.cost.toFixed(2).replace('.',',');
+    const isSel = MENU_STATE.selected.includes(s.id);
+    return `
+    <article class="pcard store-${r.id}" role="listitem" aria-label="${r.name}" data-recipe-id="${s.id}" style="${isSel ? 'border:2px solid var(--green); box-shadow:0 0 0 2px var(--green-soft);' : ''}">
+      <div class="pcard-img">
+        ${r.image ? `<img src="${r.image}" alt="${r.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
+        <span class="pcard-emoji-fallback" style="${r.image ? 'display:none;' : ''}">${r.emoji}</span>
+        ${isSel ? '<span class="badge-new" style="top:6px; right:6px; font-size:10px;">✅ Sélectionné</span>' : ''}
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">${r.name}</div>
+        <div class="pcard-dist">📍 ${s.store.addr || '—'} · 💰 ${s.cost.toFixed(2).replace('.',',')} €</div>
+        <div class="pcard-price">
+          <span class="new-price">${s.cost.toFixed(2).replace('.',',')}<span class="cents"> €</span></span>
+        </div>
+        <button class="pcard-add ${MENU_STATE.selected.includes(s.id) ? 'in-cart' : ''}" data-id="${s.id}" onclick="menuHebdoSelectRecipe('${s.id}')" style="width:100%; margin-top:8px;">
+          ${MENU_STATE.selected.includes(s.id) ? '✅ Dans le menu' : '+ Ajouter au menu'}
+        </button>
+      </div>
+    </article>`;
+  }).join('');
+  if(!gallery.innerHTML){
+    gallery.innerHTML = '<p style="color:var(--ink-soft); text-align:center; padding:20px;">Aucune recette ne correspond à ce budget / filtre.</p>';
+  }
+}
+
+function menuHebdoSelectRecipe(id){
+  // Find first empty day
+  const emptyIdx = MENU_STATE.selected.findIndex(x=>!x);
+  if(emptyIdx === -1){
+    showToast('⚠️ Les 7 jours sont déjà remplis. Retirez d\'abord une recette.');
+    return;
+  }
+  MENU_STATE.selected[emptyIdx] = id;
+  renderMenuWeek();
+  renderMenuGallery();
+  updateMenuWeekCosts();
+  showToast('✅ Recette ajoutée au ' + WEEK_DAYS[emptyIdx]);
+}
+
+function menuHebdoRemoveDay(idx){
+  MENU_STATE.selected[idx] = null;
+  renderMenuWeek();
+  renderMenuGallery();
+  updateMenuWeekCosts();
+}
+
+function renderMenuWeek(){
+  const weekEl = document.getElementById('menuWeek');
+  if(!weekEl) return;
+  weekEl.innerHTML = WEEK_DAYS.map((day, idx)=>{
+    const recipeId = MENU_STATE.selected[idx];
+    const r = recipeId ? RECIPE_DB[recipeId] : null;
+    const store = recipeId ? getRecipeStoreSuggestion(recipeId) : null;
+    const cost = recipeId ? recipeFullCost(recipeId).toFixed(2).replace('.',',') : '';
+    const img = r ? r.image : '';
+    const emoji = r ? r.emoji : '';
+    const name = r ? r.name : '';
+    const storeName = store ? store.name : '';
+    const storeAddr = store ? store.addr : '';
+    return `
+    <article class="menu-day ${recipeId ? 'has-recipe' : ''}" role="listitem" aria-label="${day}">
+      <div class="menu-day-label">📅 ${day}</div>
+      <div class="menu-day-slot ${recipeId ? 'has-recipe' : 'empty'}" ${!recipeId ? `onclick="menuHebdoOpenGalleryForDay(${idx})"` : ''}>
+        ${recipeId ? `
+          <img class="menu-day-thumb" src="${img}" alt="${name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span class="pcard-emoji-fallback" style="${img ? 'display:none;' : ''}">${emoji}</span>
+          <div class="menu-day-name">${name}</div>
+          <div class="menu-day-cost">${cost} €</div>
+          <div class="menu-day-store">${storeName} · ${storeAddr}</div>
+          <div class="menu-day-actions">
+            <button class="menu-day-btn cook" onclick="openRecipeModal('${recipeId}')">🍳 Cuisson</button>
+            <button class="menu-day-btn swap" onclick="menuHebdoOpenGalleryForDay(${idx})">🔄 Changer</button>
+            <button class="menu-day-btn clear" onclick="menuHebdoRemoveDay(${idx})">✕</button>
+          </div>
+        ` : ''}
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function menuHebdoOpenGalleryForDay(idx){
+  // Scroll to gallery and highlight
+  const gallery = document.getElementById('menuGallery');
+  if(gallery) gallery.scrollIntoView({behavior:'smooth'});
+  // Store which day we're editing
+  window._menuEditDay = idx;
+  // Highlight gallery items
+  renderMenuGallery();
+}
+
+function updateMenuWeekCosts(){
+  const total = MENU_STATE.selected.reduce((sum, id)=> sum + (id ? recipeFullCost(id) : 0), 0);
+  const budget = MENU_STATE.budget;
+  const over = total > budget;
+  const summary = document.getElementById('menuSummary');
+  const list = document.getElementById('menuSummaryList');
+  const totalEl = document.getElementById('menuSummaryTotal');
+  if(!summary || !list) return;
+  
+  const hasAny = MENU_STATE.selected.some(x=>x);
+  summary.style.display = hasAny ? 'block' : 'none';
+  if(!hasAny) return;
+  
+  list.innerHTML = MENU_STATE.selected.map((id, idx)=>{
+    if(!id) return '';
+    const r = RECIPE_DB[id];
+    const cost = recipeFullCost(id);
+    const store = getRecipeStoreSuggestion(id);
+    return `<div class="mp-day">
+      <span class="mpd-name">📅 ${WEEK_DAYS[idx]}</span>
+      <span class="mp-recipe">${r.emoji} ${r.name} · ${store.name} · ${cost.toFixed(2).replace('.',',')} €</span>
+      <span class="mpd-cost">${cost.toFixed(2).replace('.',',')} €</span>
+    </div>`;
+  }).join('');
+  
+  totalEl.innerHTML = `<span>Total 7 repas${total > MENU_STATE.budget ? ' (⚠ dépasse le budget)' : ''}</span><span style="color:${total > MENU_STATE.budget ? 'var(--red)' : 'var(--green)'}">${total.toFixed(2).replace('.',',')} € / ${MENU_STATE.budget} €</span>`;
+}
+
+function menuHebdoAddToCart(){
+  const ids = MENU_STATE.selected.filter(x=>x);
+  if(!ids.length){
+    showToast('⚠️ Aucun repas sélectionné.');
+    return;
+  }
+  addRecipesToCart(ids);
+  showToast('🛒 ' + ids.length + ' recettes ajoutées au panier');
+}
+
+function menuHebdoOpenFirstCook(){
+  const first = MENU_STATE.selected.find(x=>x);
+  if(first) openRecipeModal(first);
+  else showToast('⚠️ Aucun repas dans le menu.');
+}
+
+function menuHebdoClear(){
+  MENU_STATE.selected = Array(7).fill(null);
+  renderMenuWeek();
+  renderMenuGallery();
+  updateMenuWeekCosts();
+  showToast('🗑️ Menu réinitialisé');
+}
+
+// Expose for inline onclick
+window.menuHebdoSelectRecipe = menuHebdoSelectRecipe;
+window.menuHebdoRemoveDay = menuHebdoRemoveDay;
+window.menuHebdoOpenGalleryForDay = menuHebdoOpenGalleryForDay;
+window.menuHebdoAddToCart = menuHebdoAddToCart;
+window.menuHebdoOpenFirstCook = menuHebdoOpenFirstCook;
+window.menuHebdoClear = menuHebdoClear;
 
 function renderCartIdeas(){
   const result = document.getElementById('cartIdeasResult');
@@ -5933,6 +6317,22 @@ function startOnboarding(){
     t.textContent = (document.getElementById('cookChecklist').style.display == 'block' ? 'Masquer checklist' : '🥕 Ingrédients à préparer (checklist)') + ` (${done}/${items.length})`;
   }
   /* Fin fonctions additionnelles */
+(function(){const html=document.documentElement;const themeBtn=document.getElementById('themeBtn');const themeIcon=document.getElementById('themeIcon');const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;function setTheme(dark){html.dataset.theme=dark?'dark':'light';localStorage.setItem('pa_theme',dark?'dark':'light');themeIcon.textContent=dark?'☀️':'🌙';}setTheme(localStorage.getItem('pa_theme')==='dark'||(!localStorage.getItem('pa_theme')&&prefersDark));themeBtn.addEventListener('click',()=>setTheme(!html.dataset.theme=='dark'));})();
 </script>
+<style>
+/* Adresse ellipsis & distance icon */
+.saddr, .pcard-dist, .store-km {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+  display: inline-block;
+}
+.store-km { max-width: 130px; }
+.pcard-dist::before, .store-km::before {
+  content: "📍 ";
+  margin-right: 2px;
+}
+</style>
 </body>
 </html>
