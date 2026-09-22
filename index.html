@@ -507,19 +507,6 @@
   .onboarding-tooltip .ob-text{font-size:var(--font-sm); color:var(--ink-soft); line-height:var(--line-relaxed); margin-bottom:var(--space-3);}
   .onboarding-tooltip .ob-actions{display:flex; justify-content:flex-end;}
 
-  /* =========== Theme Toggle Icon =========== */
-  #themeBtn{position:relative; overflow:hidden;}
-  #themeBtn::before{
-    content:'🌙';
-    display:block;
-    transition:transform var(--transition), opacity var(--transition);
-  }
-  :root[data-theme="light"] #themeBtn::before{content:'☀️';}
-  @media (prefers-color-scheme: light){
-    :root:not([data-theme="dark"]) #themeBtn::before{content:'☀️';}
-  }
-  #themeBtn:active{transform:scale(.92);}
-
   /* =========== Reduced Motion =========== */
   @media (prefers-reduced-motion: reduce){
     .pcard, .cart-count, .navbtn, .pcard-img > img,
@@ -1589,7 +1576,6 @@
     </button>
     <div class="top-actions">
       <button class="icon-btn" id="installBtn" style="display:none;" title="Installer l'application">📲</button>
-      <button class="icon-btn" id="themeBtn" title="Mode sombre">🌙</button>
       <button class="icon-btn" id="pwaUpdateBtn" style="display:none;" title="Nouvelle version">🆕</button>
     </div>
   </div>
@@ -1642,48 +1628,31 @@
       <button class="primary-btn" id="cartIdeasBtn" onclick="renderCartIdeas()">🛒 Idées recettes avec mon panier</button>
       <div id="cartIdeasResult"></div>
     </div>
-    <div class="menu-plan-box" id="mealPlanBox">
-      <div class="mpl-label">🧾 Menu de la semaine (7 repas)</div>
-      <div class="mpl-row">
-        <input type="number" id="mealPlanBudget" min="5" max="120" step="1" value="40" aria-label="Budget de la semaine en euros">
-        <span style="font-size:12px; font-weight:700; color:var(--ink-soft);">€ / semaine</span>
-        <button class="rchip active" onclick="generateMealPlan()">✨ Générer</button>
-      </div>
-      <div id="mealPlanResult"></div>
-    </div>
-    <div class="grid" id="recipeGrid"></div>
-  </section>
-
-  <!-- MENU HEBDO VIEW -->
-  <section class="view" id="view-menuhebdo">
-    <div class="section-head">
-      <div>
-        <h2 class="section-title">📅 Menu Hebdo</h2>
-        <p class="section-sub" id="menuHebdoSub">Composez votre semaine : budget, photos, prix, magasins</p>
-      </div>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <span style="font-size:12px; color:var(--ink-soft);">Budget semaine</span>
-        <input type="range" id="menuBudgetRange" min="20" max="150" step="5" value="50" aria-label="Budget semaine en euros">
+    <div class="menu-plan-box" id="menuPlanBox">
+      <div class="mpl-label">📅 Menu Hebdo — Budget semaine</div>
+      <div class="mpl-row" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <span style="font-size:12px; color:var(--ink-soft);">Budget</span>
+        <input type="range" id="menuBudgetRange" min="20" max="150" step="5" value="50" aria-label="Budget semaine en euros" style="flex:1; max-width:180px;">
         <output id="menuBudgetValue" style="font-weight:700; color:var(--red); min-width:48px; text-align:right;">50 €</output>
       </div>
     </div>
 
     <!-- Semaine sélectionnée -->
-    <div class="menu-week" id="menuWeek" role="list" aria-label="Menu de la semaine">
-      <!-- Les 7 jours seront injectés ici -->
-    </div>
+    <div class="menu-week" id="menuWeek" role="list" aria-label="Menu de la semaine" style="display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:12px 0;"></div>
 
     <!-- Galerie recettes filtrée par budget -->
-    <div class="menu-gallery-section">
-      <h3 style="margin:16px 0 8px; font-size:1rem; color:var(--ink);">📸 Recettes disponibles (budget ≤ <span id="galleryBudgetLabel">50</span> € / semaine)</h3>
-      <div class="gallery-filters">
-        <input type="search" id="menuSearch" placeholder="🔍 Rechercher recette ou ingrédient…" autocomplete="off" style="flex:1;">
-        <select id="menuFilterCat" style="width:auto; padding:6px 10px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--card);">
-          <option value="all">Toutes</option>
-          <option value="rapide">⚡ Rapide ≤20 min</option>
-          <option value="vege">🥦 Végétarien</option>
-          <option value="budget">💰 Économique</option>
-        </select>
+    <div class="menu-gallery-section" style="margin-top:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+        <h3 style="margin:0; font-size:1rem; font-weight:700; color:var(--ink);">📸 Recettes disponibles (budget ≤ <span id="galleryBudgetLabel">50</span> € / semaine)</h3>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <input type="search" id="menuSearch" placeholder="🔍 Rechercher recette ou ingrédient…" autocomplete="off" style="flex:1; min-width:160px; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--card); font-size:13px;">
+          <select id="menuFilterCat" style="width:auto; padding:6px 10px; border-radius:var(--radius-sm); border:1px solid var(--line); background:var(--card); font-size:13px;">
+            <option value="all">Toutes</option>
+            <option value="rapide">⚡ Rapide ≤20 min</option>
+            <option value="vege">🥦 Végétarien</option>
+            <option value="budget">💰 Économique</option>
+          </select>
+        </div>
       </div>
       <div class="grid" id="menuGallery" role="list" aria-label="Recettes disponibles"></div>
     </div>
@@ -1699,6 +1668,7 @@
         <button class="secondary-btn" id="menuClearBtn" onclick="menuHebdoClear()">🗑️ Réinitialiser</button>
       </div>
     </div>
+    <div class="grid" id="recipeGrid"></div>
   </section>
 
   <!-- STORES VIEW -->
@@ -1764,16 +1734,12 @@
 <div class="navbar">
   <button class="navbtn" data-view="promos"><span class="ni">🏷️</span><span class="nav-label">Promos</span></button>
   <button class="navbtn" data-view="recettes"><span class="ni">🍳</span><span class="nav-label">Recettes</span></button>
-  <button class="navbtn" data-view="menuhebdo"><span class="ni">📅</span><span class="nav-label">Menu Hebdo</span></button>
   <button class="navbtn" data-view="favs" style="position:relative;"><span class="ni">♥</span><span class="nav-label">Favoris</span>
     <span class="cart-count" id="favCount" style="display:none;">0</span>
   </button>
   <button class="navbtn" data-view="stores"><span class="ni">🗺️</span><span class="nav-label">Magasins</span></button>
   <button class="navbtn" data-view="cart" style="position:relative;"><span class="ni">🛒</span><span class="nav-label"><span id="cartLabel">Panier</span></span>
     <span class="cart-count" id="cartCount" style="display:none;">0</span>
-  </button>
-  <button class="navbtn" id="themeBtn" aria-label="Thème jour/nuit">
-    <span class="ni" id="themeIcon">🌙</span>
   </button>
 </div>
 
@@ -2369,7 +2335,6 @@ function applyTheme(){
   if(state.theme === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); }
   else if(state.theme === 'light'){ document.documentElement.setAttribute('data-theme','light'); }
   else { document.documentElement.removeAttribute('data-theme'); }
-  document.getElementById('themeBtn')?.setAttribute('title', state.theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre');
 }
 function initTheme(){
   const saved = localStorage.getItem('pa_theme');
@@ -2377,12 +2342,6 @@ function initTheme(){
   applyTheme();
 }
 initTheme();
-document.getElementById('themeBtn').addEventListener('click', ()=>{
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  state.theme = isDark ? 'light' : 'dark';
-  localStorage.setItem('pa_theme', state.theme);
-  applyTheme();
-});
 
 /* ---------------------------------------------------------
    RENDER: chips
@@ -3447,8 +3406,7 @@ function switchView(name){
   if(name==='stores') renderStores();
   if(name==='cart') renderCart();
   if(name==='favs') renderFavs();
-  if(name==='recettes') renderRecipes();
-  if(name==='menuhebdo') initMenuHebdo();
+  if(name==='recettes'){ renderRecipes(); initMenuHebdo(); }
 }
 document.querySelectorAll('.navbtn').forEach(b=>{
   b.addEventListener('click', ()=>switchView(b.dataset.view));
@@ -6368,7 +6326,6 @@ function startOnboarding(){
     t.textContent = (document.getElementById('cookChecklist').style.display == 'block' ? 'Masquer checklist' : '🥕 Ingrédients à préparer (checklist)') + ` (${done}/${items.length})`;
   }
   /* Fin fonctions additionnelles */
-(function(){const html=document.documentElement;const themeBtn=document.getElementById('themeBtn');const themeIcon=document.getElementById('themeIcon');const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;function setTheme(dark){html.dataset.theme=dark?'dark':'light';localStorage.setItem('pa_theme',dark?'dark':'light');themeIcon.textContent=dark?'☀️':'🌙';}setTheme(localStorage.getItem('pa_theme')==='dark'||(!localStorage.getItem('pa_theme')&&prefersDark));themeBtn.addEventListener('click',()=>setTheme(!html.dataset.theme=='dark'));})();
 </script>
 <style>
 /* Adresse ellipsis & distance icon */

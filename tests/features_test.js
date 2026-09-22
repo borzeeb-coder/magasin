@@ -109,13 +109,15 @@ async function recipeFeaturesChecks(page, check) {
   await page.waitForTimeout(500);
   check(await page.locator('#recentRecipes .recent-chip').count() >= 1, 'bande recettes récemment consultées rendue');
 
-  // Menu de la semaine : 7 repas sous budget générés
-  check(await page.locator('#mealPlanBudget').count() === 1, 'champ budget du menu de la semaine présent');
-  await page.evaluate(() => generateMealPlan());
-  await page.waitForTimeout(400);
-  check(await page.locator('#mealPlanResult .mp-day').count() === 7, 'menu de 7 repas généré (7 jours)');
-  check((await page.locator('#mealPlanResult .mp-total').textContent()).includes('€'), 'total du menu affiché');
-  await page.evaluate(() => document.getElementById('mealPlanResult').innerHTML = '');
+  // Menu Hebdo : budget slider + 7 jours + galerie recettes
+  check(await page.locator('#menuBudgetRange').count() === 1, 'slider budget Menu Hebdo présent');
+  check(await page.locator('#menuWeek').count() === 1, 'grille 7 jours Menu Hebdo présente');
+  check(await page.locator('#menuGallery').count() === 1, 'galerie recettes Menu Hebdo présente');
+  // Test budget slider interaction
+  await page.fill('#menuBudgetRange', '80');
+  await page.waitForTimeout(300);
+  const budgetVal = await page.$eval('#menuBudgetValue', el => el.textContent);
+  check(budgetVal.includes('80'), 'budget slider mis à jour (' + budgetVal + ')');
 
   // Panier : boutons comparateur / lien / scan présents
   await page.locator('.navbtn[data-view="cart"]').click();
