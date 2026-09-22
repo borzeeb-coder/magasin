@@ -1552,7 +1552,7 @@
 
   /* Responsive */
   @media (max-width: 480px){
-    .menu-week{grid-template-columns:1fr; gap:8px;}
+    .menu-week{grid-template-columns:repeat(2,1fr); gap:8px;}
     .menu-day{min-height:100px; padding:8px;}
     .menu-day-thumb{width:56px; height:56px;}
     .menu-day-label{font-size:10px;}
@@ -1653,7 +1653,7 @@
     </div>
 
     <!-- Semaine sélectionnée -->
-    <div class="menu-week" id="menuWeek" role="list" aria-label="Menu de la semaine" style="display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:12px 0;"></div>
+    <div class="menu-week" id="menuWeek" role="list" aria-label="Menu de la semaine" style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:12px 0;"></div>
 
     <!-- Galerie recettes filtrée par budget -->
     <div class="menu-gallery-section" style="margin-top:20px;">
