@@ -1554,25 +1554,28 @@
 @media (max-width: 480px){
     .menu-week{grid-template-columns:repeat(2,1fr); gap:8px;}
     .menu-day{min-height:150px; height:150px; padding:10px; display:flex; flex-direction:column; overflow:hidden;}
-    .menu-day-thumb{width:90px; height:90px; border-radius:var(--radius-sm); object-fit:cover;}
-    .menu-day-label{font-size:11px;}
-    .menu-day-name{font-size:11px; line-height:1.2;}
-    .menu-day-cost{font-size:11px;}
-    .menu-day-store{font-size:10px;}
-    .menu-day-actions{gap:6px; margin-top:auto; padding-top:6px;}
-    .menu-day-btn{font-size:12px; padding:10px 0; min-height:40px; border-radius:var(--radius-sm); font-weight:700;}
+    .menu-day-header{display:flex; justify-content:space-between; align-items:center; gap:8px; padding-bottom:4px; border-bottom:1px solid var(--line); flex-shrink:0;}
+    .menu-day-label{font-size:12px; font-weight:800; color:var(--ink); white-space:nowrap;}
+    .menu-day-recipe{font-size:11px; font-weight:600; color:var(--green); text-align:right; max-width:65%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .menu-day-thumb{width:80px; height:80px; border-radius:var(--radius-sm); object-fit:cover; align-self:center;}
+    .menu-day-info{display:flex; flex-direction:column; gap:2px; flex:1; min-height:0; overflow:hidden;}
+    .menu-day-name{font-size:11px; font-weight:700; color:var(--ink); line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .menu-day-cost{font-size:11px; font-weight:700; color:var(--green);}
+    .menu-day-store{font-size:9px; color:var(--ink-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+    .menu-day-actions{gap:4px; margin-top:auto; padding-top:4px; flex-shrink:0;}
+    .menu-day-btn{font-size:11px; padding:8px 0; min-height:36px; border-radius:var(--radius-sm); font-weight:700;}
     .gallery-filters input{min-width:100%;}
     .menu-gallery-section h3{font-size:1rem;}
     .grid{grid-template-columns:1fr;}
     .menu-gallery{grid-template-columns:repeat(2,1fr);}
     .promo-grid{grid-template-columns:repeat(2,1fr);}
     .recipe-grid{grid-template-columns:repeat(2,1fr);}
-    .pcard{padding:12px;}
+    .pcard{padding:10px;}
     .pcard-img{aspect-ratio:1/1; border-radius:var(--radius-sm);}
     .pcard-img img{width:100%; height:100%; object-fit:cover;}
-    .pcard-name{font-size:14px; line-height:1.3;}
-    .pcard-price{font-size:14px;}
-    .pcard-add{padding:10px; font-size:13px;}
+    .pcard-name{font-size:13px; line-height:1.3;}
+    .pcard-price{font-size:13px;}
+    .pcard-add{padding:8px; font-size:12px;}
 
     /* Recipe view (fiche recette) */
     .pd-img{height:160px; margin:10px 0 12px;}
@@ -4162,14 +4165,19 @@ function renderMenuWeek(){
     const storeAddr = store ? store.addr : '';
     return `
     <article class="menu-day ${recipeId ? 'has-recipe' : ''}" role="listitem" aria-label="${day}">
-      <div class="menu-day-label">📅 ${day}</div>
+      <div class="menu-day-header">
+        <span class="menu-day-label">📅 ${day}</span>
+        ${recipeId ? `<span class="menu-day-recipe">${name}</span>` : ''}
+      </div>
       <div class="menu-day-slot ${recipeId ? 'has-recipe' : 'empty'}" ${!recipeId ? `onclick="menuHebdoOpenGalleryForDay(${idx})"` : ''}>
         ${recipeId ? `
           <img class="menu-day-thumb" src="${img}" alt="${name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <span class="pcard-emoji-fallback" style="${img ? 'display:none;' : ''}">${emoji}</span>
-          <div class="menu-day-name">${name}</div>
-          <div class="menu-day-cost">${cost} €</div>
-          <div class="menu-day-store">${storeName} · ${storeAddr}</div>
+          <div class="menu-day-info">
+            <div class="menu-day-name">${name}</div>
+            <div class="menu-day-cost">${cost} €</div>
+            <div class="menu-day-store">${storeName} · ${storeAddr}</div>
+          </div>
           <div class="menu-day-actions">
             <button class="menu-day-btn cook" onclick="openRecipeModal('${recipeId}')">👨‍🍳 Cuisson</button>
             <button class="menu-day-btn swap" onclick="menuHebdoOpenGalleryForDay(${idx})">🔄 Changer</button>
