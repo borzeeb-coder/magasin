@@ -1798,8 +1798,18 @@
   </div>
 </div>
 
-<!-- Shopping list sheet -->
-<div class="sheet" id="shoppingListSheet">
+<!-- Image Lightbox -->
+  <div class="sheet" id="imageLightbox" style="display:none; z-index:1000;">
+    <div class="sheet-handle"></div>
+    <button class="sheet-close" data-close>✕</button>
+    <div class="sheet-inner" style="padding:0; max-width:95vw; max-height:95vh; overflow:hidden;">
+      <img id="lightboxImg" src="" alt="" style="max-width:100%; max-height:85vh; object-fit:contain; display:block; margin:0 auto;">
+      <div id="lightboxInfo" style="padding:12px 16px; text-align:center; color:var(--ink); font-size:14px; font-weight:600;"></div>
+    </div>
+  </div>
+
+  <!-- Shopping list sheet -->
+  <div class="sheet" id="shoppingListSheet">
   <div class="sheet-handle"></div>
   <button class="sheet-close" data-close>✕</button>
   <div class="sheet-inner">
@@ -3474,6 +3484,47 @@ document.querySelectorAll('[data-close]').forEach(b=>{
 });
 document.getElementById('overlay').addEventListener('click', ()=>{
   document.querySelectorAll('.sheet.show').forEach(s=>closeSheet(s.id));
+});
+
+/* =========== IMAGE LIGHTBOX =========== */
+function openImageLightbox(src, title){
+  const lb = document.getElementById('imageLightbox');
+  const img = document.getElementById('lightboxImg');
+  const info = document.getElementById('lightboxInfo');
+  if(!lb || !img) return;
+  img.src = src;
+  img.alt = title || '';
+  info.textContent = title || '';
+  lb.style.display = 'flex';
+  lb.classList.add('show');
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeImageLightbox(){
+  const lb = document.getElementById('imageLightbox');
+  if(!lb) return;
+  lb.classList.remove('show');
+  lb.style.display = 'none';
+  const anyOpen = document.querySelectorAll('.sheet.show').length;
+  if(!anyOpen) document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', (e)=>{
+  // Click on recipe image in gallery or day slot
+  const img = e.target.closest('.pcard-img img, .menu-day-thumb, .pd-img img, .recipe-card img, .pcard-img .pcard-emoji-fallback');
+  if(img && img.tagName === 'IMG' && img.src && !img.src.includes('data:')){
+    e.preventDefault();
+    const title = img.alt || img.closest('.pcard')?.querySelector('.pcard-name')?.textContent || img.closest('.menu-day')?.querySelector('.menu-day-name')?.textContent || '';
+    openImageLightbox(img.src, title);
+  }
+});
+document.getElementById('imageLightbox')?.addEventListener('click', (e)=>{
+  if(e.target.id === 'imageLightbox' || e.target.id === 'lightboxImg'){
+    closeImageLightbox();
+  }
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeImageLightbox();
 });
 
 /* ---------------------------------------------------------
