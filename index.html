@@ -1489,7 +1489,7 @@
     transition:box-shadow var(--transition), border-color var(--transition);
   }
   .menu-day:hover{box-shadow:var(--shadow-md); border-color:var(--line-strong);}
-  .menu-day.has-recipe{border-color:var(--green); box-shadow:0 0 0 2px var(--green-soft);}
+  .menu-day.has-recipe{border-color:var(--line); box-shadow:none;}
   .menu-day-label{
     font-size:11px; font-weight:800; color:var(--ink-soft); text-align:center; margin-bottom:6px;
     text-transform:uppercase; letter-spacing:0.5px;
@@ -4152,9 +4152,9 @@ function renderMenuWeek(){
           <div class="menu-day-cost">${cost} €</div>
           <div class="menu-day-store">${storeName} · ${storeAddr}</div>
           <div class="menu-day-actions">
-            <button class="menu-day-btn cook" onclick="openRecipeModal('${recipeId}')">🍳 Cuisson</button>
+            <button class="menu-day-btn cook" onclick="openRecipeModal('${recipeId}')">👨‍🍳 Cuisson</button>
             <button class="menu-day-btn swap" onclick="menuHebdoOpenGalleryForDay(${idx})">🔄 Changer</button>
-            <button class="menu-day-btn clear" onclick="menuHebdoRemoveDay(${idx})">✕</button>
+            <button class="menu-day-btn clear" onclick="menuHebdoRemoveDay(${idx})">🗑️ Retirer</button>
           </div>
         ` : ''}
       </div>
