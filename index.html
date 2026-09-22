@@ -1766,6 +1766,7 @@
         <span id="budgetGaugeSpent">0,00 €</span>
         <span id="budgetGaugeBudget">/ 40 €</span>
       </div>
+      <input type="hidden" id="cartBudgetInput" value="40">
     </div>
     <div id="cartList"></div>
     <div class="totals" id="cartTotals"></div>
@@ -2796,9 +2797,9 @@ function renderCart(){
 }
 function updateBudgetGauge(){
   const gauge = document.getElementById('budgetGauge');
-  const budgetInput = document.getElementById('mealPlanBudget');
-  if(!gauge || !budgetInput) return;
-  const budget = Number(budgetInput.value) || 40;
+  if(!gauge) return;
+  const budgetInput = document.getElementById('mealPlanBudget') || document.getElementById('cartBudgetInput');
+  const budget = budgetInput ? (Number(budgetInput.value) || 40) : 40;
   const t = cartTotals();
   const spent = t.promo;
   const pct = Math.min(200, Math.round((spent / budget) * 100));
@@ -3508,15 +3509,23 @@ function openImageLightbox(src, title){
   lb.classList.add('show');
   document.getElementById('overlay').classList.add('show');
   document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${window.scrollY}px`;
+  document.body.style.width = '100%';
 }
 function closeImageLightbox(){
   const lb = document.getElementById('imageLightbox');
   if(!lb) return;
+  const scrollY = document.body.style.top ? -parseInt(document.body.style.top) : window.scrollY;
   lb.classList.remove('show');
   lb.style.display = 'none';
   const anyOpen = document.querySelectorAll('.sheet.show').length;
   if(!anyOpen) document.getElementById('overlay').classList.remove('show');
   document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, scrollY);
 }
 document.addEventListener('click', (e)=>{
   // Click on recipe image in gallery or day slot
