@@ -1696,6 +1696,7 @@
         <input type="range" id="menuBudgetRange" min="20" max="150" step="5" value="50" aria-label="Budget semaine en euros" style="flex:1; max-width:180px;">
         <output id="menuBudgetValue" style="font-weight:700; color:var(--red); min-width:48px; text-align:right;">50 €</output>
         <button class="secondary-btn" onclick="menuHebdoAutoFill()" style="margin-left:auto; white-space:nowrap;">🤖 Auto-choisir</button>
+        <button class="primary-btn" onclick="menuHebdoAutoFillAndAdd()" style="white-space:nowrap;">🤖➡️🛒 Tout ajouter</button>
       </div>
     </div>
 
@@ -4281,6 +4282,13 @@ function menuHebdoAutoFill(){
   showToast('🤖 Menu auto-rempli selon votre budget !');
 }
 
+function menuHebdoAutoFillAndAdd(){
+  menuHebdoAutoFill();
+  setTimeout(() => {
+    menuHebdoAddToCart();
+  }, 100);
+}
+
 function menuHebdoClear(){
   MENU_STATE.selected = Array(7).fill(null);
   renderMenuWeek();
@@ -4296,6 +4304,7 @@ window.menuHebdoOpenGalleryForDay = menuHebdoOpenGalleryForDay;
 window.menuHebdoAddToCart = menuHebdoAddToCart;
 window.menuHebdoOpenFirstCook = menuHebdoOpenFirstCook;
 window.menuHebdoClear = menuHebdoClear;
+window.menuHebdoAutoFillAndAdd = menuHebdoAutoFillAndAdd;
 
 function renderCartIdeas(){
   const result = document.getElementById('cartIdeasResult');
