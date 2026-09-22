@@ -1478,7 +1478,7 @@
     .pcard, .cart-count, .navbtn, .pcard-img > img, .new-banner, .new-chip .new-count{animation:none; transition:none;}
   }
 
-  /* =========== MENU HEBDO =========== */
+/* =========== MENU HEBDO =========== */
   .menu-week{
     display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:12px 0;
   }
@@ -1552,9 +1552,23 @@
 
   /* Responsive */
   @media (max-width: 480px){
-    .menu-week{grid-template-columns:repeat(7,1fr); gap:6px;}
-    .menu-day{min-height:130px; padding:6px;}
+    .menu-week{grid-template-columns:1fr; gap:8px;}
+    .menu-day{min-height:100px; padding:8px;}
     .menu-day-thumb{width:56px; height:56px;}
+    .menu-day-label{font-size:10px;}
+    .menu-day-name{font-size:10.5px;}
+    .menu-day-cost{font-size:10px;}
+    .menu-day-store{font-size:9px;}
+    .menu-day-actions{gap:3px;}
+    .menu-day-btn{font-size:9px; padding:3px 0;}
+    .gallery-filters input{min-width:100%;}
+    .menu-gallery-section h3{font-size:0.95rem;}
+    .grid{grid-template-columns:1fr;}
+    .pcard{padding:10px;}
+    .pcard-img{aspect-ratio:1/1;}
+    .pcard-name{font-size:13px; line-height:1.3;}
+    .pcard-price{font-size:13px;}
+    .pcard-add{padding:8px; font-size:12px;}
   }
 </style>
 </head>
@@ -1634,6 +1648,7 @@
         <span style="font-size:12px; color:var(--ink-soft);">Budget</span>
         <input type="range" id="menuBudgetRange" min="20" max="150" step="5" value="50" aria-label="Budget semaine en euros" style="flex:1; max-width:180px;">
         <output id="menuBudgetValue" style="font-weight:700; color:var(--red); min-width:48px; text-align:right;">50 €</output>
+        <button class="secondary-btn" onclick="menuHebdoAutoFill()" style="margin-left:auto; white-space:nowrap;">🤖 Auto-choisir</button>
       </div>
     </div>
 
@@ -4163,6 +4178,39 @@ function menuHebdoOpenFirstCook(){
   const first = MENU_STATE.selected.find(x=>x);
   if(first) openRecipeModal(first);
   else showToast('⚠️ Aucun repas dans le menu.');
+}
+
+function menuHebdoAutoFill(){
+  const budget = MENU_STATE.budget;
+  const target = budget / 7;
+  const scored = Object.entries(RECIPE_DB).map(([id, r])=>{
+    const cost = recipeFullCost(id);
+    const matches = r.ingredients.map(bestPromo).filter(Boolean);
+    const promoRatio = matches.length / r.ingredients.length;
+    let score = promoRatio * 10 - cost * 1.5;
+    if(cost <= target) score += 5;
+    return {id, r, cost, promoRatio, score};
+  }).sort((a,b)=> b.score - a.score);
+
+  const picked = [], usedFam = new Set();
+  for(const s of scored){
+    if(picked.length >= 7) break;
+    const fam = norm(s.r.name.split(' ')[0]);
+    if(usedFam.has(fam)) continue;
+    if(s.cost > target * 1.35) continue;
+    picked.push(s); usedFam.add(fam);
+  }
+  const pickedIds = new Set(picked.map(s=>s.id));
+  for(const s of scored){
+    if(picked.length >= 7) break;
+    if(pickedIds.has(s.id)) continue;
+    picked.push(s); pickedIds.add(s.id);
+  }
+  MENU_STATE.selected = picked.map(s=>s.id);
+  renderMenuWeek();
+  renderMenuGallery();
+  updateMenuWeekCosts();
+  showToast('🤖 Menu auto-rempli selon votre budget !');
 }
 
 function menuHebdoClear(){
