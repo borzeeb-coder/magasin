@@ -4013,7 +4013,21 @@ const RECIPE_DB = {
   "cottage-pie": {name:"Cottage pie", emoji:"🥧", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cottage%20pie.jpg?width=960", servings:6, time:70, ingredients:["viande hachée","pommes de terre","carottes","oignon","maïs","beurre","lait"]},
   "tikka-masala": {name:"Poulet tikka masala", emoji:"🍛", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Chicken%20tikka%20masala.jpg?width=960", servings:4, time:45, ingredients:["poulet","yaourt","tomates","ail","gingembre","curry","riz"]},
   "curry-vert": {name:"Curry vert thaï", emoji:"🍛", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Green%20curry.jpg?width=960", servings:4, time:40, ingredients:["poulet","lait coco","pâte de curry vert","aubergines","haricots verts","basilic","riz"]},
-  "jambalaya": {name:"Jambalaya", emoji:"🥘", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Jambalaya.jpg?width=960", servings:6, time:55, ingredients:["riz","poulet","chorizo","crevettes","poivrons","tomates","oignon","céleri"]}
+  "jambalaya": {name:"Jambalaya", emoji:"🥘", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Jambalaya.jpg?width=960", servings:6, time:55, ingredients:["riz","poulet","chorizo","crevettes","poivrons","tomates","oignon","céleri"]},
+  "shepherd-pie": {name:"Shepherd's pie", emoji:"🥧", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Shepherd%20pie.jpg?width=960", servings:6, time:80, ingredients:["agneau","pommes de terre","carottes","oignon","petits pois","beurre","lait","bouillon"]},
+  "salade-chicons": {name:"Salade de chicons", emoji:"🥗", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Salade%20de%20chicons.jpg?width=960", servings:4, time:15, ingredients:["chicons","pommes","noix","fromage bleu","vinaigre","moutarde","huile"]},
+  "gumbo": {name:"Gumbo cajun", emoji:"🍲", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gumbo.jpg?width=960", servings:6, time:70, ingredients:["poulet","saucisse","crevettes","poivrons","oignon","céleri","haricots verts","riz","bouillon"]},
+  "etouffee": {name:"Étouffée de crevettes", emoji:"🦐", image:"https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89touff%C3%A9e.jpg?width=960", servings:4, time:45, ingredients:["crevettes","beurre","oignon","poivrons","céleri","riz","bouillon","crème fraîche"]},
+  "poivrons-farcis": {name:"Poivrons farcis", emoji:"🫑", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Poivrons%20farcis.jpg?width=960", servings:4, time:60, ingredients:["poivrons","viande hachée","riz","oignon","tomates","fromage râpé","herbes"]},
+  "soupe-poisson": {name:"Soupe de poisson", emoji:"🥣", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Soupe%20de%20poisson.jpg?width=960", servings:6, time:50, ingredients:["poisson","tomates","oignon","ail","fenouil","bouillon","croûtons"]},
+  "bouillabaisse": {name:"Bouillabaisse", emoji:"🐟", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Bouillabaisse.jpg?width=960", servings:6, time:70, ingredients:["poisson","moules","crevettes","tomates","oignon","ail","fenouil","safran","bouillon"]},
+  "gratin-courgettes": {name:"Gratin de courgettes", emoji:"🥒", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gratin%20de%20courgettes.jpg?width=960", servings:4, time:40, ingredients:["courgettes","œufs","crème fraîche","fromage râpé","ail","herbes"]},
+  "soupe-tomate": {name:"Soupe de tomates", emoji:"🍅", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tomato%20soup.jpg?width=960", servings:4, time:35, ingredients:["tomates","oignon","ail","bouillon","crème fraîche","basilic"]},
+  "gaufres-liege": {name:"Gaufres de Liège", emoji:"🧇", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gaufres%20de%20Li%C3%A8ge.jpg?width=960", servings:8, time:50, ingredients:["farine","levure","lait","œufs","beurre","sucre","sucre perlé","vanille"]},
+  "riz-au-lait": {name:"Riz au lait", emoji:"🍚", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Riz%20au%20lait.jpg?width=960", servings:6, time:55, ingredients:["riz","lait","sucre","vanille","œufs","cannelle"]},
+  "creme-brulee": {name:"Crème brûlée", emoji:"🍮", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cr%C3%A8me%20br%C3%BBl%C3%A9e.jpg?width=960", servings:6, time:60, ingredients:["crème fraîche","lait","œufs","sucre","vanille"]},
+  "tarte-pomme": {name:"Tarte aux pommes", emoji:"🍎", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Tarte%20aux%20pommes.jpg?width=960", servings:6, time:60, ingredients:["pommes","pâte brisée","beurre","sucre","cannelle","œufs","crème fraîche"]},
+  "crepes": {name:"Crêpes", emoji:"🥞", image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cr%C3%AAtes.jpg?width=960", servings:4, time:30, ingredients:["farine","lait","œufs","sucre","beurre","vanille","sel"]}
 };
 /* Quantités par ingrédient (alignées sur ingredients[] de RECIPE_DB) */
 const RECIPE_QTY = {
@@ -4104,7 +4118,21 @@ const RECIPE_QTY = {
   "cottage-pie": ["500 g", "800 g", "3", "1", "200 g", "50 g", "20 cl"],
   "tikka-masala": ["500 g", "150 g", "400 g", "2 gousses", "2 cm", "2 cas", "300 g"],
   "curry-vert": ["400 g", "40 cl", "3 cas", "1", "200 g", "1 bouquet", "300 g"],
-  "jambalaya": ["400 g", "300 g", "200 g", "300 g", "2", "400 g", "1", "2 branches"]
+  "jambalaya": ["400 g", "300 g", "200 g", "300 g", "2", "400 g", "1", "2 branches"],
+  "shepherd-pie": ["700 g", "800 g", "3", "1", "200 g", "50 g", "20 cl", "30 cl"],
+  "salade-chicons": ["4", "2", "80 g", "100 g", "3 cas", "1 cas", "4 cas"],
+  "gumbo": ["400 g", "200 g", "300 g", "2", "1", "2 branches", "300 g", "400 g", "1 L"],
+  "etouffee": ["400 g", "60 g", "2", "2", "2 branches", "300 g", "50 cl", "15 cl"],
+  "poivrons-farcis": ["4", "400 g", "150 g", "1", "400 g", "80 g", "quelques brins"],
+  "soupe-poisson": ["600 g", "400 g", "1", "2 gousses", "1 bulbe", "1 L", "quelques"],
+  "bouillabaisse": ["800 g", "500 g", "300 g", "400 g", "2", "3 gousses", "1 bulbe", "1 pincée", "1 L"],
+  "gratin-courgettes": ["4", "3", "20 cl", "100 g", "1 gousse", "quelques brins"],
+  "soupe-tomate": ["1 kg", "1", "1 gousse", "50 cl", "10 cl", "1 bouquet"],
+  "gaufres-liege": ["500 g", "20 g", "25 cl", "3", "200 g", "80 g", "250 g", "1 gousse"],
+  "riz-au-lait": ["200 g", "1 L", "100 g", "1 gousse", "3", "1 cas"],
+  "creme-brulee": ["40 cl", "10 cl", "5", "120 g", "1 gousse"],
+  "tarte-pomme": ["6", "1 rouleau", "60 g", "80 g", "1 cas", "2", "15 cl"],
+  "crepes": ["250 g", "50 cl", "3", "3 cas", "40 g", "1 sachet", "1 pincée"]
 };
 
 /* Valeurs nutritionnelles APPROXIMATIVES par portion (kcal, protéines g). */
@@ -4153,7 +4181,14 @@ const RECIPE_NUTRITION = {
   "oeufs-mayo": {kcal:320, protein:14}, "soupe-champignons": {kcal:180, protein:6},
   "ratatouille": {kcal:260, protein:6}, "chicons-gratin": {kcal:320, protein:16},
   "cottage-pie": {kcal:520, protein:26}, "tikka-masala": {kcal:540, protein:36},
-  "curry-vert": {kcal:520, protein:32}, "jambalaya": {kcal:560, protein:36}
+  "curry-vert": {kcal:520, protein:32}, "jambalaya": {kcal:560, protein:36},
+  "shepherd-pie": {kcal:540, protein:30}, "salade-chicons": {kcal:260, protein:8},
+  "gumbo": {kcal:520, protein:34}, "etouffee": {kcal:480, protein:30},
+  "poivrons-farcis": {kcal:420, protein:22}, "soupe-poisson": {kcal:240, protein:20},
+  "bouillabaisse": {kcal:320, protein:28}, "gratin-courgettes": {kcal:280, protein:14},
+  "soupe-tomate": {kcal:180, protein:6}, "gaufres-liege": {kcal:330, protein:7},
+  "riz-au-lait": {kcal:260, protein:8}, "creme-brulee": {kcal:300, protein:6},
+  "tarte-pomme": {kcal:290, protein:4}, "crepes": {kcal:180, protein:6}
 };
 function recipeNutritionRow(recipeId, factor){
   const n = RECIPE_NUTRITION[recipeId];
@@ -4273,7 +4308,21 @@ const RECIPE_INFO = {
   "cottage-pie": {prep:25, cook:35, tools:["Poêle", "Casserole (purée)", "Presse-purée", "Plat à gratin"]},
   "tikka-masala": {prep:20, cook:25, tools:["Casserole", "Poêle", "Casserole (riz)", "Couteau"]},
   "curry-vert": {prep:20, cook:20, tools:["Casserole", "Casserole (riz)", "Couteau"]},
-  "jambalaya": {prep:20, cook:35, tools:["Grande casserole", "Cochen (ou faitout)", "Couteau"]}
+  "jambalaya": {prep:20, cook:35, tools:["Grande casserole", "Cochen (ou faitout)", "Couteau"]},
+  "shepherd-pie": {prep:25, cook:45, tools:["Poêle", "Casserole (purée)", "Presse-purée", "Plat à gratin"]},
+  "salade-chicons": {prep:15, cook:0, tools:["Saladier", "Couteau", "Fouet"]},
+  "gumbo": {prep:25, cook:45, tools:["Grande casserole", "Couteau", "Casserole (riz)", "Spatule"]},
+  "etouffee": {prep:20, cook:25, tools:["Poêle", "Casserole (riz)", "Couteau"]},
+  "poivrons-farcis": {prep:25, cook:35, tools:["Plat à four", "Poêle", "Casserole (riz)", "Couteau"]},
+  "soupe-poisson": {prep:20, cook:30, tools:["Grande casserole", "Mixeur plongeant", "Couteau"]},
+  "bouillabaisse": {prep:25, cook:45, tools:["Grande marmite", "Écumoire", "Couteau"]},
+  "gratin-courgettes": {prep:15, cook:25, tools:["Plat à gratin", "Saladier", "Fouet", "Couteau"]},
+  "soupe-tomate": {prep:15, cook:20, tools:["Grande casserole", "Mixeur plongeant", "Couteau"]},
+  "gaufres-liege": {prep:20, cook:30, tools:["Gaufrier", "Saladier", "Fouet", "Casserole"]},
+  "riz-au-lait": {prep:5, cook:50, tools:["Casserole", "Casserole (culot)", "Casserole", "Cuillère en bois"]},
+  "creme-brulee": {prep:15, cook:45, tools:["Casserole", "Fouet", "Ramequins", "Chalumeau"]},
+  "tarte-pomme": {prep:25, cook:35, tools:["Moule à tarte", "Économe", "Couteau", "Four"]},
+  "crepes": {prep:15, cook:15, tools:["Saladier", "Fouet", "Poêle à crêpes", "Spatule"]}
 };
 
 /* Étapes de préparation écrites (option B) : chaque recette a sa vraie méthode.
@@ -4929,6 +4978,110 @@ const RECIPE_STEPS = {
     ["Couvrir et laisser absorber à feu doux.",20,"Feu doux"],
     ["Ajouter les crevettes en fin de cuisson.",3,"Feu doux"],
     ["Servir bien chaud.",0]
+  ],
+  "shepherd-pie":[
+    ["Faire revenir l'oignon et l'agneau haché.",8,"Feu moyen"],
+    ["Ajouter carottes, petits pois et bouillon, laisser réduire.",10,"Feu doux"],
+    ["Préparer la purée avec beurre et lait.",4],
+    ["Disposer la viande dans le plat et couvrir de purée.",3],
+    ["Enfourner jusqu'à ce que le dessus soit doré.",20,"Four 200 °C"],
+    ["Servir bien chaud.",0]
+  ],
+  "salade-chicons":[
+    ["Couper les chicons en lanières.",4],
+    ["Éplucher et couper les pommes en dés.",3],
+    ["Préparer la vinaigrette avec la moutarde.",2],
+    ["Mélanger chicons, pommes, noix et fromage bleu.",2],
+    ["Assaisonner et servir frais.",0]
+  ],
+  "gumbo":[
+    ["Faire dorer le poulet et la saucisse en morceaux.",8,"Feu vif"],
+    ["Ajouter oignon, céleri, poivrons et faire revenir.",6,"Feu moyen"],
+    ["Verser le bouillon et les haricots verts.",2],
+    ["Laisser mijoter à feu doux.",20,"Feu doux"],
+    ["Ajouter le riz et les crevettes en fin de cuisson.",12,"Feu doux"],
+    ["Servir bien chaud.",0]
+  ],
+  "etouffee":[
+    ["Faire fondre le beurre et le roux (farine + beurre).",5,"Feu doux"],
+    ["Ajouter oignon, poivrons et céleri.",6,"Feu moyen"],
+    ["Verser le bouillon et laisser épaissir.",10,"Feu doux"],
+    ["Ajouter les crevettes et la crème.",5,"Feu doux"],
+    ["Servir sur le riz blanc.",0]
+  ],
+  "poivrons-farcis":[
+    ["Cuire le riz.",12,"Feu vif"],
+    ["Couper le haut des poivrons et retirer les graines.",5],
+    ["Faire revenir l'oignon et la viande hachée, ajouter tomates et riz.",8,"Feu moyen"],
+    ["Garnir les poivrons et parsemer de fromage.",3],
+    ["Enfourner jusqu'à ce que les poivrons soient tendres.",25,"Four 200 °C"],
+    ["Parsemer d'herbes avant de servir.",0]
+  ],
+  "soupe-poisson":[
+    ["Émincer oignon, ail et fenouil.",5],
+    ["Les faire revenir dans l'huile.",5,"Feu moyen"],
+    ["Ajouter les tomates, le poisson et le bouillon.",2],
+    ["Laisser mijoter 20 min puis mixer.",20,"Feu doux"],
+    ["Rectifier, servir avec les croûtons.",0]
+  ],
+  "bouillabaisse":[
+    ["Émincer oignon, ail et fenouil.",5],
+    ["Faire revenir le tout dans l'huile d'olive.",5,"Feu moyen"],
+    ["Ajouter tomates, safran et bouillon.",2],
+    ["Porter à ébullition puis ajouter les poissons fermes.",10,"Feu vif"],
+    ["Ajouter moules et crevettes en fin de cuisson.",8,"Feu moyen"],
+    ["Servir avec des croûtons et de la rouille.",0]
+  ],
+  "gratin-courgettes":[
+    ["Laver et couper les courgettes en rondelles.",5],
+    ["Les faire revenir à la poêle avec l'ail.",6,"Feu moyen"],
+    ["Battre les œufs avec la crème et le fromage.",2],
+    ["Verser sur les courgettes dans le plat.",2],
+    ["Gratiner au four jusqu'à dorure.",20,"Four 200 °C"],
+    ["Parsemer d'herbes et servir.",0]
+  ],
+  "soupe-tomate":[
+    ["Émincer oignon et ail.",4],
+    ["Faire revenir dans l'huile.",4,"Feu moyen"],
+    ["Ajouter les tomates et le bouillon.",2],
+    ["Laisser mijoter 15 min puis mixer avec la crème.",15,"Feu doux"],
+    ["Garnir de basilic et servir.",0]
+  ],
+  "gaufres-liege":[
+    ["Mélanger farine, levure, sucre et sel.",3],
+    ["Ajouter lait, œufs et beurre fondu, mélanger jusqu'à pâte lisse.",4],
+    ["Incorporer le sucre perlé délicatement.",2],
+    ["Faire cuire dans le gaufrier jusqu'à ce qu'elles soient dorées.",10,"Gaufrier"],
+    ["Servir tièdes.",0]
+  ],
+  "riz-au-lait":[
+    ["Rincer le riz puis le plonger dans le lait bouillant.",2,"Feu vif"],
+    ["Laisser mijoter à feu doux en remuant souvent.",40,"Feu doux"],
+    ["Ajouter le sucre, la vanille et les jaunes d'œufs hors du feu.",3],
+    ["Verser dans des ramequins et laisser refroidir.",0],
+    ["Saupoudrer de cannelle avant de servir.",0]
+  ],
+  "creme-brulee":[
+    ["Préchauffer le four à 120 °C.",0],
+    ["Faire chauffer crème et lait avec la vanille.",5,"Feu doux"],
+    ["Fouetter les jaunes avec le sucre puis verser dessus.",3],
+    ["Répartir dans les ramequins et cuire au bain-marie.",45,"Four 120 °C"],
+    ["Laisser refroidir puis caraméliser le dessus au chalumeau.",3,"Chalumeau"]
+  ],
+  "tarte-pomme":[
+    ["Étaler la pâte dans le moule.",2],
+    ["Éplucher et couper les pommes en fines tranches.",8],
+    ["Disposer les pommes en rosace sur la pâte.",3],
+    ["Mélanger beurre, sucre, cannelle et crème puis verser.",2],
+    ["Enfourner jusqu'à ce que ce soit doré.",35,"Four 200 °C"],
+    ["Servir tiède ou froid.",0]
+  ],
+  "crepes":[
+    ["Mélanger farine, sucre, sel et vanille dans un saladier.",3],
+    ["Ajouter les œufs puis le lait progressivement en fouettant.",4],
+    ["Laisser reposer la pâte 30 min.",0],
+    ["Faire cuire les crêpes une à une dans la poêle beurrée.",15,"Poêle chaude"],
+    ["Servir nature ou avec du sucre.",0]
   ]
 };
 
