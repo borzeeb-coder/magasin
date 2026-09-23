@@ -798,6 +798,9 @@
     transition:color var(--transition-fast);
   }
   .navbtn .ni{font-size:22px; line-height:1; transition:transform var(--transition-fast);}
+  .navbtn .ni.promo-logo{display:flex; align-items:center; justify-content:center;}
+  .navbtn .ni.promo-logo svg{display:block; filter:drop-shadow(0 1px 2px rgba(0,0,0,.28));}
+  .navbtn.active .ni.promo-logo svg{filter:drop-shadow(0 0 4px rgba(255,77,46,.55));}
   .navbtn.active{
     color:var(--green);
   }
@@ -1837,7 +1840,7 @@
 </main>
 
 <div class="navbar">
-  <button class="navbtn" data-view="promos"><span class="ni">🏷️</span><span class="nav-label">Promos</span></button>
+  <button class="navbtn" data-view="promos"><span class="ni promo-logo"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><defs><linearGradient id="promoLogoGx" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset=".55" stop-color="#ff4d2e"/><stop offset="1" stop-color="#c2220f"/></linearGradient></defs><rect x="1.6" y="1.6" width="20.8" height="20.8" rx="6.4" fill="url(#promoLogoGx)"/><rect x="4.9" y="4.9" width="14.2" height="14.2" rx="4.6" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="1.1"/><path d="M10.1 16.1 14 7.9" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/><circle cx="14.6" cy="7.4" r="1.5" fill="#fff"/><circle cx="9.5" cy="16.6" r="1.5" fill="#fff"/></svg></span><span class="nav-label">Promos</span></button>
   <button class="navbtn" data-view="recettes"><span class="ni">🍳</span><span class="nav-label">Recettes</span></button>
   <button class="navbtn" data-view="favs" style="position:relative;"><span class="ni">♥</span><span class="nav-label">Favoris</span>
     <span class="cart-count" id="favCount" style="display:none;">0</span>
