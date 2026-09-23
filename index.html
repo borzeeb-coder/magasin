@@ -1519,11 +1519,12 @@
     font-size:10px; color:var(--ink-muted); text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;
   }
   .menu-day-actions{
-    display:flex; gap:4px; margin-top:auto; padding-top:4px;
+    display:flex; gap:4px; margin-top:auto; padding-top:4px; min-width:0;
   }
   .menu-day-btn{
-    flex:1; font-size:10px; padding:4px 0; border-radius:var(--radius-xs); border:none; cursor:pointer;
+    flex:1; min-width:0; font-size:10px; padding:4px 0; border-radius:var(--radius-xs); border:none; cursor:pointer;
     font-weight:700; transition:transform var(--transition-instant);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   }
   .menu-day-btn:active{transform:scale(.95);}
   .menu-day-btn.cook{background:var(--red); color:#fff;}
@@ -1553,17 +1554,18 @@
   /* Responsive */
 @media (max-width: 480px){
     .menu-week{grid-template-columns:repeat(2,1fr); gap:6px;}
-    .menu-day{min-height:140px; height:140px; padding:8px; display:flex; flex-direction:column; overflow:hidden;}
+    .menu-day{min-height:160px; height:160px; padding:8px; display:flex; flex-direction:column; overflow:hidden;}
     .menu-day-header{display:flex; justify-content:space-between; align-items:center; gap:6px; padding-bottom:3px; border-bottom:1px solid var(--line); flex-shrink:0;}
     .menu-day-label{font-size:11px; font-weight:800; color:var(--ink); white-space:nowrap;}
     .menu-day-recipe{font-size:10px; font-weight:600; color:var(--green); text-align:right; max-width:65%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-    .menu-day-thumb{width:100%; max-width:80px; aspect-ratio:1/1; border-radius:var(--radius-sm); object-fit:cover; align-self:center; flex-shrink:0;}
+    .menu-day-slot.has-recipe{justify-content:flex-start; overflow:hidden;}
+    .menu-day-thumb{width:100%; max-width:56px; aspect-ratio:1/1; border-radius:var(--radius-sm); object-fit:cover; align-self:center; flex-shrink:0;}
     .menu-day-info{display:flex; flex-direction:column; gap:1px; flex:1; min-height:0; overflow:hidden;}
     .menu-day-name{font-size:10px; font-weight:700; color:var(--ink); line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-    .menu-day-cost{font-size:10px; font-weight:700; color:var(--green);}
+    .menu-day-cost{font-size:9.5px; font-weight:700; color:var(--green); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .menu-day-store{font-size:8px; color:var(--ink-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-    .menu-day-actions{gap:3px; margin-top:auto; padding-top:3px; flex-shrink:0;}
-    .menu-day-btn{font-size:10px; padding:6px 0; min-height:32px; border-radius:var(--radius-sm); font-weight:700;}
+    .menu-day-actions{gap:2px; margin-top:2px; padding-top:0; flex-shrink:0; min-width:0;}
+    .menu-day-btn{font-size:9px; padding:5px 2px; min-height:26px; border-radius:var(--radius-sm); font-weight:700; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
     .gallery-filters input{min-width:100%;}
     .menu-gallery-section h3{font-size:0.95rem;}
     .grid{grid-template-columns:1fr;}
