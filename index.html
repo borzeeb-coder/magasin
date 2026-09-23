@@ -3518,6 +3518,7 @@ function openSheet(id){
   document.getElementById(id).classList.add('show');
 }
 function closeSheet(id){
+  if(id === 'imageLightbox'){ closeImageLightbox(); return; }
   document.getElementById(id).classList.remove('show');
   const anyOpen = document.querySelectorAll('.sheet.show').length;
   if(!anyOpen) document.getElementById('overlay').classList.remove('show');
@@ -3525,10 +3526,12 @@ function closeSheet(id){
 document.querySelectorAll('[data-close]').forEach(b=>{
   b.addEventListener('click', (e)=>{
     const sheet = e.target.closest('.sheet');
+    if(sheet && sheet.id === 'imageLightbox'){ closeImageLightbox(); return; }
     closeSheet(sheet.id);
   });
 });
 document.getElementById('overlay').addEventListener('click', ()=>{
+  if(document.getElementById('imageLightbox').classList.contains('show')) closeImageLightbox();
   document.querySelectorAll('.sheet.show').forEach(s=>closeSheet(s.id));
 });
 
@@ -3544,10 +3547,13 @@ function openImageLightbox(src, title){
   lb.style.display = 'flex';
   lb.classList.add('show');
   document.getElementById('overlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
-  document.body.style.top = `-${window.scrollY}px`;
-  document.body.style.width = '100%';
+  if(!document.body.style.position){
+    const sc = window.scrollY;
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${sc}px`;
+    document.body.style.width = '100%';
+  }
 }
 function closeImageLightbox(){
   const lb = document.getElementById('imageLightbox');
@@ -3568,10 +3574,11 @@ document.addEventListener('click', (e)=>{
   const img = e.target.closest('.pcard-img img, .menu-day-thumb, .pd-img img, .recipe-card img, .pcard-img .pcard-emoji-fallback');
   if(img && img.tagName === 'IMG' && img.src && !img.src.includes('data:')){
     e.preventDefault();
+    e.stopPropagation();
     const title = img.alt || img.closest('.pcard')?.querySelector('.pcard-name')?.textContent || img.closest('.menu-day')?.querySelector('.menu-day-name')?.textContent || '';
     openImageLightbox(img.src, title);
   }
-});
+}, true);
 document.getElementById('imageLightbox')?.addEventListener('click', (e)=>{
   if(e.target.id === 'imageLightbox' || e.target.id === 'lightboxImg'){
     closeImageLightbox();
