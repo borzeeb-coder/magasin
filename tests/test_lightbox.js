@@ -5,7 +5,7 @@ const {chromium} = require('playwright');
   const errors = [];
   page.on('pageerror', e=>errors.push(e.message));
   page.on('console', m=>{if(m.type()==='error') errors.push(m.text());});
-  await page.goto('http://127.0.0.1:8123/', {waitUntil:'networkidle'});
+  await page.goto('http://127.0.0.1:8765/', {waitUntil:'networkidle'});
   await page.waitForTimeout(1000);
   
   // Go to Recettes (Menu Hebdo is now integrated there)
@@ -13,11 +13,11 @@ const {chromium} = require('playwright');
   await page.waitForTimeout(800);
   
   // Wait for gallery to have cards
-  await page.waitForFunction(() => document.querySelectorAll('#menuGallery .pcard').length > 0, {timeout:5000});
+  await page.waitForFunction(() => document.querySelectorAll('#menuGallery .recipe-thumb img').length > 0, {timeout:5000});
   await page.waitForTimeout(300);
   
   // Click first recipe image in the gallery
-  const firstImg = await page.$('#menuGallery .pcard-img img');
+  const firstImg = await page.$('#menuGallery .recipe-thumb img');
   if(firstImg){
     const src = await firstImg.getAttribute('src');
     console.log('First image src:', src);

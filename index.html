@@ -731,6 +731,9 @@
   }
   .menu-gallery-btn:active{transform:scale(.96);}
   .menu-gallery-btn.cook{background:var(--red-soft); color:var(--red); border-color:transparent;}
+  .recipe-card.sel-in-menu{border:2px solid var(--green); box-shadow:0 0 0 2px var(--green-soft);}
+  .menu-gallery-actions{margin-top:auto; padding-top:8px; display:flex; flex-direction:column;}
+  .menu-gallery-actions .pcard-add{margin-top:0;}
 
   /* =========== Skeleton (loading) =========== */
   .sk-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
@@ -998,7 +1001,7 @@
   .recipe-thumb{position:relative; height:132px; background:var(--paper-2); overflow:hidden; flex-shrink:0;}
   .recipe-thumb img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease;}
   .recipe-card:hover .recipe-thumb img{transform:scale(1.06);}
-  .recipe-thumb::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,18,12,0) 50%, rgba(20,18,12,.38));}
+  .recipe-thumb::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,18,12,0) 50%, rgba(20,18,12,.38)); pointer-events:none;}
   .recipe-thumb.img-failed{background:linear-gradient(135deg, var(--green-soft), var(--blue-soft)); display:flex; align-items:center; justify-content:center;}
   .recipe-thumb.img-failed::after{display:none;}
   .recipe-thumb.img-failed .recipe-emoji{position:static; font-size:46px; filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));}
@@ -1596,6 +1599,12 @@
     .menu-gallery-section h3{font-size:0.95rem;}
     .grid{grid-template-columns:1fr;}
     .menu-gallery{grid-template-columns:repeat(2,1fr);}
+    .menu-gallery .recipe-thumb{height:110px;}
+    .menu-gallery .recipe-info{padding:10px 10px 12px; gap:4px;}
+    .menu-gallery .recipe-info h3{font-size:13px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
+    .menu-gallery .recipe-meta{font-size:10.5px; gap:2px 8px;}
+    .menu-gallery .cost-perperson{font-size:11.5px; padding:2px 8px;}
+    .menu-gallery .cost-total{font-size:10.5px;}
     .promo-grid{grid-template-columns:repeat(2,1fr);}
     .recipe-grid{grid-template-columns:repeat(2,1fr);}
     .pcard{padding:10px;}
@@ -4143,27 +4152,54 @@ function renderMenuGallery(){
   gallery.innerHTML = recipes.map(s=>{
     const r = s.r;
     const store = s.store;
-    const cost = s.cost.toFixed(2).replace('.',',');
     const isSel = MENU_STATE.selected.includes(s.id);
+    const favs = getRecipeFavs();
+    const isFav = favs.indexOf(s.id) >= 0;
+    const matches = r.ingredients.map(ing => {
+      const promos = PRODUCTS.filter(p => matchesIng(ing, p.name)).sort((a,b) => (priceOf(a)||999) - (priceOf(b)||999));
+      return promos[0] || null;
+    }).filter(Boolean);
+    const total = matches.reduce((sum,m)=>sum+(priceOf(m)||0),0);
+    const full = matches.reduce((sum,m)=>sum+normalPrice(m),0);
+    const promoCount = matches.length;
+    const pct = Math.round(promoCount / r.ingredients.length * 100);
+    const promoClass = pct >= 60 ? '' : pct >= 30 ? ' low' : ' zero';
+    const info = RECIPE_INFO[s.id] || null;
+    const minTime = info ? (info.prep + info.cook) : r.time;
+    const diffLvl = minTime < 25 ? 1 : minTime < 45 ? 2 : 3;
+    const diffLabel = diffLvl === 1 ? 'FACILE' : diffLvl === 2 ? 'MOYEN' : 'DIFFICILE';
+    const pp = (total / (r.servings || 1)).toFixed(2).replace('.',',');
+    const totalStr = total.toFixed(2).replace('.',',');
+    const saveNum = Math.round((full - total) * 100) / 100;
     return `
-    <article class="pcard store-${r.id}" role="listitem" aria-label="${r.name}" data-recipe-id="${s.id}" style="${isSel ? 'border:2px solid var(--green); box-shadow:0 0 0 2px var(--green-soft);' : ''}">
-      <div class="pcard-img">
-        ${r.image ? `<img src="${r.image}" alt="${r.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` : ''}
-        <span class="pcard-emoji-fallback" style="${r.image ? 'display:none;' : ''}">${r.emoji}</span>
+    <article class="recipe-card ${isSel ? 'sel-in-menu' : ''}" role="listitem" aria-label="${r.name}" data-recipe-id="${s.id}" onclick="openRecipeModal('${s.id}')">
+      <div class="recipe-thumb">
+        <img src="${r.image}" alt="${r.name}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('img-failed');">
+        <button class="recipe-fav ${isFav?'on':''}" onclick="event.stopPropagation(); toggleRecipeFav('${s.id}')" title="${isFav?'Retirer des favoris':'Ajouter aux favoris'}">${isFav?'★':'☆'}</button>
+        <div class="recipe-emoji">${r.emoji}</div>
+        <span class="difficulty diff${diffLvl}">${diffLabel}</span>
         ${isSel ? '<span class="badge-new" style="top:6px; right:6px; font-size:10px;">✅ Sélectionné</span>' : ''}
       </div>
-      <div class="pcard-body">
-        <div class="pcard-name">${r.name}</div>
-        <div class="pcard-dist">📍 ${s.store.addr || '—'} · 💰 ${s.cost.toFixed(2).replace('.',',')} €</div>
-        <div class="pcard-price">
-          <span class="new-price">${s.cost.toFixed(2).replace('.',',')}<span class="cents"> €</span></span>
+      <div class="recipe-info">
+        <h3>${r.name}</h3>
+        <div class="recipe-meta">
+          <span>👥 ${r.servings} pers.</span>
+          <span>⏱️ ${r.time} min</span>
+          ${info ? `<span>🔪 ${info.prep}' · 🔥 ${info.cook}'</span>` : ''}
         </div>
-        <button class="pcard-add ${MENU_STATE.selected.includes(s.id) ? 'in-cart' : ''}" data-id="${s.id}" onclick="menuHebdoSelectRecipe('${s.id}')" style="width:100%; margin-top:8px;">
-          ${MENU_STATE.selected.includes(s.id) ? '✅ Dans le menu' : '+ Ajouter au menu'}
-        </button>
-        <div class="menu-gallery-btns">
-          <button class="menu-gallery-btn" onclick="event.stopPropagation(); openRecipeModal('${s.id}')" title="Afficher la recette">📖 Recette</button>
-          <button class="menu-gallery-btn cook" onclick="event.stopPropagation(); startCooking('${s.id}')" title="Lancer le mode cuisson">👨‍🍳 Cuisson</button>
+        <span class="promo-badge${promoClass}">🏷️ ${promoCount}/${r.ingredients.length} en promo</span>
+        <div class="promo-track"><div class="promo-track-fill" style="width:${pct}%"></div></div>
+        <div class="recipe-cost-line">
+          <span class="cost-perperson">~${pp} €/pers.</span>
+          <span class="cost-total">${totalStr} € les ${r.servings} pers.</span>
+        </div>
+        ${saveNum > 0 ? `<span class="cost-save">💸 −${saveNum.toFixed(2).replace('.',',')} € vs prix plein</span>` : ''}
+        <div class="menu-gallery-actions" onclick="event.stopPropagation()">
+          <button class="pcard-add ${isSel ? 'in-cart' : ''}" data-id="${s.id}" onclick="menuHebdoSelectRecipe('${s.id}')" style="width:100%;">${isSel ? '✅ Dans le menu' : '+ Ajouter au menu'}</button>
+          <div class="menu-gallery-btns">
+            <button class="menu-gallery-btn" onclick="event.stopPropagation(); openRecipeModal('${s.id}')" title="Afficher la recette">📖 Recette</button>
+            <button class="menu-gallery-btn cook" onclick="event.stopPropagation(); startCooking('${s.id}')" title="Lancer le mode cuisson">👨‍🍳 Cuisson</button>
+          </div>
         </div>
       </div>
     </article>`;
