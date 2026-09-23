@@ -68,7 +68,27 @@ git push -u origin main
 
 ---
 
-## 🛠️ Personnalisation
+## 🤖 Mises à jour nocturnes & sources de données
+
+Chaque nuit (GitHub Actions, schedule UTC), `scripts/update_promos_fast.py` rafraîchit
+`data/promos.json` directement depuis les **sources officielles** des enseignes :
+Intermarche (API Intermarché), Aldi et Carrefour (websites), Delhaize (API),
+Colruyt (API produits), Action (**site officiel weekactie**), et conserve Lidl/Spar.
+
+> ⚠️ **Action — source officielle, volume plus faible.** Action était scrappée via un
+> agrégateur tiers (`promotiez.be`, ~67 offres sur 3 pages) désormais derrière un
+> pare-feu WAF. Depuis mai 2026, elle est scrapée **directement sur le site officiel
+> `action.com/nl-be/weekactie/`** qui ne propose qu'**une page « weekactie » (≈ 20-25 offres
+> réelles)**. Ce volume réduit est **normal et volontaire**, pas un scraper cassé : le
+> validateur tolère spécifiquement Action (perte max acceptée 80 %) pour ne pas confondre
+> cette migration avec une panne. L'ancien agrégateur reste en source de secours.
+
+Le pipeline ajoute ensuite les Nutri-Scores (`enrich_nutriscore.py`), régénère les recettes
+de la semaine (`update_recipes.py`), puis `tests/validate_promos.py` refuse de committer toute
+régression anormale. Les données expirées sont purgées (2 jours de grâce pour absorber les
+décalages de folders).
+
+---
 
 ### Modifier les Produits ou les Magasins
 Ouvrez [`index.html`](./index.html) (l'application est autonome, tout est dans ce fichier) :
