@@ -722,6 +722,16 @@
   .pcard-add.in-cart:hover{background:#3a8a5e;}
   .pcard-ghost{font-size:var(--font-sm); color:var(--ink-soft); margin-top:var(--space-2);}
 
+  .menu-gallery-btns{display:flex; gap:6px; margin-top:6px; width:100%;}
+  .menu-gallery-btn{
+    flex:1; min-width:0; font-size:9.5px; font-weight:800; padding:6px 2px;
+    border-radius:var(--radius-xs); border:1px solid var(--line); background:var(--paper-2); color:var(--ink);
+    cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    transition:transform var(--transition-instant);
+  }
+  .menu-gallery-btn:active{transform:scale(.96);}
+  .menu-gallery-btn.cook{background:var(--red-soft); color:var(--red); border-color:transparent;}
+
   /* =========== Skeleton (loading) =========== */
   .sk-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
   .sk-img{height:112px; background:var(--paper-2);}
@@ -4151,6 +4161,10 @@ function renderMenuGallery(){
         <button class="pcard-add ${MENU_STATE.selected.includes(s.id) ? 'in-cart' : ''}" data-id="${s.id}" onclick="menuHebdoSelectRecipe('${s.id}')" style="width:100%; margin-top:8px;">
           ${MENU_STATE.selected.includes(s.id) ? '✅ Dans le menu' : '+ Ajouter au menu'}
         </button>
+        <div class="menu-gallery-btns">
+          <button class="menu-gallery-btn" onclick="event.stopPropagation(); openRecipeModal('${s.id}')" title="Afficher la recette">📖 Recette</button>
+          <button class="menu-gallery-btn cook" onclick="event.stopPropagation(); startCooking('${s.id}')" title="Lancer le mode cuisson">👨‍🍳 Cuisson</button>
+        </div>
       </div>
     </article>`;
   }).join('');
