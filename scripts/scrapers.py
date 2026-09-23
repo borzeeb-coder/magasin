@@ -1074,11 +1074,12 @@ def scrape_spar() -> List[Dict]:
     return []
 
 
-# ============ ACTION SCRAPER (via promotiez.be) ============
+# ============ ACTION SCRAPER (via action.com officiel) ============
 
-ACTION_PROMOTIEZ_URL = 'https://www.promotiez.be/winkels/action/promoties'
-ACTION_PROMOTIEZ_PAGES = 3  # Number of paginated pages to fetch
-ACTION_DETAIL_BASE = 'https://www.promotiez.be'
+# Site officiel Action BE : la page « weekactie » est rendue côté serveur et
+# liste les promotions de la semaine sans WAF (promotiez.be est passé derrière
+# AWS WAF Bot Control, plus accessible en simple GET).
+ACTION_WEEKACTIE_URL = 'https://www.action.com/nl-be/weekactie/'
 
 # Dutch to French translations for common Action product terms
 NL_TO_FR = {
@@ -1249,142 +1250,109 @@ NL_TO_FR = {
 
 
 def scrape_action() -> List[Dict]:
-    """Scrape Action Belgium promotions from promotiez.be
+    """Scrape Action Belgium promotions from the official site (action.com).
 
-    promotiez.be aggregates Action's weekly folder offers and is not Cloudflare-protected.
-    Fetches detail pages for richer data (description, category, brand, validity dates).
-    Fetches all 3 paginated pages. Translates Dutch to French.
+    The old source (promotiez.be) moved behind AWS WAF Bot Control (challenge.js):
+    offers are no longer reachable with a plain GET. The official nl-be
+    'weekactie' page is server-side rendered and exposes the weekly deals
+    directly as <a data-testid="product-card"> tiles.
     """
     offers = []
     seen = set()
-    headers = {**UA, 'Accept-Language': 'fr-BE,fr;q=0.9,nl;q=0.8'}
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+        'Accept-Language': 'nl-BE,nl;q=0.9',
+    }
 
-    for page in range(1, ACTION_PROMOTIEZ_PAGES + 1):
-        page_url = f'{ACTION_PROMOTIEZ_URL}?sort=promo_popular_views_weekly_alpha&page={page}'
+    try:
+        r = requests.get(ACTION_WEEKACTIE_URL, headers=headers, timeout=30)
+        r.raise_for_status()
+    except Exception as e:
+        print(f"Action scrape error: {e}")
+        return offers
+
+    cards = re.findall(r'data-testid="product-card".*?</a>', r.text, re.S)
+    if not cards:
+        print("Action: aucune carte produit — le pipeline conservera l'ancien volume")
+
+    today = datetime.today()
+    sunday = today + timedelta(days=(6 - today.weekday()) % 7)
+    valid_from = today.strftime('%Y-%m-%d')
+    valid_until = sunday.strftime('%Y-%m-%d')
+
+    price_re = re.compile(r'€\s*(\d{1,4}),(\d{2})(?:\s*/\s*([^<]{1,20}))?')
+
+    for card in cards:
         try:
-            r = requests.get(page_url, headers=headers, timeout=30)
-            r.raise_for_status()
-            soup = BeautifulSoup(r.text, 'html.parser')
+            m_href = re.search(r'href="(/nl-be/p/\d+/[^"]+)"', card)
+            if not m_href:
+                continue
 
-            # Find all offer tiles: links with js-offer-link-item class
-            offer_tiles = soup.select('a.js-offer-link-item')
-            # Sélecteur de secours si la structure change à nouveau
-            if not offer_tiles:
-                offer_tiles = soup.select('a[href*="/winkels/action/promoties/"]')
-            if not offer_tiles:
-                # Plus de pages (site en JS / fin de pagination) : on s'arrête
-                # sans erreur — le pipeline conserve l'ancien volume si vide.
-                print(f"  Action page {page}: aucune offre dans le HTML — arrêt de la pagination")
-                break
+            # Texte visible de la carte : nom, note de variante/taille, prix, badge
+            lines = [x.strip() for x in re.findall(r'>([^<>]{1,300})<', card) if x.strip()]
+            if not lines:
+                continue
+            name = lines[0]
+            if name in seen:
+                continue
+            seen.add(name)
 
-            for tile in offer_tiles:
-                try:
-                    # Name from .product__name element or title attribute
-                    name_el = tile.select_one('.product__name')
-                    name = name_el.get_text(strip=True) if name_el else tile.get('title', '').replace('Action ', '').replace(' aanbieding', '').strip()
-                    if not name or name in seen:
-                        continue
-                    if should_skip_nutriscore(name):
-                        continue
-                    seen.add(name)
+            # Prix (dernière valeur affichée = prix promo courant)
+            new_price = None
+            unit = ''
+            for ln in lines:
+                m_price = price_re.search(ln)
+                if m_price:
+                    new_price = float(f"{m_price.group(1)}.{m_price.group(2)}")
+                    unit = (m_price.group(3) or '').strip()
+            if new_price is None:
+                continue
 
-                    # Price: look for .product__price-offer
-                    price_el = tile.select_one('.product__price-offer')
-                    new_price = None
-                    if price_el:
-                        price_text = price_el.get_text(strip=True)
-                        new_price = parse_price(price_text)
+            # Note de la carte (variante / taille) hors prix et badge
+            description = ' '.join(
+                ln for ln in lines[1:]
+                if ln and not price_re.search(ln) and ln not in ('Weekactie', 'Nieuw')
+            )
 
-                    # Original price (if crossed out)
-                    old_price = None
-                    normal_price_el = tile.select_one('.product__price-normal')
-                    if normal_price_el:
-                        price_text = normal_price_el.get_text(strip=True)
-                        old_price = parse_price(price_text)
+            # Image : srcset 128w -> version 640w
+            img_url = ''
+            m_src = re.search(r'srcSet="([^,"]+)', card)
+            if m_src:
+                img_url = m_src.group(1).split(' ')[0]
+                img_url = re.sub(r'/w_\d+/', '/w_640/', img_url)
 
-                    # Discount percentage
-                    discount_pct = None
-                    if old_price and new_price and old_price > new_price:
-                        discount_pct = round((1 - new_price / old_price) * 100)
+            offer = {
+                'name': name,
+                'brand': '',
+                'category': '',
+                'description': description,
+                'new_price': new_price,
+                'old_price': None,
+                'discount_pct': None,
+                'promo_text': f"Weekactie Action valable jusqu'au {valid_until}",
+                'unit': unit,
+                'unit_price': None,
+                'unit_price_unit': unit,
+                'price_per_kg': None,
+                'price_per_l': None,
+                'image_url': img_url,
+                'source_url': 'https://www.action.com' + m_href.group(1),
+                'fetched_at': datetime.utcnow().isoformat() + 'Z',
+                'ean': None,
+                'valid_from': valid_from,
+                'valid_until': valid_until,
+            }
 
-                    # Image - use larger thumbWebP version if available
-                    img_url = ''
-                    img_el = tile.select_one('.product__image img')
-                    if img_el:
-                        img_url = img_el.get('src') or img_el.get('data-src') or ''
-                    if img_url and 'thumbSmallWebP' in img_url:
-                        img_url = img_url.replace('thumbSmallWebP', 'thumbWebP')
+            # Prix rapporté au kg/L quand le nom l'indique
+            qty, qty_unit = extract_quantity_from_name(name)
+            ppg, ppl = normalize_price_per_kg_l(new_price, None, qty, qty_unit)
+            offer['price_per_kg'] = ppg
+            offer['price_per_l'] = ppl
 
-                    # Product URL (detail page) - construct from data-offer-id and name
-                    source_url = ''
-                    offer_id = tile.get('data-offer-id', '')
-                    if offer_id:
-                        slug = name.lower()
-                        slug = re.sub(r'[^a-z0-9]+', '-', slug)
-                        slug = slug.strip('-')
-                        source_url = f'{ACTION_DETAIL_BASE}/winkels/action/promoties/{slug}-promotie-{offer_id}/'
-                    else:
-                        href = tile.get('href', '')
-                        if href:
-                            source_url = href if href.startswith('http') else ACTION_DETAIL_BASE + href
-
-                    # Validity (days remaining)
-                    promo_text = ''
-                    date_el = tile.select_one('.product-date')
-                    if date_el:
-                        promo_text = date_el.get_text(strip=True)
-
-                    if new_price is None:
-                        continue
-
-                    # Fetch detail page for richer data
-                    detail = {}
-                    if source_url:
-                        detail = fetch_action_detail(source_url, headers)
-                        time.sleep(0.1)  # be polite
-
-                    # Use detail old_price if list page didn't have it
-                    final_old_price = old_price or detail.get('old_price')
-                    discount_pct = None
-                    if final_old_price and new_price and final_old_price > new_price:
-                        discount_pct = round((1 - new_price / final_old_price) * 100)
-
-                    offer = {
-                        'name': translate_to_french(name),
-                        'brand': translate_to_french(detail.get('brand', '')),
-                        'category': translate_to_french(detail.get('category', 'Non-food')),
-                        'description': translate_to_french(detail.get('description', '')),
-                        'new_price': new_price,
-                        'old_price': final_old_price,
-                        'discount_pct': discount_pct,
-                        'promo_text': translate_to_french(detail.get('validity', promo_text)),
-                        'unit': translate_to_french(detail.get('unit', '')),
-                        'image_url': detail.get('image_url', img_url),
-                        'source_url': source_url,
-                        'fetched_at': datetime.utcnow().isoformat() + 'Z',
-                        'ean': detail.get('ean'),
-                    }
-                    promo_from, promo_until = parse_validity(offer['promo_text'])
-                    if promo_until:
-                        offer['valid_until'] = promo_until
-                    if promo_from:
-                        offer['valid_from'] = promo_from
-                    
-                    # Extract quantity and calculate price per kg/L
-                    qty, qty_unit = extract_quantity_from_name(offer['name'])
-                    ppg, ppl = normalize_price_per_kg_l(new_price, None, qty, qty_unit)
-                    offer['price_per_kg'] = ppg
-                    offer['price_per_l'] = ppl
-                    offers.append(offer)
-
-                except Exception as e:
-                    print(f"Error parsing Action tile: {e}")
-                    continue
-
-            time.sleep(0.5)  # be polite between pages
-
+            offers.append(offer)
         except Exception as e:
-            print(f"Action page {page} scrape error: {e}")
+            print(f"Error parsing Action card: {e}")
+            continue
 
     print(f"Action: {len(offers)} valid offers")
     return offers

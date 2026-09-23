@@ -1,0 +1,20 @@
+const {chromium} = require('playwright');
+(async()=>{
+  const browser = await chromium.launch();
+  const page = await browser.newPage({viewport:{width:390,height:844}});
+  const errors = [];
+  page.on('pageerror', e=>errors.push(e.message));
+  page.on('console', m=>{if(m.type()==='error') errors.push(m.text());});
+  await page.goto('http://127.0.0.1:8123/', {waitUntil:'networkidle'});
+  await page.waitForTimeout(1000);
+  await page.click('.navbtn[data-view="menuhebdo"]');
+  await page.waitForTimeout(500);
+  const budgetEl = await page.$('#menuBudgetRange');
+  console.log('Budget slider exists:', !!budgetEl);
+  const weekEl = await page.$('#menuWeek');
+  console.log('Week element exists:', !!weekEl);
+  const galleryEl = await page.$('#menuGallery');
+  console.log('Gallery exists:', !!galleryEl);
+  console.log('JS Errors:', errors);
+  await browser.close();
+})();

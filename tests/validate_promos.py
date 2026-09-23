@@ -52,6 +52,23 @@ MIN_TOTAL = 350
 # Chute maximale acceptée par enseigne face au fichier précédent
 MAX_REGRESSION_RATIO = 0.50  # on tolère une perte de 50% max
 
+# Tolérances spécifiques par enseigne (perte max acceptée, en ratio).
+# Action : migration volontaire de source — l'agrégateur promotiez.be
+# (3 pages ≈ 67 offres/93 références) est remplacé par le site officiel
+# weekactie (1 sem. ≈ 23 offres). La baisse attendue ≈ 66% ne doit donc
+# pas être interprétée comme un scraper cassé ; on refuse seulement une
+# perte > 80% (vraie faille du scraping).
+MAX_REGRESSION_RATIO_BY_STORE = {"action": 0.80}
+
+# Certaines enseignes ont changé de source de scraping (migration volontaire,
+# ex. Action : aggregateur promotiez.be → site officiel weekactie). Une baisse
+# massive mais documentée est alors attendue et ne doit pas être confondue avec
+# un scraper cassé. On surcharge donc la tolérance par enseigne ; les autres
+# gardent la valeur globale (et le MIN_OFFERS_PER_STORE reste le vrai garde-fou).
+MAX_REGRESSION_RATIO_BY_STORE = {
+    "action": 0.80,  # 67 offres (agrégateur 3 pages) → ~23-35 (site officiel)
+}
+
 
 def fail(msg: str) -> None:
     print(f"❌ {msg}", file=sys.stderr)
@@ -95,9 +112,10 @@ def check_regression(current: dict, previous: dict) -> None:
         cur_n = len(cur_items)
         if prev_n < 10:
             continue  # petite enseigne : variations normales
-        if cur_n < prev_n * (1 - MAX_REGRESSION_RATIO):
+        ratio_max = MAX_REGRESSION_RATIO_BY_STORE.get(slug, MAX_REGRESSION_RATIO)
+        if cur_n < prev_n * (1 - ratio_max):
             fail(f"{slug} : {cur_n} offres vs {prev_n} précédemment "
-                 f"(perte > {MAX_REGRESSION_RATIO:.0%}) — refus de committer une régression")
+                 f"(perte > {ratio_max:.0%}) — refus de committer une régression")
 
 
 def main() -> int:
