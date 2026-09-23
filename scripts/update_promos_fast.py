@@ -4,7 +4,8 @@ Fast auto-update promos - basic data only (no Nutri-Score during daily update)
 """
 
 import sys
-sys.path.insert(0, r'C:\magasin')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from scripts.scrapers import extract_quantity_from_name, normalize_price_per_kg_l, folder_period_from_url, parse_validity
 
 import json
@@ -131,6 +132,18 @@ def fetch_intermarche():
     print(f"  Intermarche: {len(offers)} offres")
     return offers
 
+def keep_previous(store, fresh):
+    """Si un scrape ne renvoie aucune offre alors que le fichier précédent en
+    avait, on conserve l'ancien volume (site en maintenance/changement de
+    structure) au lieu de committer une enseigne vide."""
+    if fresh:
+        return fresh
+    prev = promos.get('offers', {}).get(store, [])
+    if prev:
+        print(f"  {store}: scrape vide -> conserve {len(prev)} offres précédentes")
+        return prev
+    return []
+
 def main():
     print(f"=== Fast update started at {datetime.utcnow().isoformat()}Z ===")
     
@@ -180,42 +193,42 @@ def main():
     
     try:
         print("Scraping Aldi...")
-        all_offers['aldi'] = scrape_aldi()
+        all_offers['aldi'] = keep_previous('aldi', scrape_aldi())
     except Exception as e:
         print(f"Error Aldi: {e}")
         all_offers['aldi'] = promos['offers'].get('aldi', [])
     
     try:
         print("Scraping Carrefour...")
-        all_offers['carrefour'] = scrape_carrefour()
+        all_offers['carrefour'] = keep_previous('carrefour', scrape_carrefour())
     except Exception as e:
         print(f"Error Carrefour: {e}")
         all_offers['carrefour'] = promos['offers'].get('carrefour', [])
     
     try:
         print("Scraping Delhaize (12 pages, ~480 products)...")
-        all_offers['delhaize'] = scrape_delhaize(max_pages=12)
+        all_offers['delhaize'] = keep_previous('delhaize', scrape_delhaize(max_pages=12))
     except Exception as e:
         print(f"Error Delhaize: {e}")
         all_offers['delhaize'] = promos['offers'].get('delhaize', [])
     
     try:
         print("Scraping Lidl...")
-        all_offers['lidl'] = scrape_lidl()
+        all_offers['lidl'] = keep_previous('lidl', scrape_lidl())
     except Exception as e:
         print(f"Error Lidl: {e}")
         all_offers['lidl'] = promos['offers'].get('lidl', [])
     
     try:
         print("Scraping Colruyt...")
-        all_offers['colruyt'] = scrape_colruyt()
+        all_offers['colruyt'] = keep_previous('colruyt', scrape_colruyt())
     except Exception as e:
         print(f"Error Colruyt: {e}")
         all_offers['colruyt'] = promos['offers'].get('colruyt', [])
     
     try:
         print("Scraping Action...")
-        all_offers['action'] = scrape_action()
+        all_offers['action'] = keep_previous('action', scrape_action())
     except Exception as e:
         print(f"Error Action: {e}")
         all_offers['action'] = promos['offers'].get('action', [])

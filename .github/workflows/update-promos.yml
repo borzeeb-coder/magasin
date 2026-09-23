@@ -2,7 +2,7 @@ name: Mise à jour nocturne des promos
 
 on:
   schedule:
-    - cron: "15 3 * * *"
+    - cron: "0 6 * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -23,8 +23,14 @@ jobs:
       - name: Installer les dépendances
         run: pip install requests beautifulsoup4
 
-      - name: Lancer le scraper
-        run: python scrape_promos.py
+      - name: Mise à jour rapide des promos (scrapers + API Intermarché)
+        run: python scripts/update_promos_fast.py
+
+      - name: Enrichir les Nutri-Scores
+        run: python scripts/enrich_nutriscore.py 2>&1 | tail -n 8 || true
+
+      - name: Générer les recettes de la semaine
+        run: python scripts/update_recipes.py
 
       - name: Sauvegarder la version committée précédente
         run: |

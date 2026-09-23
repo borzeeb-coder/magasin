@@ -1268,6 +1268,14 @@ def scrape_action() -> List[Dict]:
 
             # Find all offer tiles: links with js-offer-link-item class
             offer_tiles = soup.select('a.js-offer-link-item')
+            # Sélecteur de secours si la structure change à nouveau
+            if not offer_tiles:
+                offer_tiles = soup.select('a[href*="/winkels/action/promoties/"]')
+            if not offer_tiles:
+                # Plus de pages (site en JS / fin de pagination) : on s'arrête
+                # sans erreur — le pipeline conserve l'ancien volume si vide.
+                print(f"  Action page {page}: aucune offre dans le HTML — arrêt de la pagination")
+                break
 
             for tile in offer_tiles:
                 try:

@@ -21904,5 +21904,1644 @@
     "labels": [],
     "brands": "MAREDSOUS",
     "categories": "Fromages"
-  }
+  },
+  "delhaize|Biscuits | Mini Stars | Black & White": {
+    "nutriscore": "E",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 509.333333333333,
+      "fat_100g": 25,
+      "saturated_fat_100g": 11,
+      "carbs_100g": 63,
+      "sugars_100g": 35,
+      "fiber_100g": 2,
+      "proteins_100g": 7.1,
+      "salt_100g": 0.61
+    },
+    "ingredients": "Farine de blé, chocolat au lait alpin 23% [sucre, beurre de cacao, pâte de cacao, poudre de lait écrémé, poudre de lactosérum (issu du lait), beurre concentré, émulsifiant (lécithine de soja, E476), arôme], sucre, graisse et huile végétale (palme, colza), poudre de lactosérum (issu đu lait), poudre de lait entier 1,7%, sirop de glucose, lactose (du lạit), sel, poudres à lever (carbonate d'ammonium, carbonate de sodium), émulsifiant (lécithine de soja), arômes, acidifiant (acide citrique).",
+    "allergens": [
+      "en:gluten",
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i",
+      "en:e330",
+      "en:e476",
+      "en:e500",
+      "en:e500i",
+      "en:e503",
+      "en:e503i"
+    ],
+    "labels": [
+      "en:distributor-labels",
+      "en:charte-lu-harmony"
+    ],
+    "brands": "Milka",
+    "categories": "Biscuits au chocolat, Biscuits fourrés"
+  },
+  "7622300441715": {
+    "nutriscore": "E",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 509.333333333333,
+      "fat_100g": 25,
+      "saturated_fat_100g": 11,
+      "carbs_100g": 63,
+      "sugars_100g": 35,
+      "fiber_100g": 2,
+      "proteins_100g": 7.1,
+      "salt_100g": 0.61
+    },
+    "ingredients": "Farine de blé, chocolat au lait alpin 23% [sucre, beurre de cacao, pâte de cacao, poudre de lait écrémé, poudre de lactosérum (issu du lait), beurre concentré, émulsifiant (lécithine de soja, E476), arôme], sucre, graisse et huile végétale (palme, colza), poudre de lactosérum (issu đu lait), poudre de lait entier 1,7%, sirop de glucose, lactose (du lạit), sel, poudres à lever (carbonate d'ammonium, carbonate de sodium), émulsifiant (lécithine de soja), arômes, acidifiant (acide citrique).",
+    "allergens": [
+      "en:gluten",
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i",
+      "en:e330",
+      "en:e476",
+      "en:e500",
+      "en:e500i",
+      "en:e503",
+      "en:e503i"
+    ],
+    "labels": [
+      "en:distributor-labels",
+      "en:charte-lu-harmony"
+    ],
+    "brands": "Milka",
+    "categories": "Biscuits au chocolat, Biscuits fourrés"
+  },
+  "delhaize|Altos Ibéricos Crianza": null,
+  "delhaize|Rioja Reserva": null,
+  "delhaize|Trésors de Miel | Shampooing": null,
+  "delhaize|Shampooing | Argile Cédrat |  Cheveux gras": null,
+  "delhaize|Cava | Mediterrania Terra | Brut Nature": null,
+  "delhaize|Sauvignon Blanc": null,
+  "colruyt|DREFT tabs vaisselle platinum+ cit. 59pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "08006530167628": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "colruyt|MAREDSOUS Fromage tartiné light 128g": {
+    "nutriscore": "C",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 147,
+      "fat_100g": 7,
+      "saturated_fat_100g": 4.7,
+      "carbs_100g": 6,
+      "sugars_100g": 6,
+      "fiber_100g": 2,
+      "proteins_100g": 15,
+      "salt_100g": 1.5
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [
+      "en:e451",
+      "en:e452"
+    ],
+    "labels": [],
+    "brands": "Maredsous",
+    "categories": "Smeerkazen"
+  },
+  "03073781205442": {
+    "nutriscore": "C",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 147,
+      "fat_100g": 7,
+      "saturated_fat_100g": 4.7,
+      "carbs_100g": 6,
+      "sugars_100g": 6,
+      "fiber_100g": 2,
+      "proteins_100g": 15,
+      "salt_100g": 1.5
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [
+      "en:e451",
+      "en:e452"
+    ],
+    "labels": [],
+    "brands": "Maredsous",
+    "categories": "Smeerkazen"
+  },
+  "colruyt|HERTA Knacki Poulet 10pc 350g": {
+    "nutriscore": "D",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 207.4,
+      "fat_100g": 15,
+      "saturated_fat_100g": 4.4,
+      "carbs_100g": 2.1,
+      "sugars_100g": 1.4,
+      "fiber_100g": 0,
+      "proteins_100g": 16,
+      "salt_100g": 1.807
+    },
+    "ingredients": "Viande séparée mécaniquement de poulet 58%, Peau de poulet, Eau, Sel, Concentrat de protéines de pois, Dextrose, Arômes, Antioxydant : isoascorbate de sodium, Conservateur : nitrite de sodium, Ferments. Peut contenir : LAIT, GLUTEN.",
+    "allergens": [
+      "en:gluten",
+      "en:milk"
+    ],
+    "additives": [
+      "en:e250",
+      "en:e316"
+    ],
+    "labels": [
+      "en:no-colorings",
+      "en:nutriscore",
+      "en:smoked-with-beech-wood",
+      "en:green-dot",
+      "en:made-in-france",
+      "en:nutriscore-grade-c",
+      "en:nutriscore-grade-d",
+      "fr:triman"
+    ],
+    "brands": "Nestlé, Herta, Knacki",
+    "categories": "Préparations au poulet, Poulets, Saucisses de poulet, Knacks industrielles"
+  },
+  "07613035289291": {
+    "nutriscore": "D",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 207.4,
+      "fat_100g": 15,
+      "saturated_fat_100g": 4.4,
+      "carbs_100g": 2.1,
+      "sugars_100g": 1.4,
+      "fiber_100g": 0,
+      "proteins_100g": 16,
+      "salt_100g": 1.807
+    },
+    "ingredients": "Viande séparée mécaniquement de poulet 58%, Peau de poulet, Eau, Sel, Concentrat de protéines de pois, Dextrose, Arômes, Antioxydant : isoascorbate de sodium, Conservateur : nitrite de sodium, Ferments. Peut contenir : LAIT, GLUTEN.",
+    "allergens": [
+      "en:gluten",
+      "en:milk"
+    ],
+    "additives": [
+      "en:e250",
+      "en:e316"
+    ],
+    "labels": [
+      "en:no-colorings",
+      "en:nutriscore",
+      "en:smoked-with-beech-wood",
+      "en:green-dot",
+      "en:made-in-france",
+      "en:nutriscore-grade-c",
+      "en:nutriscore-grade-d",
+      "fr:triman"
+    ],
+    "brands": "Nestlé, Herta, Knacki",
+    "categories": "Préparations au poulet, Poulets, Saucisses de poulet, Knacks industrielles"
+  },
+  "colruyt|SUZI WAN vermicelles riz 250g": {
+    "nutriscore": "B",
+    "nova_group": 1,
+    "nutrition": {
+      "energy_kcal_100g": 133.720930232558,
+      "fat_100g": 0.64,
+      "saturated_fat_100g": 0.16,
+      "carbs_100g": 30.72,
+      "sugars_100g": 0.48,
+      "fiber_100g": 0.64,
+      "proteins_100g": 2.24,
+      "salt_100g": 0.01
+    },
+    "ingredients": "Riz.\nPeut contenir: sulfite.",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:no-artificial-preservatives",
+      "en:no-preservatives",
+      "en:green-dot",
+      "en:no-colorings",
+      "en:no-flavors",
+      "fr:triman"
+    ],
+    "brands": "suzi wan",
+    "categories": "Cereals and their products, Dry pastas, Rice vermicelli, fr:Aliments asiatique"
+  },
+  "04002359650178": {
+    "nutriscore": "B",
+    "nova_group": 1,
+    "nutrition": {
+      "energy_kcal_100g": 133.720930232558,
+      "fat_100g": 0.64,
+      "saturated_fat_100g": 0.16,
+      "carbs_100g": 30.72,
+      "sugars_100g": 0.48,
+      "fiber_100g": 0.64,
+      "proteins_100g": 2.24,
+      "salt_100g": 0.01
+    },
+    "ingredients": "Riz.\nPeut contenir: sulfite.",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:no-artificial-preservatives",
+      "en:no-preservatives",
+      "en:green-dot",
+      "en:no-colorings",
+      "en:no-flavors",
+      "fr:triman"
+    ],
+    "brands": "suzi wan",
+    "categories": "Cereals and their products, Dry pastas, Rice vermicelli, fr:Aliments asiatique"
+  },
+  "colruyt|DASH pods color 26pc": null,
+  "colruyt|DASH pods platinum envolée d'air 38pc": null,
+  "colruyt|NESCAFÉ DG Caps Lungo Intenso 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 1,
+    "nutrition": {
+      "energy_kcal_100g": 1,
+      "fat_100g": 0.1,
+      "saturated_fat_100g": 0.1,
+      "carbs_100g": 0.1,
+      "sugars_100g": 0.1,
+      "proteins_100g": 0.1,
+      "salt_100g": 0
+    },
+    "ingredients": "Café torréfié moulu",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:vegetarian",
+      "fr:triman"
+    ],
+    "brands": "Nestlé, Dolce gusto, Nescafe, Nescafé, Nescafé Dolce Gusto",
+    "categories": "Cafés moulus, Cafés solubles, Dosettes Dolce Gusto, Cafés en dosettes compatible Dolce Gusto, Cafés en dosettes compatible Nespresso"
+  },
+  "07613033590146": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 1,
+    "nutrition": {
+      "energy_kcal_100g": 1,
+      "fat_100g": 0.1,
+      "saturated_fat_100g": 0.1,
+      "carbs_100g": 0.1,
+      "sugars_100g": 0.1,
+      "proteins_100g": 0.1,
+      "salt_100g": 0
+    },
+    "ingredients": "Café torréfié moulu",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:vegetarian",
+      "fr:triman"
+    ],
+    "brands": "Nestlé, Dolce gusto, Nescafe, Nescafé, Nescafé Dolce Gusto",
+    "categories": "Cafés moulus, Cafés solubles, Dosettes Dolce Gusto, Cafés en dosettes compatible Dolce Gusto, Cafés en dosettes compatible Nespresso"
+  },
+  "colruyt|GOURMET Gold les effilochés chat 12x85g": {
+    "nutriscore": "E",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 363,
+      "fat_100g": 24,
+      "saturated_fat_100g": 14,
+      "carbs_100g": 33,
+      "sugars_100g": 25,
+      "proteins_100g": 2.9,
+      "salt_100g": 0.3
+    },
+    "ingredients": "",
+    "allergens": [
+      "en:eggs",
+      "en:gluten",
+      "en:milk"
+    ],
+    "additives": [
+      "en:e1510",
+      "en:e322",
+      "en:e471"
+    ],
+    "labels": [
+      "en:german-agricultural-society",
+      "en:gold-medal-of-the-german-agricultural-society",
+      "en:nutriscore",
+      "en:rainforest-alliance",
+      "en:2021-gold-medal-of-the-german-agricultural-society",
+      "en:nutriscore-grade-e"
+    ],
+    "brands": "Gourmet Finest Cuisine, Verbau",
+    "categories": "Milchnachspeisen, Schokoladendesserts"
+  },
+  "colruyt|GOURMET Gold Mousse 24x85g": null,
+  "colruyt|DREFT PLATINUM tabs platinum orig. 51pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "8006540420911": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "colruyt|AJAX Nett.tout Champs coquelicots 1,25L": null,
+  "colruyt|NESCAFÉ DG caps Flat White 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 3,
+    "nutrition": {
+      "energy_kcal_100g": 28,
+      "fat_100g": 1.3,
+      "saturated_fat_100g": 0.8,
+      "carbs_100g": 2.4,
+      "sugars_100g": 2.2,
+      "fiber_100g": 0.5,
+      "proteins_100g": 1.3,
+      "salt_100g": 0.05
+    },
+    "ingredients": "lait entier en poudre (73,5%), café soluble (13,7%),sucre(12,8%), stabilisants (phosphates de potassium, citrates de sodium), emulsifiant ( lecithine de soja)",
+    "allergens": [
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e331",
+      "en:e340"
+    ],
+    "labels": [
+      "en:new",
+      "en:nutriscore"
+    ],
+    "brands": "NESCAFE Dolce Gusto",
+    "categories": "Dolce Gusto-compatibele Koffiecapsules"
+  },
+  "07613036595735": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 3,
+    "nutrition": {
+      "energy_kcal_100g": 28,
+      "fat_100g": 1.3,
+      "saturated_fat_100g": 0.8,
+      "carbs_100g": 2.4,
+      "sugars_100g": 2.2,
+      "fiber_100g": 0.5,
+      "proteins_100g": 1.3,
+      "salt_100g": 0.05
+    },
+    "ingredients": "lait entier en poudre (73,5%), café soluble (13,7%),sucre(12,8%), stabilisants (phosphates de potassium, citrates de sodium), emulsifiant ( lecithine de soja)",
+    "allergens": [
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e331",
+      "en:e340"
+    ],
+    "labels": [
+      "en:new",
+      "en:nutriscore"
+    ],
+    "brands": "NESCAFE Dolce Gusto",
+    "categories": "Dolce Gusto-compatibele Koffiecapsules"
+  },
+  "colruyt|DASH platinum jasmin 30d 1,35L": null,
+  "colruyt|DASH pods color 44pc": null,
+  "colruyt|ALWAYS protège-slip normal fresh 90pc": null,
+  "colruyt|SENSODYNE BD Deep Clean Extra Soft": null,
+  "colruyt|DASH pods platinum 26pc": null,
+  "colruyt|NESCAFÉ DG Marrakesh Style Tea 16pc": {
+    "nutriscore": "E",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 392,
+      "fat_100g": 0.4,
+      "saturated_fat_100g": 0,
+      "carbs_100g": 96.7,
+      "sugars_100g": 94.4,
+      "fiber_100g": 0.2,
+      "proteins_100g": 0.4,
+      "salt_100g": 0
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "NESCAFÉ DG",
+    "categories": "Boissons chaudes"
+  },
+  "07613038901756": {
+    "nutriscore": "E",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 392,
+      "fat_100g": 0.4,
+      "saturated_fat_100g": 0,
+      "carbs_100g": 96.7,
+      "sugars_100g": 94.4,
+      "fiber_100g": 0.2,
+      "proteins_100g": 0.4,
+      "salt_100g": 0
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "NESCAFÉ DG",
+    "categories": "Boissons chaudes"
+  },
+  "colruyt|MAREDSOUS Frais et crémeux 150g": {
+    "nutriscore": "D",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 189,
+      "fat_100g": 17,
+      "saturated_fat_100g": 11.5,
+      "carbs_100g": 3,
+      "sugars_100g": 3,
+      "proteins_100g": 6,
+      "salt_100g": 0.73
+    },
+    "ingredients": "Fromage frais, eau, sel, épaississants (pectine, farine de graines de caroube, carraghénanes), lactose, correcteur d'acidité (acide lactique). • Zutaten: Frischkäse, Wasser, Salz, Verdickungsmittel (Pektin, Johannisbrotkernmehl, Carrageen), Laktose, Säureregulator (Milchsäure). Voedingswaarden/",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [
+      "en:e270",
+      "en:e407",
+      "en:e440"
+    ],
+    "labels": [],
+    "brands": "MAREDSOUS",
+    "categories": "Fromages à tartiner"
+  },
+  "3073781219449": {
+    "nutriscore": "D",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 189,
+      "fat_100g": 17,
+      "saturated_fat_100g": 11.5,
+      "carbs_100g": 3,
+      "sugars_100g": 3,
+      "proteins_100g": 6,
+      "salt_100g": 0.73
+    },
+    "ingredients": "Fromage frais, eau, sel, épaississants (pectine, farine de graines de caroube, carraghénanes), lactose, correcteur d'acidité (acide lactique). • Zutaten: Frischkäse, Wasser, Salz, Verdickungsmittel (Pektin, Johannisbrotkernmehl, Carrageen), Laktose, Säureregulator (Milchsäure). Voedingswaarden/",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [
+      "en:e270",
+      "en:e407",
+      "en:e440"
+    ],
+    "labels": [],
+    "brands": "MAREDSOUS",
+    "categories": "Fromages à tartiner"
+  },
+  "colruyt|SENSODYNE dentif. com.prot.adv.whi. 75ml": null,
+  "colruyt|NESCAFÉ DG Caps Espresso Intenso 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 4,
+      "fat_100g": 0.1,
+      "saturated_fat_100g": 0.1,
+      "carbs_100g": 0.1,
+      "sugars_100g": 0.1,
+      "proteins_100g": 0.2,
+      "salt_100g": 0.02
+    },
+    "ingredients": "CAFE. olce usto 20150 Bust POWERED ESPRESSO INTENSO PREMIUM PROFILE I FULL-BODIED & SPICY & ROBUSTA ORIGINS I BRAZIL - COLOMBIA - VIETNAM 7 INTENSITY 16x",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:vegetarian",
+      "en:vegan",
+      "en:new-recipe"
+    ],
+    "brands": "Nescafé",
+    "categories": "Koffiepads"
+  },
+  "07613036828444": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 4,
+      "fat_100g": 0.1,
+      "saturated_fat_100g": 0.1,
+      "carbs_100g": 0.1,
+      "sugars_100g": 0.1,
+      "proteins_100g": 0.2,
+      "salt_100g": 0.02
+    },
+    "ingredients": "CAFE. olce usto 20150 Bust POWERED ESPRESSO INTENSO PREMIUM PROFILE I FULL-BODIED & SPICY & ROBUSTA ORIGINS I BRAZIL - COLOMBIA - VIETNAM 7 INTENSITY 16x",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:vegetarian",
+      "en:vegan",
+      "en:new-recipe"
+    ],
+    "brands": "Nescafé",
+    "categories": "Koffiepads"
+  },
+  "colruyt|SUPER 8 Flandrien 6,4% 4x33cl": null,
+  "colruyt|NESCAFÉ DG Caps Nesquik 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 43,
+      "fat_100g": 1.5,
+      "saturated_fat_100g": 0.9,
+      "carbs_100g": 5.3,
+      "sugars_100g": 5.2,
+      "fiber_100g": 0.4,
+      "proteins_100g": 1.7,
+      "salt_100g": 0.05
+    },
+    "ingredients": "",
+    "allergens": [
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i"
+    ],
+    "labels": [
+      "en:made-in-france",
+      "en:nutriscore",
+      "en:nutriscore-grade-d",
+      "en:rainforest-alliance"
+    ],
+    "brands": "Nestlé",
+    "categories": "Zuiveldranken, Koffiepads, Oplospoeder voor chocolademelk, Gesuikerde dranken, es:capsulas-de-nesquick"
+  },
+  "07613033162183": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 43,
+      "fat_100g": 1.5,
+      "saturated_fat_100g": 0.9,
+      "carbs_100g": 5.3,
+      "sugars_100g": 5.2,
+      "fiber_100g": 0.4,
+      "proteins_100g": 1.7,
+      "salt_100g": 0.05
+    },
+    "ingredients": "",
+    "allergens": [
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i"
+    ],
+    "labels": [
+      "en:made-in-france",
+      "en:nutriscore",
+      "en:nutriscore-grade-d",
+      "en:rainforest-alliance"
+    ],
+    "brands": "Nestlé",
+    "categories": "Zuiveldranken, Koffiepads, Oplospoeder voor chocolademelk, Gesuikerde dranken, es:capsulas-de-nesquick"
+  },
+  "colruyt|AJAX nettoie-tout frais 2L": null,
+  "colruyt|AJAX Nettoy.vitres Triple action 750ml": null,
+  "colruyt|CEREAL Hazelicious Bars 3x23g": {
+    "nutriscore": "B",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 392,
+      "fat_100g": 15,
+      "saturated_fat_100g": 4.7,
+      "carbs_100g": 63,
+      "sugars_100g": 1.1,
+      "fiber_100g": 7,
+      "proteins_100g": 7.7,
+      "salt_100g": 0.01
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:nutriscore",
+      "en:nutriscore-grade-a"
+    ],
+    "brands": "Céréal",
+    "categories": "Graanrepen"
+  },
+  "05410063041615": {
+    "nutriscore": "B",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 392,
+      "fat_100g": 15,
+      "saturated_fat_100g": 4.7,
+      "carbs_100g": 63,
+      "sugars_100g": 1.1,
+      "fiber_100g": 7,
+      "proteins_100g": 7.7,
+      "salt_100g": 0.01
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:nutriscore",
+      "en:nutriscore-grade-a"
+    ],
+    "brands": "Céréal",
+    "categories": "Graanrepen"
+  },
+  "colruyt|DREFT tabl.lave-vais.Platinum+citr. 19pc": null,
+  "colruyt|GOURMET Gold les timbales chat 12x85g": {
+    "nutriscore": "E",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 363,
+      "fat_100g": 24,
+      "saturated_fat_100g": 14,
+      "carbs_100g": 33,
+      "sugars_100g": 25,
+      "proteins_100g": 2.9,
+      "salt_100g": 0.3
+    },
+    "ingredients": "",
+    "allergens": [
+      "en:eggs",
+      "en:gluten",
+      "en:milk"
+    ],
+    "additives": [
+      "en:e1510",
+      "en:e322",
+      "en:e471"
+    ],
+    "labels": [
+      "en:german-agricultural-society",
+      "en:gold-medal-of-the-german-agricultural-society",
+      "en:nutriscore",
+      "en:rainforest-alliance",
+      "en:2021-gold-medal-of-the-german-agricultural-society",
+      "en:nutriscore-grade-e"
+    ],
+    "brands": "Gourmet Finest Cuisine, Verbau",
+    "categories": "Milchnachspeisen, Schokoladendesserts"
+  },
+  "colruyt|NESCAFÉ DG Caps Latte Macchiato 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 340,
+      "fat_100g": 11.9,
+      "saturated_fat_100g": 7.3,
+      "carbs_100g": 44.2,
+      "sugars_100g": 40.4,
+      "fiber_100g": 1.7,
+      "proteins_100g": 11.3,
+      "salt_100g": 0.34
+    },
+    "ingredients": "Lait entier en poudre (58,9%), sucre (38,1%), arômes naturels, matière grasse de lait anhydre.",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [],
+    "labels": [
+      "en:nutriscore",
+      "en:nutriscore-grade-d"
+    ],
+    "brands": "NESCAFÉ DG",
+    "categories": "Dolce Gusto-compatibele Koffiecapsules"
+  },
+  "colruyt|ALWAYS DISCREET serviet.inco.normal 12pc": null,
+  "colruyt|ALWAYS platinum mega long+ 22pc": null,
+  "colruyt|AJAX Nettoie-tout Fraîcheur jasmin 1,25L": null,
+  "colruyt|NESCAFÉ DG café-lait déca 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 434,
+      "fat_100g": 19.2,
+      "saturated_fat_100g": 11.8,
+      "carbs_100g": 35.5,
+      "sugars_100g": 27,
+      "fiber_100g": 11.6,
+      "proteins_100g": 22.7,
+      "salt_100g": 0.84
+    },
+    "ingredients": "Lait entier en poudre (71,9%), café soluble décaféiné (26%), stabilisants (phosphates de potassium, citrates de sodium), émulsifiant (lecithine de soja).",
+    "allergens": [
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i",
+      "en:e331",
+      "en:e340"
+    ],
+    "labels": [
+      "en:new",
+      "en:no-caffeine"
+    ],
+    "brands": "NESCAFÉ Dolce Gusto",
+    "categories": "Boissons instantanées, Cafés en dosettes compatible Dolce Gusto"
+  },
+  "07613035674370": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 434,
+      "fat_100g": 19.2,
+      "saturated_fat_100g": 11.8,
+      "carbs_100g": 35.5,
+      "sugars_100g": 27,
+      "fiber_100g": 11.6,
+      "proteins_100g": 22.7,
+      "salt_100g": 0.84
+    },
+    "ingredients": "Lait entier en poudre (71,9%), café soluble décaféiné (26%), stabilisants (phosphates de potassium, citrates de sodium), émulsifiant (lecithine de soja).",
+    "allergens": [
+      "en:milk",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i",
+      "en:e331",
+      "en:e340"
+    ],
+    "labels": [
+      "en:new",
+      "en:no-caffeine"
+    ],
+    "brands": "NESCAFÉ Dolce Gusto",
+    "categories": "Boissons instantanées, Cafés en dosettes compatible Dolce Gusto"
+  },
+  "colruyt|ALWAYS DISCREET serviette inco long 24pc": null,
+  "colruyt|DASH pods pus blanc que blanc 44pc": null,
+  "colruyt|SOUPLINE relax magnolia&laven.60d 1,28L": null,
+  "colruyt|SENSODYNE Tp Rapid Relief Whitening 75ml": null,
+  "colruyt|NESCAFÉ DG Caps Latte Macch.Caramel 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 340,
+      "fat_100g": 11.9,
+      "saturated_fat_100g": 7.3,
+      "carbs_100g": 44.2,
+      "sugars_100g": 40.4,
+      "fiber_100g": 1.7,
+      "proteins_100g": 11.3,
+      "salt_100g": 0.34
+    },
+    "ingredients": "Lait entier en poudre (58,9%), sucre (38,1%), arômes naturels, matière grasse de lait anhydre.",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [],
+    "labels": [
+      "en:nutriscore",
+      "en:nutriscore-grade-d"
+    ],
+    "brands": "NESCAFÉ DG",
+    "categories": "Dolce Gusto-compatibele Koffiecapsules"
+  },
+  "07613037788884": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 340,
+      "fat_100g": 11.9,
+      "saturated_fat_100g": 7.3,
+      "carbs_100g": 44.2,
+      "sugars_100g": 40.4,
+      "fiber_100g": 1.7,
+      "proteins_100g": 11.3,
+      "salt_100g": 0.34
+    },
+    "ingredients": "Lait entier en poudre (58,9%), sucre (38,1%), arômes naturels, matière grasse de lait anhydre.",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [],
+    "labels": [
+      "en:nutriscore",
+      "en:nutriscore-grade-d"
+    ],
+    "brands": "NESCAFÉ DG",
+    "categories": "Dolce Gusto-compatibele Koffiecapsules"
+  },
+  "colruyt|SANYTOL nettoie-tout désinf. eucal. 1L": null,
+  "colruyt|ALWAYS platinum mega night 18pc": null,
+  "colruyt|ALWAYS DISCREET prot-slip inco long 24pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Always discreet",
+    "categories": ""
+  },
+  "8700216179119": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Always discreet",
+    "categories": ""
+  },
+  "colruyt|DREFT PLATINUM vaiss.tabs citron 21pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "colruyt|CHOUFFE IPA 9% 4x33cl": null,
+  "colruyt|SENSODYNE df sensitivity&whitening 75ml": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "",
+    "categories": "Mondverzorging, Tandpasta, Verzorging, Whitening tandpasta"
+  },
+  "05054563235831": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "",
+    "categories": "Mondverzorging, Tandpasta, Verzorging, Whitening tandpasta"
+  },
+  "colruyt|ALWAYS Extra Secure | Night 32pc": null,
+  "colruyt|AJAX nettoie-tout Citron vert 2L": null,
+  "colruyt|DREFT tabl.lave-vaisselle Platinum 96pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "",
+    "categories": ""
+  },
+  "08006530167208": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "",
+    "categories": ""
+  },
+  "colruyt|MAREDSOUS fromage abbaye light tr. 300g": null,
+  "colruyt|MAREDSOUS Frais crémeux ciboulette 150g": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Maredsous",
+    "categories": ""
+  },
+  "03073781219425": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Maredsous",
+    "categories": ""
+  },
+  "colruyt|HG destruct.moisiss.spray moussant 500ml": null,
+  "colruyt|ALWAYS DISCREET serv.inco normal 28pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Always discreet",
+    "categories": ""
+  },
+  "colruyt|NESCAFÉ DG Caps Cappuccino 16pc": {
+    "nutriscore": "C",
+    "nova_group": 3,
+    "nutrition": {},
+    "ingredients": "Lait entier en poudre (82,4%), sucre, Café torréfié moulu.\r\nPeut contenir du soja.",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [],
+    "labels": [],
+    "brands": "Nescafé, Nescafé Dolce Gusto",
+    "categories": "Warme dranken, Koffies, Dolce Gusto-compatibele Capsules, Cappucinopoeders, Gesuikerde dranken"
+  },
+  "07613036306294": {
+    "nutriscore": "C",
+    "nova_group": 3,
+    "nutrition": {},
+    "ingredients": "Lait entier en poudre (82,4%), sucre, Café torréfié moulu.\r\nPeut contenir du soja.",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [],
+    "labels": [],
+    "brands": "Nescafé, Nescafé Dolce Gusto",
+    "categories": "Warme dranken, Koffies, Dolce Gusto-compatibele Capsules, Cappucinopoeders, Gesuikerde dranken"
+  },
+  "colruyt|ALWAYS DISCREET serv.hyg.inco.long 10pc": null,
+  "colruyt|DREFT PLATINUM + tabs platinum+orig 25pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "colruyt|ALWAYS Cotton protec. liners norm. 52pc": null,
+  "colruyt|ALWAYS DISCREET serviet.inco long+ 20pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Always discreet",
+    "categories": ""
+  },
+  "colruyt|ALWAYS psl normal odour block 64pc": null,
+  "colruyt|SENSODYNE TP deep clean 75ml": null,
+  "colruyt|DREFT PLATINUM vaiss.tabs citron 30pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "colruyt|AJAX spray salle de bain 500ml": null,
+  "colruyt|ALWAYS DISCREET ser.inco maxi night 14pc": null,
+  "colruyt|ALWAYS protège-slip slim Flex 100pc": null,
+  "colruyt|SANYTOL additif du linge 1L": null,
+  "colruyt|DREFT PLATINUM + tabs vaisselle 48pc": null,
+  "colruyt|PERSIL gel universal 19 doses 855ml": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:made-in-germany"
+    ],
+    "brands": "Persil",
+    "categories": ""
+  },
+  "4015200035154": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:made-in-germany"
+    ],
+    "brands": "Persil",
+    "categories": ""
+  },
+  "colruyt|NESCAFÉ DG caps Grande 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 340,
+      "fat_100g": 11.9,
+      "saturated_fat_100g": 7.3,
+      "carbs_100g": 44.2,
+      "sugars_100g": 40.4,
+      "fiber_100g": 1.7,
+      "proteins_100g": 11.3,
+      "salt_100g": 0.34
+    },
+    "ingredients": "Lait entier en poudre (58,9%), sucre (38,1%), arômes naturels, matière grasse de lait anhydre.",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [],
+    "labels": [
+      "en:nutriscore",
+      "en:nutriscore-grade-d"
+    ],
+    "brands": "NESCAFÉ DG",
+    "categories": "Dolce Gusto-compatibele Koffiecapsules"
+  },
+  "colruyt|NESCAFÉ DG Caps Chococino 16pc": null,
+  "colruyt|SOUPLINE adouc.musc sublime 60d 1,26L": null,
+  "colruyt|GARDEN GOURMET burger Deluxe vég 180g": {
+    "nutriscore": "A",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 174,
+      "fat_100g": 4.4,
+      "saturated_fat_100g": 0.4,
+      "carbs_100g": 14,
+      "sugars_100g": 3.2,
+      "fiber_100g": 5,
+      "proteins_100g": 17,
+      "salt_100g": 1.1
+    },
+    "ingredients": "Protéines de SOJA réhydratées 42,3% (eau, protéines de SOJA 11,6%). protéines de BLÉ réhydratées 11,8% (eau, protéines de BLÉ 4,2%), huiles végétales (colza, tournesol), eau, blanc d'OEUF en poudre, oignon en poudre, farine de BLÉ, purée de pommes, vinaigre d'alcool, herbes (persil, coriandre). amidons (maïs, pomme de terre), épices (ail, poivron noir), pomme de terre déshydratée, extrait de levure, sel, protéines de BLÉ hydrolysées, extrait de malt d'ORGE, levure, arôme, extraits de plantes, correcteur d'acidité (hydroxyde de potassium). Peut contenir: SÉSAME, CÉLERI, MOUTARDE.",
+    "allergens": [
+      "en:eggs",
+      "en:gluten",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e525"
+    ],
+    "labels": [
+      "en:vegetarian",
+      "en:european-vegetarian-union",
+      "en:nutriscore",
+      "en:european-vegetarian-union-vegetarian",
+      "en:nutriscore-grade-a"
+    ],
+    "brands": "Garden Gourmet",
+    "categories": "Aliments d'origine végétale, Substituts de viande, Galettes végétariennes"
+  },
+  "07290012806940": {
+    "nutriscore": "A",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 174,
+      "fat_100g": 4.4,
+      "saturated_fat_100g": 0.4,
+      "carbs_100g": 14,
+      "sugars_100g": 3.2,
+      "fiber_100g": 5,
+      "proteins_100g": 17,
+      "salt_100g": 1.1
+    },
+    "ingredients": "Protéines de SOJA réhydratées 42,3% (eau, protéines de SOJA 11,6%). protéines de BLÉ réhydratées 11,8% (eau, protéines de BLÉ 4,2%), huiles végétales (colza, tournesol), eau, blanc d'OEUF en poudre, oignon en poudre, farine de BLÉ, purée de pommes, vinaigre d'alcool, herbes (persil, coriandre). amidons (maïs, pomme de terre), épices (ail, poivron noir), pomme de terre déshydratée, extrait de levure, sel, protéines de BLÉ hydrolysées, extrait de malt d'ORGE, levure, arôme, extraits de plantes, correcteur d'acidité (hydroxyde de potassium). Peut contenir: SÉSAME, CÉLERI, MOUTARDE.",
+    "allergens": [
+      "en:eggs",
+      "en:gluten",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e525"
+    ],
+    "labels": [
+      "en:vegetarian",
+      "en:european-vegetarian-union",
+      "en:nutriscore",
+      "en:european-vegetarian-union-vegetarian",
+      "en:nutriscore-grade-a"
+    ],
+    "brands": "Garden Gourmet",
+    "categories": "Aliments d'origine végétale, Substituts de viande, Galettes végétariennes"
+  },
+  "colruyt|ALWAYS protège-slip profresh large 52pc": null,
+  "colruyt|SOUPLINE mandarine & vanille 60d 1,28L": null,
+  "colruyt|SOUPLINE adoucissant coco 60d 1,2L": null,
+  "colruyt|BAGLIETTI Spumante Gold Edition 75cl": null,
+  "colruyt|ALWAYS DISCREET serviettes small 20pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Always discreet",
+    "categories": ""
+  },
+  "colruyt|SANEX gel dch skin therapy dry 450ml": null,
+  "colruyt|DREFT 3in1 power spray+recharge 1L": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "08700216798785": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Dreft",
+    "categories": ""
+  },
+  "colruyt|ALWAYS SH plat.norm.+ avec ailettes 28pc": null,
+  "colruyt|CORONA Cero 0,0% 33cl": null,
+  "colruyt|GOURMET Gold chat regal sauces 12x85g": {
+    "nutriscore": "E",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 363,
+      "fat_100g": 24,
+      "saturated_fat_100g": 14,
+      "carbs_100g": 33,
+      "sugars_100g": 25,
+      "proteins_100g": 2.9,
+      "salt_100g": 0.3
+    },
+    "ingredients": "",
+    "allergens": [
+      "en:eggs",
+      "en:gluten",
+      "en:milk"
+    ],
+    "additives": [
+      "en:e1510",
+      "en:e322",
+      "en:e471"
+    ],
+    "labels": [
+      "en:german-agricultural-society",
+      "en:gold-medal-of-the-german-agricultural-society",
+      "en:nutriscore",
+      "en:rainforest-alliance",
+      "en:2021-gold-medal-of-the-german-agricultural-society",
+      "en:nutriscore-grade-e"
+    ],
+    "brands": "Gourmet Finest Cuisine, Verbau",
+    "categories": "Milchnachspeisen, Schokoladendesserts"
+  },
+  "colruyt|SOUPLINE adouc.precious amber 60d 1,26L": null,
+  "colruyt|AJAX Nettoy.menag.Eucalyptus Spray 750ml": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Ajax",
+    "categories": ""
+  },
+  "08718951650459": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Ajax",
+    "categories": ""
+  },
+  "colruyt|SUZI WAN Nouilles Ramen Curry 320g": {
+    "nutriscore": "B",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 155,
+      "fat_100g": 2,
+      "saturated_fat_100g": 0.3,
+      "carbs_100g": 28,
+      "sugars_100g": 0.5,
+      "fiber_100g": 2,
+      "proteins_100g": 4.9,
+      "salt_100g": 0.5
+    },
+    "ingredients": "Nouilles précuites à base de blé (farine de blé (69%), eau, gluten de blé,  sel, correcteur d'acidité (acide lactique), épaississant (gomme de guar))",
+    "allergens": [
+      "en:gluten"
+    ],
+    "additives": [
+      "en:e270",
+      "en:e412"
+    ],
+    "labels": [
+      "en:no-preservatives",
+      "en:no-colorings"
+    ],
+    "brands": "Suzi Wan",
+    "categories": "Nouilles asiatiques cuites nature non salées"
+  },
+  "4002359018855": {
+    "nutriscore": "B",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 155,
+      "fat_100g": 2,
+      "saturated_fat_100g": 0.3,
+      "carbs_100g": 28,
+      "sugars_100g": 0.5,
+      "fiber_100g": 2,
+      "proteins_100g": 4.9,
+      "salt_100g": 0.5
+    },
+    "ingredients": "Nouilles précuites à base de blé (farine de blé (69%), eau, gluten de blé,  sel, correcteur d'acidité (acide lactique), épaississant (gomme de guar))",
+    "allergens": [
+      "en:gluten"
+    ],
+    "additives": [
+      "en:e270",
+      "en:e412"
+    ],
+    "labels": [
+      "en:no-preservatives",
+      "en:no-colorings"
+    ],
+    "brands": "Suzi Wan",
+    "categories": "Nouilles asiatiques cuites nature non salées"
+  },
+  "colruyt|GARDEN GOURMET nuggets Vegan 700g": null,
+  "colruyt|AJAX nett.tout power clean arctic 750ml": null,
+  "colruyt|SENSODYNE df proglasur protection 75ml": null,
+  "colruyt|SANEX gel dch skin therapy atopic 450ml": null,
+  "colruyt|NESCAFÉ DG Caps Iced Frappé 16pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 340,
+      "fat_100g": 11.9,
+      "saturated_fat_100g": 7.3,
+      "carbs_100g": 44.2,
+      "sugars_100g": 40.4,
+      "fiber_100g": 1.7,
+      "proteins_100g": 11.3,
+      "salt_100g": 0.34
+    },
+    "ingredients": "Lait entier en poudre (58,9%), sucre (38,1%), arômes naturels, matière grasse de lait anhydre.",
+    "allergens": [
+      "en:milk"
+    ],
+    "additives": [],
+    "labels": [
+      "en:nutriscore",
+      "en:nutriscore-grade-d"
+    ],
+    "brands": "NESCAFÉ DG",
+    "categories": "Dolce Gusto-compatibele Koffiecapsules"
+  },
+  "colruyt|PAMPERS Baby dry langes T5 26pc": null,
+  "colruyt|RICORDI Asolo Prosecco DOCG Brut 75cl": null,
+  "colruyt|SANEX gel dch skin therapy oily 450ml": null,
+  "colruyt|SOUPLINE perles grand air 225g": null,
+  "colruyt|PERSIL discs Color 4en1 15pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Persil",
+    "categories": ""
+  },
+  "05410091779658": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Persil",
+    "categories": ""
+  },
+  "colruyt|PAMPERS Baby dry langes T6 22pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:50"
+    ],
+    "brands": "Pampers",
+    "categories": ""
+  },
+  "3048480059450": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:50"
+    ],
+    "brands": "Pampers",
+    "categories": ""
+  },
+  "colruyt|ALWAYS DISCREET inco maxi confort 12pc": null,
+  "colruyt|ALWAYS DISCREET culotte inco medium 10pc": null,
+  "colruyt|ALWAYS DISCREET culottes inco large 9pc": null,
+  "colruyt|AJAX nett.tout power clean citrus 750ml": null,
+  "colruyt|SANEX whole body deo sensitive 150ml": null,
+  "colruyt|PERSIL discs color 4en1 25pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Persil",
+    "categories": ""
+  },
+  "4015200033198": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Persil",
+    "categories": ""
+  },
+  "colruyt|SANEX whole body deo fresh 150ml": null,
+  "colruyt|PERSIL discs universal 4en1 25pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "",
+    "categories": ""
+  },
+  "4015200031996": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "",
+    "categories": ""
+  },
+  "colruyt|A.VOGEL MOLKOSAN Lactosérum conc. 500ml": {
+    "nutriscore": "NOT-APPLICABLE",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 20,
+      "fat_100g": 0.5,
+      "saturated_fat_100g": 0.5,
+      "carbs_100g": 0.5,
+      "sugars_100g": 0.5,
+      "proteins_100g": 0,
+      "salt_100g": 0.25
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:vegetarian",
+      "en:no-gluten",
+      "en:no-lactose"
+    ],
+    "brands": "A.Vogel",
+    "categories": "Suplementos dietéticos"
+  },
+  "7610313411566": {
+    "nutriscore": "NOT-APPLICABLE",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 20,
+      "fat_100g": 0.5,
+      "saturated_fat_100g": 0.5,
+      "carbs_100g": 0.5,
+      "sugars_100g": 0.5,
+      "proteins_100g": 0,
+      "salt_100g": 0.25
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [
+      "en:vegetarian",
+      "en:no-gluten",
+      "en:no-lactose"
+    ],
+    "brands": "A.Vogel",
+    "categories": "Suplementos dietéticos"
+  },
+  "colruyt|SOUPLINE Pink paradise 60d 1,2L": null,
+  "colruyt|ALWAYS DISCREET culotte medium 8pc": null,
+  "colruyt|ALWAYS DISCREET culottes large 7pc": null,
+  "colruyt|PERSIL discs giant universal 15pc": null,
+  "colruyt|ALWAYS DISCREET cul.inco large black 8pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Always discreet",
+    "categories": ""
+  },
+  "colruyt|SANEX whole body deo sensit.cream 75ml": null,
+  "colruyt|SANEX whole body deo fresh cream 75ml": null,
+  "colruyt|PERSIL discs expert Freshness Silan 31pc": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {},
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Persil",
+    "categories": ""
+  },
+  "colruyt|MILKA Mmmax | Biscoff | Caramel 3x45g": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 557,
+      "fat_100g": 34,
+      "saturated_fat_100g": 19,
+      "carbs_100g": 57,
+      "sugars_100g": 46,
+      "fiber_100g": 1.4,
+      "proteins_100g": 4.9,
+      "salt_100g": 0.37
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Milka",
+    "categories": ""
+  },
+  "7622202369858": {
+    "nutriscore": "UNKNOWN",
+    "nova_group": null,
+    "nutrition": {
+      "energy_kcal_100g": 557,
+      "fat_100g": 34,
+      "saturated_fat_100g": 19,
+      "carbs_100g": 57,
+      "sugars_100g": 46,
+      "fiber_100g": 1.4,
+      "proteins_100g": 4.9,
+      "salt_100g": 0.37
+    },
+    "ingredients": "",
+    "allergens": [],
+    "additives": [],
+    "labels": [],
+    "brands": "Milka",
+    "categories": ""
+  },
+  "colruyt|BUMI Tofu Bites Barbecue Bio 175g": null,
+  "colruyt|MILKA Mmmax Barre Choc.Cache.cara. 3x46g": {
+    "nutriscore": "E",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 546,
+      "fat_100g": 33,
+      "saturated_fat_100g": 16,
+      "carbs_100g": 51,
+      "sugars_100g": 47,
+      "fiber_100g": 2.3,
+      "proteins_100g": 9.1,
+      "salt_100g": 0.285
+    },
+    "ingredients": "Sucre, ARACHIDES, beurre de cacao, huile de palme, LAIT écrémé en poudre, lactosérum en poudre (de LAIT), pâte de cacao, sirop de glucose, pâte d'ARACHIDE 3%, BEURRE concentré, sirop de glucose-fructose, éclats d'ARACHIDES, émulsifiants (lécithines de SOJA, E476, E471), farine de riz, pâte de NOISETTE, arômes, sel, correcteur d'acidité (E500).",
+    "allergens": [
+      "en:milk",
+      "en:nuts",
+      "en:peanuts",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i",
+      "en:e471",
+      "en:e476",
+      "en:e500"
+    ],
+    "labels": [
+      "en:cocoa-life",
+      "fr:tidy-man",
+      "fr:triman"
+    ],
+    "brands": "Milka, Mondelez",
+    "categories": "Confiseries chocolatées, Chocolats au lait fourrés"
+  },
+  "7622210604187": {
+    "nutriscore": "E",
+    "nova_group": 4,
+    "nutrition": {
+      "energy_kcal_100g": 546,
+      "fat_100g": 33,
+      "saturated_fat_100g": 16,
+      "carbs_100g": 51,
+      "sugars_100g": 47,
+      "fiber_100g": 2.3,
+      "proteins_100g": 9.1,
+      "salt_100g": 0.285
+    },
+    "ingredients": "Sucre, ARACHIDES, beurre de cacao, huile de palme, LAIT écrémé en poudre, lactosérum en poudre (de LAIT), pâte de cacao, sirop de glucose, pâte d'ARACHIDE 3%, BEURRE concentré, sirop de glucose-fructose, éclats d'ARACHIDES, émulsifiants (lécithines de SOJA, E476, E471), farine de riz, pâte de NOISETTE, arômes, sel, correcteur d'acidité (E500).",
+    "allergens": [
+      "en:milk",
+      "en:nuts",
+      "en:peanuts",
+      "en:soybeans"
+    ],
+    "additives": [
+      "en:e322",
+      "en:e322i",
+      "en:e471",
+      "en:e476",
+      "en:e500"
+    ],
+    "labels": [
+      "en:cocoa-life",
+      "fr:tidy-man",
+      "fr:triman"
+    ],
+    "brands": "Milka, Mondelez",
+    "categories": "Confiseries chocolatées, Chocolats au lait fourrés"
+  },
+  "colruyt|APICAS Pollen Italien Bio 100g": null,
+  "colruyt|ALWAYS ULTRA serv.hyg.secure night 36pc": null,
+  "colruyt|SUPER 8 Flandrien 0,0% 4x33cl": null,
+  "spar|P├ótes ou croque monsieur": null
 }
